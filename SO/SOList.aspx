@@ -96,14 +96,10 @@
                             <HeaderStyle BackColor="#009933" />
                         </asp:TemplateField>
                         <asp:TemplateField ShowHeader="False">
-                            <EditItemTemplate>
-                                <asp:Button ID="Button1" runat="server" CausesValidation="True" CommandName="Update" Text="Update" />
-                                &nbsp;<asp:Button ID="Button2" runat="server" CausesValidation="False" CommandName="Cancel" Text="Cancel" />
-                            </EditItemTemplate>
                             <ItemTemplate>
                                 <asp:Button ID="btnEdit" runat="server" CausesValidation="False" CommandName="Edit" Text="Edit" CommandArgument='<%# Eval("SALES_SO_ID") %>' />
                                 <asp:Button ID="btnDelete" runat="server" CausesValidation="true" CommandName="Delete" Text="Delete" CommandArgument='<%# Eval("SALES_SO_ID") %>'
-                                     OnClientClick="return confirm('Are you sure?')" />
+                                    OnClientClick="return confirm('Are you sure?')" />
                             </ItemTemplate>
                             <HeaderStyle BackColor="#009933" />
                         </asp:TemplateField>

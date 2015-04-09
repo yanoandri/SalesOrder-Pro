@@ -77,7 +77,31 @@
             <br />
             <asp:Panel ID="List" GroupingText="List" runat="server" Style="margin-left: 67px; border: solid;" Height="709px" Width="824px">
                 &nbsp&nbsp<asp:Button ID="btnAdd" OnClick="btnAdd_Click" runat="server" Text="ADD ITEM" />
-               <asp:GridView ID="GridInput" runat="server" AutoGenerateColumns="False" BorderWidth="1px" DataSourceID="SqlDataItem"
+                <asp:GridView ID="Gridview1" runat="server" ShowFooter="true" AutoGenerateColumns="false">
+                    <Columns>
+                        <asp:BoundField DataField="RowNumber" HeaderText="Row Number" />
+                        <asp:TemplateField HeaderText="Header 1">
+                            <ItemTemplate>
+                                <asp:TextBox ID="TextBox1" runat="server"></asp:TextBox>
+                            </ItemTemplate>
+                        </asp:TemplateField>
+                        <asp:TemplateField HeaderText="Header 2">
+                            <ItemTemplate>
+                                <asp:TextBox ID="TextBox2" runat="server"></asp:TextBox>
+                            </ItemTemplate>
+                        </asp:TemplateField>
+                        <asp:TemplateField HeaderText="Header 3">
+                            <ItemTemplate>
+                                <asp:TextBox ID="TextBox3" runat="server"></asp:TextBox>
+                            </ItemTemplate>
+                            <FooterStyle HorizontalAlign="Right" />
+                            <FooterTemplate>
+                                <asp:Button ID="ButtonAdd" runat="server" Text="Add New Row"  />
+                            </FooterTemplate>
+                        </asp:TemplateField>
+                    </Columns>
+                </asp:GridView>
+                <%--<asp:GridView ID="GridInput" runat="server" AutoGenerateColumns="False" BorderWidth="1px"
                 BorderColor="Black" OnRowCancelingEdit="GridInput_RowCancelingEdit" OnRowEditing="GridInput_RowEditing"
                 OnRowDataBound="GridInput_RowDataBound" OnRowUpdating="GridInput_RowUpdating"
                 OnRowCommand="GridInput_RowCommand" CellPadding="4"
@@ -159,7 +183,7 @@
                         </ItemTemplate>
                     </asp:TemplateField>
                 </Columns>
-            </asp:GridView>
+            </asp:GridView>--%>
                 <asp:SqlDataSource ID="SqlDataItem" runat="server" ConnectionString="<%$ ConnectionStrings:SOConnectionString %>" SelectCommand="SELECT [SALES_SO_LITEM_ID], [SALES_SO_ID], [ITEM_NAME], [QUANTITY], [PRICE], (QUANTITY * PRICE) as TOTAL FROM [SALES_SO_LITEM]"></asp:SqlDataSource>
                 <br />
                 <br />
