@@ -1,6 +1,14 @@
-﻿<%@ Page Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="SOInput.aspx.cs" Inherits="SO.Grid" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="SOInput.aspx.cs" Inherits="SO.SOInput2" %>
 
-<asp:Content runat="server" ID="BodyContent" ContentPlaceHolderID="MainContent">
+<!DOCTYPE html>
+<html>
+<head runat="server">
+    <title>Sales Order Input</title>
+    <link href="css/jquery-ui.css" rel="stylesheet" />
+    <script src="Scripts/jquery.js" type="text/javascript"></script>
+    <script src="Scripts/jquery-ui.js" type="text/javascript"></script>
+</head>
+<body>
     <script type="text/javascript">
         $(function () {
             $('.txtCalendarCss').datepicker({
@@ -11,9 +19,9 @@
             });
         });
     </script>
-    <form id="form1">
+    <form id="form1" runat="server">
         <div id="main">
-            <asp:Panel ID="Header" Font-Bold="True" runat="server" GroupingText="HEADER" Style="margin-left: 66px; margin-right: 61px; border: solid;">
+             <asp:Panel ID="Header" Font-Bold="True" runat="server" GroupingText="HEADER" Style="margin-left: 66px; margin-right: 61px; border: solid;">
                 <div>
                     <table>
                         <tr>
@@ -75,37 +83,13 @@
                 </div>
             </asp:Panel>
             <br />
-            <asp:Panel ID="List" GroupingText="List" runat="server" Style="margin-left: 67px; border: solid;" Height="709px" Width="824px">
-                &nbsp&nbsp<asp:Button ID="btnAdd" OnClick="btnAdd_Click" runat="server" Text="ADD ITEM" />
-                <asp:GridView ID="Gridview1" runat="server" ShowFooter="true" AutoGenerateColumns="false">
-                    <Columns>
-                        <asp:BoundField DataField="RowNumber" HeaderText="Row Number" />
-                        <asp:TemplateField HeaderText="Header 1">
-                            <ItemTemplate>
-                                <asp:TextBox ID="TextBox1" runat="server"></asp:TextBox>
-                            </ItemTemplate>
-                        </asp:TemplateField>
-                        <asp:TemplateField HeaderText="Header 2">
-                            <ItemTemplate>
-                                <asp:TextBox ID="TextBox2" runat="server"></asp:TextBox>
-                            </ItemTemplate>
-                        </asp:TemplateField>
-                        <asp:TemplateField HeaderText="Header 3">
-                            <ItemTemplate>
-                                <asp:TextBox ID="TextBox3" runat="server"></asp:TextBox>
-                            </ItemTemplate>
-                            <FooterStyle HorizontalAlign="Right" />
-                            <FooterTemplate>
-                                <asp:Button ID="ButtonAdd" runat="server" Text="Add New Row"  />
-                            </FooterTemplate>
-                        </asp:TemplateField>
-                    </Columns>
-                </asp:GridView>
-                <%--<asp:GridView ID="GridInput" runat="server" AutoGenerateColumns="False" BorderWidth="1px"
+            <asp:Panel ID="List" GroupingText="List" runat="server" Style="border-style: solid; border-color: inherit; border-width: medium; margin-left: 67px; margin-right: 0px;" Height="584px" Width="1200px">
+                &nbsp&nbsp<asp:Button ID="btnAdd" OnClick="btnAdd_Click" runat="server" Text="ADD ITEM" CausesValidation="false" />
+                <asp:GridView ID="GridInput" runat="server" AutoGenerateColumns="False" BorderWidth="1px"
                 BorderColor="Black" OnRowCancelingEdit="GridInput_RowCancelingEdit" OnRowEditing="GridInput_RowEditing"
                 OnRowDataBound="GridInput_RowDataBound" OnRowUpdating="GridInput_RowUpdating"
                 OnRowCommand="GridInput_RowCommand" CellPadding="4"
-                Width="939px" ForeColor="#333333" ShowFooter="True" EmptyDataText="Tidak ada data" AllowPaging="True" AllowSorting="True">
+                Width="939px" ForeColor="#333333" ShowFooter="True" EmptyDataText="Please Add an Item" AllowPaging="True" AllowSorting="True" Height="237px">
                 <RowStyle HorizontalAlign="Center" />
                 <AlternatingRowStyle BackColor="White" />
                 <FooterStyle HorizontalAlign="Center" BackColor="#1C5E55" ForeColor="White" Font-Bold="True" />
@@ -183,21 +167,24 @@
                         </ItemTemplate>
                     </asp:TemplateField>
                 </Columns>
-            </asp:GridView>--%>
-                <asp:SqlDataSource ID="SqlDataItem" runat="server" ConnectionString="<%$ ConnectionStrings:SOConnectionString %>" SelectCommand="SELECT [SALES_SO_LITEM_ID], [SALES_SO_ID], [ITEM_NAME], [QUANTITY], [PRICE], (QUANTITY * PRICE) as TOTAL FROM [SALES_SO_LITEM]"></asp:SqlDataSource>
+            </asp:GridView>
                 <br />
                 <br />
             </asp:Panel>
-            <table align="center" border="0" style="width: 199px">
+             <table align="center" border="0" cellpadding="4" cellspacing="3" style="width: 223px;
+                height: 50px;">
                 <tr>
                     <td>
-                        <asp:Button ID="btnsave" runat="server" Text="Save" Width="104px" />
+                        <asp:Button ID="btnSave" runat="server" Text="SAVE" OnClick="btnSave_Click" CssClass="Button"
+                            Width="74px" />
                     </td>
                     <td>
-                        <asp:Button ID="btncancel" runat="server" CausesValidation="false" Text="Cancel" Width="104px" OnClick="btncancel_Click" />
+                        <asp:Button ID="btnCancelOrder" runat="server" Text="CANCEL" CssClass="Button" CausesValidation="false"
+                            OnClick="btnCancelOrder_Click" />
                     </td>
                 </tr>
             </table>
         </div>
     </form>
-</asp:Content>
+</body>
+</html>

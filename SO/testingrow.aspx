@@ -68,7 +68,7 @@
                     </div>
                 </asp:Panel>
                 <asp:Panel ID="Panel2" runat="server">
-                    <asp:Button ID="ButtonAdd" runat="server" Text="Add New Row" OnClick="ButtonAdd_Click" />
+                    <asp:Button ID="ButtonAdd" runat="server" Text="Add New Row" OnClick="ButtonAdd_Click" CausesValidation="false" />
                     <asp:GridView ID="Gridview1" runat="server" ShowFooter="true" AutoGenerateColumns="false">
                         <columns>
                         <asp:BoundField DataField="RowNumber" HeaderText="NO" />

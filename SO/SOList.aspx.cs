@@ -13,6 +13,9 @@ namespace SO
 {
     public partial class SOList : System.Web.UI.Page
     {
+        #region
+        public string connect = ConfigurationManager.ConnectionStrings["SOConnectionString"].ConnectionString; 
+        #endregion
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -51,16 +54,29 @@ namespace SO
             ShowList();
         }
 
+        protected void GridView1_RowDeleting(object sender, GridViewDeleteEventArgs e)
+        {
+            SqlConnection cn = new SqlConnection(connect);
+            cn.Open();
+            string cmd = "spx_deleteso";
+            SqlCommand sqlcmd = new SqlCommand(cmd, cn);
+            sqlcmd.CommandType = CommandType.StoredProcedure;
+            sqlcmd.Parameters.Add("@SOID", SqlDbType.VarChar).Value = GridView1.DataKeys[e.RowIndex].Value.ToString();
+            sqlcmd.ExecuteNonQuery();
+            cn.Close();
+            ShowList();
+
+        }
+
 
         #region method
         protected void ShowList()
         {
-            string connect = ConfigurationManager.ConnectionStrings["SOConnectionString"].ConnectionString;
             SqlConnection cn = new SqlConnection(connect);
             cn.Open();
-            string cmd = "SELECT SALES_SO_ID, a.SO_NO, a.ORDER_DATE, b.CUSTOMER_NAME, a.ADDRESS FROM dbo.SALES_SO a JOIN dbo.COM_CUSTOMER b ON a.COM_CUSTOMER_ID = b.COM_CUSTOMER_ID";
+            string cmd = "spx_showlist";
             SqlCommand sqlcmd = new SqlCommand(cmd, cn);
-            sqlcmd.CommandType = CommandType.Text;
+            sqlcmd.CommandType = CommandType.StoredProcedure;
             DataSet ds = new DataSet();
             SqlDataAdapter da = new SqlDataAdapter(sqlcmd);
             da.Fill(ds);
@@ -71,7 +87,6 @@ namespace SO
 
         protected void FindList()
         {
-            string connect = ConfigurationManager.ConnectionStrings["SOConnectionString"].ConnectionString;
             SqlConnection cn = new SqlConnection(connect);
             cn.Open();
             string cmd = "SELECT SALES_SO_ID, a.SO_NO, a.ORDER_DATE, b.CUSTOMER_NAME, a.ADDRESS FROM dbo.SALES_SO a JOIN dbo.COM_CUSTOMER b ON a.COM_CUSTOMER_ID = b.COM_CUSTOMER_ID WHERE (a.SO_NO LIKE '%" + txtkey.Text + "%' OR b.CUSTOMER_NAME LIKE '%" + txtkey.Text + "%')";
@@ -89,23 +104,10 @@ namespace SO
             cn.Close();
 
         }
-
-
-        protected void GridView1_RowDeleting(object sender, GridViewDeleteEventArgs e)
-        {
-            GridViewRow row = (GridViewRow)GridView1.Rows[e.RowIndex];
-            string connect = ConfigurationManager.ConnectionStrings["SOConnectionString"].ConnectionString;
-            SqlConnection cn = new SqlConnection(connect);
-            cn.Open();
-            string cmd = "DELETE SALES_SO WHERE SALES_SO_ID='" + GridView1.DataKeys[e.RowIndex].Value.ToString() + "'";
-            SqlCommand sqlcmd = new SqlCommand(cmd, cn);
-            sqlcmd.CommandType = CommandType.Text;
-            sqlcmd.ExecuteNonQuery();
-            cn.Close();
-            ShowList();
-
-        }
         #endregion method
+
+       
+        
 
 
 

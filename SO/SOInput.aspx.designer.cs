@@ -10,7 +10,16 @@
 namespace SO {
     
     
-    public partial class Grid {
+    public partial class SOInput2 {
+        
+        /// <summary>
+        /// form1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlForm form1;
         
         /// <summary>
         /// Header control.
@@ -157,39 +166,30 @@ namespace SO {
         protected global::System.Web.UI.WebControls.Button btnAdd;
         
         /// <summary>
-        /// Gridview1 control.
+        /// GridInput control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView Gridview1;
+        protected global::System.Web.UI.WebControls.GridView GridInput;
         
         /// <summary>
-        /// SqlDataItem control.
+        /// btnSave control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.SqlDataSource SqlDataItem;
+        protected global::System.Web.UI.WebControls.Button btnSave;
         
         /// <summary>
-        /// btnsave control.
+        /// btnCancelOrder control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnsave;
-        
-        /// <summary>
-        /// btncancel control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btncancel;
+        protected global::System.Web.UI.WebControls.Button btnCancelOrder;
     }
 }
