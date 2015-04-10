@@ -14,7 +14,7 @@ namespace SO
     public partial class SOList : System.Web.UI.Page
     {
         #region
-        public string connect = ConfigurationManager.ConnectionStrings["SOConnectionString"].ConnectionString; 
+        public string connect = ConfigurationManager.ConnectionStrings["SOConnectionString"].ConnectionString;
         #endregion
 
         protected void Page_Load(object sender, EventArgs e)
@@ -89,10 +89,14 @@ namespace SO
         {
             SqlConnection cn = new SqlConnection(connect);
             cn.Open();
-            string cmd = "SELECT SALES_SO_ID, a.SO_NO, a.ORDER_DATE, b.CUSTOMER_NAME, a.ADDRESS FROM dbo.SALES_SO a JOIN dbo.COM_CUSTOMER b ON a.COM_CUSTOMER_ID = b.COM_CUSTOMER_ID WHERE (a.SO_NO LIKE '%" + txtkey.Text + "%' OR b.CUSTOMER_NAME LIKE '%" + txtkey.Text + "%')";
-            if (txtCalendar.Text != "")
+            string cmd = string.Empty;
+            if (txtkey.Text != "")
             {
-                cmd = cmd + "AND ORDER_DATE= '" + txtCalendar.Text + "'";
+                cmd = "SELECT SALES_SO_ID, a.SO_NO, a.ORDER_DATE, b.CUSTOMER_NAME, a.ADDRESS FROM dbo.SALES_SO a JOIN dbo.COM_CUSTOMER b ON a.COM_CUSTOMER_ID = b.COM_CUSTOMER_ID WHERE (a.SO_NO LIKE '%" + txtkey.Text + "%' OR b.CUSTOMER_NAME LIKE '%" + txtkey.Text + "%')";
+            }
+            else if (txtCalendar.Text != "")
+            {
+                cmd = "SELECT SALES_SO_ID, a.SO_NO, a.ORDER_DATE, b.CUSTOMER_NAME, a.ADDRESS FROM dbo.SALES_SO a JOIN dbo.COM_CUSTOMER b ON a.COM_CUSTOMER_ID = b.COM_CUSTOMER_ID WHERE (a.SO_NO LIKE '%" + txtkey.Text + "%' OR b.CUSTOMER_NAME LIKE '%" + txtkey.Text + "%' AND ORDER_DATE= '" + txtCalendar.Text + "')";
             }
             SqlCommand sqlcmd = new SqlCommand(cmd, cn);
             sqlcmd.CommandType = CommandType.Text;
@@ -105,13 +109,6 @@ namespace SO
 
         }
         #endregion method
-
-       
-        
-
-
-
-        
 
 
     }
