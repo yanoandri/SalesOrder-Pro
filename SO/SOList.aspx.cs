@@ -28,7 +28,9 @@ namespace SO
 
         protected void btnsearch_Click(object sender, EventArgs e)
         {
+           
             FindList();
+            
         }
 
         protected void Button3_Click(object sender, EventArgs e)
@@ -44,7 +46,6 @@ namespace SO
             {
                 Response.Redirect("SOInput.aspx?SOID=" + ID);
             }
-
 
         }
 
