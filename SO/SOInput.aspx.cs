@@ -50,7 +50,7 @@ namespace SO
 
         protected void GridInput_RowEditing(object sender, GridViewEditEventArgs e)
         {
-           
+
         }
 
         protected void GridInput_RowDataBound(object sender, GridViewRowEventArgs e)
@@ -87,7 +87,31 @@ namespace SO
 
         protected void btnSave_Click(object sender, EventArgs e)
         {
+            SqlConnection cn = new SqlConnection(strcn);
+            cn.Open();
+            SqlCommand cmd = new SqlCommand("spx_insertSO", cn);
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.Add("@SONO", SqlDbType.VarChar).Value = txtsales.Text;
+            cmd.Parameters.Add("@OrderDate", SqlDbType.DateTime).Value = Convert.ToDateTime(txtdate.Text);
+            cmd.Parameters.Add("@CUSTOMER", SqlDbType.Int).Value = DDLCustomer.SelectedValue;
+            cmd.Parameters.Add("@ADDRESS", SqlDbType.VarChar).Value = txtaddres.Text;
+            string getValue = cmd.ExecuteScalar().ToString();
+            if (SessionSo != null)
+            {
+                foreach (DataRow dr in SessionSo.Rows)
+                {
+                    SqlCommand cmd2 = new SqlCommand("spx_insertSOItem", cn);
+                    cmd2.CommandType = CommandType.StoredProcedure;
+                    cmd2.Parameters.Add("@SOID", SqlDbType.Int).Value = getValue;
+                    cmd2.Parameters.Add("@ItemName", SqlDbType.VarChar).Value = dr["ITEM_NAME"].ToString();
+                    cmd2.Parameters.Add("@Quantity", SqlDbType.Int).Value = dr["QUANTITY"].ToString();
+                    cmd2.Parameters.Add("@Price", SqlDbType.Float).Value = dr["PRICE"].ToString();
+                    cmd2.ExecuteNonQuery();
+                }
 
+            }
+
+            Response.Redirect("SOList.aspx");
         }
 
         protected void btnCancelOrder_Click(object sender, EventArgs e)
@@ -123,14 +147,14 @@ namespace SO
             else if (SessionSo.Rows.Count >= 1)
             {
                 int rowcount = SessionSo.Rows.Count;
-                int i;
+                int OrderedList;
                 DataRow dr2 = null;
                 dr2 = SessionSo.NewRow();
-                for (i = 1; i <= rowcount;i++ )
+                for (OrderedList = 1; OrderedList <= rowcount; OrderedList++)
                 {
-                    i.ToString();
+                    OrderedList.ToString();
                 }
-                dr2["SALES_SO_LITEM_ID"] = i;
+                dr2["SALES_SO_LITEM_ID"] = OrderedList;
                 dr2["ITEM_NAME"] = "";
                 dr2["QUANTITY"] = 0;
                 dr2["PRICE"] = 0;
@@ -139,6 +163,7 @@ namespace SO
                 GridInput.SetEditRow(rowcount);
             }
         }
+
         #endregion method
     }
 }
