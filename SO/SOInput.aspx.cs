@@ -16,7 +16,11 @@ namespace SO
         #region session
         public string strcn = ConfigurationManager.ConnectionStrings["SOConnectionString"].ConnectionString;
 
-        public DataTable dt = new DataTable();
+        public DataTable SessionSo
+        {
+            get { return (Session["SessionSo"]) == null ? new DataTable() : (DataTable)Session["SessionSo"]; }
+            set { Session["SessionSo"] = value; }
+        }
 
         public DataRow dr = null;
 
@@ -25,17 +29,14 @@ namespace SO
         {
             if (!IsPostBack)
             {
-                initTable();
-                GridInput.DataSource = dt;
-                GridInput.DataBind();
+
             }
         }
 
         protected void btnAdd_Click(object sender, EventArgs e)
         {
-            initTable();
-            newRow();
-            GridInput.DataSource = dt;
+            setInitialRow();
+            GridInput.DataSource = SessionSo;
             GridInput.DataBind();
         }
 
@@ -49,10 +50,7 @@ namespace SO
 
         protected void GridInput_RowEditing(object sender, GridViewEditEventArgs e)
         {
-            //initTable();
-            //GridInput.EditIndex = e.NewEditIndex;
-            //GridInput.DataSource = dt;
-            //GridInput.DataBind();
+           
         }
 
         protected void GridInput_RowDataBound(object sender, GridViewRowEventArgs e)
@@ -62,7 +60,7 @@ namespace SO
 
         protected void GridInput_RowUpdating(object sender, GridViewUpdateEventArgs e)
         {
-            initTable();
+
             TextBox txtItem = (TextBox)GridInput.Rows[e.RowIndex].Cells[1].FindControl("txtItem");
             Label lblItem = (Label)GridInput.Rows[e.RowIndex].Cells[1].FindControl("lblitem");
             TextBox txtQty = (TextBox)GridInput.Rows[e.RowIndex].Cells[2].FindControl("txtQty");
@@ -70,27 +68,16 @@ namespace SO
             TextBox txtPrice = (TextBox)GridInput.Rows[e.RowIndex].Cells[3].FindControl("txtprice");
             Label lblprice = (Label)GridInput.Rows[e.RowIndex].Cells[3].FindControl("lblprice");
             Label lblTotal = (Label)GridInput.Rows[e.RowIndex].Cells[4].FindControl("lblTotal");
-
             GridViewRow r = GridInput.Rows[e.RowIndex];
-            //String str = ((TextBox)(r.Cells[1].Controls[0])).Text;
-
-           
-            dr = dt.NewRow();
-
-            //dt.Rows.Add(new DataRow(lblItem.Text));
-            dr["ITEM_NAME"] = txtItem.Text;
-            dr["QUANTITY"] = txtQty.Text;
-            dr["PRICE"] = txtPrice.Text;
-            dr["TOTAL"] = (Convert.ToInt16(txtQty.Text) * Convert.ToDouble(txtPrice.Text)).ToString();
-            //dt.Rows[r.DataItemIndex]["QUANTITY"] = lblquantity;
-            //dt.Rows[r.DataItemIndex]["PRICE"] = lblprice;
-            //dt.Rows[r.DataItemIndex]["TOTAL"] = (Convert.ToDouble(lblquantity) * Convert.ToDouble(lblprice));
-            dt.Rows.Add(dr);
+            SessionSo.Rows[r.DataItemIndex]["ITEM_NAME"] = txtItem.Text;
+            SessionSo.Rows[r.DataItemIndex]["QUANTITY"] = txtQty.Text;
+            SessionSo.Rows[r.DataItemIndex]["PRICE"] = txtPrice.Text;
+            SessionSo.Rows[r.DataItemIndex]["TOTAL"] = (Convert.ToInt64(txtQty.Text) * Convert.ToDouble(txtPrice.Text)).ToString();
             GridInput.EditIndex = -1;
-            GridInput.DataSource = dt;
+            GridInput.DataSource = SessionSo;
             GridInput.DataBind();
 
-            
+
         }
 
         protected void GridInput_RowCommand(object sender, GridViewCommandEventArgs e)
@@ -105,32 +92,52 @@ namespace SO
 
         protected void btnCancelOrder_Click(object sender, EventArgs e)
         {
+            Session.Remove("SessionSo");
+            Session["SessionSo"] = null;
             Response.Redirect("SOList.aspx");
         }
 
         #region method
-        protected void initTable()
+        private void setInitialRow()
         {
-            //dt = new DataTable();
+            DataTable dt = new DataTable();
             dt.Columns.Add(new DataColumn("SALES_SO_LITEM_ID", typeof(int)));
             dt.Columns.Add(new DataColumn("ITEM_NAME", typeof(string)));
             dt.Columns.Add(new DataColumn("QUANTITY", typeof(int)));
             dt.Columns.Add(new DataColumn("PRICE", typeof(float)));
             dt.Columns.Add(new DataColumn("TOTAL", typeof(float)));
 
-        }
-
-        protected void newRow()
-        {
-            int rowcount = dt.Rows.Count;
-            dr = dt.NewRow();
-            dr["SALES_SO_LITEM_ID"] = 1;
-            dr["ITEM_NAME"] = "";
-            dr["QUANTITY"] = 0;
-            dr["PRICE"] = 0;
-            dr["TOTAL"] = 0;
-            dt.Rows.Add(dr);
-            GridInput.SetEditRow(rowcount);
+            if (SessionSo.Rows.Count < 1)
+            {
+                int rowcount = SessionSo.Rows.Count;
+                dr = dt.NewRow();
+                dr["SALES_SO_LITEM_ID"] = 1;
+                dr["ITEM_NAME"] = "";
+                dr["QUANTITY"] = 0;
+                dr["PRICE"] = 0;
+                dr["TOTAL"] = 0;
+                dt.Rows.Add(dr);
+                GridInput.SetEditRow(rowcount);
+                SessionSo = dt;
+            }
+            else if (SessionSo.Rows.Count >= 1)
+            {
+                int rowcount = SessionSo.Rows.Count;
+                int i;
+                DataRow dr2 = null;
+                dr2 = SessionSo.NewRow();
+                for (i = 1; i <= rowcount;i++ )
+                {
+                    i.ToString();
+                }
+                dr2["SALES_SO_LITEM_ID"] = i;
+                dr2["ITEM_NAME"] = "";
+                dr2["QUANTITY"] = 0;
+                dr2["PRICE"] = 0;
+                dr2["TOTAL"] = 0;
+                SessionSo.Rows.Add(dr2);
+                GridInput.SetEditRow(rowcount);
+            }
         }
         #endregion method
     }
