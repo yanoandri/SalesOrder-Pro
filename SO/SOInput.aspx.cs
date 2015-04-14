@@ -42,10 +42,10 @@ namespace SO
 
         protected void GridInput_RowCancelingEdit(object sender, GridViewCancelEditEventArgs e)
         {
-            //initTable();
-            GridInput.EditIndex = -1;
-            //GridInput.DataSource = dt;
-            //GridInput.DataBind();
+            ////initTable();
+            //GridInput.EditIndex = -1;
+            ////GridInput.DataSource = dt;
+            ////GridInput.DataBind();
         }
 
         protected void GridInput_RowEditing(object sender, GridViewEditEventArgs e)
