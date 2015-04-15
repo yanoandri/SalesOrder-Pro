@@ -40,11 +40,12 @@ namespace SO
 
         protected void GridView1_RowCommand(object sender, GridViewCommandEventArgs e)
         {
-            int ID = Convert.ToInt32(e.CommandArgument.ToString());
+            //int ID = Convert.ToInt32(e.CommandArgument.ToString());
+            Session["Edit"] = Convert.ToInt32(e.CommandArgument.ToString());
             //GridViewRow row = (GridViewRow)GridView1.Rows[e.CommandArgument];
             if (e.CommandName == "Edit")
             {
-                Response.Redirect("SOInput.aspx?SOID=" + ID);
+                Response.Redirect("SOInput.aspx?SOID=" + Session["Edit"]);
             }
 
         }

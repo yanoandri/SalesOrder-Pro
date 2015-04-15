@@ -16,12 +16,25 @@ namespace SO
         #region session
         public string strcn = ConfigurationManager.ConnectionStrings["SOConnectionString"].ConnectionString;
 
+        public int SOID
+        {
+            get { return (Session["Edit"]) == null ? 0 : (int)Session["Edit"]; }
+            set { Session["Edit"] = value; }
+        }
+
+        //public int SOID = Convert.ToInt32(Request.QueryString["SOID"] == null ? "0" : Request.QueryString["SOID"].ToString());
+
         public DataTable SessionSo
         {
             get { return (Session["SessionSo"]) == null ? new DataTable() : (DataTable)Session["SessionSo"]; }
             set { Session["SessionSo"] = value; }
         }
 
+        public DataTable SessionEdit
+        {
+            get { return (Session["SessionEdit"]) == null ? new DataTable() : (DataTable)Session["SessionEdit"]; }
+            set { Session["SessionEdit"] = value; }
+        }
         public DataRow dr = null;
 
         #endregion session
@@ -29,6 +42,10 @@ namespace SO
         {
             if (!IsPostBack)
             {
+                if (SOID != 0)
+                {
+                    retrieveData();
+                }
 
             }
         }
@@ -87,41 +104,56 @@ namespace SO
 
         protected void btnSave_Click(object sender, EventArgs e)
         {
-            SqlConnection cn = new SqlConnection(strcn);
-            cn.Open();
-            SqlCommand cmd = new SqlCommand("spx_insertSO", cn);
-            cmd.CommandType = CommandType.StoredProcedure;
-            cmd.Parameters.Add("@SONO", SqlDbType.VarChar).Value = txtsales.Text;
-            cmd.Parameters.Add("@OrderDate", SqlDbType.DateTime).Value = Convert.ToDateTime(txtdate.Text);
-            cmd.Parameters.Add("@CUSTOMER", SqlDbType.Int).Value = DDLCustomer.SelectedValue;
-            cmd.Parameters.Add("@ADDRESS", SqlDbType.VarChar).Value = txtaddres.Text;
-            string getValue = cmd.ExecuteScalar().ToString();
-            if (SessionSo != null)
+
+            if (SOID != 0)
             {
-                foreach (DataRow dr in SessionSo.Rows)
-                {
-                    SqlCommand cmd2 = new SqlCommand("spx_insertSOItem", cn);
-                    cmd2.CommandType = CommandType.StoredProcedure;
-                    cmd2.Parameters.Add("@SOID", SqlDbType.Int).Value = getValue;
-                    cmd2.Parameters.Add("@ItemName", SqlDbType.VarChar).Value = dr["ITEM_NAME"].ToString();
-                    cmd2.Parameters.Add("@Quantity", SqlDbType.Int).Value = dr["QUANTITY"].ToString();
-                    cmd2.Parameters.Add("@Price", SqlDbType.Float).Value = dr["PRICE"].ToString();
-                    cmd2.ExecuteNonQuery();
-                }
 
             }
+            else
+            {
+                insertData();
+            }
 
-            Response.Redirect("SOList.aspx");
+
         }
 
         protected void btnCancelOrder_Click(object sender, EventArgs e)
         {
-            Session.Remove("SessionSo");
-            Session["SessionSo"] = null;
+            Session.RemoveAll();
             Response.Redirect("SOList.aspx");
         }
 
         #region method
+        private void retrieveData()
+        {
+            SqlConnection cn = new SqlConnection(strcn);
+            cn.Open();
+            SqlCommand cmd = new SqlCommand("SELECT * FROM SALES_SO WHERE SALES_SO_ID = @SOID", cn);
+            cmd.CommandType = CommandType.Text;
+            cmd.Parameters.Add("@SOID", SqlDbType.Int).Value = SOID;
+            SqlDataReader dr;
+            dr = cmd.ExecuteReader();
+            while (dr.Read())
+            {
+                txtsales.Text = dr["SO_NO"].ToString();
+                txtaddres.Text = dr["ADDRESS"].ToString();
+                txtdate.Text = dr["ORDER_DATE"].ToString();
+                DDLCustomer.SelectedValue = dr["COM_CUSTOMER_ID"].ToString();
+
+            }
+            dr.Close();
+            SqlCommand cmd2 = new SqlCommand("spx_detailItem", cn);
+            cmd2.CommandType = CommandType.StoredProcedure;
+            cmd2.Parameters.Add("@SOID", SqlDbType.Int).Value = SOID;
+            DataTable detailitem = new DataTable();
+            dr = cmd2.ExecuteReader();
+            detailitem.Load(dr);
+            GridInput.DataSource = detailitem;
+            GridInput.DataBind();
+            dr.Close();
+
+        }
+
         private void setInitialRow()
         {
             DataTable dt = new DataTable();
@@ -162,6 +194,47 @@ namespace SO
                 SessionSo.Rows.Add(dr2);
                 GridInput.SetEditRow(rowcount);
             }
+        }
+
+        private void insertData()
+        {
+            SqlConnection cn = new SqlConnection(strcn);
+            cn.Open();
+            SqlCommand cmd = new SqlCommand("spx_insertSO", cn);
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.Add("@SONO", SqlDbType.VarChar).Value = txtsales.Text;
+            cmd.Parameters.Add("@OrderDate", SqlDbType.DateTime).Value = Convert.ToDateTime(txtdate.Text);
+            cmd.Parameters.Add("@CUSTOMER", SqlDbType.Int).Value = DDLCustomer.SelectedValue;
+            cmd.Parameters.Add("@ADDRESS", SqlDbType.VarChar).Value = txtaddres.Text;
+            string getValue = cmd.ExecuteScalar().ToString();
+            if (SessionSo != null)
+            {
+                foreach (DataRow dr in SessionSo.Rows)
+                {
+                    SqlCommand cmd2 = new SqlCommand("spx_insertSOItem", cn);
+                    cmd2.CommandType = CommandType.StoredProcedure;
+                    cmd2.Parameters.Add("@SOID", SqlDbType.Int).Value = getValue;
+                    cmd2.Parameters.Add("@ItemName", SqlDbType.VarChar).Value = dr["ITEM_NAME"].ToString();
+                    cmd2.Parameters.Add("@Quantity", SqlDbType.Int).Value = dr["QUANTITY"].ToString();
+                    cmd2.Parameters.Add("@Price", SqlDbType.Float).Value = dr["PRICE"].ToString();
+                    cmd2.ExecuteNonQuery();
+                }
+
+            }
+            Session.RemoveAll();
+            Page.ClientScript.RegisterClientScriptBlock(this.GetType(), "", "<script>alert('Save Successful!'); window.location = 'SOList.aspx';</script>");
+        }
+
+        private void updateData()
+        {
+            SqlConnection cn = new SqlConnection(strcn);
+            cn.Open();
+            SqlCommand cmd = new SqlCommand("spx_insertSO", cn);
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.Add("@SONO", SqlDbType.VarChar).Value = txtsales.Text;
+            cmd.Parameters.Add("@OrderDate", SqlDbType.DateTime).Value = Convert.ToDateTime(txtdate.Text);
+            cmd.Parameters.Add("@CUSTOMER", SqlDbType.Int).Value = DDLCustomer.SelectedValue;
+            cmd.Parameters.Add("@ADDRESS", SqlDbType.VarChar).Value = txtaddres.Text;
         }
 
         #endregion method

@@ -1,0 +1,9 @@
+D:\Yano\SO\SO\db_SO\db_SO\bin\Debug\db_SO.dacpac
+D:\Yano\SO\SO\db_SO\db_SO\bin\Debug\db_SO.dll
+D:\Yano\SO\SO\db_SO\db_SO\bin\Debug\db_SO.pdb
+D:\Yano\SO\SO\db_SO\db_SO\obj\Debug\Model.xml
+D:\Yano\SO\SO\db_SO\db_SO\obj\Debug\refactor.xml
+D:\Yano\SO\SO\db_SO\db_SO\obj\Debug\postdeploy.sql
+D:\Yano\SO\SO\db_SO\db_SO\obj\Debug\predeploy.sql
+D:\Yano\SO\SO\db_SO\db_SO\obj\Debug\db_SO.dll
+D:\Yano\SO\SO\db_SO\db_SO\obj\Debug\db_SO.pdb

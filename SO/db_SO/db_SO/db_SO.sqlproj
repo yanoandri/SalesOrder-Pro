@@ -66,5 +66,7 @@
     <Build Include="dbo\Stored Procedures\spx_geteditsalesitem.sql" />
     <Build Include="dbo\Stored Procedures\spx_showlist.sql" />
     <Build Include="dbo\Stored Procedures\spx_deleteso.sql" />
+    <Build Include="dbo\Stored Procedures\spx_insertSOItem.sql" />
+    <Build Include="dbo\Stored Procedures\spx_insertSO.sql" />
   </ItemGroup>
 </Project>

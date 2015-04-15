@@ -1,9 +1,4 @@
-﻿-- =============================================
--- Author:		<Author,,Name>
--- Create date: <Create Date,,>
--- Description:	<Description,,>
--- =============================================
-CREATE PROCEDURE spx_showlist
+﻿CREATE PROCEDURE dbo.spx_showlist
 	-- Add the parameters for the stored procedure here
 AS
 BEGIN
@@ -14,4 +9,5 @@ BEGIN
     -- Insert statements for procedure here
 	SELECT SALES_SO_ID, a.SO_NO, a.ORDER_DATE, b.CUSTOMER_NAME, a.ADDRESS 
 	FROM dbo.SALES_SO a JOIN dbo.COM_CUSTOMER b ON a.COM_CUSTOMER_ID = b.COM_CUSTOMER_ID
+	ORDER BY SALES_SO_ID ASC
 END
