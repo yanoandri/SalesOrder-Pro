@@ -371,6 +371,239 @@
 			<AttachedAnnotation Disambiguator="7" />
 			<AttachedAnnotation Disambiguator="5" />
 		</Element>
+		<Element Type="SqlProcedure" Name="[dbo].[spx_checkItem]">
+			<Property Name="BodyScript">
+				<Value><![CDATA[
+BEGIN
+	IF EXISTS(SELECT * FROM dbo.SALES_SO_LITEM WHERE SALES_SO_LITEM_ID = @ITEMID AND SALES_SO_ID = @SOID)
+BEGIN
+	UPDATE	dbo.SALES_SO_LITEM
+	SET	ITEM_NAME = @ItemName,
+		QUANTITY = @Quantity,
+		PRICE = @Price
+	WHERE SALES_SO_LITEM_ID = @ITEMID AND SALES_SO_ID = @SOID
+END
+ELSE	
+BEGIN
+INSERT INTO dbo.SALES_SO_LITEM
+	        ( SALES_SO_ID ,
+	          ITEM_NAME ,
+	          QUANTITY ,
+	          PRICE
+	        )
+	VALUES  ( @SOID , -- SALES_SO_ID - int
+	          @ItemName , -- ITEM_NAME - varchar(100)
+	          @Quantity , -- QUANTITY - int
+	          @Price  -- PRICE - float
+	        )
+			END
+END]]></Value>
+			</Property>
+			<Property Name="IsAnsiNullsOn" Value="True" />
+			<Relationship Name="BodyDependencies">
+				<Entry>
+					<References Name="[dbo].[SALES_SO_LITEM]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[SALES_SO_LITEM].[SALES_SO_LITEM_ID]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[spx_checkItem].[@ITEMID]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[SALES_SO_LITEM].[SALES_SO_ID]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[spx_checkItem].[@SOID]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[SALES_SO_LITEM].[ITEM_NAME]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[spx_checkItem].[@ItemName]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[SALES_SO_LITEM].[QUANTITY]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[spx_checkItem].[@Quantity]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[SALES_SO_LITEM].[PRICE]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[spx_checkItem].[@Price]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[SALES_SO_LITEM].[SALES_SO_LITEM_ID]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[SALES_SO_LITEM].[SALES_SO_ID]" />
+				</Entry>
+			</Relationship>
+			<Relationship Name="Parameters">
+				<Entry>
+					<Element Type="SqlSubroutineParameter" Name="[dbo].[spx_checkItem].[@SOID]">
+						<Relationship Name="Type">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[int]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlSubroutineParameter" Name="[dbo].[spx_checkItem].[@ITEMID]">
+						<Relationship Name="Type">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[int]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlSubroutineParameter" Name="[dbo].[spx_checkItem].[@ItemName]">
+						<Relationship Name="Type">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Property Name="IsMax" Value="True" />
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[varchar]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlSubroutineParameter" Name="[dbo].[spx_checkItem].[@Quantity]">
+						<Relationship Name="Type">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[int]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlSubroutineParameter" Name="[dbo].[spx_checkItem].[@Price]">
+						<Relationship Name="Type">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Property Name="Precision" Value="53" />
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[float]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+			</Relationship>
+			<Relationship Name="Schema">
+				<Entry>
+					<References ExternalSource="BuiltIns" Name="[dbo]" />
+				</Entry>
+			</Relationship>
+			<Annotation Type="SysCommentsObjectAnnotation">
+				<Property Name="CreateOffset" Value="194" />
+				<Property Name="Length" Value="1021" />
+				<Property Name="StartLine" Value="1" />
+				<Property Name="StartColumn" Value="1" />
+				<Property Name="HeaderContents" Value="-- =============================================&#xD;&#xA;-- Author:&#x9;&#x9;&lt;Author,,Name&gt;&#xD;&#xA;-- Create date: &lt;Create Date,,&gt;&#xD;&#xA;-- Description:&#x9;&lt;Description,,&gt;&#xD;&#xA;-- =============================================&#xD;&#xA;CREATE PROCEDURE [dbo].[spx_checkItem] &#xD;&#xA;&#x9;-- Add the parameters for the stored procedure here&#xD;&#xA;&#x9;@SOID AS INT,&#xD;&#xA;&#x9;@ITEMID AS INT,&#xD;&#xA;&#x9;@ItemName AS VARCHAR(MAX),&#xD;&#xA;&#x9;@Quantity AS int,&#xD;&#xA;&#x9;@Price AS FLOAT&#xD;&#xA;AS" />
+			</Annotation>
+		</Element>
+		<Element Type="SqlProcedure" Name="[dbo].[spx_deleteItem]">
+			<Property Name="BodyScript">
+				<Value><![CDATA[
+BEGIN
+	DELETE dbo.SALES_SO_LITEM
+	WHERE SALES_SO_LITEM_ID = @ITEMID AND SALES_SO_ID = @SOID
+END]]></Value>
+			</Property>
+			<Property Name="IsAnsiNullsOn" Value="True" />
+			<Relationship Name="BodyDependencies">
+				<Entry>
+					<References Name="[dbo].[SALES_SO_LITEM]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[SALES_SO_LITEM].[SALES_SO_LITEM_ID]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[spx_deleteItem].[@ITEMID]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[SALES_SO_LITEM].[SALES_SO_ID]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[spx_deleteItem].[@SOID]" />
+				</Entry>
+			</Relationship>
+			<Relationship Name="Parameters">
+				<Entry>
+					<Element Type="SqlSubroutineParameter" Name="[dbo].[spx_deleteItem].[@ITEMID]">
+						<Relationship Name="Type">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[int]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlSubroutineParameter" Name="[dbo].[spx_deleteItem].[@SOID]">
+						<Relationship Name="Type">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[int]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+			</Relationship>
+			<Relationship Name="Schema">
+				<Entry>
+					<References ExternalSource="BuiltIns" Name="[dbo]" />
+				</Entry>
+			</Relationship>
+			<Annotation Type="SysCommentsObjectAnnotation">
+				<Property Name="CreateOffset" Value="194" />
+				<Property Name="Length" Value="362" />
+				<Property Name="StartLine" Value="1" />
+				<Property Name="StartColumn" Value="1" />
+				<Property Name="HeaderContents" Value="-- =============================================&#xD;&#xA;-- Author:&#x9;&#x9;&lt;Author,,Name&gt;&#xD;&#xA;-- Create date: &lt;Create Date,,&gt;&#xD;&#xA;-- Description:&#x9;&lt;Description,,&gt;&#xD;&#xA;-- =============================================&#xD;&#xA;CREATE PROCEDURE spx_deleteItem&#xD;&#xA;&#x9;@ITEMID AS INT,&#xD;&#xA;&#x9;@SOID AS INT&#xD;&#xA;AS" />
+			</Annotation>
+		</Element>
 		<Element Type="SqlProcedure" Name="[dbo].[spx_deleteso]">
 			<Property Name="BodyScript">
 				<Value><![CDATA[
@@ -433,20 +666,22 @@ END]]></Value>
 				<Property Name="HeaderContents" Value="-- =============================================&#xD;&#xA;-- Author:&#x9;&#x9;&lt;Author,,Name&gt;&#xD;&#xA;-- Create date: &lt;Create Date,,&gt;&#xD;&#xA;-- Description:&#x9;&lt;Description,,&gt;&#xD;&#xA;-- =============================================&#xD;&#xA;CREATE PROCEDURE spx_deleteso&#xD;&#xA;@SOID VARCHAR(MAX)&#xD;&#xA;AS" />
 			</Annotation>
 		</Element>
-		<Element Type="SqlProcedure" Name="[dbo].[spx_geteditsalesitem]">
+		<Element Type="SqlProcedure" Name="[dbo].[spx_detailItem]">
 			<Property Name="BodyScript">
-				<Value><![CDATA[	
+				<Value><![CDATA[
 BEGIN
 	-- SET NOCOUNT ON added to prevent extra result sets from
 	-- interfering with SELECT statements.
 	SET NOCOUNT ON;
 
     -- Insert statements for procedure here
-	SELECT b.SALES_SO_ID, b.ORDER_DATE, c.CUSTOMER_NAME, b.ADDRESS, a.ITEM_NAME, a.QUANTITY, a.PRICE, (a.QUANTITY * a.PRICE) AS TOTAL   
-	FROM dbo.SALES_SO_LITEM a JOIN SALES_SO b 
-	ON a.SALES_SO_ID = b.SALES_SO_ID JOIN dbo.COM_CUSTOMER c 
-	ON b.COM_CUSTOMER_ID = c.COM_CUSTOMER_ID 
-	WHERE b.SALES_SO_ID = @SOID
+	SELECT  SALES_SO_LITEM_ID ,
+	        SALES_SO_ID ,
+	        ITEM_NAME ,
+	        QUANTITY ,
+	        PRICE
+	FROM SALES_SO_LITEM 
+	WHERE SALES_SO_ID = @SOID
 END]]></Value>
 			</Property>
 			<Property Name="IsAnsiNullsOn" Value="True" />
@@ -455,34 +690,10 @@ END]]></Value>
 					<References Name="[dbo].[SALES_SO_LITEM]" />
 				</Entry>
 				<Entry>
-					<References Name="[dbo].[SALES_SO]" />
+					<References Name="[dbo].[SALES_SO_LITEM].[SALES_SO_LITEM_ID]" />
 				</Entry>
 				<Entry>
 					<References Name="[dbo].[SALES_SO_LITEM].[SALES_SO_ID]" />
-				</Entry>
-				<Entry>
-					<References Name="[dbo].[SALES_SO].[SALES_SO_ID]" />
-				</Entry>
-				<Entry>
-					<References Name="[dbo].[COM_CUSTOMER]" />
-				</Entry>
-				<Entry>
-					<References Name="[dbo].[SALES_SO].[COM_CUSTOMER_ID]" />
-				</Entry>
-				<Entry>
-					<References Name="[dbo].[COM_CUSTOMER].[COM_CUSTOMER_ID]" />
-				</Entry>
-				<Entry>
-					<References Name="[dbo].[SALES_SO].[SALES_SO_ID]" />
-				</Entry>
-				<Entry>
-					<References Name="[dbo].[SALES_SO].[ORDER_DATE]" />
-				</Entry>
-				<Entry>
-					<References Name="[dbo].[COM_CUSTOMER].[CUSTOMER_NAME]" />
-				</Entry>
-				<Entry>
-					<References Name="[dbo].[SALES_SO].[ADDRESS]" />
 				</Entry>
 				<Entry>
 					<References Name="[dbo].[SALES_SO_LITEM].[ITEM_NAME]" />
@@ -494,19 +705,18 @@ END]]></Value>
 					<References Name="[dbo].[SALES_SO_LITEM].[PRICE]" />
 				</Entry>
 				<Entry>
-					<References Name="[dbo].[spx_geteditsalesitem].[@SOID]" />
+					<References Name="[dbo].[spx_detailItem].[@SOID]" />
 				</Entry>
 			</Relationship>
 			<Relationship Name="Parameters">
 				<Entry>
-					<Element Type="SqlSubroutineParameter" Name="[dbo].[spx_geteditsalesitem].[@SOID]">
+					<Element Type="SqlSubroutineParameter" Name="[dbo].[spx_detailItem].[@SOID]">
 						<Relationship Name="Type">
 							<Entry>
 								<Element Type="SqlTypeSpecifier">
-									<Property Name="IsMax" Value="True" />
 									<Relationship Name="Type">
 										<Entry>
-											<References ExternalSource="BuiltIns" Name="[varchar]" />
+											<References ExternalSource="BuiltIns" Name="[int]" />
 										</Entry>
 									</Relationship>
 								</Element>
@@ -522,10 +732,10 @@ END]]></Value>
 			</Relationship>
 			<Annotation Type="SysCommentsObjectAnnotation">
 				<Property Name="CreateOffset" Value="194" />
-				<Property Name="Length" Value="811" />
+				<Property Name="Length" Value="648" />
 				<Property Name="StartLine" Value="1" />
 				<Property Name="StartColumn" Value="1" />
-				<Property Name="HeaderContents" Value="-- =============================================&#xD;&#xA;-- Author:&#x9;&#x9;&lt;Author,,Name&gt;&#xD;&#xA;-- Create date: &lt;Create Date,,&gt;&#xD;&#xA;-- Description:&#x9;&lt;Description,,&gt;&#xD;&#xA;-- =============================================&#xD;&#xA;CREATE PROCEDURE spx_geteditsalesitem &#xD;&#xA;&#x9;-- Add the parameters for the stored procedure here&#xD;&#xA;&#x9;&#xD;&#xA;&#x9;@SOID as varchar(MAX) &#xD;&#xA;AS" />
+				<Property Name="HeaderContents" Value="-- =============================================&#xD;&#xA;-- Author:&#x9;&#x9;&lt;Author,,Name&gt;&#xD;&#xA;-- Create date: &lt;Create Date,,&gt;&#xD;&#xA;-- Description:&#x9;&lt;Description,,&gt;&#xD;&#xA;-- =============================================&#xD;&#xA;CREATE PROCEDURE [dbo].[spx_detailItem]&#xD;&#xA;&#x9;-- Add the parameters for the stored procedure here&#xD;&#xA;&#x9;@SOID AS INT&#xD;&#xA;AS" />
 			</Annotation>
 		</Element>
 		<Element Type="SqlProcedure" Name="[dbo].[spx_insertSO]">
@@ -831,6 +1041,146 @@ END]]></Value>
 				<Property Name="StartLine" Value="1" />
 				<Property Name="StartColumn" Value="1" />
 				<Property Name="HeaderContents" Value="CREATE PROCEDURE dbo.spx_showlist&#xD;&#xA;&#x9;-- Add the parameters for the stored procedure here&#xD;&#xA;AS" />
+			</Annotation>
+		</Element>
+		<Element Type="SqlProcedure" Name="[dbo].[spx_updateSO]">
+			<Property Name="BodyScript">
+				<Value><![CDATA[
+BEGIN
+	UPDATE SALES_SO
+	SET	SO_NO = @SONO,
+		COM_CUSTOMER_ID = @Customer,
+		ORDER_DATE = @OrderDate,
+		ADDRESS = @Address
+	WHERE SALES_SO_ID = @SOID
+END]]></Value>
+			</Property>
+			<Property Name="IsAnsiNullsOn" Value="True" />
+			<Relationship Name="BodyDependencies">
+				<Entry>
+					<References Name="[dbo].[SALES_SO]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[SALES_SO].[SO_NO]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[spx_updateSO].[@SONO]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[SALES_SO].[COM_CUSTOMER_ID]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[spx_updateSO].[@Customer]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[SALES_SO].[ORDER_DATE]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[spx_updateSO].[@OrderDate]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[SALES_SO].[ADDRESS]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[spx_updateSO].[@Address]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[SALES_SO].[SALES_SO_ID]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[spx_updateSO].[@SOID]" />
+				</Entry>
+			</Relationship>
+			<Relationship Name="Parameters">
+				<Entry>
+					<Element Type="SqlSubroutineParameter" Name="[dbo].[spx_updateSO].[@SONO]">
+						<Relationship Name="Type">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Property Name="Length" Value="20" />
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[varchar]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlSubroutineParameter" Name="[dbo].[spx_updateSO].[@Customer]">
+						<Relationship Name="Type">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[int]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlSubroutineParameter" Name="[dbo].[spx_updateSO].[@OrderDate]">
+						<Relationship Name="Type">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[datetime]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlSubroutineParameter" Name="[dbo].[spx_updateSO].[@Address]">
+						<Relationship Name="Type">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Property Name="Length" Value="500" />
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[varchar]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlSubroutineParameter" Name="[dbo].[spx_updateSO].[@SOID]">
+						<Relationship Name="Type">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[int]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+			</Relationship>
+			<Relationship Name="Schema">
+				<Entry>
+					<References ExternalSource="BuiltIns" Name="[dbo]" />
+				</Entry>
+			</Relationship>
+			<Annotation Type="SysCommentsObjectAnnotation">
+				<Property Name="CreateOffset" Value="194" />
+				<Property Name="Length" Value="501" />
+				<Property Name="StartLine" Value="1" />
+				<Property Name="StartColumn" Value="1" />
+				<Property Name="HeaderContents" Value="-- =============================================&#xD;&#xA;-- Author:&#x9;&#x9;&lt;Author,,Name&gt;&#xD;&#xA;-- Create date: &lt;Create Date,,&gt;&#xD;&#xA;-- Description:&#x9;&lt;Description,,&gt;&#xD;&#xA;-- =============================================&#xD;&#xA;CREATE PROCEDURE spx_updateSO&#xD;&#xA;&#x9;@SONO AS VARCHAR(20),&#xD;&#xA;&#x9;@Customer AS INT,&#xD;&#xA;&#x9;@OrderDate AS DATETIME,&#xD;&#xA;&#x9;@Address AS VARCHAR(500),&#xD;&#xA;&#x9;@SOID AS int&#xD;&#xA;AS" />
 			</Annotation>
 		</Element>
 	</Model>

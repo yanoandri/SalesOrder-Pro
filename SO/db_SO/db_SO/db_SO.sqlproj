@@ -63,10 +63,13 @@
     <Build Include="dbo\Tables\COM_CUSTOMER.sql" />
     <Build Include="dbo\Tables\SALES_SO.sql" />
     <Build Include="dbo\Tables\SALES_SO_LITEM.sql" />
-    <Build Include="dbo\Stored Procedures\spx_geteditsalesitem.sql" />
     <Build Include="dbo\Stored Procedures\spx_showlist.sql" />
     <Build Include="dbo\Stored Procedures\spx_deleteso.sql" />
     <Build Include="dbo\Stored Procedures\spx_insertSOItem.sql" />
     <Build Include="dbo\Stored Procedures\spx_insertSO.sql" />
+    <Build Include="dbo\Stored Procedures\spx_updateSO.sql" />
+    <Build Include="dbo\Stored Procedures\spx_detailItem_1.sql" />
+    <Build Include="dbo\Stored Procedures\spx_deleteItem.sql" />
+    <Build Include="dbo\Stored Procedures\spx_checkItem.sql" />
   </ItemGroup>
 </Project>
