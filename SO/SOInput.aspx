@@ -62,7 +62,7 @@
                             </td>
                             <td>
                                 <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ErrorMessage=" Pilih Salah Satu"
-                                    ForeColor="Green" ControlToValidate="DDLCustomer">
+                                    ForeColor="Green" ControlToValidate="DDLCustomer" InitialValue="0">
                                 </asp:RequiredFieldValidator>
                             </td>
                         </tr>
@@ -89,8 +89,8 @@
                 <br />
                 <asp:GridView ID="GridInput" runat="server" AutoGenerateColumns="False" BorderWidth="1px"
                 BorderColor="Black" OnRowCancelingEdit="GridInput_RowCancelingEdit" OnRowEditing="GridInput_RowEditing"
-                OnRowDataBound="GridInput_RowDataBound" OnRowUpdating="GridInput_RowUpdating"
-                OnRowCommand="GridInput_RowCommand" CellPadding="4" 
+                OnRowDataBound="GridInput_RowDataBound" OnRowUpdating="GridInput_RowUpdating" OnRowCommand="GridInput_RowCommand" OnRowDeleting="GridInput_RowDeleting"
+                CellPadding="4" 
                 Width="939px" ForeColor="#333333" ShowFooter="True" EmptyDataText="Please Add an Item" AllowPaging="True" AllowSorting="True" Height="237px">
                 <RowStyle HorizontalAlign="Center" />
                 <AlternatingRowStyle BackColor="White" />
@@ -101,7 +101,8 @@
                 <Columns>
                     <asp:TemplateField HeaderText="NO" HeaderStyle-HorizontalAlign="Center">
                         <ItemTemplate>
-                            <asp:Label ID="lblNo" runat="server" Text='<%#Bind("SALES_SO_LITEM_ID") %>'></asp:Label>
+                            <asp:Label ID="lblUrut" runat="server" Text=''></asp:Label>
+                            <asp:Label ID="lblNo" runat="server" Text='<%#Bind("SALES_SO_LITEM_ID") %>' Visible="false"></asp:Label>
                         </ItemTemplate>
                         <HeaderStyle HorizontalAlign="Center" />
                     </asp:TemplateField>
@@ -149,7 +150,7 @@
                     </asp:TemplateField>
                     <asp:TemplateField HeaderText="TOTAL" HeaderStyle-HorizontalAlign="Center">
                         <ItemTemplate>
-                            <asp:Label ID="lblTotal" runat="server" Text='<%#Bind("TOTAL") %>' EnableViewState="true"></asp:Label>
+                            <asp:Label ID="lblTotal" runat="server" Text="" EnableViewState="true"></asp:Label>
                         </ItemTemplate>
                         <FooterTemplate>
                             <div style="text-align: center">
