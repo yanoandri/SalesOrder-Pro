@@ -101,7 +101,7 @@
                 <Columns>
                     <asp:TemplateField HeaderText="NO" HeaderStyle-HorizontalAlign="Center">
                         <ItemTemplate>
-                            <asp:Label ID="lblUrut" runat="server" Text=''></asp:Label>
+                            <asp:Label ID="lblUrut" runat="server" Text='<%#Bind("NO_URUT") %>'></asp:Label>
                             <asp:Label ID="lblNo" runat="server" Text='<%#Bind("SALES_SO_LITEM_ID") %>' Visible="false"></asp:Label>
                         </ItemTemplate>
                         <HeaderStyle HorizontalAlign="Center" />
@@ -165,7 +165,7 @@
                         </EditItemTemplate>
                         <ItemTemplate>
                             <asp:Button ID="btnEdit" runat="server" CausesValidation="False" CommandName="Edit" Text="Edit" CommandArgument='<%# Eval("SALES_SO_LITEM_ID") %>' />
-                            <asp:Button ID="btnDelete" runat="server" CausesValidation="False" CommandName="DeleteRow" Text="Delete" CommandArgument='<%# Eval("SALES_SO_LITEM_ID") %>'
+                            <asp:Button ID="btnDelete" runat="server" CausesValidation="False" CommandName="DeleteRow" Text="Delete" CommandArgument='<%# Eval("NO_URUT") %>'
                                 OnClientClick="return confirm('Are you sure?')" />
                         </ItemTemplate>
                     </asp:TemplateField>

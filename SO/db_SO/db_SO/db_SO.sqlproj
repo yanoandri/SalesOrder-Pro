@@ -71,5 +71,6 @@
     <Build Include="dbo\Stored Procedures\spx_detailItem_1.sql" />
     <Build Include="dbo\Stored Procedures\spx_deleteItem.sql" />
     <Build Include="dbo\Stored Procedures\spx_checkItem.sql" />
+    <Build Include="dbo\Stored Procedures\spx_deleteitemid.sql" />
   </ItemGroup>
 </Project>
