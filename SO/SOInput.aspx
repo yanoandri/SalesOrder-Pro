@@ -76,7 +76,7 @@
                 </div>
             </asp:Panel>
             <br />
-            <asp:Panel ID="List" GroupingText="List" runat="server" Style="border-style: solid; border-color: inherit; border-width: medium; margin-left: 67px; margin-right: 0px;" Height="444px" Width="827px">
+            <asp:Panel ID="List" GroupingText="List" runat="server" Style="border-style: solid; border-color: inherit; border-width: medium; margin:auto; margin-left: 67px; margin-right: 0px;" Height="444px" Width="827px">
                 &nbsp&nbsp<asp:Button ID="btnAdd" OnClick="btnAdd_Click" runat="server" Text="ADD ITEM" CausesValidation="false" />
                 <br />
                 <br />
@@ -162,7 +162,9 @@
                 <br />
                 <br />
             </asp:Panel>
-            <table style="vertical-align: middle; text-align: center;">
+            <br />
+            <br />
+            <table align="center">
                 <tr>
                     <td>
                         <asp:Button ID="btnSave" runat="server" Text="SAVE" OnClick="btnSave_Click" CssClass="Button"
@@ -174,6 +176,8 @@
                     </td>
                 </tr>
             </table>
+            <br />
+            <br />
         </div>
     </form>
 </asp:Content>
