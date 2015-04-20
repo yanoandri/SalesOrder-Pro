@@ -45,10 +45,10 @@
             <br />
             <br />
             <asp:Panel ID="Detail" runat="server" Font-Bold="True" GroupingText="DETAIL" Style="margin-left: 12px"
-                Width="890px" BorderStyle="Solid">
+                Width="890px" BorderStyle="Solid" ScrollBars="Auto">
                 &nbsp&nbsp<asp:Button ID="btnAdd" runat="server" Text="ADD SO" OnClick="Button3_Click" />
                 <asp:GridView ID="GridView1" runat="server" AllowPaging="True" AllowSorting="True" AutoGenerateColumns="False" DataKeyNames="SALES_SO_ID" OnRowDeleting="GridView1_RowDeleting"
-                    OnRowCommand="GridView1_RowCommand" OnPageIndexChanging="GridView1_PageIndexChanging">
+                    OnRowCommand="GridView1_RowCommand" OnPageIndexChanging="GridView1_PageIndexChanging" Height="311px" PageSize="5" Width="885px">
                     <Columns>
                         <asp:TemplateField HeaderText="NO" SortExpression="SALES_SO_ID">
                             <EditItemTemplate>
@@ -95,15 +95,16 @@
                             </ItemTemplate>
                             <HeaderStyle BackColor="#009933" />
                         </asp:TemplateField>
-                        <asp:TemplateField ShowHeader="False">
+                        <asp:TemplateField ShowHeader="False" HeaderText="ACTION">
                             <ItemTemplate>
                                 <asp:Button ID="btnEdit" runat="server" CausesValidation="False" CommandName="Edit" Text="Edit" CommandArgument='<%# Eval("SALES_SO_ID") %>' />
                                 <asp:Button ID="btnDelete" runat="server" CausesValidation="true" CommandName="Delete" Text="Delete" CommandArgument='<%# Eval("SALES_SO_ID") %>'
                                     OnClientClick="return confirm('Are you sure?')" />
                             </ItemTemplate>
-                            <HeaderStyle BackColor="#009933" />
+                            <HeaderStyle BackColor="#009933" HorizontalAlign="Center" VerticalAlign="Middle" />
                         </asp:TemplateField>
                     </Columns>
+                    <PagerSettings PageButtonCount="5" />
                 </asp:GridView>
             </asp:Panel>
         </div>
