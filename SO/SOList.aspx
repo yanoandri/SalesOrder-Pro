@@ -48,7 +48,7 @@
                 Width="890px" BorderStyle="Solid" ScrollBars="Auto">
                 &nbsp&nbsp<asp:Button ID="btnAdd" runat="server" Text="ADD SO" OnClick="Button3_Click" />
                 <asp:GridView ID="GridView1" runat="server" AllowPaging="True" AllowSorting="True" AutoGenerateColumns="False" DataKeyNames="SALES_SO_ID" OnRowDeleting="GridView1_RowDeleting"
-                    OnRowCommand="GridView1_RowCommand" OnPageIndexChanging="GridView1_PageIndexChanging" Height="311px" PageSize="5" Width="885px">
+                    OnRowCommand="GridView1_RowCommand" OnPageIndexChanging="GridView1_PageIndexChanging" Height="311px" PageSize="5" Width="885px" CellPadding="4" ForeColor="#333333" GridLines="Both" HorizontalAlign="Center">
                     <Columns>
                         <asp:TemplateField HeaderText="NO" SortExpression="SALES_SO_ID">
                             <EditItemTemplate>
@@ -57,7 +57,7 @@
                             <ItemTemplate>
                                 <asp:Label ID="Label1" runat="server" Text='<%# Bind("SALES_SO_ID") %>'></asp:Label>
                             </ItemTemplate>
-                            <HeaderStyle BackColor="#009933" />
+                            <HeaderStyle BackColor="#009933" HorizontalAlign="Center" VerticalAlign="Middle" />
                         </asp:TemplateField>
                         <asp:TemplateField HeaderText="SO NO" SortExpression="SO_NO">
                             <EditItemTemplate>
@@ -66,7 +66,7 @@
                             <ItemTemplate>
                                 <asp:Label ID="Label2" runat="server" Text='<%# Bind("SO_NO") %>'></asp:Label>
                             </ItemTemplate>
-                            <HeaderStyle BackColor="#009933" />
+                            <HeaderStyle BackColor="#009933" HorizontalAlign="Center" VerticalAlign="Middle" />
                         </asp:TemplateField>
                         <asp:TemplateField HeaderText="ORDER DATE" SortExpression="ORDER_DATE">
                             <EditItemTemplate>
@@ -75,7 +75,7 @@
                             <ItemTemplate>
                                 <asp:Label ID="Label3" runat="server" Text='<%# Bind("ORDER_DATE") %>'></asp:Label>
                             </ItemTemplate>
-                            <HeaderStyle BackColor="#009933" />
+                            <HeaderStyle BackColor="#009933" HorizontalAlign="Center" VerticalAlign="Middle" />
                         </asp:TemplateField>
                         <asp:TemplateField HeaderText="CUSTOMER" SortExpression="COM_CUSTOMER_ID">
                             <EditItemTemplate>
@@ -84,7 +84,7 @@
                             <ItemTemplate>
                                 <asp:Label ID="Label4" runat="server" Text='<%# Bind("CUSTOMER_NAME") %>'></asp:Label>
                             </ItemTemplate>
-                            <HeaderStyle BackColor="#009933" />
+                            <HeaderStyle BackColor="#009933" HorizontalAlign="Center" VerticalAlign="Middle" />
                         </asp:TemplateField>
                         <asp:TemplateField HeaderText="ADDRESS" SortExpression="ADDRESS">
                             <EditItemTemplate>
@@ -93,7 +93,7 @@
                             <ItemTemplate>
                                 <asp:Label ID="Label5" runat="server" Text='<%# Bind("ADDRESS") %>'></asp:Label>
                             </ItemTemplate>
-                            <HeaderStyle BackColor="#009933" />
+                            <HeaderStyle BackColor="#009933" HorizontalAlign="Center" VerticalAlign="Middle" />
                         </asp:TemplateField>
                         <asp:TemplateField ShowHeader="False" HeaderText="ACTION">
                             <ItemTemplate>
@@ -104,7 +104,17 @@
                             <HeaderStyle BackColor="#009933" HorizontalAlign="Center" VerticalAlign="Middle" />
                         </asp:TemplateField>
                     </Columns>
+                    <EditRowStyle BackColor="#7C6F57" />
+                    <FooterStyle BackColor="#1C5E55" Font-Bold="True" ForeColor="White" />
+                    <HeaderStyle BackColor="#1C5E55" Font-Bold="True" ForeColor="White" HorizontalAlign="Center" VerticalAlign="Middle" />
                     <PagerSettings PageButtonCount="5" />
+                    <PagerStyle BackColor="#666666" ForeColor="White" HorizontalAlign="Center" VerticalAlign="Middle" />
+                    <RowStyle BackColor="#E3EAEB" HorizontalAlign="Left" VerticalAlign="Middle" />
+                    <SelectedRowStyle BackColor="#C5BBAF" Font-Bold="True" ForeColor="#333333" />
+                    <SortedAscendingCellStyle BackColor="#F8FAFA" />
+                    <SortedAscendingHeaderStyle BackColor="#246B61" />
+                    <SortedDescendingCellStyle BackColor="#D4DFE1" />
+                    <SortedDescendingHeaderStyle BackColor="#15524A" />
                 </asp:GridView>
             </asp:Panel>
         </div>
