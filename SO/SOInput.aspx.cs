@@ -193,7 +193,6 @@ namespace SO
         {
             if (SOID != 0)
             {
-                //updateDataSO();
                 #region remove old SO Item
                 SqlConnection cn = new SqlConnection(strcn);
                 cn.Open();
@@ -244,7 +243,7 @@ namespace SO
                         cmd4.ExecuteNonQuery();
                     }
                 }
-                #endregion
+                #endregion remove old SO Item
                 foreach (DataRow dr in SessionSoItem.Rows)
                 {
                     if (Convert.ToInt32(dr["SALES_SO_LITEM_ID"]) > 0) //convert ke integer
@@ -282,7 +281,6 @@ namespace SO
                             cmd7.Parameters.Add("@Quantity", SqlDbType.Int).Value = dr["QUANTITY"].ToString();
                             cmd7.Parameters.Add("@Price", SqlDbType.Float).Value = dr["PRICE"].ToString();
                             cmd7.ExecuteNonQuery();
-
                         }
                     }
                 }

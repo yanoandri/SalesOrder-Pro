@@ -1,5 +1,0 @@
-D:\Yano\SO\EditableNested\bin\EditableNested.dll
-D:\Yano\SO\EditableNested\bin\EditableNested.pdb
-D:\Yano\SO\EditableNested\obj\Debug\EditableNested.csprojResolveAssemblyReference.cache
-D:\Yano\SO\EditableNested\obj\Debug\EditableNested.dll
-D:\Yano\SO\EditableNested\obj\Debug\EditableNested.pdb

@@ -59,7 +59,7 @@
                             </ItemTemplate>
                             <HeaderStyle BackColor="#009933" />
                         </asp:TemplateField>
-                        <asp:TemplateField HeaderText="SALES ORDER NO" SortExpression="SO_NO">
+                        <asp:TemplateField HeaderText="SO NO" SortExpression="SO_NO">
                             <EditItemTemplate>
                                 <asp:TextBox ID="TextBox1" runat="server" Text='<%# Bind("SO_NO") %>'></asp:TextBox>
                             </EditItemTemplate>
