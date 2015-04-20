@@ -1,6 +1,6 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="SOInput.aspx.cs" Inherits="SO.SOInput2" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="SOInput.aspx.cs" MasterPageFile="~/Site.Master" Inherits="SO.SOInput2" %>
 
-<!DOCTYPE html>
+<%--<!DOCTYPE html>
 <html>
 <head runat="server">
     <title>Sales Order Input</title>
@@ -8,7 +8,8 @@
     <script src="Scripts/jquery.js" type="text/javascript"></script>
     <script src="Scripts/jquery-ui.js" type="text/javascript"></script>
 </head>
-<body>
+<body>--%>
+<asp:Content runat="server" ID="BodyContent" ContentPlaceHolderID="MainContent">
     <script type="text/javascript">
         $(function () {
             $('.txtCalendarCss').datepicker({
@@ -19,7 +20,7 @@
             });
         });
     </script>
-    <form id="form1" runat="server">
+    <form id="form1">
         <div id="main">
              <asp:Panel ID="Header" Font-Bold="True" runat="server" GroupingText="HEADER" Style="margin-left: 66px; margin-right: 61px; border: solid;">
                 <div>
@@ -83,7 +84,7 @@
                 </div>
             </asp:Panel>
             <br />
-            <asp:Panel ID="List" GroupingText="List" runat="server" Style="border-style: solid; border-color: inherit; border-width: medium; margin-left: 67px; margin-right: 0px;" Height="584px" Width="1200px">
+            <asp:Panel ID="List" GroupingText="List" runat="server" Style="border-style: solid; border-color: inherit; border-width: medium; margin-left: 67px; margin-right: 0px;" Height="584px" Width="828px">
                 &nbsp&nbsp<asp:Button ID="btnAdd" OnClick="btnAdd_Click" runat="server" Text="ADD ITEM" CausesValidation="false" />
                 <br />
                 <br />
@@ -91,7 +92,7 @@
                 BorderColor="Black" OnRowCancelingEdit="GridInput_RowCancelingEdit" OnRowEditing="GridInput_RowEditing"
                 OnRowDataBound="GridInput_RowDataBound" OnRowUpdating="GridInput_RowUpdating" OnRowCommand="GridInput_RowCommand" OnRowDeleting="GridInput_RowDeleting"
                 CellPadding="4" 
-                Width="939px" ForeColor="#333333" ShowFooter="True" EmptyDataText="Please Add an Item" AllowPaging="True" AllowSorting="True" Height="237px">
+                Width="707px" ForeColor="#333333" ShowFooter="True" EmptyDataText="Please Add an Item" AllowPaging="True" AllowSorting="True" Height="237px">
                 <RowStyle HorizontalAlign="Center" />
                 <AlternatingRowStyle BackColor="White" />
                 <FooterStyle HorizontalAlign="Center" BackColor="#1C5E55" ForeColor="White" Font-Bold="True" />
@@ -189,5 +190,6 @@
             </table>
         </div>
     </form>
-</body>
-</html>
+</asp:Content>
+<%--</body>
+</html>--%>

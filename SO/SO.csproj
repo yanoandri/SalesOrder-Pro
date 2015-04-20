@@ -254,7 +254,6 @@
     <Content Include="Scripts\WebForms\WebUIValidation.js" />
     <Content Include="SOInput.aspx" />
     <Content Include="SOList.aspx" />
-    <Content Include="testingrow.aspx" />
     <Content Include="ViewSwitcher.ascx" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
@@ -363,13 +362,6 @@
     </Compile>
     <Compile Include="SOList.aspx.designer.cs">
       <DependentUpon>SOList.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="testingrow.aspx.cs">
-      <DependentUpon>testingrow.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="testingrow.aspx.designer.cs">
-      <DependentUpon>testingrow.aspx</DependentUpon>
     </Compile>
     <Compile Include="ViewSwitcher.ascx.cs">
       <DependentUpon>ViewSwitcher.ascx</DependentUpon>

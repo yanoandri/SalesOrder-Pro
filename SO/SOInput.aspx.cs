@@ -24,7 +24,6 @@ namespace SO
             set { Session["Edit"] = value; }
         }
 
-
         public DataTable SessionSoItem
         {
             get { return (Session["SessionSoItem"]) == null ? new DataTable() : (DataTable)Session["SessionSoItem"]; }
@@ -42,8 +41,6 @@ namespace SO
             get { return (ViewState["SOITEMID"]) == null ? 0 : (int)ViewState["SOITEMID"]; }
             set { ViewState["SOITEMID"] = value; }
         }
-
-
 
         #endregion session
 
@@ -198,7 +195,6 @@ namespace SO
             }
         }
 
-
         protected void btnSave_Click(object sender, EventArgs e)
         {
             if (SOID != 0)
@@ -220,7 +216,26 @@ namespace SO
                     {
                         if (Convert.ToInt32(drdb["SALES_SO_LITEM_ID"]) == Convert.ToInt32(drgrid["SALES_SO_LITEM_ID"]))
                         {
-                            updateDataSO();//panggil sp update soITEM
+                            //updateDataSO();//panggil sp update soITEM
+                            SqlCommand cmd2 = new SqlCommand("spx_updateSO", cn);
+                            cmd2.CommandType = CommandType.StoredProcedure;
+                            cmd2.Parameters.Add("@SONO", SqlDbType.VarChar).Value = txtsales.Text;
+                            cmd2.Parameters.Add("@OrderDate", SqlDbType.DateTime).Value = Convert.ToDateTime(txtdate.Text);
+                            cmd2.Parameters.Add("@Customer", SqlDbType.Int).Value = DDLCustomer.SelectedValue;
+                            cmd2.Parameters.Add("@Address", SqlDbType.VarChar).Value = txtaddres.Text;
+                            cmd2.Parameters.Add("@SOID", SqlDbType.Int).Value = SOID;
+                            cmd2.ExecuteNonQuery();
+                            if (SessionSoItem != null)
+                            {
+                                SqlCommand cmd3 = new SqlCommand("spx_checkItem", cn);
+                                cmd3.CommandType = CommandType.StoredProcedure;
+                                cmd3.Parameters.Add("@SOID", SqlDbType.Int).Value = SOID;
+                                cmd3.Parameters.Add("@ITEMID", SqlDbType.Int).Value = drgrid["SALES_SO_LITEM_ID"].ToString();
+                                cmd3.Parameters.Add("@ItemName", SqlDbType.VarChar).Value = drgrid["ITEM_NAME"].ToString();
+                                cmd3.Parameters.Add("@Quantity", SqlDbType.Int).Value = drgrid["QUANTITY"].ToString();
+                                cmd3.Parameters.Add("@Price", SqlDbType.Float).Value = drgrid["PRICE"].ToString();
+                                cmd3.ExecuteNonQuery();
+                            }
                             dbisfound = true;
                             break;
                         }
@@ -229,10 +244,10 @@ namespace SO
                     {
                         //delete SOITEMID by drdb
                         int rowDB = Convert.ToInt32(drdb["SALES_SO_LITEM_ID"]);
-                        SqlCommand cmd2 = new SqlCommand("spx_deleteitemid", cn);
-                        cmd2.CommandType = CommandType.StoredProcedure;
-                        cmd2.Parameters.Add("@ITEMID", SqlDbType.Int).Value = rowDB;
-                        cmd2.ExecuteNonQuery();
+                        SqlCommand cmd4 = new SqlCommand("spx_deleteitemid", cn);
+                        cmd4.CommandType = CommandType.StoredProcedure;
+                        cmd4.Parameters.Add("@ITEMID", SqlDbType.Int).Value = rowDB;
+                        cmd4.ExecuteNonQuery();
                     }
                 }
                 #endregion
@@ -241,12 +256,40 @@ namespace SO
                     if (Convert.ToInt32(dr["SALES_SO_LITEM_ID"]) > 0) //convert ke integer
                     {
                         //panggil sp update soITEM
-                        updateDataSO();
+                        SqlCommand cmd5 = new SqlCommand("spx_updateSO", cn);
+                        cmd5.CommandType = CommandType.StoredProcedure;
+                        cmd5.Parameters.Add("@SONO", SqlDbType.VarChar).Value = txtsales.Text;
+                        cmd5.Parameters.Add("@OrderDate", SqlDbType.DateTime).Value = Convert.ToDateTime(txtdate.Text);
+                        cmd5.Parameters.Add("@Customer", SqlDbType.Int).Value = DDLCustomer.SelectedValue;
+                        cmd5.Parameters.Add("@Address", SqlDbType.VarChar).Value = txtaddres.Text;
+                        cmd5.Parameters.Add("@SOID", SqlDbType.Int).Value = SOID;
+                        cmd5.ExecuteNonQuery();
+                        if (SessionSoItem != null)
+                        {
+                            SqlCommand cmd6 = new SqlCommand("spx_checkItem", cn);
+                            cmd6.CommandType = CommandType.StoredProcedure;
+                            cmd6.Parameters.Add("@SOID", SqlDbType.Int).Value = SOID;
+                            cmd6.Parameters.Add("@ITEMID", SqlDbType.Int).Value = dr["SALES_SO_LITEM_ID"].ToString();
+                            cmd6.Parameters.Add("@ItemName", SqlDbType.VarChar).Value = dr["ITEM_NAME"].ToString();
+                            cmd6.Parameters.Add("@Quantity", SqlDbType.Int).Value = dr["QUANTITY"].ToString();
+                            cmd6.Parameters.Add("@Price", SqlDbType.Float).Value = dr["PRICE"].ToString();
+                            cmd6.ExecuteNonQuery();
+                        }
                     }
                     else
                     {
                         //add
-                        insertData();
+                        if (SessionSoItem != null)
+                        {
+                            SqlCommand cmd7 = new SqlCommand("spx_insertSOItem", cn);
+                            cmd7.CommandType = CommandType.StoredProcedure;
+                            cmd7.Parameters.Add("@SOID", SqlDbType.Int).Value = SOID;
+                            cmd7.Parameters.Add("@ItemName", SqlDbType.VarChar).Value = dr["ITEM_NAME"].ToString();
+                            cmd7.Parameters.Add("@Quantity", SqlDbType.Int).Value = dr["QUANTITY"].ToString();
+                            cmd7.Parameters.Add("@Price", SqlDbType.Float).Value = dr["PRICE"].ToString();
+                            cmd7.ExecuteNonQuery();
+
+                        }
                     }
                 }
                 Session.RemoveAll();
@@ -266,38 +309,7 @@ namespace SO
         }
         #endregion page event
 
-        #region method lama
-        private void updateDataSO()
-        {
-            SqlConnection cn = new SqlConnection(strcn);
-            cn.Open();
-            SqlCommand cmd = new SqlCommand("spx_updateSO", cn);
-            cmd.CommandType = CommandType.StoredProcedure;
-            cmd.Parameters.Add("@SONO", SqlDbType.VarChar).Value = txtsales.Text;
-            cmd.Parameters.Add("@OrderDate", SqlDbType.DateTime).Value = Convert.ToDateTime(txtdate.Text);
-            cmd.Parameters.Add("@Customer", SqlDbType.Int).Value = DDLCustomer.SelectedValue;
-            cmd.Parameters.Add("@Address", SqlDbType.VarChar).Value = txtaddres.Text;
-            cmd.Parameters.Add("@SOID", SqlDbType.Int).Value = SOID;
-            cmd.ExecuteNonQuery();
-            if (SessionSoItem != null)
-            {
-                for (int i = 0; i < SessionSoItem.Rows.Count; i++)
-                {
-                    SqlCommand cmd2 = new SqlCommand("spx_checkItem", cn);
-                    cmd2.CommandType = CommandType.StoredProcedure;
-                    cmd2.Parameters.Add("@SOID", SqlDbType.Int).Value = SOID;
-                    cmd2.Parameters.Add("@ITEMID", SqlDbType.Int).Value = SessionSoItem.Rows[i]["SALES_SO_LITEM_ID"].ToString();
-                    cmd2.Parameters.Add("@ItemName", SqlDbType.VarChar).Value = SessionSoItem.Rows[i]["ITEM_NAME"].ToString();
-                    cmd2.Parameters.Add("@Quantity", SqlDbType.Int).Value = SessionSoItem.Rows[i]["QUANTITY"].ToString();
-                    cmd2.Parameters.Add("@Price", SqlDbType.Float).Value = SessionSoItem.Rows[i]["PRICE"].ToString();
-                    cmd2.ExecuteNonQuery();
-
-                }
-            }
-        }
-        #endregion method lama
-
-        #region method baru
+        #region method
         private void setInitialRow()
         {
             DataTable dt = new DataTable();
@@ -420,6 +432,6 @@ namespace SO
             dr.Close();
 
         }
-        #endregion method baru
+        #endregion method
     }
 }

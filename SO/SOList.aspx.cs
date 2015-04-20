@@ -70,7 +70,6 @@ namespace SO
 
         }
 
-
         #region method
         protected void ShowList()
         {
