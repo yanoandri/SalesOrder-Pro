@@ -30,12 +30,6 @@ namespace SO
             set { Session["SessionSoItem"] = value; }
         }
 
-        public DataTable SessionDelete
-        {
-            get { return (Session["SessionDelete"]) == null ? new DataTable() : (DataTable)Session["SessionDelete"]; }
-            set { Session["SessionDelete"] = value; }
-        }
-
         public int soItemId
         {
             get { return (ViewState["SOITEMID"]) == null ? 0 : (int)ViewState["SOITEMID"]; }
@@ -216,7 +210,7 @@ namespace SO
                     {
                         if (Convert.ToInt32(drdb["SALES_SO_LITEM_ID"]) == Convert.ToInt32(drgrid["SALES_SO_LITEM_ID"]))
                         {
-                            //updateDataSO();//panggil sp update soITEM
+                            //panggil sp update soITEM
                             SqlCommand cmd2 = new SqlCommand("spx_updateSO", cn);
                             cmd2.CommandType = CommandType.StoredProcedure;
                             cmd2.Parameters.Add("@SONO", SqlDbType.VarChar).Value = txtsales.Text;
