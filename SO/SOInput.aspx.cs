@@ -1,371 +1,387 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Data;
 using System.Data.SqlClient;
-using System.IO;
 using System.Configuration;
 
 namespace SO
 {
     public partial class SOInput2 : System.Web.UI.Page
     {
-        #region session
-        public string strcn = ConfigurationManager.ConnectionStrings["SOConnectionString"].ConnectionString;
+        #region session and public variable
+        public string m_strcn = ConfigurationManager.ConnectionStrings["SOConnectionString"].ConnectionString;
 
-        public DataRow dr = null;
+        public DataRow m_drInitTable = null;
 
-        public int SOID
+        public int m_SOID
         {
             get { return (Session["Edit"]) == null ? 0 : (int)Session["Edit"]; }
             set { Session["Edit"] = value; }
         }
 
-        public DataTable SessionSoItem
+        public DataTable m_SessionSoItem
         {
             get { return (Session["SessionSoItem"]) == null ? new DataTable() : (DataTable)Session["SessionSoItem"]; }
             set { Session["SessionSoItem"] = value; }
         }
 
-        public int soItemId
+        public int m_soItemId
         {
             get { return (ViewState["SOITEMID"]) == null ? 0 : (int)ViewState["SOITEMID"]; }
             set { ViewState["SOITEMID"] = value; }
         }
 
-        #endregion session
+        #endregion session and public variable
 
         #region page event
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!IsPostBack)
+            try
             {
-                if (SOID != 0)
+                if (!IsPostBack)
                 {
-                    retrieveData();
-                }
+                    if (m_SOID != 0)
+                    {
+                        retrieveData();
+                    }
 
+                }
+            }
+            catch (System.Threading.ThreadAbortException) { }
+            catch (Exception ex)
+            {
+                throw ex;
             }
         }
 
         protected void btnAdd_Click(object sender, EventArgs e)
         {
-            setInitialRow();
-            GridInput.DataSource = SessionSoItem;
-            GridInput.DataBind();
+            try
+            {
+                setInitialRow();
+                GridInput.DataSource = m_SessionSoItem;
+                GridInput.DataBind();
+            }
+            catch (System.Threading.ThreadAbortException) { }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
         protected void GridInput_RowCancelingEdit(object sender, GridViewCancelEditEventArgs e)
         {
-            //int rowCount = SessionSo.Rows.Count;
-            GridInput.EditIndex = -1;
-            GridInput.DataSource = SessionSoItem;
-            GridInput.DataBind();
+            try
+            {
+                GridInput.EditIndex = -1;
+                GridInput.DataSource = m_SessionSoItem;
+                GridInput.DataBind();
+            }
+            catch (System.Threading.ThreadAbortException) { }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
         protected void GridInput_RowEditing(object sender, GridViewEditEventArgs e)
         {
-            GridInput.EditIndex = e.NewEditIndex;
-            GridInput.DataSource = SessionSoItem;
-            GridInput.DataBind();
+            try
+            {
+                GridInput.EditIndex = e.NewEditIndex;
+                GridInput.DataSource = m_SessionSoItem;
+                GridInput.DataBind();
+            }
+            catch (System.Threading.ThreadAbortException) { }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
-        Double grandtotal = 0;
-
+        Double dGrandtotal = 0;
         protected void GridInput_RowDataBound(object sender, GridViewRowEventArgs e)
         {
-            Label lblquantity = (Label)e.Row.FindControl("lblqty");
-            Label lblprice = (Label)e.Row.FindControl("lblprice");
-            Label lblTotal = (Label)e.Row.FindControl("lblTotal");
-            Label lblOrder = (Label)e.Row.FindControl("lblUrut");
-            //row bound
-            if (e.Row.RowType == DataControlRowType.DataRow)
+            try
             {
-                for (int i = 0; i < SessionSoItem.Rows.Count; i++)
+                Label lblquantity = (Label)e.Row.FindControl("lblqty");
+                Label lblprice = (Label)e.Row.FindControl("lblprice");
+                Label lblTotal = (Label)e.Row.FindControl("lblTotal");
+                Label lblOrder = (Label)e.Row.FindControl("lblUrut");
+                if (e.Row.RowType == DataControlRowType.DataRow)
                 {
-                    SessionSoItem.Rows[i]["NO_URUT"] = i + 1;
-                }
+                    for (int iNoUrut = 0; iNoUrut < m_SessionSoItem.Rows.Count; iNoUrut++)
+                    {
+                        m_SessionSoItem.Rows[iNoUrut]["NO_URUT"] = iNoUrut + 1;
+                    }
 
-                if (lblquantity == null || lblprice == null)
-                {
+                    if (lblquantity == null || lblprice == null)
+                    {
+                    }
+                    else
+                    {
+                        lblTotal.Text = (Convert.ToInt64(lblquantity.Text) * Convert.ToDouble(lblprice.Text)).ToString("#,##0.##");
+                        dGrandtotal += Convert.ToDouble(lblTotal.Text);
+                    }
                 }
-                else
+                if (e.Row.RowType == DataControlRowType.Footer)
                 {
-                    lblTotal.Text = (Convert.ToInt64(lblquantity.Text) * Convert.ToDouble(lblprice.Text)).ToString();
-                    grandtotal += Convert.ToDouble(lblTotal.Text);
+                    Label lblGrandTotal = (Label)e.Row.FindControl("lblGrandTotal");
+                    lblGrandTotal.Text = dGrandtotal.ToString("#,##0.##");
                 }
             }
-            //footer control
-            if (e.Row.RowType == DataControlRowType.Footer)
+            catch (System.Threading.ThreadAbortException) { }
+            catch (Exception ex)
             {
-                Label lblGrandTotal = (Label)e.Row.FindControl("lblGrandTotal");
-                lblGrandTotal.Text = grandtotal.ToString();
+                throw ex;
             }
         }
 
         protected void GridInput_RowUpdating(object sender, GridViewUpdateEventArgs e)
         {
-            Label lblItemId = (Label)GridInput.Rows[e.RowIndex].Cells[0].FindControl("lblNo");
-            TextBox txtItem = (TextBox)GridInput.Rows[e.RowIndex].Cells[1].FindControl("txtItem");
-            Label lblItem = (Label)GridInput.Rows[e.RowIndex].Cells[1].FindControl("lblitem");
-            TextBox txtQty = (TextBox)GridInput.Rows[e.RowIndex].Cells[2].FindControl("txtQty");
-            Label lblquantity = (Label)GridInput.Rows[e.RowIndex].Cells[2].FindControl("lblqty");
-            TextBox txtPrice = (TextBox)GridInput.Rows[e.RowIndex].Cells[3].FindControl("txtprice");
-            Label lblprice = (Label)GridInput.Rows[e.RowIndex].Cells[3].FindControl("lblprice");
-            Label lblTotal = (Label)GridInput.Rows[e.RowIndex].Cells[4].FindControl("lblTotal");
-            GridViewRow r = GridInput.Rows[e.RowIndex];
-            SessionSoItem.Rows[r.DataItemIndex]["ITEM_NAME"] = txtItem.Text;
-            SessionSoItem.Rows[r.DataItemIndex]["QUANTITY"] = txtQty.Text;
-            SessionSoItem.Rows[r.DataItemIndex]["PRICE"] = txtPrice.Text;
-            GridInput.EditIndex = -1;
-            GridInput.DataSource = SessionSoItem;
-            GridInput.DataBind();
+            try
+            {
+                TextBox txtItem = (TextBox)GridInput.Rows[e.RowIndex].Cells[1].FindControl("txtItem");
+                TextBox txtQty = (TextBox)GridInput.Rows[e.RowIndex].Cells[2].FindControl("txtQty");
+                TextBox txtPrice = (TextBox)GridInput.Rows[e.RowIndex].Cells[3].FindControl("txtprice");
+                GridViewRow rGridRow = GridInput.Rows[e.RowIndex];
+                m_SessionSoItem.Rows[rGridRow.DataItemIndex]["ITEM_NAME"] = txtItem.Text;
+                m_SessionSoItem.Rows[rGridRow.DataItemIndex]["QUANTITY"] = txtQty.Text;
+                m_SessionSoItem.Rows[rGridRow.DataItemIndex]["PRICE"] = txtPrice.Text;
+                GridInput.EditIndex = -1;
+                GridInput.DataSource = m_SessionSoItem;
+                GridInput.DataBind();
+            }
+            catch (System.Threading.ThreadAbortException) { }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
         protected void GridInput_RowDeleting(object sender, GridViewDeleteEventArgs e)
         {
-
-            SessionSoItem.Rows.RemoveAt(e.RowIndex - 1);
-            GridInput.DataSource = SessionSoItem;
-            GridInput.DataBind();
+            try
+            {
+                m_SessionSoItem.Rows.RemoveAt(e.RowIndex - 1);
+                GridInput.DataSource = m_SessionSoItem;
+                GridInput.DataBind();
+            }
+            catch (System.Threading.ThreadAbortException) { }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
         protected void GridInput_RowCommand(object sender, GridViewCommandEventArgs e)
         {
-            if (e.CommandName == "DeleteRow")
+            try
             {
-                int id = Convert.ToInt32(e.CommandArgument);
-                //if (SOID != 0)
-                //{
-
-                //    SessionDelete = new DataTable();
-                //    DataSet ds = new DataSet();
-                //    SessionDelete.Columns.Add(new DataColumn("NO_URUT", typeof(int))); //untuk delete
-                //    SessionDelete.Columns.Add(new DataColumn("SALES_SO_LITEM_ID", typeof(int)));
-                //    SessionDelete.Columns.Add(new DataColumn("ITEM_NAME", typeof(string)));
-                //    SessionDelete.Columns.Add(new DataColumn("QUANTITY", typeof(int)));
-                //    SessionDelete.Columns.Add(new DataColumn("PRICE", typeof(float)));
-                //    SessionDelete.Columns.Add(new DataColumn("TOTAL", typeof(float)));
-                //    DataRow drow, drow2;
-                //    int i;
-                //    if (SessionDelete.Rows.Count < 1)
-                //    {
-                //        drow = SessionDelete.NewRow();
-                //        for (i = 0; i <= SessionDelete.Rows.Count; i++)
-                //        {
-                //            Convert.ToInt32(i);
-                //        }
-                //        drow["NO_URUT"] = SessionSoItem.Rows[id - 1]["NO_URUT"].ToString();
-                //        drow["SALES_SO_LITEM_ID"] = SessionSoItem.Rows[id - 1]["SALES_SO_LITEM_ID"].ToString();
-                //        drow["ITEM_NAME"] = SessionSoItem.Rows[id - 1]["ITEM_NAME"].ToString(); ;
-                //        drow["QUANTITY"] = SessionSoItem.Rows[id - 1]["QUANTITY"].ToString(); ;
-                //        drow["PRICE"] = SessionSoItem.Rows[id - 1]["PRICE"].ToString(); ;
-                //        SessionDelete.Rows.Add(drow);
-                //        ds.Tables.Add(SessionDelete);
-                //    }
-                //    else if (SessionDelete.Rows.Count >= 1)
-                //    {
-                //        drow2 = SessionDelete.NewRow();
-                //        for (i = 0; i <= SessionDelete.Rows.Count; i++)
-                //        {
-                //            Convert.ToInt32(i);
-                //        }
-                //        drow2["NO_URUT"] = i;
-                //        drow2["SALES_SO_LITEM_ID"] = SessionSoItem.Rows[id - 1]["SALES_SO_LITEM_ID"].ToString();
-                //        drow2["ITEM_NAME"] = SessionSoItem.Rows[id - 1]["ITEM_NAME"].ToString(); ;
-                //        drow2["QUANTITY"] = SessionSoItem.Rows[id - 1]["QUANTITY"].ToString(); ;
-                //        drow2["PRICE"] = SessionSoItem.Rows[id - 1]["PRICE"].ToString(); ;
-                //        SessionDelete.Rows.Add(drow2);
-                //        ds.Tables.Add(SessionDelete);
-                //    }
-                //    //ds.Tables.Add(SessionDelete);
-                //}
-                GridInput.DeleteRow(id);
-                GridInput.DataSource = SessionSoItem;
-                GridInput.DataBind();
+                if (e.CommandName == "DeleteRow")
+                {
+                    int iNoUrut = Convert.ToInt32(e.CommandArgument);
+                    GridInput.DeleteRow(iNoUrut);
+                    GridInput.DataSource = m_SessionSoItem;
+                    GridInput.DataBind();
+                }
+            }
+            catch (System.Threading.ThreadAbortException) { }
+            catch (Exception ex)
+            {
+                throw ex;
             }
         }
 
         protected void btnSave_Click(object sender, EventArgs e)
         {
-            if (SOID != 0)
+            try
             {
-                #region remove old SO Item
-                SqlConnection cn = new SqlConnection(strcn);
-                cn.Open();
-                SqlCommand cmd = new SqlCommand("spx_detailItem", cn);
-                cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.Add("@SOID", SqlDbType.Int).Value = SOID;
-                DataSet ds = new DataSet();
-                SqlDataAdapter da = new SqlDataAdapter(cmd);
-                da.Fill(ds); //pakai dataset
-                foreach (DataRow drdb in ds.Tables[0].Rows) //convert ke int
+                if (m_SOID != 0)
                 {
-                    Boolean dbisfound = false;
-                    foreach (DataRow drgrid in SessionSoItem.Rows)
+                    #region remove old SO Item
+                    SqlConnection cnDatasetDetail = new SqlConnection(m_strcn);
+                    cnDatasetDetail.Open();
+                    SqlCommand cmdSelectDetail = new SqlCommand("uspSO_detailItem", cnDatasetDetail);
+                    cmdSelectDetail.CommandType = CommandType.StoredProcedure;
+                    cmdSelectDetail.Parameters.Add("@p_SOID", SqlDbType.Int).Value = m_SOID;
+                    DataSet dsDetaiItem = new DataSet();
+                    SqlDataAdapter daDetailItem = new SqlDataAdapter(cmdSelectDetail);
+                    daDetailItem.Fill(dsDetaiItem);
+                    foreach (DataRow drFromDatabase in dsDetaiItem.Tables[0].Rows)
                     {
-                        if (Convert.ToInt32(drdb["SALES_SO_LITEM_ID"]) == Convert.ToInt32(drgrid["SALES_SO_LITEM_ID"]))
+                        Boolean blsDbisfound = false;
+                        foreach (DataRow drFromGrid in m_SessionSoItem.Rows)
                         {
-                            //panggil sp update soITEM
-                            SqlCommand cmd2 = new SqlCommand("spx_updateSO", cn);
-                            cmd2.CommandType = CommandType.StoredProcedure;
-                            cmd2.Parameters.Add("@SONO", SqlDbType.VarChar).Value = txtsales.Text;
-                            cmd2.Parameters.Add("@OrderDate", SqlDbType.DateTime).Value = Convert.ToDateTime(txtdate.Text);
-                            cmd2.Parameters.Add("@Customer", SqlDbType.Int).Value = DDLCustomer.SelectedValue;
-                            cmd2.Parameters.Add("@Address", SqlDbType.VarChar).Value = txtaddres.Text;
-                            cmd2.Parameters.Add("@SOID", SqlDbType.Int).Value = SOID;
-                            cmd2.ExecuteNonQuery();
-                            if (SessionSoItem != null)
+                            if (Convert.ToInt32(drFromDatabase["SALES_SO_LITEM_ID"]) == Convert.ToInt32(drFromGrid["SALES_SO_LITEM_ID"]))
                             {
-                                SqlCommand cmd3 = new SqlCommand("spx_checkItem", cn);
-                                cmd3.CommandType = CommandType.StoredProcedure;
-                                cmd3.Parameters.Add("@SOID", SqlDbType.Int).Value = SOID;
-                                cmd3.Parameters.Add("@ITEMID", SqlDbType.Int).Value = drgrid["SALES_SO_LITEM_ID"].ToString();
-                                cmd3.Parameters.Add("@ItemName", SqlDbType.VarChar).Value = drgrid["ITEM_NAME"].ToString();
-                                cmd3.Parameters.Add("@Quantity", SqlDbType.Int).Value = drgrid["QUANTITY"].ToString();
-                                cmd3.Parameters.Add("@Price", SqlDbType.Float).Value = drgrid["PRICE"].ToString();
-                                cmd3.ExecuteNonQuery();
+                                SqlCommand cmdUpdateSO = new SqlCommand("uspSO_updateSO", cnDatasetDetail);
+                                cmdUpdateSO.CommandType = CommandType.StoredProcedure;
+                                cmdUpdateSO.Parameters.Add("@p_SONO", SqlDbType.VarChar).Value = txtsales.Text;
+                                cmdUpdateSO.Parameters.Add("@p_OrderDate", SqlDbType.DateTime).Value = Convert.ToDateTime(txtdate.Text);
+                                cmdUpdateSO.Parameters.Add("@p_Customer", SqlDbType.Int).Value = DDLCustomer.SelectedValue;
+                                cmdUpdateSO.Parameters.Add("@p_Address", SqlDbType.VarChar).Value = txtaddres.Text;
+                                cmdUpdateSO.Parameters.Add("@p_SOID", SqlDbType.Int).Value = m_SOID;
+                                cmdUpdateSO.ExecuteNonQuery();
+                                if (m_SessionSoItem != null)
+                                {
+                                    SqlCommand cmdCheckItem = new SqlCommand("uspSO_checkItem", cnDatasetDetail);
+                                    cmdCheckItem.CommandType = CommandType.StoredProcedure;
+                                    cmdCheckItem.Parameters.Add("@p_SOID", SqlDbType.Int).Value = m_SOID;
+                                    cmdCheckItem.Parameters.Add("@p_ITEMID", SqlDbType.Int).Value = drFromGrid["SALES_SO_LITEM_ID"].ToString();
+                                    cmdCheckItem.Parameters.Add("@p_ItemName", SqlDbType.VarChar).Value = drFromGrid["ITEM_NAME"].ToString();
+                                    cmdCheckItem.Parameters.Add("@p_Quantity", SqlDbType.Int).Value = drFromGrid["QUANTITY"].ToString();
+                                    cmdCheckItem.Parameters.Add("@p_Price", SqlDbType.Float).Value = drFromGrid["PRICE"].ToString();
+                                    cmdCheckItem.ExecuteNonQuery();
+                                }
+                                blsDbisfound = true;
+                                break;
                             }
-                            dbisfound = true;
-                            break;
+                        }
+                        if (!blsDbisfound)
+                        {
+                            int iRowDB = Convert.ToInt32(drFromDatabase["SALES_SO_LITEM_ID"]);
+                            SqlCommand cmdDeleteItemID = new SqlCommand("uspSO_deleteitemid", cnDatasetDetail);
+                            cmdDeleteItemID.CommandType = CommandType.StoredProcedure;
+                            cmdDeleteItemID.Parameters.Add("@p_ITEMID", SqlDbType.Int).Value = iRowDB;
+                            cmdDeleteItemID.ExecuteNonQuery();
                         }
                     }
-                    if (!dbisfound)
+                    #endregion remove old SO Item
+                    #region update new SO Item
+                    foreach (DataRow drFromGrid in m_SessionSoItem.Rows)
                     {
-                        //delete SOITEMID by drdb
-                        int rowDB = Convert.ToInt32(drdb["SALES_SO_LITEM_ID"]);
-                        SqlCommand cmd4 = new SqlCommand("spx_deleteitemid", cn);
-                        cmd4.CommandType = CommandType.StoredProcedure;
-                        cmd4.Parameters.Add("@ITEMID", SqlDbType.Int).Value = rowDB;
-                        cmd4.ExecuteNonQuery();
+                        if (Convert.ToInt32(drFromGrid["SALES_SO_LITEM_ID"]) > 0) //convert ke integer
+                        {
+                            SqlCommand cmdUpdateSO2 = new SqlCommand("uspSO_updateSO", cnDatasetDetail);
+                            cmdUpdateSO2.CommandType = CommandType.StoredProcedure;
+                            cmdUpdateSO2.Parameters.Add("@p_SONO", SqlDbType.VarChar).Value = txtsales.Text;
+                            cmdUpdateSO2.Parameters.Add("@p_OrderDate", SqlDbType.DateTime).Value = Convert.ToDateTime(txtdate.Text);
+                            cmdUpdateSO2.Parameters.Add("@p_Customer", SqlDbType.Int).Value = DDLCustomer.SelectedValue;
+                            cmdUpdateSO2.Parameters.Add("@p_Address", SqlDbType.VarChar).Value = txtaddres.Text;
+                            cmdUpdateSO2.Parameters.Add("@p_SOID", SqlDbType.Int).Value = m_SOID;
+                            cmdUpdateSO2.ExecuteNonQuery();
+                            if (m_SessionSoItem != null)
+                            {
+                                SqlCommand cmdCheckItem2 = new SqlCommand("uspSO_checkItem", cnDatasetDetail);
+                                cmdCheckItem2.CommandType = CommandType.StoredProcedure;
+                                cmdCheckItem2.Parameters.Add("@p_SOID", SqlDbType.Int).Value = m_SOID;
+                                cmdCheckItem2.Parameters.Add("@p_ITEMID", SqlDbType.Int).Value = drFromGrid["SALES_SO_LITEM_ID"].ToString();
+                                cmdCheckItem2.Parameters.Add("@p_ItemName", SqlDbType.VarChar).Value = drFromGrid["ITEM_NAME"].ToString();
+                                cmdCheckItem2.Parameters.Add("@p_Quantity", SqlDbType.Int).Value = drFromGrid["QUANTITY"].ToString();
+                                cmdCheckItem2.Parameters.Add("@p_Price", SqlDbType.Float).Value = drFromGrid["PRICE"].ToString();
+                                cmdCheckItem2.ExecuteNonQuery();
+                            }
+                        }
+                        else
+                        {
+                            if (m_SessionSoItem != null)
+                            {
+                                SqlCommand cmdInsertSOItem = new SqlCommand("uspSO_insertSOItem", cnDatasetDetail);
+                                cmdInsertSOItem.CommandType = CommandType.StoredProcedure;
+                                cmdInsertSOItem.Parameters.Add("@p_SOID", SqlDbType.Int).Value = m_SOID;
+                                cmdInsertSOItem.Parameters.Add("@p_ItemName", SqlDbType.VarChar).Value = drFromGrid["ITEM_NAME"].ToString();
+                                cmdInsertSOItem.Parameters.Add("@p_Quantity", SqlDbType.Int).Value = drFromGrid["QUANTITY"].ToString();
+                                cmdInsertSOItem.Parameters.Add("@p_Price", SqlDbType.Float).Value = drFromGrid["PRICE"].ToString();
+                                cmdInsertSOItem.ExecuteNonQuery();
+                            }
+                        }
                     }
+                    Session.RemoveAll();
+                    Page.ClientScript.RegisterClientScriptBlock(this.GetType(), "", "<script>alert('Update Succesful!'); window.location = 'SOList.aspx';</script>");
+                    #endregion update new SO Item
                 }
-                #endregion remove old SO Item
-                foreach (DataRow dr in SessionSoItem.Rows)
+                else
                 {
-                    if (Convert.ToInt32(dr["SALES_SO_LITEM_ID"]) > 0) //convert ke integer
-                    {
-                        //panggil sp update soITEM
-                        SqlCommand cmd5 = new SqlCommand("spx_updateSO", cn);
-                        cmd5.CommandType = CommandType.StoredProcedure;
-                        cmd5.Parameters.Add("@SONO", SqlDbType.VarChar).Value = txtsales.Text;
-                        cmd5.Parameters.Add("@OrderDate", SqlDbType.DateTime).Value = Convert.ToDateTime(txtdate.Text);
-                        cmd5.Parameters.Add("@Customer", SqlDbType.Int).Value = DDLCustomer.SelectedValue;
-                        cmd5.Parameters.Add("@Address", SqlDbType.VarChar).Value = txtaddres.Text;
-                        cmd5.Parameters.Add("@SOID", SqlDbType.Int).Value = SOID;
-                        cmd5.ExecuteNonQuery();
-                        if (SessionSoItem != null)
-                        {
-                            SqlCommand cmd6 = new SqlCommand("spx_checkItem", cn);
-                            cmd6.CommandType = CommandType.StoredProcedure;
-                            cmd6.Parameters.Add("@SOID", SqlDbType.Int).Value = SOID;
-                            cmd6.Parameters.Add("@ITEMID", SqlDbType.Int).Value = dr["SALES_SO_LITEM_ID"].ToString();
-                            cmd6.Parameters.Add("@ItemName", SqlDbType.VarChar).Value = dr["ITEM_NAME"].ToString();
-                            cmd6.Parameters.Add("@Quantity", SqlDbType.Int).Value = dr["QUANTITY"].ToString();
-                            cmd6.Parameters.Add("@Price", SqlDbType.Float).Value = dr["PRICE"].ToString();
-                            cmd6.ExecuteNonQuery();
-                        }
-                    }
-                    else
-                    {
-                        //add
-                        if (SessionSoItem != null)
-                        {
-                            SqlCommand cmd7 = new SqlCommand("spx_insertSOItem", cn);
-                            cmd7.CommandType = CommandType.StoredProcedure;
-                            cmd7.Parameters.Add("@SOID", SqlDbType.Int).Value = SOID;
-                            cmd7.Parameters.Add("@ItemName", SqlDbType.VarChar).Value = dr["ITEM_NAME"].ToString();
-                            cmd7.Parameters.Add("@Quantity", SqlDbType.Int).Value = dr["QUANTITY"].ToString();
-                            cmd7.Parameters.Add("@Price", SqlDbType.Float).Value = dr["PRICE"].ToString();
-                            cmd7.ExecuteNonQuery();
-                        }
-                    }
+                    insertData();
                 }
-                Session.RemoveAll();
-                Page.ClientScript.RegisterClientScriptBlock(this.GetType(), "", "<script>alert('Update Succesful!'); window.location = 'SOList.aspx';</script>");
-
             }
-            else
+            catch (System.Threading.ThreadAbortException) { }
+            catch (Exception ex)
             {
-                insertData();
+                throw ex;
             }
         }
 
         protected void btnCancelOrder_Click(object sender, EventArgs e)
         {
-            Session.RemoveAll();
-            Response.Redirect("SOList.aspx");
+            try
+            {
+                Session.RemoveAll();
+                Response.Redirect("SOList.aspx");
+            }
+            catch (System.Threading.ThreadAbortException) { }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
         #endregion page event
 
         #region method
         private void setInitialRow()
         {
-            DataTable dt = new DataTable();
-            dt.Columns.Add(new DataColumn("NO_URUT", typeof(int))); //untuk delete
-            dt.Columns.Add(new DataColumn("SALES_SO_LITEM_ID", typeof(int)));
-            dt.Columns.Add(new DataColumn("ITEM_NAME", typeof(string)));
-            dt.Columns.Add(new DataColumn("QUANTITY", typeof(int)));
-            dt.Columns.Add(new DataColumn("PRICE", typeof(float)));
-            dt.Columns.Add(new DataColumn("TOTAL", typeof(float)));
-
-            soItemId -= 1;
-
-            if (SessionSoItem.Rows.Count < 1)
+            DataTable dtInitialTable = new DataTable();
+            dtInitialTable.Columns.Add(new DataColumn("NO_URUT", typeof(int))); //untuk delete
+            dtInitialTable.Columns.Add(new DataColumn("SALES_SO_LITEM_ID", typeof(int)));
+            dtInitialTable.Columns.Add(new DataColumn("ITEM_NAME", typeof(string)));
+            dtInitialTable.Columns.Add(new DataColumn("QUANTITY", typeof(int)));
+            dtInitialTable.Columns.Add(new DataColumn("PRICE", typeof(float)));
+            dtInitialTable.Columns.Add(new DataColumn("TOTAL", typeof(float)));
+            m_soItemId -= 1;
+            if (m_SessionSoItem.Rows.Count < 1)
             {
-                int rowcount = SessionSoItem.Rows.Count;
-                dr = dt.NewRow();
-                dr["NO_URUT"] = 1; //untuk delete
-                dr["SALES_SO_LITEM_ID"] = soItemId;
-                dr["ITEM_NAME"] = "";
-                dr["QUANTITY"] = 0;
-                dr["PRICE"] = 0;
-                dr["TOTAL"] = 0;
-                dt.Rows.Add(dr);
-                GridInput.SetEditRow(rowcount);
-                SessionSoItem = dt;
+                int iRowCount = m_SessionSoItem.Rows.Count;
+                m_drInitTable = dtInitialTable.NewRow();
+                m_drInitTable["NO_URUT"] = 1; //untuk delete
+                m_drInitTable["SALES_SO_LITEM_ID"] = m_soItemId;
+                m_drInitTable["ITEM_NAME"] = "";
+                m_drInitTable["QUANTITY"] = 0;
+                m_drInitTable["PRICE"] = 0;
+                m_drInitTable["TOTAL"] = 0;
+                dtInitialTable.Rows.Add(m_drInitTable);
+                GridInput.SetEditRow(iRowCount);
+                m_SessionSoItem = dtInitialTable;
             }
-            else if (SessionSoItem.Rows.Count >= 1)
+            else if (m_SessionSoItem.Rows.Count >= 1)
             {
-                int rowcount = SessionSoItem.Rows.Count;
-                DataRow dr2 = null;
-                dr2 = SessionSoItem.NewRow();
-                dr2["SALES_SO_LITEM_ID"] = soItemId;
-                dr2["ITEM_NAME"] = "";
-                dr2["QUANTITY"] = 0;
-                dr2["PRICE"] = 0;
-                dr2["TOTAL"] = 0;
-                SessionSoItem.Rows.Add(dr2);
-                GridInput.SetEditRow(rowcount);
+                int iRowCount = m_SessionSoItem.Rows.Count;
+                DataRow drInitialTable = null;
+                drInitialTable = m_SessionSoItem.NewRow();
+                drInitialTable["SALES_SO_LITEM_ID"] = m_soItemId;
+                drInitialTable["ITEM_NAME"] = "";
+                drInitialTable["QUANTITY"] = 0;
+                drInitialTable["PRICE"] = 0;
+                drInitialTable["TOTAL"] = 0;
+                m_SessionSoItem.Rows.Add(drInitialTable);
+                GridInput.SetEditRow(iRowCount);
             }
         }
 
         private void insertData()
         {
-            SqlConnection cn = new SqlConnection(strcn);
-            cn.Open();
-            SqlCommand cmd = new SqlCommand("spx_insertSO", cn);
-            cmd.CommandType = CommandType.StoredProcedure;
-            cmd.Parameters.Add("@SONO", SqlDbType.VarChar).Value = txtsales.Text;
-            cmd.Parameters.Add("@OrderDate", SqlDbType.DateTime).Value = Convert.ToDateTime(txtdate.Text);
-            cmd.Parameters.Add("@CUSTOMER", SqlDbType.Int).Value = DDLCustomer.SelectedValue;
-            cmd.Parameters.Add("@ADDRESS", SqlDbType.VarChar).Value = txtaddres.Text;
-            string getValue = cmd.ExecuteScalar().ToString();
-            if (SessionSoItem != null)
+            SqlConnection cnInsertData = new SqlConnection(m_strcn);
+            cnInsertData.Open();
+            SqlCommand cmdInsertSO = new SqlCommand("uspSO_insertSO", cnInsertData);
+            cmdInsertSO.CommandType = CommandType.StoredProcedure;
+            cmdInsertSO.Parameters.Add("@p_SONO", SqlDbType.VarChar).Value = txtsales.Text;
+            cmdInsertSO.Parameters.Add("@p_OrderDate", SqlDbType.DateTime).Value = Convert.ToDateTime(txtdate.Text);
+            cmdInsertSO.Parameters.Add("@p_CUSTOMER", SqlDbType.Int).Value = DDLCustomer.SelectedValue;
+            cmdInsertSO.Parameters.Add("@p_ADDRESS", SqlDbType.VarChar).Value = txtaddres.Text;
+            string strGetValue = cmdInsertSO.ExecuteScalar().ToString();
+            if (m_SessionSoItem != null)
             {
-                foreach (DataRow dr in SessionSoItem.Rows)
+                foreach (DataRow drDetailItem in m_SessionSoItem.Rows)
                 {
-                    SqlCommand cmd2 = new SqlCommand("spx_insertSOItem", cn);
-                    cmd2.CommandType = CommandType.StoredProcedure;
-                    cmd2.Parameters.Add("@SOID", SqlDbType.Int).Value = getValue;
-                    cmd2.Parameters.Add("@ItemName", SqlDbType.VarChar).Value = dr["ITEM_NAME"].ToString();
-                    cmd2.Parameters.Add("@Quantity", SqlDbType.Int).Value = dr["QUANTITY"].ToString();
-                    cmd2.Parameters.Add("@Price", SqlDbType.Float).Value = dr["PRICE"].ToString();
-                    int ins = cmd2.ExecuteNonQuery();
-                    if (ins == 1)
+                    SqlCommand cmdInsertSOItem = new SqlCommand("uspSO_insertSOItem", cnInsertData);
+                    cmdInsertSOItem.CommandType = CommandType.StoredProcedure;
+                    cmdInsertSOItem.Parameters.Add("@p_SOID", SqlDbType.Int).Value = strGetValue;
+                    cmdInsertSOItem.Parameters.Add("@p_ItemName", SqlDbType.VarChar).Value = drDetailItem["ITEM_NAME"].ToString();
+                    cmdInsertSOItem.Parameters.Add("@p_Quantity", SqlDbType.Int).Value = drDetailItem["QUANTITY"].ToString();
+                    cmdInsertSOItem.Parameters.Add("@p_Price", SqlDbType.Float).Value = drDetailItem["PRICE"].ToString();
+                    int iInsert = cmdInsertSOItem.ExecuteNonQuery();
+                    if (iInsert == 1)
                     {
                         Session.RemoveAll();
                         Page.ClientScript.RegisterClientScriptBlock(this.GetType(), "", "<script>alert('Save Successful!'); window.location = 'SOList.aspx';</script>");
@@ -376,52 +392,51 @@ namespace SO
 
         private void retrieveData()
         {
-            SqlConnection cn = new SqlConnection(strcn);
-            cn.Open();
-            SqlCommand cmd = new SqlCommand("SELECT * FROM SALES_SO WHERE SALES_SO_ID = @SOID", cn);
-            cmd.CommandType = CommandType.Text;
-            cmd.Parameters.Add("@SOID", SqlDbType.Int).Value = SOID;
-            SqlDataReader dr;
-            dr = cmd.ExecuteReader();
-            while (dr.Read())
+            SqlConnection cnRetrieve = new SqlConnection(m_strcn);
+            cnRetrieve.Open();
+            SqlCommand cmdRetrieveSO = new SqlCommand("SELECT * FROM SALES_SO WHERE SALES_SO_ID = @p_SOID", cnRetrieve);
+            cmdRetrieveSO.CommandType = CommandType.Text;
+            cmdRetrieveSO.Parameters.Add("@p_SOID", SqlDbType.Int).Value = m_SOID;
+            SqlDataReader drSO;
+            drSO = cmdRetrieveSO.ExecuteReader();
+            while (drSO.Read())
             {
-                txtsales.Text = dr["SO_NO"].ToString();
-                txtaddres.Text = dr["ADDRESS"].ToString();
-                txtdate.Text = dr["ORDER_DATE"].ToString();
-                DDLCustomer.SelectedValue = dr["COM_CUSTOMER_ID"].ToString();
-
+                txtsales.Text = drSO["SO_NO"].ToString();
+                txtaddres.Text = drSO["ADDRESS"].ToString();
+                txtdate.Text = drSO["ORDER_DATE"].ToString();
+                DDLCustomer.SelectedValue = drSO["COM_CUSTOMER_ID"].ToString();
             }
-            dr.Close();
-            SqlCommand cmd2 = new SqlCommand("spx_detailItem", cn);
-            cmd2.CommandType = CommandType.StoredProcedure;
-            cmd2.Parameters.Add("@SOID", SqlDbType.Int).Value = SOID;
-            dr = cmd2.ExecuteReader();
-            DataTable dt = new DataTable();
-            dt.Columns.Add(new DataColumn("NO_URUT", typeof(int))); //untuk delete
-            dt.Columns.Add(new DataColumn("SALES_SO_LITEM_ID", typeof(int)));
-            dt.Columns.Add(new DataColumn("ITEM_NAME", typeof(string)));
-            dt.Columns.Add(new DataColumn("QUANTITY", typeof(int)));
-            dt.Columns.Add(new DataColumn("PRICE", typeof(float)));
-            dt.Columns.Add(new DataColumn("TOTAL", typeof(float)));
-            int i;
-            while (dr.Read())
+            drSO.Close();
+            SqlCommand cmdRetrieveSOItem = new SqlCommand("uspSO_detailItem", cnRetrieve);
+            cmdRetrieveSOItem.CommandType = CommandType.StoredProcedure;
+            cmdRetrieveSOItem.Parameters.Add("@p_SOID", SqlDbType.Int).Value = m_SOID;
+            drSO = cmdRetrieveSOItem.ExecuteReader();
+            DataTable dtDetailItem = new DataTable();
+            dtDetailItem.Columns.Add(new DataColumn("NO_URUT", typeof(int))); //untuk delete
+            dtDetailItem.Columns.Add(new DataColumn("SALES_SO_LITEM_ID", typeof(int)));
+            dtDetailItem.Columns.Add(new DataColumn("ITEM_NAME", typeof(string)));
+            dtDetailItem.Columns.Add(new DataColumn("QUANTITY", typeof(int)));
+            dtDetailItem.Columns.Add(new DataColumn("PRICE", typeof(float)));
+            dtDetailItem.Columns.Add(new DataColumn("TOTAL", typeof(float)));
+            int iNoUrut;
+            while (drSO.Read())
             {
-                DataRow drow = dt.NewRow();
-                for (i = 0; i <= dt.Rows.Count; i++)
+                DataRow drDetailItem = dtDetailItem.NewRow();
+                for (iNoUrut = 0; iNoUrut <= dtDetailItem.Rows.Count; iNoUrut++)
                 {
-                    Convert.ToInt32(i);
+                    Convert.ToInt32(iNoUrut);
                 }
-                drow["NO_URUT"] = i;
-                drow["SALES_SO_LITEM_ID"] = dr["SALES_SO_LITEM_ID"].ToString();
-                drow["ITEM_NAME"] = dr["ITEM_NAME"].ToString();
-                drow["QUANTITY"] = dr["QUANTITY"].ToString();
-                drow["PRICE"] = dr["PRICE"].ToString();
-                dt.Rows.Add(drow);
+                drDetailItem["NO_URUT"] = iNoUrut;
+                drDetailItem["SALES_SO_LITEM_ID"] = drSO["SALES_SO_LITEM_ID"].ToString();
+                drDetailItem["ITEM_NAME"] = drSO["ITEM_NAME"].ToString();
+                drDetailItem["QUANTITY"] = drSO["QUANTITY"].ToString();
+                drDetailItem["PRICE"] = drSO["PRICE"].ToString();
+                dtDetailItem.Rows.Add(drDetailItem);
             }
-            GridInput.DataSource = dt;
+            GridInput.DataSource = dtDetailItem;
             GridInput.DataBind();
-            SessionSoItem = dt;
-            dr.Close();
+            m_SessionSoItem = dtDetailItem;
+            drSO.Close();
 
         }
         #endregion method

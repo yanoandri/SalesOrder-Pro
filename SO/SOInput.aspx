@@ -119,7 +119,7 @@
                         </asp:TemplateField>
                         <asp:TemplateField HeaderStyle-HorizontalAlign="Center" HeaderText="PRICE">
                             <ItemTemplate>
-                                <asp:Label ID="lblprice" runat="server" Text='<%#Bind("PRICE") %>'></asp:Label>
+                                <asp:Label ID="lblprice" runat="server" Text='<%#Bind("PRICE", "{0:#,##0.##}") %>'></asp:Label>
                             </ItemTemplate>
                             <EditItemTemplate>
                                 <asp:TextBox ID="txtprice" runat="server" MaxLength="50" Text='<%#Bind("PRICE") %>'></asp:TextBox>
