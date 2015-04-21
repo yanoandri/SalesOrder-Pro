@@ -73,7 +73,7 @@
                                 <asp:TextBox ID="TextBox2" runat="server" Text='<%# Bind("ORDER_DATE") %>'></asp:TextBox>
                             </EditItemTemplate>
                             <ItemTemplate>
-                                <asp:Label ID="Label3" runat="server" Text='<%# Bind("ORDER_DATE", "{0:dd/MM/yyyy}") %>'></asp:Label>
+                                <asp:Label ID="Label3" runat="server" Text='<%# Bind("ORDER_DATE", "{0:dd/MM/yyyy HH:mm:ss}") %>'></asp:Label>
                             </ItemTemplate>
                             <HeaderStyle BackColor="#009933" HorizontalAlign="Center" VerticalAlign="Middle" />
                         </asp:TemplateField>
