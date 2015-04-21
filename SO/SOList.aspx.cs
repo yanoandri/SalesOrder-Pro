@@ -99,9 +99,13 @@ namespace SO
             {
                 cmd = "SELECT SALES_SO_ID, a.SO_NO, a.ORDER_DATE, b.CUSTOMER_NAME, a.ADDRESS FROM dbo.SALES_SO a JOIN dbo.COM_CUSTOMER b ON a.COM_CUSTOMER_ID = b.COM_CUSTOMER_ID WHERE ORDER_DATE= '" + txtCalendar.Text + "'";
             }
-            else
+            else if (txtCalendar.Text != "" || txtkey.Text != "")
             {
                 cmd = "SELECT SALES_SO_ID, a.SO_NO, a.ORDER_DATE, b.CUSTOMER_NAME, a.ADDRESS FROM dbo.SALES_SO a JOIN dbo.COM_CUSTOMER b ON a.COM_CUSTOMER_ID = b.COM_CUSTOMER_ID WHERE (a.SO_NO LIKE '%" + txtkey.Text + "%' OR b.CUSTOMER_NAME LIKE '%" + txtkey.Text + "%') AND ORDER_DATE= '" + txtCalendar.Text + "'";
+            }
+            else
+            {
+                cmd = "SELECT SALES_SO_ID, a.SO_NO, a.ORDER_DATE, b.CUSTOMER_NAME, a.ADDRESS FROM dbo.SALES_SO a JOIN dbo.COM_CUSTOMER b ON a.COM_CUSTOMER_ID = b.COM_CUSTOMER_ID";
             }
             SqlCommand sqlcmd = new SqlCommand(cmd, cn);
             sqlcmd.CommandType = CommandType.Text;
