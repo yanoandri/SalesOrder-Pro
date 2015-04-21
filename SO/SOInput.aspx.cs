@@ -394,7 +394,7 @@ namespace SO
         {
             SqlConnection cnRetrieve = new SqlConnection(m_strcn);
             cnRetrieve.Open();
-            SqlCommand cmdRetrieveSO = new SqlCommand("SELECT * FROM SALES_SO WHERE SALES_SO_ID = @p_SOID", cnRetrieve);
+            SqlCommand cmdRetrieveSO = new SqlCommand("SELECT * FROM SALES_SO WITH (NOLOCK) WHERE SALES_SO_ID = @p_SOID", cnRetrieve);
             cmdRetrieveSO.CommandType = CommandType.Text;
             cmdRetrieveSO.Parameters.Add("@p_SOID", SqlDbType.Int).Value = m_SOID;
             SqlDataReader drSO;
