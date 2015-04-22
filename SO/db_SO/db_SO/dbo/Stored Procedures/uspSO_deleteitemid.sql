@@ -7,14 +7,14 @@
 -- =============================================
 CREATE PROCEDURE [dbo].[uspSO_deleteitemid]
 	-- Add the parameters for the stored procedure here
-	@ITEMID AS int
-AS
-BEGIN
+    @p_ITEMID AS INT
+AS 
+    BEGIN
 	-- SET NOCOUNT ON added to prevent extra result sets from
 	-- interfering with SELECT statements.
-	SET NOCOUNT ON;
+        SET NOCOUNT ON;
 
     -- Insert statements for procedure here
-	DELETE SALES_SO_LITEM WITH(ROWLOCK)
-	WHERE SALES_SO_LITEM_ID = @ITEMID
-END
+        DELETE  SALES_SO_LITEM WITH ( ROWLOCK )
+        WHERE   SALES_SO_LITEM_ID = @p_ITEMID
+    END

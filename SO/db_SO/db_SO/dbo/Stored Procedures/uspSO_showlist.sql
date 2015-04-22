@@ -6,12 +6,16 @@
 -- Description:	-
 -- =============================================
 CREATE PROCEDURE [dbo].[uspSO_showlist]
-AS
-BEGIN
-	SET NOCOUNT ON;
+AS 
+    BEGIN
+        SET NOCOUNT ON;
 
-	SELECT SALES_SO_ID, a.SO_NO, a.ORDER_DATE, b.CUSTOMER_NAME, a.ADDRESS 
-	FROM dbo.SALES_SO a JOIN dbo.COM_CUSTOMER b WITH (NOLOCK)
-	ON a.COM_CUSTOMER_ID = b.COM_CUSTOMER_ID 
-	ORDER BY SALES_SO_ID ASC
-END
+        SELECT  SALES_SO_ID ,
+                a.SO_NO ,
+                a.ORDER_DATE ,
+                b.CUSTOMER_NAME ,
+                a.ADDRESS
+        FROM    dbo.SALES_SO a
+                JOIN dbo.COM_CUSTOMER b WITH ( NOLOCK ) ON a.COM_CUSTOMER_ID = b.COM_CUSTOMER_ID
+        ORDER BY SALES_SO_ID ASC
+    END

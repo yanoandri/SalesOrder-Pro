@@ -80,5 +80,13 @@
     <Build Include="dbo\Stored Procedures\uspSO_deleteso_1.sql" />
     <Build Include="dbo\Stored Procedures\uspSO_deleteitemid_1.sql" />
     <Build Include="dbo\Stored Procedures\uspSO_checkItem_1.sql" />
+    <Build Include="dbo\Stored Procedures\uspSO_updateSO_1.sql" />
+    <Build Include="dbo\Stored Procedures\uspSO_showlist_1.sql" />
+    <Build Include="dbo\Stored Procedures\uspSO_insertSOItem_1.sql" />
+    <Build Include="dbo\Stored Procedures\uspSO_insertSO_1.sql" />
+    <Build Include="dbo\Stored Procedures\uspSO_detailItem_1.sql" />
+    <Build Include="dbo\Stored Procedures\uspSO_deleteso_1.sql" />
+    <Build Include="dbo\Stored Procedures\uspSO_deleteitemid_1.sql" />
+    <Build Include="dbo\Stored Procedures\uspSO_checkItem_1.sql" />
   </ItemGroup>
 </Project>

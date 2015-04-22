@@ -5,13 +5,14 @@
 -- Create date: yandriyanto 21-4-2015
 -- Description:	-
 -- =============================================
-CREATE PROCEDURE [dbo].[uspSO_deleteso]
-@p_SOID VARCHAR(MAX)
-AS
-BEGIN
-	SET NOCOUNT ON;
+CREATE PROCEDURE [dbo].[uspSO_deleteso] @p_SOID VARCHAR(MAX)
+AS 
+    BEGIN
+        SET NOCOUNT ON;
 
-    DELETE dbo.SALES_SO_LITEM WITH(ROWLOCK) WHERE SALES_SO_ID = @p_SOID
-	DELETE dbo.SALES_SO WITH(ROWLOCK) WHERE SALES_SO_ID = @p_SOID
+        DELETE  dbo.SALES_SO_LITEM WITH ( ROWLOCK )
+        WHERE   SALES_SO_ID = @p_SOID
+        DELETE  dbo.SALES_SO WITH ( ROWLOCK )
+        WHERE   SALES_SO_ID = @p_SOID
 	
-END
+    END

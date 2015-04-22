@@ -7,23 +7,23 @@
 -- =============================================
 CREATE PROCEDURE [dbo].[uspSO_insertSO]
 	-- Add the parameters for the stored procedure here
-	
-	@p_SONO AS VARCHAR(20),
-	@p_OrderDate AS DATETIME,
-	@p_CUSTOMER AS INT,
-	@p_ADDRESS AS VARCHAR(MAX)
-AS
-BEGIN
-	INSERT INTO [dbo].[SALES_SO] WITH(ROWLOCK)
-           ([SO_NO]
-           ,[ORDER_DATE]
-           ,[COM_CUSTOMER_ID]
-           ,[ADDRESS])
-     VALUES
-           (@p_SONO
-           ,@p_OrderDate
-           ,@p_CUSTOMER
-           ,@p_ADDRESS)
+    @p_SONO AS VARCHAR(20) ,
+    @p_OrderDate AS DATETIME ,
+    @p_CUSTOMER AS INT ,
+    @p_ADDRESS AS VARCHAR(MAX)
+AS 
+    BEGIN
+        INSERT  INTO [dbo].[SALES_SO] WITH ( ROWLOCK )
+                ( [SO_NO] ,
+                  [ORDER_DATE] ,
+                  [COM_CUSTOMER_ID] ,
+                  [ADDRESS]
+                )
+        VALUES  ( @p_SONO ,
+                  @p_OrderDate ,
+                  @p_CUSTOMER ,
+                  @p_ADDRESS
+                )
 
-	SELECT @@IDENTITY AS lastId
-END
+        SELECT  @@IDENTITY AS lastId
+    END
