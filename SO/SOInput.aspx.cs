@@ -74,7 +74,7 @@ namespace SO
         {
             try
             {
-                GridInput.EditIndex = -1;
+                m_SessionSoItem.Rows.RemoveAt(e.RowIndex);
                 GridInput.DataSource = m_SessionSoItem;
                 GridInput.DataBind();
             }
@@ -334,12 +334,8 @@ namespace SO
             {
                 int iRowCount = m_SessionSoItem.Rows.Count;
                 m_drInitTable = dtInitialTable.NewRow();
-                m_drInitTable["NO_URUT"] = 1; //untuk delete
+                m_drInitTable["NO_URUT"] = 1;
                 m_drInitTable["SALES_SO_LITEM_ID"] = m_soItemId;
-                m_drInitTable["ITEM_NAME"] = "";
-                m_drInitTable["QUANTITY"] = 0;
-                m_drInitTable["PRICE"] = 0;
-                m_drInitTable["TOTAL"] = 0;
                 dtInitialTable.Rows.Add(m_drInitTable);
                 GridInput.SetEditRow(iRowCount);
                 m_SessionSoItem = dtInitialTable;
@@ -350,10 +346,6 @@ namespace SO
                 DataRow drInitialTable = null;
                 drInitialTable = m_SessionSoItem.NewRow();
                 drInitialTable["SALES_SO_LITEM_ID"] = m_soItemId;
-                drInitialTable["ITEM_NAME"] = "";
-                drInitialTable["QUANTITY"] = 0;
-                drInitialTable["PRICE"] = 0;
-                drInitialTable["TOTAL"] = 0;
                 m_SessionSoItem.Rows.Add(drInitialTable);
                 GridInput.SetEditRow(iRowCount);
             }
@@ -394,7 +386,7 @@ namespace SO
         {
             SqlConnection cnRetrieve = new SqlConnection(m_strcn);
             cnRetrieve.Open();
-            SqlCommand cmdRetrieveSO = new SqlCommand("SELECT * FROM SALES_SO WITH (NOLOCK) WHERE SALES_SO_ID = @p_SOID", cnRetrieve);
+            SqlCommand cmdRetrieveSO = new SqlCommand("SELECT CONVERT(VARCHAR(11),ORDER_DATE,21) as ORDER_DATE, ADDRESS, SO_NO, COM_CUSTOMER_ID FROM SALES_SO WITH (NOLOCK) WHERE SALES_SO_ID = @p_SOID", cnRetrieve);
             cmdRetrieveSO.CommandType = CommandType.Text;
             cmdRetrieveSO.Parameters.Add("@p_SOID", SqlDbType.Int).Value = m_SOID;
             SqlDataReader drSO;

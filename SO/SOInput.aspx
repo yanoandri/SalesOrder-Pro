@@ -25,7 +25,7 @@
                             </td>
                             <td>
                                 <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ErrorMessage=" Wajib Diisi"
-                                    ForeColor="Green" ControlToValidate="txtsales">
+                                    ForeColor="Green" ControlToValidate="txtsales" ValidationGroup="groupSO">
                                 </asp:RequiredFieldValidator>
                             </td>
                         </tr>
@@ -39,7 +39,7 @@
                             </td>
                             <td>
                                 <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ErrorMessage=" Wajib Diisi"
-                                    ForeColor="Green" ControlToValidate="txtdate">
+                                    ForeColor="Green" ControlToValidate="txtdate" ValidationGroup="groupSO">
                                 </asp:RequiredFieldValidator>
                             </td>
                         </tr>
@@ -49,13 +49,13 @@
                             </td>
                             <td>
                                 <asp:DropDownList ID="DDLCustomer" runat="server" DataSourceID="SqlDataSource1" AppendDataBoundItems="true" DataTextField="CUSTOMER_NAME" DataValueField="COM_CUSTOMER_ID">
-                                    <asp:ListItem Text="--Select One--" Value="" />
+                                    <asp:ListItem Text="--Select One--" Value="0" />
                                 </asp:DropDownList>
                                 <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:SOConnectionString %>" SelectCommand="SELECT * FROM [COM_CUSTOMER]"></asp:SqlDataSource>
                             </td>
                             <td>
                                 <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ErrorMessage=" Pilih Salah Satu"
-                                    ForeColor="Green" ControlToValidate="DDLCustomer" InitialValue="0">
+                                    ForeColor="Green" ControlToValidate="DDLCustomer" InitialValue="0" ValidationGroup="groupSO">
                                 </asp:RequiredFieldValidator>
                             </td>
                         </tr>
@@ -68,7 +68,7 @@
                             </td>
                             <td>
                                 <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" ErrorMessage=" Wajib Diisi"
-                                    ForeColor="Green" ControlToValidate="txtaddres">
+                                    ForeColor="Green" ControlToValidate="txtaddres" ValidationGroup="groupSO">
                                 </asp:RequiredFieldValidator>
                             </td>
                         </tr>
@@ -76,7 +76,7 @@
                 </div>
             </asp:Panel>
             <br />
-            <asp:Panel ID="List" GroupingText="List" runat="server" Style="border-style: solid; border-color: inherit; border-width: medium; margin:auto; margin-left: 67px; margin-right: 0px;" Height="444px" Width="827px" ScrollBars="Auto">
+            <asp:Panel ID="List" GroupingText="List" runat="server" Style="border-style: solid; border-color: inherit; border-width: medium; margin: auto; margin-left: 67px; margin-right: 0px;" Height="444px" Width="827px" ScrollBars="Auto">
                 &nbsp&nbsp<asp:Button ID="btnAdd" OnClick="btnAdd_Click" runat="server" Text="ADD ITEM" CausesValidation="false" />
                 <br />
                 <br />
@@ -101,19 +101,19 @@
                             </ItemTemplate>
                             <EditItemTemplate>
                                 <asp:TextBox ID="txtItem" runat="server" MaxLength="50" Text='<%#Bind("ITEM_NAME") %>'></asp:TextBox>
-                                <asp:RequiredFieldValidator ID="rfvtxtItem" runat="server" ControlToValidate="txtItem" Text="Please fill..." ToolTip="Enter Item"></asp:RequiredFieldValidator>
-                                <asp:RegularExpressionValidator ID="revtxtItem" runat="server" ControlToValidate="txtItem" Text="Enter Item" ToolTip="Enter Item " ValidationExpression="^[a-zA-Z'.\s]{1,40}$"></asp:RegularExpressionValidator>
+                                <asp:RequiredFieldValidator ID="rfvtxtItem" runat="server" ValidationGroup="groupDetail" ControlToValidate="txtItem" Text="Enter Item" ToolTip="Enter Item"></asp:RequiredFieldValidator>
+                                <asp:RegularExpressionValidator ID="revtxtItem" runat="server" ValidationGroup="groupDetail" ControlToValidate="txtItem" Text="Enter Item" ToolTip="Enter Item " ValidationExpression="^[a-zA-Z'.\s]{1,40}$"></asp:RegularExpressionValidator>
                             </EditItemTemplate>
                             <HeaderStyle HorizontalAlign="Center" />
                         </asp:TemplateField>
                         <asp:TemplateField HeaderStyle-HorizontalAlign="Center" HeaderText="QUANTITY">
                             <ItemTemplate>
-                                <asp:Label ID="lblqty" runat="server" Text='<%#Bind("QUANTITY") %>'></asp:Label>
+                                <asp:Label ID="lblqty" runat="server" Text='<%#Bind("QUANTITY", "{0:#,##0.##}") %>'></asp:Label>
                             </ItemTemplate>
                             <EditItemTemplate>
                                 <asp:TextBox ID="txtQty" runat="server" MaxLength="50" Text='<%#Bind("QUANTITY") %>'></asp:TextBox>
-                                <asp:RequiredFieldValidator ID="rfvtxtQty" runat="server" ControlToValidate="txtQty" Text="Isi ya..." ToolTip="Enter qty"></asp:RequiredFieldValidator>
-                                <asp:RegularExpressionValidator ID="revtxtQty" runat="server" ControlToValidate="txtQty" Text="Please fill..." ToolTip="Enter number " ValidationExpression="^[0-9]"></asp:RegularExpressionValidator>
+                                <asp:RequiredFieldValidator ID="rfvtxtQty" runat="server" ValidationGroup="groupDetail" ControlToValidate="txtQty" Text="Enter number" ToolTip="Enter qty"></asp:RequiredFieldValidator>
+                                <asp:RegularExpressionValidator ID="revtxtQty" runat="server" ValidationGroup="groupDetail" ControlToValidate="txtQty" Text="Please Fill by Number" ToolTip="Enter qty" ValidationExpression="^[0-9]+$"></asp:RegularExpressionValidator>                             
                             </EditItemTemplate>
                             <HeaderStyle HorizontalAlign="Center" />
                         </asp:TemplateField>
@@ -123,8 +123,8 @@
                             </ItemTemplate>
                             <EditItemTemplate>
                                 <asp:TextBox ID="txtprice" runat="server" MaxLength="50" Text='<%#Bind("PRICE") %>'></asp:TextBox>
-                                <asp:RequiredFieldValidator ID="rfvtxtprice" runat="server" ControlToValidate="txtprice" Text="Please fil...." ToolTip="Enter Price"></asp:RequiredFieldValidator>
-                                <asp:RegularExpressionValidator ID="revtxtprice" runat="server" ControlToValidate="txtprice" Text="Enter number" ToolTip="Enter Price " ValidationExpression="^[0-9]"></asp:RegularExpressionValidator>
+                                <asp:RequiredFieldValidator ID="rfvtxtprice" runat="server" ValidationGroup="groupDetail" ControlToValidate="txtprice" Text="Enter number" ToolTip="Enter Price"></asp:RequiredFieldValidator>
+                                <asp:RegularExpressionValidator ID="revtxtprice" runat="server" ValidationGroup="groupDetail" ControlToValidate="txtprice" Text="Please Fill the Correct Price" ToolTip="Enter Price" ValidationExpression="^[0-9]+$"></asp:RegularExpressionValidator>                                
                             </EditItemTemplate>
                             <FooterTemplate>
                                 <asp:Label ID="lblTotal" runat="server" Text="TOTAL"></asp:Label>
@@ -144,7 +144,7 @@
                         </asp:TemplateField>
                         <asp:TemplateField HeaderText="ACTION" ShowHeader="False">
                             <EditItemTemplate>
-                                <asp:Button ID="btnUpdate" runat="server" CausesValidation="False" CommandName="Update" Text="Update" />
+                                <asp:Button ID="btnUpdate" runat="server" CausesValidation="true" ValidationGroup="groupDetail" CommandName="Update" Text="Update" />
                                 &nbsp;<asp:Button ID="btnCancel" runat="server" CausesValidation="False" CommandName="Cancel" Text="Cancel" />
                             </EditItemTemplate>
                             <ItemTemplate>
@@ -168,7 +168,7 @@
                 <tr>
                     <td>
                         <asp:Button ID="btnSave" runat="server" Text="SAVE" OnClick="btnSave_Click" CssClass="Button"
-                            Width="74px" />
+                            Width="74px" ValidationGroup="groupSO" />
                     </td>
                     <td>
                         <asp:Button ID="btnCancelOrder" runat="server" Text="CANCEL" CssClass="Button" CausesValidation="false"
