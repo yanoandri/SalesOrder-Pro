@@ -62,6 +62,7 @@ namespace SO
                 setInitialRow();
                 GridInput.DataSource = m_SessionSoItem;
                 GridInput.DataBind();
+                btnAdd.Visible = false;
             }
             catch (System.Threading.ThreadAbortException) { }
             catch (Exception ex)
@@ -77,6 +78,7 @@ namespace SO
                 m_SessionSoItem.Rows.RemoveAt(e.RowIndex);
                 GridInput.DataSource = m_SessionSoItem;
                 GridInput.DataBind();
+                btnAdd.Visible = true;
             }
             catch (System.Threading.ThreadAbortException) { }
             catch (Exception ex)
@@ -152,6 +154,7 @@ namespace SO
                 GridInput.EditIndex = -1;
                 GridInput.DataSource = m_SessionSoItem;
                 GridInput.DataBind();
+                btnAdd.Visible = true;
             }
             catch (System.Threading.ThreadAbortException) { }
             catch (Exception ex)
