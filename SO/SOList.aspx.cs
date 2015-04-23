@@ -132,33 +132,23 @@ namespace SO
         protected void FindList()
         {
             SqlConnection cnFindList = new SqlConnection(m_connect);
-            cnFindList.Open();
-            string strFindingList = string.Empty;
-            if (txtkey.Text != "")
+            SqlCommand cmdFindList = new SqlCommand("uspSO_findlist", cnFindList);
+            cmdFindList.CommandType = CommandType.StoredProcedure;
+            cmdFindList.Parameters.Add("@p_Keyword", SqlDbType.VarChar).Value = txtkey.Text;
+            if (txtCalendar.Text != "")
             {
-                strFindingList = "SELECT SALES_SO_ID, a.SO_NO, a.ORDER_DATE, b.CUSTOMER_NAME, a.ADDRESS FROM dbo.SALES_SO a JOIN dbo.COM_CUSTOMER b WITH (NOLOCK) ON a.COM_CUSTOMER_ID = b.COM_CUSTOMER_ID WHERE (a.SO_NO LIKE '%" + txtkey.Text + "%' OR b.CUSTOMER_NAME LIKE '%" + txtkey.Text + "%')";
-            }
-            else if (txtCalendar.Text != "")
-            {
-                strFindingList = "SELECT SALES_SO_ID, a.SO_NO, a.ORDER_DATE, b.CUSTOMER_NAME, a.ADDRESS FROM dbo.SALES_SO a JOIN dbo.COM_CUSTOMER b WITH (NOLOCK) ON a.COM_CUSTOMER_ID = b.COM_CUSTOMER_ID WHERE ORDER_DATE= '" + txtCalendar.Text + "'";
-            }
-            else if (txtCalendar.Text != "" || txtkey.Text != "")
-            {
-                strFindingList = "SELECT SALES_SO_ID, a.SO_NO, a.ORDER_DATE, b.CUSTOMER_NAME, a.ADDRESS FROM dbo.SALES_SO a JOIN dbo.COM_CUSTOMER b WITH (NOLOCK) ON a.COM_CUSTOMER_ID = b.COM_CUSTOMER_ID WHERE (a.SO_NO LIKE '%" + txtkey.Text + "%' OR b.CUSTOMER_NAME LIKE '%" + txtkey.Text + "%') AND ORDER_DATE= '" + txtCalendar.Text + "'";
+                cmdFindList.Parameters.Add("@p_OrderDate", SqlDbType.DateTime).Value = DateTime.Parse(txtCalendar.Text);
             }
             else
             {
-                strFindingList = "SELECT SALES_SO_ID, a.SO_NO, a.ORDER_DATE, b.CUSTOMER_NAME, a.ADDRESS FROM dbo.SALES_SO a JOIN dbo.COM_CUSTOMER b WITH (NOLOCK) ON a.COM_CUSTOMER_ID = b.COM_CUSTOMER_ID";
+                cmdFindList.Parameters.Add("@p_OrderDate", SqlDbType.DateTime).Value = DBNull.Value;
             }
-            SqlCommand cmdFindingList = new SqlCommand(strFindingList, cnFindList);
-            cmdFindingList.CommandType = CommandType.Text;
             DataSet dsFindList = new DataSet();
-            SqlDataAdapter daFindList = new SqlDataAdapter(cmdFindingList);
-            daFindList.Fill(dsFindList);
+            SqlDataAdapter daFindAdapter = new SqlDataAdapter(cmdFindList);
+            daFindAdapter.Fill(dsFindList);
             GridView1.DataSource = dsFindList;
             GridView1.DataBind();
             cnFindList.Close();
-
         }
         #endregion method
 
