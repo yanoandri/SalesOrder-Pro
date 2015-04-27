@@ -75,7 +75,14 @@ namespace SO
         {
             try
             {
-                m_SessionSoItem.Rows.RemoveAt(e.RowIndex);
+                if (m_SOID != 0)
+                {
+                    GridInput.EditIndex = -1;
+                }
+                else
+                {
+                    m_SessionSoItem.Rows.RemoveAt(e.RowIndex);
+                }
                 GridInput.DataSource = m_SessionSoItem;
                 GridInput.DataBind();
                 btnAdd.Visible = true;
