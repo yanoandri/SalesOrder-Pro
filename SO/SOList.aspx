@@ -47,59 +47,44 @@
             <asp:Panel ID="Detail" runat="server" Font-Bold="True" GroupingText="DETAIL" Style="margin-left: 12px"
                 Width="890px" BorderStyle="Solid" ScrollBars="Auto">
                 &nbsp&nbsp<asp:Button ID="btnAdd" runat="server" Text="ADD SO" OnClick="btnAdd_Click" />
-                <asp:GridView ID="GridView1" runat="server" AllowPaging="True" AllowSorting="True" AutoGenerateColumns="False" DataKeyNames="SALES_SO_ID" OnRowDeleting="GridView1_RowDeleting"
+                <asp:GridView ID="GridView1" runat="server" AllowPaging="True" AllowSorting="True" AutoGenerateColumns="False" DataKeyNames="SalesSoId" OnRowDeleting="GridView1_RowDeleting"
                     OnRowCommand="GridView1_RowCommand" OnPageIndexChanging="GridView1_PageIndexChanging" Height="252px" PageSize="5" Width="719px" CellPadding="4" ForeColor="#333333" GridLines="Both" HorizontalAlign="Center"
                     OnRowDataBound="GridView1_RowDataBound">
                     <Columns>
-                        <asp:TemplateField HeaderText="NO" SortExpression="SALES_SO_ID">
-                            <EditItemTemplate>
-                                <asp:Label ID="Label1" runat="server" Text='<%# Eval("SALES_SO_ID") %>'></asp:Label>
-                            </EditItemTemplate>
+                        <asp:TemplateField HeaderText="NO">
                             <ItemTemplate>
-                                <asp:Label ID="Label1" runat="server" Text='<%# Bind("SALES_SO_ID") %>'></asp:Label>
+                                <asp:Label ID="Label1" runat="server" Text='<%# DataBinder.Eval(Container.DataItem,"SalesSoId") %>'></asp:Label>
                             </ItemTemplate>
                             <HeaderStyle BackColor="#009933" HorizontalAlign="Center" VerticalAlign="Middle" />
                         </asp:TemplateField>
-                        <asp:TemplateField HeaderText="SO NO" SortExpression="SO_NO">
-                            <EditItemTemplate>
-                                <asp:TextBox ID="TextBox1" runat="server" Text='<%# Bind("SO_NO") %>'></asp:TextBox>
-                            </EditItemTemplate>
+                        <asp:TemplateField HeaderText="SO NO">
                             <ItemTemplate>
-                                <asp:Label ID="Label2" runat="server" Text='<%# Bind("SO_NO") %>'></asp:Label>
+                                <asp:Label ID="Label2" runat="server" Text='<%# DataBinder.Eval(Container.DataItem,"SalesOrderNo") %>'></asp:Label>
                             </ItemTemplate>
                             <HeaderStyle BackColor="#009933" HorizontalAlign="Center" VerticalAlign="Middle" />
                         </asp:TemplateField>
-                        <asp:TemplateField HeaderText="ORDER DATE" SortExpression="ORDER_DATE">
-                            <EditItemTemplate>
-                                <asp:TextBox ID="TextBox2" runat="server" Text='<%# Bind("ORDER_DATE") %>'></asp:TextBox>
-                            </EditItemTemplate>
+                        <asp:TemplateField HeaderText="ORDER DATE">
                             <ItemTemplate>
-                                <asp:Label ID="Label3" runat="server" Text='<%# Bind("ORDER_DATE", "{0:dd MMM yyyy}") %>'></asp:Label>
+                                <asp:Label ID="Label3" runat="server" Text='<%#DataBinder.Eval(Container.DataItem,"OrderDate") %>'></asp:Label>
                             </ItemTemplate>
                             <HeaderStyle BackColor="#009933" HorizontalAlign="Center" VerticalAlign="Middle" />
                         </asp:TemplateField>
-                        <asp:TemplateField HeaderText="CUSTOMER" SortExpression="COM_CUSTOMER_ID">
-                            <EditItemTemplate>
-                                <asp:TextBox ID="TextBox3" runat="server" Text='<%# Bind("CUSTOMER_NAME") %>'></asp:TextBox>
-                            </EditItemTemplate>
+                        <asp:TemplateField HeaderText="CUSTOMER">
                             <ItemTemplate>
-                                <asp:Label ID="Label4" runat="server" Text='<%# Bind("CUSTOMER_NAME") %>'></asp:Label>
+                                <asp:Label ID="Label4" runat="server" Text='<%# DataBinder.Eval(Container.DataItem,"CustomerName") %>'></asp:Label>
                             </ItemTemplate>
                             <HeaderStyle BackColor="#009933" HorizontalAlign="Center" VerticalAlign="Middle" />
                         </asp:TemplateField>
-                        <asp:TemplateField HeaderText="ADDRESS" SortExpression="ADDRESS">
-                            <EditItemTemplate>
-                                <asp:TextBox ID="TextBox4" runat="server" Text='<%# Bind("ADDRESS") %>'></asp:TextBox>
-                            </EditItemTemplate>
+                        <asp:TemplateField HeaderText="ADDRESS">
                             <ItemTemplate>
-                                <asp:Label ID="Label5" runat="server" Text='<%# Bind("ADDRESS") %>'></asp:Label>
+                                <asp:Label ID="Label5" runat="server" Text='<%# DataBinder.Eval(Container.DataItem,"Address") %>'></asp:Label>
                             </ItemTemplate>
                             <HeaderStyle BackColor="#009933" HorizontalAlign="Center" VerticalAlign="Middle" />
                         </asp:TemplateField>
                         <asp:TemplateField ShowHeader="False" HeaderText="ACTION">
                             <ItemTemplate>
-                                <asp:Button ID="btnEdit" runat="server" CausesValidation="False" CommandName="Edit" Text="Edit" CommandArgument='<%# Eval("SALES_SO_ID") %>' />
-                                <asp:Button ID="btnDelete" runat="server" CausesValidation="true" CommandName="Delete" Text="Delete" CommandArgument='<%# Eval("SALES_SO_ID") %>'
+                                <asp:Button ID="btnEdit" runat="server" CausesValidation="False" CommandName="Edit" Text="Edit" CommandArgument='<%# DataBinder.Eval(Container.DataItem,"SalesSoId") %>' />
+                                <asp:Button ID="btnDelete" runat="server" CausesValidation="true" CommandName="Delete" Text="Delete" CommandArgument='<%# DataBinder.Eval(Container.DataItem,"SalesSoId") %>'
                                     />
                             </ItemTemplate>
                             <HeaderStyle BackColor="#009933" HorizontalAlign="Center" VerticalAlign="Middle" />

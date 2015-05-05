@@ -16,6 +16,9 @@ namespace SO
 
         #endregion public variable
 
+        #region session and properties
+        #endregion session and properties
+
         #region page event
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -23,13 +26,7 @@ namespace SO
             {
                 if (!IsPostBack)
                 {
-                    //ShowList();
-                    //GetSO();
-                    //GridView1.DataSource = GetSO();
-                    //GridView1.DataBind();
-                    var getSOList = GetSO();
-                    var list = new List<SOCollection> {getSOList};
-                    GridView1.DataSource = list;
+                    GridView1.DataSource = GetSO();
                     GridView1.DataBind();
                 }
             }
@@ -125,12 +122,6 @@ namespace SO
         {
             if (e.Row.RowType == DataControlRowType.DataRow)
             {
-                string sSono = ((System.Data.DataRowView)(e.Row.DataItem)).Row.ItemArray[1].ToString();
-                Button btnDelete = (Button)e.Row.Cells[5].FindControl("btnDelete");
-                if (btnDelete != null)
-                {
-                    btnDelete.OnClientClick = string.Format("return confirm('Are you sure want to delete " + sSono + " ?')");
-                }
             }
         }
         #endregion page event
@@ -173,12 +164,11 @@ namespace SO
             cnFindList.Close();
         }
 
-        private SOCollection GetSO()
+        private SalesOrderCollection GetSO()
         {
-            SOCollection SOrder = null;
+            SalesOrderCollection SOrder = new SalesOrderCollection();
             try
             {
-                SOrder = new SOCollection();
                 SOrder.DAL_Load();
                 return SOrder;
             }
