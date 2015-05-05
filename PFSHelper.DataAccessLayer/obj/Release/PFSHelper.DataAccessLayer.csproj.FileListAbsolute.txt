@@ -1,0 +1,4 @@
+D:\Project\ANZ\PSC\Source Code\PFSHelper.DataAccessLayer\bin\Release\PFSHelper.DataAccessLayer.dll
+D:\Project\ANZ\PSC\Source Code\PFSHelper.DataAccessLayer\bin\Release\PFSHelper.DataAccessLayer.pdb
+D:\Project\ANZ\PSC\Source Code\PFSHelper.DataAccessLayer\obj\Release\PFSHelper.DataAccessLayer.dll
+D:\Project\ANZ\PSC\Source Code\PFSHelper.DataAccessLayer\obj\Release\PFSHelper.DataAccessLayer.pdb

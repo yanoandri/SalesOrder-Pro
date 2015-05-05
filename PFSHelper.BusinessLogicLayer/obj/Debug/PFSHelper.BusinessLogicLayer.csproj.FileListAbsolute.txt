@@ -1,0 +1,50 @@
+D:\Project\ANZ\PSC\Source Code\PFSHelper.BusinessLogicLayer\bin\Debug\PFSHelper.BusinessLogicLayer.dll
+D:\Project\ANZ\PSC\Source Code\PFSHelper.BusinessLogicLayer\bin\Debug\PFSHelper.BusinessLogicLayer.pdb
+D:\Project\ANZ\PSC\Source Code\PFSHelper.BusinessLogicLayer\bin\Debug\PFSHelper.DataAccessLayer.dll
+D:\Project\ANZ\PSC\Source Code\PFSHelper.BusinessLogicLayer\bin\Debug\PFSHelper.Lib.dll
+D:\Project\ANZ\PSC\Source Code\PFSHelper.BusinessLogicLayer\bin\Debug\ICSharpCode.SharpZipLib.dll
+D:\Project\ANZ\PSC\Source Code\PFSHelper.BusinessLogicLayer\bin\Debug\PFSHelper.DataAccessLayer.pdb
+D:\Project\ANZ\PSC\Source Code\PFSHelper.BusinessLogicLayer\bin\Debug\PFSHelper.Lib.pdb
+D:\Project\ANZ\PSC\Source Code\PFSHelper.BusinessLogicLayer\obj\Debug\PFSHelper.BusinessLogicLayer.csprojResolveAssemblyReference.cache
+D:\Project\ANZ\PSC\Source Code\PFSHelper.BusinessLogicLayer\obj\Debug\PFSHelper.BusinessLogicLayer.dll
+D:\Project\ANZ\PSC\Source Code\PFSHelper.BusinessLogicLayer\obj\Debug\PFSHelper.BusinessLogicLayer.pdb
+D:\PSC\Source Code\PFSHelper.BusinessLogicLayer\bin\Debug\PFSHelper.BusinessLogicLayer.dll
+D:\PSC\Source Code\PFSHelper.BusinessLogicLayer\bin\Debug\PFSHelper.BusinessLogicLayer.pdb
+D:\PSC\Source Code\PFSHelper.BusinessLogicLayer\bin\Debug\PFSHelper.DataAccessLayer.dll
+D:\PSC\Source Code\PFSHelper.BusinessLogicLayer\bin\Debug\PFSHelper.Lib.dll
+D:\PSC\Source Code\PFSHelper.BusinessLogicLayer\bin\Debug\ICSharpCode.SharpZipLib.dll
+D:\PSC\Source Code\PFSHelper.BusinessLogicLayer\bin\Debug\PFSHelper.DataAccessLayer.pdb
+D:\PSC\Source Code\PFSHelper.BusinessLogicLayer\bin\Debug\PFSHelper.Lib.pdb
+D:\PSC\Source Code\PFSHelper.BusinessLogicLayer\obj\Debug\PFSHelper.BusinessLogicLayer.csprojResolveAssemblyReference.cache
+D:\PSC\Source Code\PFSHelper.BusinessLogicLayer\obj\Debug\PFSHelper.BusinessLogicLayer.dll
+D:\PSC\Source Code\PFSHelper.BusinessLogicLayer\obj\Debug\PFSHelper.BusinessLogicLayer.pdb
+D:\Project\PSC\Source Code\PFSHelper.BusinessLogicLayer\bin\Debug\PFSHelper.BusinessLogicLayer.dll
+D:\Project\PSC\Source Code\PFSHelper.BusinessLogicLayer\bin\Debug\PFSHelper.BusinessLogicLayer.pdb
+D:\Project\PSC\Source Code\PFSHelper.BusinessLogicLayer\bin\Debug\PFSHelper.DataAccessLayer.dll
+D:\Project\PSC\Source Code\PFSHelper.BusinessLogicLayer\bin\Debug\PFSHelper.Lib.dll
+D:\Project\PSC\Source Code\PFSHelper.BusinessLogicLayer\bin\Debug\ICSharpCode.SharpZipLib.dll
+D:\Project\PSC\Source Code\PFSHelper.BusinessLogicLayer\bin\Debug\PFSHelper.DataAccessLayer.pdb
+D:\Project\PSC\Source Code\PFSHelper.BusinessLogicLayer\bin\Debug\PFSHelper.Lib.pdb
+D:\Project\PSC\Source Code\PFSHelper.BusinessLogicLayer\obj\Debug\PFSHelper.BusinessLogicLayer.csprojResolveAssemblyReference.cache
+D:\Project\PSC\Source Code\PFSHelper.BusinessLogicLayer\obj\Debug\PFSHelper.BusinessLogicLayer.dll
+D:\Project\PSC\Source Code\PFSHelper.BusinessLogicLayer\obj\Debug\PFSHelper.BusinessLogicLayer.pdb
+D:\Yano\PSC\Source Code\PFSHelper.BusinessLogicLayer\bin\Debug\PFSHelper.BusinessLogicLayer.dll
+D:\Yano\PSC\Source Code\PFSHelper.BusinessLogicLayer\bin\Debug\PFSHelper.BusinessLogicLayer.pdb
+D:\Yano\PSC\Source Code\PFSHelper.BusinessLogicLayer\bin\Debug\PFSHelper.DataAccessLayer.dll
+D:\Yano\PSC\Source Code\PFSHelper.BusinessLogicLayer\bin\Debug\PFSHelper.Lib.dll
+D:\Yano\PSC\Source Code\PFSHelper.BusinessLogicLayer\bin\Debug\ICSharpCode.SharpZipLib.dll
+D:\Yano\PSC\Source Code\PFSHelper.BusinessLogicLayer\bin\Debug\PFSHelper.DataAccessLayer.pdb
+D:\Yano\PSC\Source Code\PFSHelper.BusinessLogicLayer\bin\Debug\PFSHelper.Lib.pdb
+D:\Yano\PSC\Source Code\PFSHelper.BusinessLogicLayer\obj\Debug\PFSHelper.BusinessLogicLayer.csprojResolveAssemblyReference.cache
+D:\Yano\PSC\Source Code\PFSHelper.BusinessLogicLayer\obj\Debug\PFSHelper.BusinessLogicLayer.dll
+D:\Yano\PSC\Source Code\PFSHelper.BusinessLogicLayer\obj\Debug\PFSHelper.BusinessLogicLayer.pdb
+D:\Yano\SO\PFSHelper.BusinessLogicLayer\bin\Debug\PFSHelper.BusinessLogicLayer.dll
+D:\Yano\SO\PFSHelper.BusinessLogicLayer\bin\Debug\PFSHelper.BusinessLogicLayer.pdb
+D:\Yano\SO\PFSHelper.BusinessLogicLayer\bin\Debug\PFSHelper.DataAccessLayer.dll
+D:\Yano\SO\PFSHelper.BusinessLogicLayer\bin\Debug\PFSHelper.Lib.dll
+D:\Yano\SO\PFSHelper.BusinessLogicLayer\bin\Debug\ICSharpCode.SharpZipLib.dll
+D:\Yano\SO\PFSHelper.BusinessLogicLayer\bin\Debug\PFSHelper.DataAccessLayer.pdb
+D:\Yano\SO\PFSHelper.BusinessLogicLayer\bin\Debug\PFSHelper.Lib.pdb
+D:\Yano\SO\PFSHelper.BusinessLogicLayer\obj\Debug\PFSHelper.BusinessLogicLayer.csprojResolveAssemblyReference.cache
+D:\Yano\SO\PFSHelper.BusinessLogicLayer\obj\Debug\PFSHelper.BusinessLogicLayer.dll
+D:\Yano\SO\PFSHelper.BusinessLogicLayer\obj\Debug\PFSHelper.BusinessLogicLayer.pdb

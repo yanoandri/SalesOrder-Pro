@@ -1,0 +1,10 @@
+D:\Project\ANZ\PSC\Source Code\PFSHelper.BusinessLogicLayer\bin\Release\PFSHelper.BusinessLogicLayer.dll
+D:\Project\ANZ\PSC\Source Code\PFSHelper.BusinessLogicLayer\bin\Release\PFSHelper.BusinessLogicLayer.pdb
+D:\Project\ANZ\PSC\Source Code\PFSHelper.BusinessLogicLayer\bin\Release\PFSHelper.DataAccessLayer.dll
+D:\Project\ANZ\PSC\Source Code\PFSHelper.BusinessLogicLayer\bin\Release\PFSHelper.Lib.dll
+D:\Project\ANZ\PSC\Source Code\PFSHelper.BusinessLogicLayer\bin\Release\ICSharpCode.SharpZipLib.dll
+D:\Project\ANZ\PSC\Source Code\PFSHelper.BusinessLogicLayer\bin\Release\PFSHelper.DataAccessLayer.pdb
+D:\Project\ANZ\PSC\Source Code\PFSHelper.BusinessLogicLayer\bin\Release\PFSHelper.Lib.pdb
+D:\Project\ANZ\PSC\Source Code\PFSHelper.BusinessLogicLayer\obj\Release\PFSHelper.BusinessLogicLayer.csprojResolveAssemblyReference.cache
+D:\Project\ANZ\PSC\Source Code\PFSHelper.BusinessLogicLayer\obj\Release\PFSHelper.BusinessLogicLayer.dll
+D:\Project\ANZ\PSC\Source Code\PFSHelper.BusinessLogicLayer\obj\Release\PFSHelper.BusinessLogicLayer.pdb

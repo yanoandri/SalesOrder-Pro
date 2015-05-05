@@ -1,0 +1,149 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{728FA248-09CE-4827-B498-44D2565E6F76}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>PFSHelper.BusinessLogicLayer</RootNamespace>
+    <AssemblyName>PFSHelper.BusinessLogicLayer</AssemblyName>
+    <SccProjectName>
+    </SccProjectName>
+    <SccLocalPath>
+    </SccLocalPath>
+    <SccAuxPath>
+    </SccAuxPath>
+    <SccProvider>
+    </SccProvider>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <OldToolsVersion>3.5</OldToolsVersion>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>..\..\..\..\PerformanceRuleSet.ruleset</CodeAnalysisRuleSet>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>true</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>PFSHelper.BusinessLogicLayer.snk</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.DirectoryServices" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ActiveDirectory\ActiveDirectory.cs" />
+    <Compile Include="ActiveDirectory\ActiveDirectoryCollection.cs" />
+    <Compile Include="HolidayDateDetail\HolidayDateDetail.cs" />
+    <Compile Include="HolidayDateDetail\HolidayDateDetailCollection.cs" />
+    <Compile Include="HolidayDateDetail\pHolidayDateDetail.cs" />
+    <Compile Include="Holiday\Holiday.cs" />
+    <Compile Include="Holiday\HolidayCollection.cs" />
+    <Compile Include="Holiday\pHoliday.cs" />
+    <Compile Include="Holiday\pHolidayCollection.cs" />
+    <Compile Include="Logging\ExceptionLog\pExceptionLog.cs" />
+    <Compile Include="Logging\ExceptionLog\ExceptionLog.cs" />
+    <Compile Include="Logging\ExceptionLog\ExceptionLogCollection.cs" />
+    <Compile Include="Logging\SystemLog\SystemLog.cs" />
+    <Compile Include="Logging\SystemLog\SystemLogCollection.cs" />
+    <Compile Include="Logging\UserLoginAttempt\pUserLoginAttempt.cs" />
+    <Compile Include="Logging\UserLoginAttempt\UserLoginAttempt.cs" />
+    <Compile Include="Logging\UserLoginAttempt\UserLoginAttemptCollection.cs" />
+    <Compile Include="Logging\UserLog\pUserLog.cs" />
+    <Compile Include="Logging\UserLog\pUserLogCollection.cs" />
+    <Compile Include="Logging\UserLog\UserLog.cs" />
+    <Compile Include="Logging\UserLog\UserLogCollection.cs" />
+    <Compile Include="ModuleObjectMemberGroup\ModuleObjectMemberGroup.cs" />
+    <Compile Include="ModuleObjectMemberGroup\ModuleObjectMemberGroupCollection.cs" />
+    <Compile Include="ModuleObjectMemberGroup\pModuleObjectMemberGroup.cs" />
+    <Compile Include="ModuleObjectMemberGroup\pModuleObjectMemberGroupCollection.cs" />
+    <Compile Include="ModuleObjectMember\ModuleObjectMember.cs" />
+    <Compile Include="ModuleObjectMember\ModuleObjectMemberCollection.cs" />
+    <Compile Include="ModuleObjectMember\pModuleObjectMember.cs" />
+    <Compile Include="ModuleObject\ModuleObject.cs" />
+    <Compile Include="ModuleObject\ModuleObjectCollection.cs" />
+    <Compile Include="ModuleObject\pModuleObjectCollection.cs" />
+    <Compile Include="Module\Module.cs" />
+    <Compile Include="Module\ModuleCollection.cs" />
+    <Compile Include="ModuleObjectMember\pModuleObjectMemberCollection.cs" />
+    <Compile Include="Module\pModule.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Security\CustomPrincipal.cs" />
+    <Compile Include="Security\Group\pGroup.cs" />
+    <Compile Include="Security\Group\Group.cs" />
+    <Compile Include="Security\Group\GroupCollection.cs" />
+    <Compile Include="Security\Group\pGroupCollection.cs" />
+    <Compile Include="Security\Security.cs" />
+    <Compile Include="Security\SecurityEnumeration.cs" />
+    <Compile Include="Security\UserDetail\pUserDetail.cs" />
+    <Compile Include="Security\UserDetail\UserDetail.cs" />
+    <Compile Include="Security\UserDetail\UserDetailCollection.cs" />
+    <Compile Include="Security\UserGroup\pUserGroup.cs" />
+    <Compile Include="Security\UserGroup\pUserGroupCollection.cs" />
+    <Compile Include="Security\UserGroup\UserGroup.cs" />
+    <Compile Include="Security\UserGroup\UserGroupCollection.cs" />
+    <Compile Include="Security\UserPasswordHistory\UserPasswordHistory.cs" />
+    <Compile Include="Security\UserPasswordHistory\UserPasswordHistoryCollection.cs" />
+    <Compile Include="Security\User\pUser.cs" />
+    <Compile Include="Security\User\pUserCollection.cs" />
+    <Compile Include="Security\User\User.cs" />
+    <Compile Include="Security\User\UserCollection.cs" />
+    <Compile Include="SysParamGroup\SysParamGroup.cs" />
+    <Compile Include="SysParamGroup\SysParamGroupCollection.cs" />
+    <Compile Include="SysParam\pSysParamCollection.cs" />
+    <Compile Include="SysParam\SysParam.cs" />
+    <Compile Include="SysParam\SysParamCollection.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="PFSHelper.BusinessLogicLayer.snk" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\PFSHelper.DataAccessLayer\PFSHelper.DataAccessLayer.csproj">
+      <Project>{86B22559-8CE0-49FD-90E7-D92FF4CDF83B}</Project>
+      <Name>PFSHelper.DataAccessLayer</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\PFSHelper.Lib\PFSHelper.Lib.csproj">
+      <Project>{791CBCD9-9A1B-44B9-A9E9-522696E0D111}</Project>
+      <Name>PFSHelper.Lib</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

@@ -378,6 +378,24 @@
     <Content Include="Account\Web.config" />
     <Content Include="Site.Master" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\PFSHelper.BusinessLogicLayer\PFSHelper.BusinessLogicLayer.csproj">
+      <Project>{728fa248-09ce-4827-b498-44d2565e6f76}</Project>
+      <Name>PFSHelper.BusinessLogicLayer</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\PFSHelper.DataAccessLayer\PFSHelper.DataAccessLayer.csproj">
+      <Project>{86b22559-8ce0-49fd-90e7-d92ff4cdf83b}</Project>
+      <Name>PFSHelper.DataAccessLayer</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\PFSHelper.Lib\PFSHelper.Lib.csproj">
+      <Project>{791cbcd9-9a1b-44b9-a9e9-522696e0d111}</Project>
+      <Name>PFSHelper.Lib</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SO.BusinessLogicLayer\SO.BusinessLogicLayer.csproj">
+      <Project>{1db78079-a179-4051-98b8-9a84eb7925a9}</Project>
+      <Name>SO.BusinessLogicLayer</Name>
+    </ProjectReference>
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

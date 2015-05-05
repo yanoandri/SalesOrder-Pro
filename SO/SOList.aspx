@@ -49,7 +49,7 @@
                 &nbsp&nbsp<asp:Button ID="btnAdd" runat="server" Text="ADD SO" OnClick="btnAdd_Click" />
                 <asp:GridView ID="GridView1" runat="server" AllowPaging="True" AllowSorting="True" AutoGenerateColumns="False" DataKeyNames="SALES_SO_ID" OnRowDeleting="GridView1_RowDeleting"
                     OnRowCommand="GridView1_RowCommand" OnPageIndexChanging="GridView1_PageIndexChanging" Height="252px" PageSize="5" Width="719px" CellPadding="4" ForeColor="#333333" GridLines="Both" HorizontalAlign="Center"
-                    >
+                    OnRowDataBound="GridView1_RowDataBound">
                     <Columns>
                         <asp:TemplateField HeaderText="NO" SortExpression="SALES_SO_ID">
                             <EditItemTemplate>
@@ -74,7 +74,7 @@
                                 <asp:TextBox ID="TextBox2" runat="server" Text='<%# Bind("ORDER_DATE") %>'></asp:TextBox>
                             </EditItemTemplate>
                             <ItemTemplate>
-                                <asp:Label ID="Label3" runat="server" Text='<%# Bind("ORDER_DATE", "{0:dd/MM/yyyy HH:mm:ss}") %>'></asp:Label>
+                                <asp:Label ID="Label3" runat="server" Text='<%# Bind("ORDER_DATE", "{0:dd MMM yyyy}") %>'></asp:Label>
                             </ItemTemplate>
                             <HeaderStyle BackColor="#009933" HorizontalAlign="Center" VerticalAlign="Middle" />
                         </asp:TemplateField>
@@ -100,7 +100,7 @@
                             <ItemTemplate>
                                 <asp:Button ID="btnEdit" runat="server" CausesValidation="False" CommandName="Edit" Text="Edit" CommandArgument='<%# Eval("SALES_SO_ID") %>' />
                                 <asp:Button ID="btnDelete" runat="server" CausesValidation="true" CommandName="Delete" Text="Delete" CommandArgument='<%# Eval("SALES_SO_ID") %>'
-                                    OnClientClick="return confirm('Are you sure?')" />
+                                    />
                             </ItemTemplate>
                             <HeaderStyle BackColor="#009933" HorizontalAlign="Center" VerticalAlign="Middle" />
                         </asp:TemplateField>

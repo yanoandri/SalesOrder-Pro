@@ -262,7 +262,7 @@ namespace SO
                     #region update new SO Item
                     foreach (DataRow drFromGrid in m_SessionSoItem.Rows)
                     {
-                        if (Convert.ToInt32(drFromGrid["SALES_SO_LITEM_ID"]) > 0) //convert ke integer
+                        if (Convert.ToInt32(drFromGrid["SALES_SO_LITEM_ID"]) > 0) 
                         {
                             SqlCommand cmdUpdateSO2 = new SqlCommand("uspSO_updateSO", cnDatasetDetail);
                             cmdUpdateSO2.CommandType = CommandType.StoredProcedure;
@@ -304,7 +304,15 @@ namespace SO
                 }
                 else
                 {
-                    insertData();
+                    if (m_SessionSoItem.Rows.Count == 0)
+                    {
+                        Page.ClientScript.RegisterClientScriptBlock(this.GetType(), "", "<script>alert('Please add an item before save!');</script>");
+                    }
+                    else
+                    {
+                        insertData();
+                    }
+
                 }
             }
             catch (System.Threading.ThreadAbortException) { }
@@ -333,7 +341,7 @@ namespace SO
         private void setInitialRow()
         {
             DataTable dtInitialTable = new DataTable();
-            dtInitialTable.Columns.Add(new DataColumn("NO_URUT", typeof(int))); //untuk delete
+            dtInitialTable.Columns.Add(new DataColumn("NO_URUT", typeof(int)));
             dtInitialTable.Columns.Add(new DataColumn("SALES_SO_LITEM_ID", typeof(int)));
             dtInitialTable.Columns.Add(new DataColumn("ITEM_NAME", typeof(string)));
             dtInitialTable.Columns.Add(new DataColumn("QUANTITY", typeof(int)));

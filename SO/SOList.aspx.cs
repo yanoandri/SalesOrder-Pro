@@ -3,6 +3,8 @@ using System.Web.UI.WebControls;
 using System.Configuration;
 using System.Data.SqlClient;
 using System.Data;
+using SO.BusinessLogicLayer;
+using System.Collections.Generic;
 
 namespace SO
 {
@@ -21,7 +23,14 @@ namespace SO
             {
                 if (!IsPostBack)
                 {
-                    ShowList();
+                    //ShowList();
+                    //GetSO();
+                    //GridView1.DataSource = GetSO();
+                    //GridView1.DataBind();
+                    var getSOList = GetSO();
+                    var list = new List<SOCollection> {getSOList};
+                    GridView1.DataSource = list;
+                    GridView1.DataBind();
                 }
             }
             catch (System.Threading.ThreadAbortException) { }
@@ -111,6 +120,19 @@ namespace SO
                 throw ex;
             }
         }
+
+        protected void GridView1_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+                string sSono = ((System.Data.DataRowView)(e.Row.DataItem)).Row.ItemArray[1].ToString();
+                Button btnDelete = (Button)e.Row.Cells[5].FindControl("btnDelete");
+                if (btnDelete != null)
+                {
+                    btnDelete.OnClientClick = string.Format("return confirm('Are you sure want to delete " + sSono + " ?')");
+                }
+            }
+        }
         #endregion page event
 
         #region method
@@ -150,7 +172,25 @@ namespace SO
             GridView1.DataBind();
             cnFindList.Close();
         }
+
+        private SOCollection GetSO()
+        {
+            SOCollection SOrder = null;
+            try
+            {
+                SOrder = new SOCollection();
+                SOrder.DAL_Load();
+                return SOrder;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+        }
         #endregion method
+
+
 
     }
 }

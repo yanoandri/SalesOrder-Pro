@@ -1,0 +1,7 @@
+D:\Yano\SO\SO.BusinessLogicLayer\bin\Debug\SO.BusinessLogicLayer.dll
+D:\Yano\SO\SO.BusinessLogicLayer\bin\Debug\SO.BusinessLogicLayer.pdb
+D:\Yano\SO\SO.BusinessLogicLayer\bin\Debug\PFSHelper.DataAccessLayer.dll
+D:\Yano\SO\SO.BusinessLogicLayer\bin\Debug\PFSHelper.DataAccessLayer.pdb
+D:\Yano\SO\SO.BusinessLogicLayer\obj\Debug\SO.BusinessLogicLayer.csprojResolveAssemblyReference.cache
+D:\Yano\SO\SO.BusinessLogicLayer\obj\Debug\SO.BusinessLogicLayer.dll
+D:\Yano\SO\SO.BusinessLogicLayer\obj\Debug\SO.BusinessLogicLayer.pdb
