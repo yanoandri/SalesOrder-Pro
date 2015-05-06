@@ -49,33 +49,33 @@
                 &nbsp&nbsp<asp:Button ID="btnAdd" runat="server" Text="ADD SO" OnClick="btnAdd_Click" />
                 <asp:GridView ID="GridView1" runat="server" AllowPaging="True" AllowSorting="True" AutoGenerateColumns="False" DataKeyNames="SalesSoId" OnRowDeleting="GridView1_RowDeleting"
                     OnRowCommand="GridView1_RowCommand" OnPageIndexChanging="GridView1_PageIndexChanging" Height="252px" PageSize="5" Width="719px" CellPadding="4" ForeColor="#333333" GridLines="Both" HorizontalAlign="Center"
-                    OnRowDataBound="GridView1_RowDataBound">
+                    OnRowDataBound="GridView1_RowDataBound" OnSorting="GridView1_Sorting">
                     <Columns>
-                        <asp:TemplateField HeaderText="NO">
+                        <asp:TemplateField HeaderText="NO" SortExpression="SalesSoId">
                             <ItemTemplate>
                                 <asp:Label ID="Label1" runat="server" Text='<%# DataBinder.Eval(Container.DataItem,"SalesSoId") %>'></asp:Label>
                             </ItemTemplate>
                             <HeaderStyle BackColor="#009933" HorizontalAlign="Center" VerticalAlign="Middle" />
                         </asp:TemplateField>
-                        <asp:TemplateField HeaderText="SO NO">
+                        <asp:TemplateField HeaderText="SO NO" SortExpression="SalesOrderNumber">
                             <ItemTemplate>
                                 <asp:Label ID="Label2" runat="server" Text='<%# DataBinder.Eval(Container.DataItem,"SalesOrderNo") %>'></asp:Label>
                             </ItemTemplate>
                             <HeaderStyle BackColor="#009933" HorizontalAlign="Center" VerticalAlign="Middle" />
                         </asp:TemplateField>
-                        <asp:TemplateField HeaderText="ORDER DATE">
+                        <asp:TemplateField HeaderText="ORDER DATE" SortExpression="OrderDate">
                             <ItemTemplate>
-                                <asp:Label ID="Label3" runat="server" Text='<%#DataBinder.Eval(Container.DataItem,"OrderDate") %>'></asp:Label>
+                                <asp:Label ID="Label3" runat="server" Text='<% #DataBinder.Eval(Container.DataItem,"OrderDate")  %>'></asp:Label>
                             </ItemTemplate>
                             <HeaderStyle BackColor="#009933" HorizontalAlign="Center" VerticalAlign="Middle" />
                         </asp:TemplateField>
-                        <asp:TemplateField HeaderText="CUSTOMER">
+                        <asp:TemplateField HeaderText="CUSTOMER" SortExpression="CustomerName">
                             <ItemTemplate>
                                 <asp:Label ID="Label4" runat="server" Text='<%# DataBinder.Eval(Container.DataItem,"CustomerName") %>'></asp:Label>
                             </ItemTemplate>
                             <HeaderStyle BackColor="#009933" HorizontalAlign="Center" VerticalAlign="Middle" />
                         </asp:TemplateField>
-                        <asp:TemplateField HeaderText="ADDRESS">
+                        <asp:TemplateField HeaderText="ADDRESS" SortExpression="Address">
                             <ItemTemplate>
                                 <asp:Label ID="Label5" runat="server" Text='<%# DataBinder.Eval(Container.DataItem,"Address") %>'></asp:Label>
                             </ItemTemplate>
@@ -85,7 +85,7 @@
                             <ItemTemplate>
                                 <asp:Button ID="btnEdit" runat="server" CausesValidation="False" CommandName="Edit" Text="Edit" CommandArgument='<%# DataBinder.Eval(Container.DataItem,"SalesSoId") %>' />
                                 <asp:Button ID="btnDelete" runat="server" CausesValidation="true" CommandName="Delete" Text="Delete" CommandArgument='<%# DataBinder.Eval(Container.DataItem,"SalesSoId") %>'
-                                    />
+                                  OnClientClick="return confirm('Are you sure?')" />
                             </ItemTemplate>
                             <HeaderStyle BackColor="#009933" HorizontalAlign="Center" VerticalAlign="Middle" />
                         </asp:TemplateField>

@@ -5,28 +5,41 @@ using System.Data.SqlClient;
 using System.Data;
 using SO.BusinessLogicLayer;
 using System.Collections.Generic;
+using PFSHelper.Lib;
 
 namespace SO
 {
     public partial class SOList : System.Web.UI.Page
     {
-        #region public variable
-
-        public string m_connect = ConfigurationManager.ConnectionStrings["SOConnectionString"].ConnectionString;
-
-        #endregion public variable
-
         #region session and properties
+
+        private SalesOrderCollection sessSalesOrderCollection
+        {
+            get { return Session["sessSalesOrderCollection"] == null ? null : (SalesOrderCollection)Session["sessSalesOrderCollection"]; }
+            set { Session["sessSalesOrderCollection"] = value; }
+        }
+
+        public string Direction
+        {
+            get { return ViewState["Direction"] == null ? string.Empty : (string)ViewState["Direction"].ToString(); }
+            set { ViewState["Direction"] = value; }
+        }
+
+        private DataTable dtSalesOrder;
+
+        private string sortDirection;
+
         #endregion session and properties
 
         #region page event
+
         protected void Page_Load(object sender, EventArgs e)
         {
             try
             {
                 if (!IsPostBack)
                 {
-                    GridView1.DataSource = GetSO();
+                    GridView1.DataSource = GetSalesOrder();
                     GridView1.DataBind();
                 }
             }
@@ -42,7 +55,8 @@ namespace SO
         {
             try
             {
-                FindList();
+                GridView1.DataSource = GetSalesOrder();
+                GridView1.DataBind();
             }
             catch (System.Threading.ThreadAbortException) { }
             catch (Exception ex)
@@ -69,10 +83,9 @@ namespace SO
         {
             try
             {
-                Session["Edit"] = Convert.ToInt32(e.CommandArgument.ToString());
-
                 if (e.CommandName == "Edit")
-                {
+                { 
+                    Session["Edit"] = Convert.ToInt32(e.CommandArgument.ToString());
                     Response.Redirect("SOInput.aspx?SOID=" + Session["Edit"]);
                 }
             }
@@ -88,7 +101,8 @@ namespace SO
             try
             {
                 GridView1.PageIndex = e.NewPageIndex;
-                ShowList();
+                GridView1.DataSource = sessSalesOrderCollection;
+                GridView1.DataBind();
             }
             catch (System.Threading.ThreadAbortException) { }
             catch (Exception ex)
@@ -101,15 +115,11 @@ namespace SO
         {
             try
             {
-                SqlConnection cnDeleteSO = new SqlConnection(m_connect);
-                cnDeleteSO.Open();
-                string strDeleteSO = "uspSO_deleteso";
-                SqlCommand cmdDeleteSO = new SqlCommand(strDeleteSO, cnDeleteSO);
-                cmdDeleteSO.CommandType = CommandType.StoredProcedure;
-                cmdDeleteSO.Parameters.Add("@p_SOID", SqlDbType.VarChar).Value = GridView1.DataKeys[e.RowIndex].Value.ToString();
-                cmdDeleteSO.ExecuteNonQuery();
-                cnDeleteSO.Close();
-                ShowList();
+                SalesOrder oSales = new SalesOrder();
+                oSales.SalesSoId = Convert.ToInt32(GridView1.DataKeys[e.RowIndex].Value);
+                oSales.DAL_Delete();
+                GridView1.DataSource = sessSalesOrderCollection;
+                GridView1.DataBind();
             }
             catch (System.Threading.ThreadAbortException) { }
             catch (Exception ex)
@@ -124,53 +134,23 @@ namespace SO
             {
             }
         }
+
         #endregion page event
 
         #region method
-        protected void ShowList()
-        {
-            SqlConnection cnShowList = new SqlConnection(m_connect);
-            cnShowList.Open();
-            string strShowList = "uspSO_showlist";
-            SqlCommand cmdShowList = new SqlCommand(strShowList, cnShowList);
-            cmdShowList.CommandType = CommandType.StoredProcedure;
-            DataSet dsShowList = new DataSet();
-            SqlDataAdapter daShowList = new SqlDataAdapter(cmdShowList);
-            daShowList.Fill(dsShowList);
-            GridView1.DataSource = dsShowList;
-            GridView1.DataBind();
-            cnShowList.Close();
-        }
 
-        protected void FindList()
+        private SalesOrderCollection GetSalesOrder()
         {
-            SqlConnection cnFindList = new SqlConnection(m_connect);
-            SqlCommand cmdFindList = new SqlCommand("uspSO_findlist", cnFindList);
-            cmdFindList.CommandType = CommandType.StoredProcedure;
-            cmdFindList.Parameters.Add("@p_Keyword", SqlDbType.VarChar).Value = txtkey.Text;
-            if (txtCalendar.Text != "")
-            {
-                cmdFindList.Parameters.Add("@p_OrderDate", SqlDbType.DateTime).Value = DateTime.Parse(txtCalendar.Text);
-            }
-            else
-            {
-                cmdFindList.Parameters.Add("@p_OrderDate", SqlDbType.DateTime).Value = DBNull.Value;
-            }
-            DataSet dsFindList = new DataSet();
-            SqlDataAdapter daFindAdapter = new SqlDataAdapter(cmdFindList);
-            daFindAdapter.Fill(dsFindList);
-            GridView1.DataSource = dsFindList;
-            GridView1.DataBind();
-            cnFindList.Close();
-        }
-
-        private SalesOrderCollection GetSO()
-        {
-            SalesOrderCollection SOrder = new SalesOrderCollection();
+            sessSalesOrderCollection = new SalesOrderCollection();
             try
             {
-                SOrder.DAL_Load();
-                return SOrder;
+                string sKeyword = null;
+                DateTime? dtOrderDate;
+                dtOrderDate = null;
+                if (!string.IsNullOrWhiteSpace(txtkey.Text)) sKeyword = txtkey.Text;
+                if (!string.IsNullOrWhiteSpace(txtCalendar.Text)) dtOrderDate = Convert.ToDateTime(txtCalendar.Text);
+                sessSalesOrderCollection.GetSalesOrderList(sKeyword, dtOrderDate);
+                return sessSalesOrderCollection;
             }
             catch (Exception ex)
             {
@@ -178,9 +158,8 @@ namespace SO
             }
 
         }
+
         #endregion method
-
-
 
     }
 }

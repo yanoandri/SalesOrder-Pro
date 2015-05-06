@@ -39,9 +39,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="SalesOrderCollection.cs" />
+    <Compile Include="SalesOrder\SalesOrderCollection.cs" />
     <Compile Include="SOItem.cs" />
-    <Compile Include="SalesOrder.cs" />
+    <Compile Include="SalesOrder\SalesOrder.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

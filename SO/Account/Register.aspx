@@ -26,15 +26,21 @@
                         <legend>Registration Form</legend>
                         <ol>
                             <li>
-                                <asp:Label runat="server" AssociatedControlID="UserName">User name</asp:Label>
+                                <asp:Label runat="server" AssociatedControlID="lblUserName">User name</asp:Label>
                                 <asp:TextBox runat="server" ID="UserName" />
-                                <asp:RequiredFieldValidator runat="server" ControlToValidate="UserName"
+                                <asp:RequiredFieldValidator runat="server" ControlToValidate="lblUserName"
                                     CssClass="field-validation-error" ErrorMessage="The user name field is required." />
                             </li>
                             <li>
-                                <asp:Label runat="server" AssociatedControlID="Email">Email address</asp:Label>
-                                <asp:TextBox runat="server" ID="Email" TextMode="Email" />
-                                <asp:RequiredFieldValidator runat="server" ControlToValidate="Email"
+                                <asp:Label runat="server" AssociatedControlID="lblFullName">Full Name</asp:Label>
+                                <asp:TextBox runat="server" ID="txtFullName" />
+                                <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="lblFullName"
+                                    CssClass="field-validation-error" ErrorMessage="The user name field is required." />
+                            </li>
+                            <li>
+                                <asp:Label runat="server" AssociatedControlID="lblEmail">Email address</asp:Label>
+                                <asp:TextBox runat="server" ID="txtEmail" TextMode="SingleLine" />
+                                <asp:RequiredFieldValidator runat="server" ControlToValidate="txtEmail"
                                     CssClass="field-validation-error" ErrorMessage="The email address field is required." />
                             </li>
                             <li>
