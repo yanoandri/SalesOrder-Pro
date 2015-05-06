@@ -19,16 +19,6 @@ namespace SO
             set { Session["sessSalesOrderCollection"] = value; }
         }
 
-        public string Direction
-        {
-            get { return ViewState["Direction"] == null ? string.Empty : (string)ViewState["Direction"].ToString(); }
-            set { ViewState["Direction"] = value; }
-        }
-
-        private DataTable dtSalesOrder;
-
-        private string sortDirection;
-
         #endregion session and properties
 
         #region page event
