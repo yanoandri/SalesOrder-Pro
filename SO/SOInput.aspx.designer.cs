@@ -31,13 +31,13 @@ namespace SO {
         protected global::System.Web.UI.WebControls.Label Label1;
         
         /// <summary>
-        /// txtsales control.
+        /// txtSales control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtsales;
+        protected global::System.Web.UI.WebControls.TextBox txtSales;
         
         /// <summary>
         /// RequiredFieldValidator1 control.
@@ -58,13 +58,13 @@ namespace SO {
         protected global::System.Web.UI.WebControls.Label Label2;
         
         /// <summary>
-        /// txtdate control.
+        /// txtDate control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtdate;
+        protected global::System.Web.UI.WebControls.TextBox txtDate;
         
         /// <summary>
         /// RequiredFieldValidator2 control.

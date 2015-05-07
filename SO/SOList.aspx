@@ -49,7 +49,7 @@
                 &nbsp&nbsp<asp:Button ID="btnAdd" runat="server" Text="ADD SO" OnClick="btnAdd_Click" />
                 <asp:GridView ID="GridView1" runat="server" AllowPaging="True" AllowSorting="True" AutoGenerateColumns="False" DataKeyNames="SalesSoId" OnRowDeleting="GridView1_RowDeleting"
                     OnRowCommand="GridView1_RowCommand" OnPageIndexChanging="GridView1_PageIndexChanging" Height="252px" PageSize="5" Width="719px" CellPadding="4" ForeColor="#333333" GridLines="Both" HorizontalAlign="Center"
-                    OnRowDataBound="GridView1_RowDataBound" OnSorting="GridView1_Sorting">
+                    OnRowDataBound="GridView1_RowDataBound">
                     <Columns>
                         <asp:TemplateField HeaderText="NO" SortExpression="SalesSoId">
                             <ItemTemplate>

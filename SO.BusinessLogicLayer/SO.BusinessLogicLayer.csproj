@@ -40,9 +40,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="SalesOrder\SalesOrderCollection.cs" />
-    <Compile Include="SOItem.cs" />
     <Compile Include="SalesOrder\SalesOrder.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SOItem\SOItem.cs" />
+    <Compile Include="SOItem\SOItemCollection.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\PFSHelper.DataAccessLayer\PFSHelper.DataAccessLayer.csproj">

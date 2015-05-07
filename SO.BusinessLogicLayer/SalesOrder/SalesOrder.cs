@@ -12,16 +12,21 @@ namespace SO.BusinessLogicLayer
     public partial class SalesOrder
     {
         #region Region: Member Variables///////////////////////////////////////////////////////
+        private SOItemCollection m_oSOItemCollection = null;
+
+        
         protected int m_iSoid = 0;
         protected string m_sSono = "-";
         protected DateTime m_dtOrderDate = DateTime.Parse("01/01/1900");
         protected string m_sCustomerName = "-";
+        protected int m_sCustomerId = 0;
         protected string m_sAddress = "-";
         #endregion
 
         #region Region: Constructor///////////////////////////////////////////////////////
         public SalesOrder()
         {
+            m_oSOItemCollection = new SOItemCollection();
             m_iSoid = -1;
         }
 
@@ -61,6 +66,11 @@ namespace SO.BusinessLogicLayer
             get { return m_dtOrderDate; }
             set { m_dtOrderDate = value; }
         }
+        public int CustomerId
+        {
+            get { return m_sCustomerId; }
+            set { m_sCustomerId = value; }
+        }
         public string CustomerName
         {
             get { return m_sCustomerName; }
@@ -70,6 +80,11 @@ namespace SO.BusinessLogicLayer
         {
             get { return m_sAddress; }
             set { m_sAddress = value; }
+        }
+        public SOItemCollection SOItemCollection
+        {
+            get { return m_oSOItemCollection; }
+            set { m_oSOItemCollection = value; }
         }
         #endregion
 
@@ -114,6 +129,59 @@ namespace SO.BusinessLogicLayer
                     }
                     return bIsSuccess;
                 }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public bool DAL_Add()
+        {
+            SqlConnection oConn = PFSDataBaseAccess.OpenConnection();
+            SqlTransaction oTrans = oConn.BeginTransaction();
+            try
+            {
+                if (DAL_Add(oTrans))
+                {
+                    oTrans.Commit();
+                    return true;
+                }
+                else
+                {
+                    oTrans.Rollback();
+                    return false;
+                }
+            }
+            catch (SqlException ex)
+            {
+                oTrans.Rollback();
+                throw ex;
+            }
+            finally
+            {
+                PFSDataBaseAccess.CloseConnection(ref oConn);
+            }
+        }
+        public bool DAL_Add(SqlTransaction p_oTrans)
+        {
+            try
+            {
+                m_iSoid = Convert.ToInt32(SqlHelper.ExecuteScalar(p_oTrans, "uspSO_insertSO",
+                    m_sSono,
+                    m_dtOrderDate,
+                    m_sCustomerId,
+                    m_sAddress
+                ));
+                if (m_iSoid < 1) return false;
+                #region Add appropriate child
+                for (int i = 0; i < m_oSOItemCollection.Count; i++)
+                {
+                    m_oSOItemCollection[i].SalesSoId = m_iSoid;
+                }
+                if (!m_oSOItemCollection.DAL_Add(p_oTrans)) return false;
+                #endregion
+                return true;
             }
             catch (Exception ex)
             {

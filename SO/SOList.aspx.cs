@@ -108,8 +108,7 @@ namespace SO
                 SalesOrder oSales = new SalesOrder();
                 oSales.SalesSoId = Convert.ToInt32(GridView1.DataKeys[e.RowIndex].Value);
                 oSales.DAL_Delete();
-                GridView1.DataSource = sessSalesOrderCollection;
-                GridView1.DataBind();
+                Response.Redirect("SOList.aspx");
             }
             catch (System.Threading.ThreadAbortException) { }
             catch (Exception ex)
@@ -131,7 +130,7 @@ namespace SO
 
         private SalesOrderCollection GetSalesOrder()
         {
-            sessSalesOrderCollection = new SalesOrderCollection();
+            SalesOrderCollection oSoCollection = new SalesOrderCollection();
             try
             {
                 string sKeyword = null;
@@ -139,8 +138,8 @@ namespace SO
                 dtOrderDate = null;
                 if (!string.IsNullOrWhiteSpace(txtkey.Text)) sKeyword = txtkey.Text;
                 if (!string.IsNullOrWhiteSpace(txtCalendar.Text)) dtOrderDate = Convert.ToDateTime(txtCalendar.Text);
-                sessSalesOrderCollection.GetSalesOrderList(sKeyword, dtOrderDate);
-                return sessSalesOrderCollection;
+                oSoCollection.GetSalesOrderList(sKeyword, dtOrderDate);
+                return oSoCollection;
             }
             catch (Exception ex)
             {

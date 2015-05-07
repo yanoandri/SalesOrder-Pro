@@ -141,7 +141,7 @@ namespace SO.BusinessLogicLayer
             {
                 SalesOrder first = (SalesOrder)x;
                 SalesOrder second = (SalesOrder)y;
-                return first.CustomerName.CompareTo(second.CustomerName);
+                return first.CustomerId.CompareTo(second.CustomerId);
             }
         }
         private sealed class AddressComparer : IComparer

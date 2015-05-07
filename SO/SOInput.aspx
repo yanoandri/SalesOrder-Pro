@@ -21,7 +21,7 @@
                                 <asp:Label ID="Label1" runat="server" Text="SALES ORDER NO" Font-Bold="False"></asp:Label>
                             </td>
                             <td>
-                                <asp:TextBox ID="txtsales" runat="server" Width="161px"></asp:TextBox>
+                                <asp:TextBox ID="txtSales" runat="server" Width="161px"></asp:TextBox>
                             </td>
                             <td>
                                 <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ErrorMessage=" Wajib Diisi"
@@ -34,7 +34,7 @@
                                 <asp:Label ID="Label2" runat="server" Text="SALES ORDER DATE" Font-Bold="False"></asp:Label>
                             </td>
                             <td>
-                                <asp:TextBox ID="txtdate" CssClass="txtCalendarCss" runat="server" Width="162px"
+                                <asp:TextBox ID="txtDate" CssClass="txtCalendarCss" runat="server" Width="162px"
                                     ClientIDMode="Static"></asp:TextBox>
                             </td>
                             <td>
@@ -90,17 +90,17 @@
                     <Columns>
                         <asp:TemplateField HeaderStyle-HorizontalAlign="Center" HeaderText="NO">
                             <ItemTemplate>
-                                <asp:Label ID="lblUrut" runat="server" Text='<%#Bind("NO_URUT") %>'></asp:Label>
-                                <asp:Label ID="lblNo" runat="server" Text='<%#Bind("SALES_SO_LITEM_ID") %>' Visible="false"></asp:Label>
+                                <asp:Label ID="lblUrut" runat="server" Text='<%# DataBinder.Eval(Container.DataItem,"NoUrut") %>'>></asp:Label>
+                                <asp:Label ID="lblNo" runat="server" Text='<%# DataBinder.Eval(Container.DataItem,"SalesItemId") %>' Visible="false"></asp:Label>
                             </ItemTemplate>
                             <HeaderStyle HorizontalAlign="Center" />
                         </asp:TemplateField>
                         <asp:TemplateField HeaderStyle-HorizontalAlign="Center" HeaderText="ITEM NAME">
                             <ItemTemplate>
-                                <asp:Label ID="lblitem" runat="server" Text='<%#Bind("ITEM_NAME") %>'></asp:Label>
+                                <asp:Label ID="lblitem" runat="server" Text='<%# DataBinder.Eval(Container.DataItem,"ItemName") %>'></asp:Label>
                             </ItemTemplate>
                             <EditItemTemplate>
-                                <asp:TextBox ID="txtItem" runat="server" MaxLength="50" Text='<%#Bind("ITEM_NAME") %>'></asp:TextBox>
+                                <asp:TextBox ID="txtItem" runat="server" MaxLength="50" Text='<%#DataBinder.Eval(Container.DataItem,"ItemName") %>'></asp:TextBox>
                                 <asp:RequiredFieldValidator ID="rfvtxtItem" runat="server" ValidationGroup="groupDetail" ControlToValidate="txtItem" Text="Enter Item" ToolTip="Enter Item"></asp:RequiredFieldValidator>
                                 <asp:RegularExpressionValidator ID="revtxtItem" runat="server" ValidationGroup="groupDetail" ControlToValidate="txtItem" Text="Enter Item" ToolTip="Enter Item " ValidationExpression="^[a-zA-Z'.\s]{1,40}$"></asp:RegularExpressionValidator>
                             </EditItemTemplate>
@@ -108,10 +108,10 @@
                         </asp:TemplateField>
                         <asp:TemplateField HeaderStyle-HorizontalAlign="Center" HeaderText="QUANTITY">
                             <ItemTemplate>
-                                <asp:Label ID="lblqty" runat="server" Text='<%#Bind("QUANTITY", "{0:#,##0.##}") %>'></asp:Label>
+                                <asp:Label ID="lblqty" runat="server" Text='<%# DataBinder.Eval(Container.DataItem,"Quantity") %>'></asp:Label>
                             </ItemTemplate>
                             <EditItemTemplate>
-                                <asp:TextBox ID="txtQty" runat="server" MaxLength="50" Text='<%#Bind("QUANTITY") %>'></asp:TextBox>
+                                <asp:TextBox ID="txtQty" runat="server" MaxLength="50" Text='<%#DataBinder.Eval(Container.DataItem,"Quantity") %>'></asp:TextBox>
                                 <asp:RequiredFieldValidator ID="rfvtxtQty" runat="server" ValidationGroup="groupDetail" ControlToValidate="txtQty" Text="Enter number" ToolTip="Enter qty"></asp:RequiredFieldValidator>
                                 <asp:RegularExpressionValidator ID="revtxtQty" runat="server" ValidationGroup="groupDetail" ControlToValidate="txtQty" Text="Please Fill by Number" ToolTip="Enter qty" ValidationExpression="^[0-9]+$"></asp:RegularExpressionValidator>                             
                             </EditItemTemplate>
@@ -119,10 +119,10 @@
                         </asp:TemplateField>
                         <asp:TemplateField HeaderStyle-HorizontalAlign="Center" HeaderText="PRICE">
                             <ItemTemplate>
-                                <asp:Label ID="lblprice" runat="server" Text='<%#Bind("PRICE", "{0:#,##0.##}") %>'></asp:Label>
+                                <asp:Label ID="lblprice" runat="server" Text='<%# DataBinder.Eval(Container.DataItem,"Price") %>'></asp:Label>
                             </ItemTemplate>
                             <EditItemTemplate>
-                                <asp:TextBox ID="txtprice" runat="server" MaxLength="50" Text='<%#Bind("PRICE") %>'></asp:TextBox>
+                                <asp:TextBox ID="txtprice" runat="server" MaxLength="50" Text='<%#DataBinder.Eval(Container.DataItem,"Price") %>'></asp:TextBox>
                                 <asp:RequiredFieldValidator ID="rfvtxtprice" runat="server" ValidationGroup="groupDetail" ControlToValidate="txtprice" Text="Enter number" ToolTip="Enter Price"></asp:RequiredFieldValidator>
                                 <asp:RegularExpressionValidator ID="revtxtprice" runat="server" ValidationGroup="groupDetail" ControlToValidate="txtprice" Text="Please Fill the Correct Price" ToolTip="Enter Price" ValidationExpression="^[0-9]+$"></asp:RegularExpressionValidator>                                
                             </EditItemTemplate>
@@ -148,8 +148,8 @@
                                 &nbsp;<asp:Button ID="btnCancel" runat="server" CausesValidation="False" CommandName="Cancel" Text="Cancel" />
                             </EditItemTemplate>
                             <ItemTemplate>
-                                <asp:Button ID="btnEdit" runat="server" CausesValidation="False" CommandArgument='<%# Eval("SALES_SO_LITEM_ID") %>' CommandName="Edit" Text="Edit" />
-                                <asp:Button ID="btnDelete" runat="server" CausesValidation="False" CommandArgument='<%# Eval("NO_URUT") %>' CommandName="DeleteRow" OnClientClick="return confirm('Are you sure?')" Text="Delete" />
+                                <asp:Button ID="btnEdit" runat="server" CausesValidation="False" CommandArgument='<%# DataBinder.Eval(Container.DataItem,"SalesItemId") %>' CommandName="Edit" Text="Edit" />
+                                <asp:Button ID="btnDelete" runat="server" CausesValidation="False" CommandArgument='<%# DataBinder.Eval(Container.DataItem,"NoUrut") %>' CommandName="DeleteRow" OnClientClick="return confirm('Are you sure?')" Text="Delete" />
                             </ItemTemplate>
                         </asp:TemplateField>
                     </Columns>

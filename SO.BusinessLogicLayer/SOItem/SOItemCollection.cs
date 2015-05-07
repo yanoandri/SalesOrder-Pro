@@ -11,7 +11,7 @@ using System.Collections;
 namespace SO
 {
     [System.Xml.Serialization.XmlRoot("SOItemItem")]
-   public class SOItemCollection : ICollection
+    public class SOItemCollection : ICollection
     {
         #region Region: Member Variables///////////////////////////////////////////////////////////////////
         private ArrayList m_oSOItemItemList = new ArrayList();
@@ -210,5 +210,115 @@ namespace SO
             }
         }
         #endregion
+        public bool GetDataItembyId()
+        {
+            try
+            {
+                using (SqlDataReader dr = SqlHelper.ExecuteReader(PFSDataBaseAccess.ConnectionString, CommandType.StoredProcedure , "uspSO_detailItem"))
+                {
+                    if (dr.HasRows)
+                    {
+                        int iNoUrut;
+                        while (dr.Read())
+                        {
+                            SOItem oSOItem = new SOItem();
+                            for (iNoUrut = 0; iNoUrut <= m_oSOItemItemList.Count; iNoUrut++)
+                            {
+                                Convert.ToInt32(iNoUrut);
+                            }
+                            oSOItem.NoUrut = iNoUrut;
+                            oSOItem.SalesItemId = Convert.ToInt32(dr["SALES_SO_LITEM_ID"]);
+                            oSOItem.ItemName = dr["ITEM_NAME"].ToString();
+                            oSOItem.Quantity = Convert.ToInt32(dr["QUANTITY"]);
+                            oSOItem.Price = Convert.ToInt32(dr["PRICE"]);
+                            this.Add(oSOItem);
+                        }
+                        return true;
+                    }
+                    else return false;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public bool GetDataItembyId(int iId)
+        {
+            try
+            {
+                using (SqlDataReader dr = SqlHelper.ExecuteReader(PFSDataBaseAccess.ConnectionString, "uspSO_detailItem", iId))
+                {
+                    if (dr.HasRows)
+                    {
+                        int iNoUrut;
+                        while (dr.Read())
+                        {
+                            SOItem oSOItem = new SOItem();
+                            for (iNoUrut = 0; iNoUrut <= m_oSOItemItemList.Count; iNoUrut++)
+                            {
+                               Convert.ToInt32(iNoUrut);
+                            }
+                            oSOItem.NoUrut = iNoUrut;
+                            oSOItem.SalesItemId = Convert.ToInt32(dr["SALES_SO_LITEM_ID"]);
+                            oSOItem.ItemName = dr["ITEM_NAME"].ToString();
+                            oSOItem.Quantity = Convert.ToInt32(dr["QUANTITY"]);
+                            oSOItem.Price = Convert.ToInt32(dr["PRICE"]);
+                            this.Add(oSOItem);
+                        }
+                        return true;
+                    }
+                    else return false;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public bool DAL_Add()
+        {
+            SqlConnection oConn = PFSDataBaseAccess.OpenConnection();
+            SqlTransaction oTrans = oConn.BeginTransaction();
+            try
+            {
+                if (DAL_Add(oTrans))
+                {
+                    oTrans.Commit();
+                    return true;
+                }
+                else
+                {
+                    oTrans.Rollback();
+                    return false;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                PFSDataBaseAccess.CloseConnection(ref oConn);
+            }
+        }
+        public bool DAL_Add(SqlTransaction p_oTrans)
+        {
+            try
+            {
+                foreach (SOItem oSOItem in m_oSOItemItemList)
+                {
+                    if (!oSOItem.DAL_Add(p_oTrans)) return false;
+                }
+                return true;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
     }
 }
