@@ -9,17 +9,11 @@ using PFSHelper.DataAccessLayer;
 
 namespace SO
 {
-    public class SOItem
+    public partial class SOItem
     {
         #region Region: Member Variables///////////////////////////////////////////////////////
-        protected SOItemCollection oSOItem = null;
-        protected int m_iSoid = 0;
-        protected string m_sSono = "-";
-        protected DateTime m_dtOrderDate = DateTime.Parse("01/01/1900");
-        protected string m_sCustomerName = "-";
-        protected string m_sAddress = "-";
-        protected int m_iNoUrut = 0;
         protected int m_iItemId = 0;
+        protected int m_iSoId = 0;
         protected string m_sItemName = "-";
         protected int m_iQuantity = 0;
         protected Double m_fPrice = 0;
@@ -28,32 +22,23 @@ namespace SO
         #region Region: Constructor///////////////////////////////////////////////////////
         public SOItem()
         {
-            oSOItem = new SOItemCollection();
-            m_iSoid = -1;
+            m_iSoId = -1;
         }
-
         public SOItem(int iID)
         {
-            m_iSoid = iID;
+            m_iSoId = iID;
         }
 
         public SOItem(
-            int p_iSoid,
-            string p_sSono,
-            DateTime p_dtOrderDate,
-            string p_sCustomerName,
-            string p_sAddress,
             int p_iItemId,
+            int p_iSoId,
             string p_sItemName,
             int p_iQuantity,
             float p_fPrice)
         {
-            m_iSoid = p_iSoid;
-            m_sSono = p_sSono;
-            m_dtOrderDate = p_dtOrderDate;
-            m_sCustomerName = p_sCustomerName;
-            m_sAddress = p_sAddress;
+            
             m_iItemId = p_iItemId;
+            m_iSoId = p_iSoId;
             m_sItemName = p_sItemName;
             m_iQuantity = p_iQuantity;
             m_fPrice = p_fPrice;
@@ -61,40 +46,15 @@ namespace SO
         #endregion
 
         #region Region: Properties///////////////////////////////////////////////////////
-        public int SalesSoId
-        {
-            get { return m_iSoid; }
-            set { m_iSoid = value; }
-        }
-        public string SalesOrderNo
-        {
-            get { return m_sSono; }
-            set { m_sSono = value; }
-        }
-        public DateTime OrderDate
-        {
-            get { return m_dtOrderDate; }
-            set { m_dtOrderDate = value; }
-        }
-        public string CustomerName
-        {
-            get { return m_sCustomerName; }
-            set { m_sCustomerName = value; }
-        }
-        public string Address
-        {
-            get { return m_sAddress; }
-            set { m_sAddress = value; }
-        }
-        public int NoUrut
-        {
-            get { return m_iNoUrut; }
-            set { m_iNoUrut = value; }
-        }
         public int SalesItemId
         {
             get { return m_iItemId; }
             set { m_iItemId = value; }
+        }
+        public int SoId
+        {
+            get { return m_iSoId; }
+            set { m_iSoId = value; }
         }
         public string ItemName
         {
@@ -119,14 +79,15 @@ namespace SO
             bool bIsSuccess = false;
             try
             {
-                using (SqlDataReader drSoList = SqlHelper.ExecuteReader(PFSDataBaseAccess.ConnectionString, "uspSO_RetrieveSalesOrder", m_iSoid))
+                using (SqlDataReader drItemList = SqlHelper.ExecuteReader(PFSDataBaseAccess.ConnectionString, "uspSO_ItemLoad", m_iSoId))
                 {
-                    if (drSoList.Read())
+                    if (drItemList.Read())
                     {
-                        m_sSono = drSoList["SO_NO"].ToString();
-                        m_dtOrderDate = Convert.ToDateTime(drSoList["ORDER_DATE"]);
-                        m_sCustomerName = drSoList["CUSTOMER_NAME"].ToString();
-                        m_sAddress = drSoList["ADDRESS"].ToString();
+                        m_iItemId = Convert.ToInt32(drItemList["SALES_SO_LITEM_ID"]);
+                        m_iSoId = Convert.ToInt32(drItemList["SALES_SO_ID"]);
+                        m_sItemName = drItemList["ITEM_NAME"].ToString();
+                        m_iQuantity = Convert.ToInt32(drItemList["QUANTITY"]);
+                        m_fPrice = Convert.ToDouble(drItemList["PRICE"]);
                         bIsSuccess = true;
                     }
                 }
@@ -137,19 +98,20 @@ namespace SO
                 throw ex;
             }
         }
-        public bool DAL_LoadById(int iSoId)
+        public bool DAL_LoadById(int iID)
         {
             bool bIsSuccess = false;
             try
             {
-                using (SqlDataReader drSoList = SqlHelper.ExecuteReader(PFSDataBaseAccess.ConnectionString, "uspSO_RetrieveSalesOrder", iSoId))
+                using (SqlDataReader drItemList = SqlHelper.ExecuteReader(PFSDataBaseAccess.ConnectionString, "uspSO_RetrieveSalesOrder", iID))
                 {
-                    if (drSoList.Read())
+                    if (drItemList.Read())
                     {
-                        m_sSono = drSoList["SO_NO"].ToString();
-                        m_dtOrderDate = Convert.ToDateTime(drSoList["ORDER_DATE"]);
-                        m_sCustomerName = drSoList["CUSTOMER_NAME"].ToString();
-                        m_sAddress = drSoList["ADDRESS"].ToString();
+                        m_iItemId = Convert.ToInt32(drItemList["SALES_SO_LITEM_ID"]);
+                        m_iSoId = Convert.ToInt32(drItemList["SALES_SO_ID"]);
+                        m_sItemName = drItemList["ITEM_NAME"].ToString();
+                        m_iQuantity = Convert.ToInt32(drItemList["QUANTITY"]);
+                        m_fPrice = Convert.ToDouble(drItemList["PRICE"]);
                         bIsSuccess = true;
                     }
                 }
@@ -192,14 +154,106 @@ namespace SO
         {
             try
             {
-                m_iItemId = Convert.ToInt32(SqlHelper.ExecuteScalar(p_oTrans, "uspSO_insertSOItem",
-                    m_iSoid,
+                m_iItemId = Convert.ToInt32(SqlHelper.ExecuteScalar(p_oTrans, "uspSO_ItemInsert",
+                    m_iSoId,
                     m_sItemName,
                     m_iQuantity,
-                    m_fPrice));
+                    m_fPrice
+                    ));
+                if (m_iItemId < 1) return false;
                 return true;
             }
             catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public bool DAL_Update()
+        {
+            SqlConnection oConn = PFSDataBaseAccess.OpenConnection();
+            SqlTransaction oTrans = oConn.BeginTransaction();
+            try
+            {
+                if (DAL_Update(oTrans))
+                {
+                    oTrans.Commit();
+                    return true;
+                }
+                else
+                {
+                    oTrans.Rollback();
+                    return false;
+                }
+            }
+            catch (SqlException ex)
+            {
+                oTrans.Rollback();
+                throw ex;
+            }
+            finally
+            {
+                PFSDataBaseAccess.CloseConnection(ref oConn);
+            }
+        }
+        public bool DAL_Update(SqlTransaction p_oTrans)
+        {
+            try
+            {
+                if (m_iItemId > 0)
+                {
+                    int iError = Convert.ToInt32(SqlHelper.ExecuteScalar(p_oTrans, "uspSO_ItemUpdate",
+                        m_sItemName,
+                        m_iQuantity,
+                        m_fPrice
+                    ));
+                    if (iError != 0) return false;
+                }
+                else return DAL_Add(p_oTrans);
+
+                return true;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public bool DAL_Delete()
+        {
+            SqlConnection oConn = PFSDataBaseAccess.OpenConnection();
+            SqlTransaction oTrans = oConn.BeginTransaction();
+            try
+            {
+                if (DAL_Delete(oTrans))
+                {
+                    oTrans.Commit();
+                    return true;
+                }
+                else
+                {
+                    oTrans.Rollback();
+                    return false;
+                }
+            }
+            catch (SqlException ex)
+            {
+                oTrans.Rollback();
+                throw ex;
+            }
+            finally
+            {
+                PFSDataBaseAccess.CloseConnection(ref oConn);
+            }
+        }
+        public bool DAL_Delete(SqlTransaction p_oTrans)
+        {
+            try
+            {
+                int iRowAffected = SqlHelper.ExecuteNonQuery(p_oTrans, "uspSO_ItemDelete", m_iItemId);
+                return (iRowAffected > 0);
+            }
+            catch (SqlException ex)
             {
                 throw ex;
             }

@@ -156,11 +156,43 @@ namespace SO.BusinessLogicLayer
         #endregion
 
         #region Region: Data Access Layer///////////////////////////////////////////////////////////////////
-        public bool GetSalesOrderList()
+        public bool DAL_LoadtoRetrieve(int iID,bool p_bIsIncludeChild = true)
         {
             try
             {
-                using (SqlDataReader drSoList = SqlHelper.ExecuteReader(PFSDataBaseAccess.ConnectionString, CommandType.StoredProcedure, "uspSO_showlist"))
+                using (SqlDataReader drSoList = SqlHelper.ExecuteReader(PFSDataBaseAccess.ConnectionString, "uspSO_SalesRetrieve", iID))
+                {
+                    if (drSoList.HasRows)
+                    {
+                        while (drSoList.Read())
+                        {
+                            SalesOrder oSales = new SalesOrder();
+                            oSales.SalesSoId = Convert.ToInt32(drSoList["SALES_SO_ID"]);
+                            oSales.SalesOrderNo = drSoList["SO_NO"].ToString();
+                            oSales.OrderDate = Convert.ToDateTime(drSoList["ORDER_DATE"]);
+                            oSales.CustomerName = drSoList["CUTOMER_NAME"].ToString();
+                            oSales.Address = drSoList["ADDRESS"].ToString();
+                            if (p_bIsIncludeChild)
+                            {
+                                oSales.SOItemCollection.DAL_LoadbyId(iID);
+                            }
+                            this.Add(oSales);
+                        }
+                        return true;
+                    }
+                    else return false;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+        public bool DAL_LoadSales()
+        {
+            try
+            {
+                using (SqlDataReader drSoList = SqlHelper.ExecuteReader(PFSDataBaseAccess.ConnectionString, CommandType.StoredProcedure, "uspSO_SalesShowList"))
                 {
                     if (drSoList.HasRows)
                     {
@@ -187,13 +219,12 @@ namespace SO.BusinessLogicLayer
                 throw ex;
             }
         }
-
-        public bool GetSalesOrderList(string p_sKeyword,
+        public bool DAL_LoadSalesbyKeyDate(string p_sKeyword,
             DateTime? p_dtOrderDate)
         {
             try
             {
-                using (SqlDataReader drSoList = SqlHelper.ExecuteReader(PFSDataBaseAccess.ConnectionString, "uspSO_showlist",
+                using (SqlDataReader drSoList = SqlHelper.ExecuteReader(PFSDataBaseAccess.ConnectionString, "uspSO_SalesShowList",
                     p_sKeyword,
                     p_dtOrderDate))
                 {
@@ -217,6 +248,132 @@ namespace SO.BusinessLogicLayer
                         return false;
                     }
                 }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public bool DAL_Add()
+        {
+            SqlConnection oConn = PFSDataBaseAccess.OpenConnection();
+            SqlTransaction oTrans = oConn.BeginTransaction();
+            try
+            {
+                if (DAL_Add(oTrans))
+                {
+                    oTrans.Commit();
+                    return true;
+                }
+                else
+                {
+                    oTrans.Rollback();
+                    return false;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                PFSDataBaseAccess.CloseConnection(ref oConn);
+            }
+        }
+        public bool DAL_Add(SqlTransaction p_oTrans)
+        {
+            try
+            {
+                foreach (SalesOrder oSales in m_oSalesOrderList)
+                {
+                    if (!oSales.DAL_Add(p_oTrans)) return false;
+                }
+                return true;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public bool DAL_Update(bool p_bIsIncludeChild = true)
+        {
+            SqlConnection oConn = PFSDataBaseAccess.OpenConnection();
+            SqlTransaction oTrans = oConn.BeginTransaction();
+            try
+            {
+                if (DAL_Update(oTrans, p_bIsIncludeChild))
+                {
+                    oTrans.Commit();
+                    return true;
+                }
+                else
+                {
+                    oTrans.Rollback();
+                    return false;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                PFSDataBaseAccess.CloseConnection(ref oConn);
+            }
+        }
+        public bool DAL_Update(SqlTransaction p_oTrans, bool p_bIsIncludeChild = true)
+        {
+            try
+            {
+                foreach (SalesOrder oSales in m_oSalesOrderList)
+                {
+                    if (!oSales.DAL_Update(p_oTrans, p_bIsIncludeChild)) return false;
+                }
+                return true;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public bool DAL_Delete()
+        {
+            SqlConnection oConn = PFSDataBaseAccess.OpenConnection();
+            SqlTransaction oTrans = oConn.BeginTransaction();
+            try
+            {
+                if (DAL_Delete(oTrans))
+                {
+                    oTrans.Commit();
+                    return true;
+                }
+                else
+                {
+                    oTrans.Rollback();
+                    return false;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                PFSDataBaseAccess.CloseConnection(ref oConn);
+            }
+        }
+        public bool DAL_Delete(SqlTransaction p_oTrans)
+        {
+            try
+            {
+                foreach (SalesOrder oSales in m_oSalesOrderList)
+                {
+                    if (!oSales.DAL_Delete(p_oTrans)) return false;
+                }
+                return true;
             }
             catch (Exception ex)
             {

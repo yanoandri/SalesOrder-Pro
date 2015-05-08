@@ -138,7 +138,7 @@ namespace SO
                 dtOrderDate = null;
                 if (!string.IsNullOrWhiteSpace(txtkey.Text)) sKeyword = txtkey.Text;
                 if (!string.IsNullOrWhiteSpace(txtCalendar.Text)) dtOrderDate = Convert.ToDateTime(txtCalendar.Text);
-                oSoCollection.GetSalesOrderList(sKeyword, dtOrderDate);
+                oSoCollection.DAL_LoadSalesbyKeyDate(sKeyword, dtOrderDate);
                 return oSoCollection;
             }
             catch (Exception ex)

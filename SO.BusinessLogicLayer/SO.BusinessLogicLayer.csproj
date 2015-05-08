@@ -39,6 +39,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Customer\Customer.cs" />
+    <Compile Include="Customer\CustomerCollection.cs" />
     <Compile Include="SalesOrder\SalesOrderCollection.cs" />
     <Compile Include="SalesOrder\SalesOrder.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

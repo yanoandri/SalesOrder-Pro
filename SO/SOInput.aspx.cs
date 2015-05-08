@@ -12,8 +12,6 @@ namespace SO
     public partial class SOInput2 : System.Web.UI.Page
     {
         #region session and public variable
-        public string m_strcn = ConfigurationManager.ConnectionStrings["SOConnectionString"].ConnectionString;
-
         public DataRow m_drInitTable = null;
 
         public int m_SOID
@@ -35,7 +33,7 @@ namespace SO
         }
 
         #endregion session and public variable
-        
+
         #region page event
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -43,13 +41,19 @@ namespace SO
             {
                 if (!IsPostBack)
                 {
-                    
+                    Customer oCustomer = new Customer();
+                    DDLCustomer.DataSource = GetAllCustomer();
+                    DDLCustomer.DataTextField = "CustomerName";
+                    DDLCustomer.DataValueField = "CustomerId";
+                    DDLCustomer.DataBind();
+
+
                     if (m_SOID != 0)
                     {
                         RetrieveSalesOrderData();
                         GridInput.DataSource = GetItemCollection();
                         GridInput.DataBind();
-                        
+
                     }
 
                 }
@@ -65,9 +69,11 @@ namespace SO
         {
             try
             {
+                //int iRowCount = m_sessSalesOrder.Count;
                 setInitialRow();
-                GridInput.DataSource = m_sessSalesOrder.SOItemCollection;
-                GridInput.DataBind();
+                //GridInput.DataSource = m_sessSalesOrder.SOItemCollection;
+                //GridInput.DataBind();
+                //GridInput.SetEditRow(iRowCount);
                 btnAdd.Visible = false;
             }
             catch (System.Threading.ThreadAbortException) { }
@@ -126,7 +132,7 @@ namespace SO
                 Label lblOrder = (Label)e.Row.FindControl("lblUrut");
                 if (e.Row.RowType == DataControlRowType.DataRow)
                 {
-                    
+
                     if (lblquantity == null || lblprice == null)
                     {
                     }
@@ -237,78 +243,102 @@ namespace SO
         #region method
         private void setInitialRow()
         {
-           
-            m_soItemId -= 1;
-            if (m_sessSalesOrder.SOItemCollection.Count < 1)
-            {
-                m_sessSalesOrder.SOItemCollection.Add(new SOItem());
-                int iRowCount = m_sessSalesOrder.SOItemCollection.Count;
-                //m_sessSalesOrder.SOItemCollection[0].NoUrut = 1;
-                //m_sessSalesOrder.SOItemCollection[0].SalesItemId = m_soItemId;
-                GridInput.SetEditRow(iRowCount);
-            }
-            else if (m_sessSalesOrder.SOItemCollection.Count >= 1)
-            {
-                int iRowCount = m_sessSalesOrder.SOItemCollection.Count;
-                m_sessSalesOrder.SOItemCollection[0].SalesItemId = m_soItemId;
-                GridInput.SetEditRow(iRowCount);
-            }
+            //m_soItemId -= 1;
+            //m_sessSalesOrder = new SalesOrder();
+            //if (m_sessSalesOrder.SOItemCollection.Count < 1)
+            //{
+            //    SOItemCollection oSOItem = new SOItemCollection();
+            //    oSOItem.SoId = 9;
+            //    m_sessSalesOrder.SOItemCollection.Add(oSOItem);
+            //    int iRowCount = m_sessSalesOrder.SOItemCollection.Count;
+            //    m_sessSalesOrder.SOItemCollection[0].OrderedList = 1;
+            //    m_sessSalesOrder.SOItemCollection[0].SalesItemId = oSOItem.SoId;
+            //    GridInput.DataSource = m_sessSalesOrder.SOItemCollection();
+            //    GridInput.DataBind();
+            //    GridInput.SetEditRow(iRowCount);       
+            //}
+            //else if (m_sessSalesOrder.SOItemCollection.Count >= 1)
+            //{
+            //    int iRowCount = m_sessSalesOrder.SOItemCollection.Count;
+            //    m_sessSalesOrder.SOItemCollection[0].SalesItemId = m_soItemId;
+            //    GridInput.SetEditRow(iRowCount);
+            //}
+            
+
+            //for (int i = 0; i < rgridGroupList.Items.Count; i++)
+            //{
+            //    rgridGroupList.Items[i].Edit = false;
+            //}
+
+            //System.Collections.Specialized.ListDictionary ldNewValues = new System.Collections.Specialized.ListDictionary();
+            //ldNewValues["GroupID"] = 0;
+            //ldNewValues["IsActive"] = true;
+            //GridInput.MasterTableView.InsertItem(ldNewValues);
         }
 
         private void insertData()
         {
-            SalesOrder oSalesOrder = m_sessSalesOrder;
-            oSalesOrder.SalesOrderNo = txtSales.Text;
-            oSalesOrder.OrderDate = Convert.ToDateTime(txtDate.Text);
-            oSalesOrder.CustomerId = Convert.ToInt32(DDLCustomer.SelectedValue);
-            oSalesOrder.Address = txtaddres.Text;            
-            //SOItemCollection oItemCollection = new SOItemCollection();
-            oSalesOrder.DAL_Add();
-            Response.Redirect("SOList.aspx");
-            //SqlConnection cnInsertData = new SqlConnection(m_strcn);
-            //cnInsertData.Open();
-            //SqlCommand cmdInsertSO = new SqlCommand("uspSO_insertSO", cnInsertData);
-            //cmdInsertSO.CommandType = CommandType.StoredProcedure;
-            //cmdInsertSO.Parameters.Add("@p_SONO", SqlDbType.VarChar).Value = txtSales.Text;
-            //cmdInsertSO.Parameters.Add("@p_OrderDate", SqlDbType.DateTime).Value = Convert.ToDateTime(txtDate.Text);
-            //cmdInsertSO.Parameters.Add("@p_CUSTOMER", SqlDbType.Int).Value = DDLCustomer.SelectedValue;
-            //cmdInsertSO.Parameters.Add("@p_ADDRESS", SqlDbType.VarChar).Value = txtaddres.Text;
-            //string strGetValue = cmdInsertSO.ExecuteScalar().ToString();
-            //if (m_sessSalesOrder.SOItemCollection != null)
-            //{
-            //    foreach (DataRow drDetailItem in m_sessSalesOrder.SOItemCollection.Rows)
-            //    {
-            //        SqlCommand cmdInsertSOItem = new SqlCommand("uspSO_insertSOItem", cnInsertData);
-            //        cmdInsertSOItem.CommandType = CommandType.StoredProcedure;
-            //        cmdInsertSOItem.Parameters.Add("@p_SOID", SqlDbType.Int).Value = strGetValue;
-            //        cmdInsertSOItem.Parameters.Add("@p_ItemName", SqlDbType.VarChar).Value = drDetailItem["ITEM_NAME"].ToString();
-            //        cmdInsertSOItem.Parameters.Add("@p_Quantity", SqlDbType.Int).Value = drDetailItem["QUANTITY"].ToString();
-            //        cmdInsertSOItem.Parameters.Add("@p_Price", SqlDbType.Float).Value = drDetailItem["PRICE"].ToString();
-            //        int iInsert = cmdInsertSOItem.ExecuteNonQuery();
-            //        if (iInsert == 1)
-            //        {
-            //            Session.RemoveAll();
-            //            Page.ClientScript.RegisterClientScriptBlock(this.GetType(), "", "<script>alert('Save Successful!'); window.location = 'SOList.aspx';</script>");
-            //        }
-            //    }
-            //}
+            //SalesOrder oSalesOrder = m_sessSalesOrder;
+            //oSalesOrder.SalesOrderNo = txtSales.Text;
+            //oSalesOrder.OrderDate = Convert.ToDateTime(txtDate.Text);
+            //oSalesOrder.CustomerId = Convert.ToInt32(DDLCustomer.SelectedValue);
+            //oSalesOrder.Address = txtaddres.Text;            
+            ////SOItemCollection oItemCollection = new SOItemCollection();
+            //oSalesOrder.DAL_Add();
+            //Response.Redirect("SOList.aspx");
+            ////SqlConnection cnInsertData = new SqlConnection(m_strcn);
+            ////cnInsertData.Open();
+            ////SqlCommand cmdInsertSO = new SqlCommand("uspSO_insertSO", cnInsertData);
+            ////cmdInsertSO.CommandType = CommandType.StoredProcedure;
+            ////cmdInsertSO.Parameters.Add("@p_SONO", SqlDbType.VarChar).Value = txtSales.Text;
+            ////cmdInsertSO.Parameters.Add("@p_OrderDate", SqlDbType.DateTime).Value = Convert.ToDateTime(txtDate.Text);
+            ////cmdInsertSO.Parameters.Add("@p_CUSTOMER", SqlDbType.Int).Value = DDLCustomer.SelectedValue;
+            ////cmdInsertSO.Parameters.Add("@p_ADDRESS", SqlDbType.VarChar).Value = txtaddres.Text;
+            ////string strGetValue = cmdInsertSO.ExecuteScalar().ToString();
+            ////if (m_sessSalesOrder.SOItemCollection != null)
+            ////{
+            ////    foreach (DataRow drDetailItem in m_sessSalesOrder.SOItemCollection.Rows)
+            ////    {
+            ////        SqlCommand cmdInsertSOItem = new SqlCommand("uspSO_insertSOItem", cnInsertData);
+            ////        cmdInsertSOItem.CommandType = CommandType.StoredProcedure;
+            ////        cmdInsertSOItem.Parameters.Add("@p_SOID", SqlDbType.Int).Value = strGetValue;
+            ////        cmdInsertSOItem.Parameters.Add("@p_ItemName", SqlDbType.VarChar).Value = drDetailItem["ITEM_NAME"].ToString();
+            ////        cmdInsertSOItem.Parameters.Add("@p_Quantity", SqlDbType.Int).Value = drDetailItem["QUANTITY"].ToString();
+            ////        cmdInsertSOItem.Parameters.Add("@p_Price", SqlDbType.Float).Value = drDetailItem["PRICE"].ToString();
+            ////        int iInsert = cmdInsertSOItem.ExecuteNonQuery();
+            ////        if (iInsert == 1)
+            ////        {
+            ////            Session.RemoveAll();
+            ////            Page.ClientScript.RegisterClientScriptBlock(this.GetType(), "", "<script>alert('Save Successful!'); window.location = 'SOList.aspx';</script>");
+            ////        }
+            ////    }
+            ////}
         }
 
         private void RetrieveSalesOrderData()
         {
-            SOItem oSOItem = new SOItem();
-            oSOItem.DAL_LoadById(m_SOID);
-            txtSales.Text = oSOItem.SalesOrderNo;
-            txtDate.Text = oSOItem.OrderDate.ToString();
-            DDLCustomer.SelectedItem.Text = oSOItem.CustomerName;
-            txtaddres.Text = oSOItem.Address;
+            //SOItem oSOItem = new SOItem();
+            //oSOItem.DAL_LoadById(m_SOID);
+            //txtSales.Text = oSOItem.SalesOrderNo;
+            //txtDate.Text = oSOItem.OrderDate.ToString();
+            //DDLCustomer.SelectedItem.Text = oSOItem.CustomerName;
+            //txtaddres.Text = oSOItem.Address;
         }
 
         private SOItemCollection GetItemCollection()
         {
             SOItemCollection oSoItemCollection = new SOItemCollection();
-            oSoItemCollection.GetDataItembyId(m_SOID);
+            //oSoItemCollection.GetDataItembyId(m_SOID);
             return oSoItemCollection;
+        }
+
+        private CustomerCollection GetAllCustomer()
+        {
+
+            CustomerCollection oCustCollection = new CustomerCollection();
+            oCustCollection.DAL_Load();
+
+            return oCustCollection;
         }
         #endregion method
     }

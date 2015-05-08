@@ -10,17 +10,17 @@ using System.Collections;
 
 namespace SO
 {
-    [System.Xml.Serialization.XmlRoot("SOItemItem")]
-    public class SOItemCollection : ICollection
+    [System.Xml.Serialization.XmlRoot("ItemOrders")]
+    public partial class SOItemCollection : ICollection
     {
         #region Region: Member Variables///////////////////////////////////////////////////////////////////
-        private ArrayList m_oSOItemItemList = new ArrayList();
+        private ArrayList m_oItemList = new ArrayList();
         #endregion
 
         #region Region: Properties///////////////////////////////////////////////////////////////////
         public int Count
         {
-            get { return m_oSOItemItemList.Count; }
+            get { return m_oItemList.Count; }
         }
 
         public bool IsSynchronized
@@ -35,51 +35,47 @@ namespace SO
 
         public SOItem this[int index]
         {
-            get { return (SOItem)m_oSOItemItemList[index]; }
+            get { return (SOItem)m_oItemList[index]; }
         }
         #endregion
 
         #region Region: List Method///////////////////////////////////////////////////////////////////
         public void Sort(IComparer oComparer)
         {
-            m_oSOItemItemList.Sort(oComparer);
+            m_oItemList.Sort(oComparer);
         }
 
         public void Reverse()
         {
-            m_oSOItemItemList.Reverse();
+            m_oItemList.Reverse();
         }
 
-        public void Add(SOItem oSOItemItem)
+        public void Add(SOItem oItem)
         {
-            m_oSOItemItemList.Add(oSOItemItem);
+            m_oItemList.Add(oItem);
         }
 
         public void RemoveAt(int index)
         {
-            m_oSOItemItemList.RemoveAt(index);
+            m_oItemList.RemoveAt(index);
         }
 
         public void CopyTo(Array array, int index)
         {
-            m_oSOItemItemList.CopyTo(array, index);
+            m_oItemList.CopyTo(array, index);
         }
 
         public IEnumerator GetEnumerator()
         {
-            return m_oSOItemItemList.GetEnumerator();
+            return m_oItemList.GetEnumerator();
         }
         #endregion
 
         #region Region: Field Enumeration /////////////////////////////////////////////////////
-        public enum SOItemItemFields
+        public enum SOItemFields
         {
-            SalesSoId,
-            SalesOrderNo,
-            OrderDate,
-            CustomerName,
-            Address,
             SalesItemId,
+            SalesSoId,
             ItemName,
             Quantity,
             Price
@@ -87,35 +83,23 @@ namespace SO
         #endregion
 
         #region Region: Sort Method////////////////////////////////////////////////////////////
-        public void Sort(SOItemItemFields SortField, bool isAscending)
+        public void Sort(SOItemFields SortField, bool isAscending)
         {
             switch (SortField)
             {
-                case SOItemItemFields.SalesSoId:
-                    this.Sort(new SOItemIDComparer());
+                case SOItemFields.SalesItemId:
+                    this.Sort(new SoItemIdComparer());
                     break;
-                case SOItemItemFields.SalesOrderNo:
-                    this.Sort(new SoNoComparer());
+                case SOItemFields.SalesSoId:
+                    this.Sort(new SoIdComparer());
                     break;
-                case SOItemItemFields.OrderDate:
-                    this.Sort(new OrderDateComparer());
-                    break;
-                case SOItemItemFields.CustomerName:
-                    this.Sort(new CustomerNameComparer());
-                    break;
-                case SOItemItemFields.Address:
-                    this.Sort(new AddressComparer());
-                    break;
-                case SOItemItemFields.SalesItemId:
-                    this.Sort(new SalesItemIdComparer());
-                    break;
-                case SOItemItemFields.ItemName:
+                case SOItemFields.ItemName:
                     this.Sort(new ItemNameComparer());
                     break;
-                case SOItemItemFields.Quantity:
+                case SOItemFields.Quantity:
                     this.Sort(new QuantityComparer());
                     break;
-                case SOItemItemFields.Price:
+                case SOItemFields.Price:
                     this.Sort(new PriceComparer());
                     break;
             }
@@ -124,59 +108,22 @@ namespace SO
         #endregion
 
         #region Region: IComparer//////////////////////////////////////////////////////////////
-        private sealed class SOItemIDComparer : IComparer
-        {
-            public int Compare(object x, object y)
-            {
-                SOItem first = (SOItem)x;
-                SOItem second = (SOItem)y;
-                return first.SalesSoId.CompareTo(second.SalesSoId);
-            }
-        }
-        private sealed class SoNoComparer : IComparer
-        {
-            public int Compare(object x, object y)
-            {
-                SOItem first = (SOItem)x;
-                SOItem second = (SOItem)y;
-                return first.SalesOrderNo.CompareTo(second.SalesOrderNo);
-            }
-        }
-        private sealed class OrderDateComparer : IComparer
-        {
-            public int Compare(object x, object y)
-            {
-                SOItem first = (SOItem)x;
-                SOItem second = (SOItem)y;
-                return first.OrderDate.CompareTo(second.OrderDate);
-            }
-        }
-        private sealed class CustomerNameComparer : IComparer
-        {
-            public int Compare(object x, object y)
-            {
-                SOItem first = (SOItem)x;
-                SOItem second = (SOItem)y;
-                return first.CustomerName.CompareTo(second.CustomerName);
-            }
-        }
-        private sealed class AddressComparer : IComparer
-        {
-            public int Compare(object x, object y)
-            {
-                SOItem first = (SOItem)x;
-                SOItem second = (SOItem)y;
-                return first.Address.CompareTo(second.Address);
-            }
-        }
-
-        private sealed class SalesItemIdComparer : IComparer
+        private sealed class SoItemIdComparer : IComparer
         {
             public int Compare(object x, object y)
             {
                 SOItem first = (SOItem)x;
                 SOItem second = (SOItem)y;
                 return first.SalesItemId.CompareTo(second.SalesItemId);
+            }
+        }
+        private sealed class SoIdComparer : IComparer
+        {
+            public int Compare(object x, object y)
+            {
+                SOItem first = (SOItem)x;
+                SOItem second = (SOItem)y;
+                return first.SoId.CompareTo(second.SoId);
             }
         }
 
@@ -210,27 +157,24 @@ namespace SO
             }
         }
         #endregion
-        public bool GetDataItembyId()
+
+        #region Region: Data Access Methods//////////////////////////////////////////////////////////////
+
+        public bool DAL_Load()
         {
             try
             {
-                using (SqlDataReader dr = SqlHelper.ExecuteReader(PFSDataBaseAccess.ConnectionString, CommandType.StoredProcedure , "uspSO_detailItem"))
+                using (SqlDataReader drItemList = SqlHelper.ExecuteReader(PFSDataBaseAccess.ConnectionString, CommandType.StoredProcedure, "uspSO_detailItem"))
                 {
-                    if (dr.HasRows)
+                    if (drItemList.HasRows)
                     {
-                        int iNoUrut;
-                        while (dr.Read())
+                        while (drItemList.Read())
                         {
                             SOItem oSOItem = new SOItem();
-                            for (iNoUrut = 0; iNoUrut <= m_oSOItemItemList.Count; iNoUrut++)
-                            {
-                                Convert.ToInt32(iNoUrut);
-                            }
-                            oSOItem.NoUrut = iNoUrut;
-                            oSOItem.SalesItemId = Convert.ToInt32(dr["SALES_SO_LITEM_ID"]);
-                            oSOItem.ItemName = dr["ITEM_NAME"].ToString();
-                            oSOItem.Quantity = Convert.ToInt32(dr["QUANTITY"]);
-                            oSOItem.Price = Convert.ToInt32(dr["PRICE"]);
+                            oSOItem.SalesItemId = Convert.ToInt32(drItemList["SALES_SO_LITEM_ID"]);
+                            oSOItem.ItemName = drItemList["ITEM_NAME"].ToString();
+                            oSOItem.Quantity = Convert.ToInt32(drItemList["QUANTITY"]);
+                            oSOItem.Price = Convert.ToInt32(drItemList["PRICE"]);
                             this.Add(oSOItem);
                         }
                         return true;
@@ -243,29 +187,22 @@ namespace SO
                 throw ex;
             }
         }
-
-        public bool GetDataItembyId(int iId)
+        public bool DAL_LoadbyId(int p_iItemId)
         {
             try
             {
-                using (SqlDataReader dr = SqlHelper.ExecuteReader(PFSDataBaseAccess.ConnectionString, "uspSO_detailItem", iId))
+                using (SqlDataReader drItemList = SqlHelper.ExecuteReader(PFSDataBaseAccess.ConnectionString, "uspSO_ItemLoad", p_iItemId))
                 {
-                    if (dr.HasRows)
+                    if (drItemList.HasRows)
                     {
-                        int iNoUrut;
-                        while (dr.Read())
+                        while (drItemList.Read())
                         {
-                            SOItem oSOItem = new SOItem();
-                            for (iNoUrut = 0; iNoUrut <= m_oSOItemItemList.Count; iNoUrut++)
-                            {
-                               Convert.ToInt32(iNoUrut);
-                            }
-                            oSOItem.NoUrut = iNoUrut;
-                            oSOItem.SalesItemId = Convert.ToInt32(dr["SALES_SO_LITEM_ID"]);
-                            oSOItem.ItemName = dr["ITEM_NAME"].ToString();
-                            oSOItem.Quantity = Convert.ToInt32(dr["QUANTITY"]);
-                            oSOItem.Price = Convert.ToInt32(dr["PRICE"]);
-                            this.Add(oSOItem);
+                            SOItem oItem = new SOItem();
+                            oItem.SalesItemId = Convert.ToInt32(drItemList["SALES_SO_LITEM_ID"]);
+                            oItem.ItemName = drItemList["ITEM_NAME"].ToString();
+                            oItem.Quantity = Convert.ToInt32(drItemList["QUANTITY"]);
+                            oItem.Price = Convert.ToInt32(drItemList["PRICE"]);
+                            this.Add(oItem);
                         }
                         return true;
                     }
@@ -308,9 +245,9 @@ namespace SO
         {
             try
             {
-                foreach (SOItem oSOItem in m_oSOItemItemList)
+                foreach (SOItem oItem in m_oItemList)
                 {
-                    if (!oSOItem.DAL_Add(p_oTrans)) return false;
+                    if (!oItem.DAL_Add(p_oTrans)) return false;
                 }
                 return true;
             }
@@ -320,5 +257,89 @@ namespace SO
             }
         }
 
+        public bool DAL_Update()
+        {
+            SqlConnection oConn = PFSDataBaseAccess.OpenConnection();
+            SqlTransaction oTrans = oConn.BeginTransaction();
+            try
+            {
+                if (DAL_Update(oTrans))
+                {
+                    oTrans.Commit();
+                    return true;
+                }
+                else
+                {
+                    oTrans.Rollback();
+                    return false;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                PFSDataBaseAccess.CloseConnection(ref oConn);
+            }
+        }
+        public bool DAL_Update(SqlTransaction p_oTrans)
+        {
+            try
+            {
+                foreach (SOItem oItem in m_oItemList)
+                {
+                    if (!oItem.DAL_Update(p_oTrans)) return false;
+                }
+                return true;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public bool DAL_Delete()
+        {
+            SqlConnection oConn = PFSDataBaseAccess.OpenConnection();
+            SqlTransaction oTrans = oConn.BeginTransaction();
+            try
+            {
+                if (DAL_Delete(oTrans))
+                {
+                    oTrans.Commit();
+                    return true;
+                }
+                else
+                {
+                    oTrans.Rollback();
+                    return false;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                PFSDataBaseAccess.CloseConnection(ref oConn);
+            }
+        }
+        public bool DAL_Delete(SqlTransaction p_oTrans)
+        {
+            try
+            {
+                foreach (SOItem oItem in m_oItemList)
+                {
+                    if (!oItem.DAL_Delete(p_oTrans)) return false;
+                }
+                return true;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+        #endregion
     }
 }
