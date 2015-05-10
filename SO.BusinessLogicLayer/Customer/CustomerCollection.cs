@@ -8,7 +8,7 @@ using System.Data.SqlClient;
 using PFSHelper.DataAccessLayer;
 using System.Collections;
 
-namespace SO
+namespace SO.BusinessLogicLayer
 {
     [System.Xml.Serialization.XmlRoot("CustomerOrders")]
     public partial class CustomerCollection : ICollection
