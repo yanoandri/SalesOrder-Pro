@@ -77,7 +77,7 @@ namespace SO.BusinessLogicLayer
             SalesSoId,
             SalesOrderNo,
             OrderDate,
-            CustomerName,
+            CustomerId,
             Address
         }
         #endregion
@@ -96,8 +96,8 @@ namespace SO.BusinessLogicLayer
                 case SalesOrderFields.OrderDate:
                     this.Sort(new OrderDateComparer());
                     break;
-                case SalesOrderFields.CustomerName:
-                    this.Sort(new CustomerNameComparer());
+                case SalesOrderFields.CustomerId:
+                    this.Sort(new CustomerIdComparer());
                     break;
                 case SalesOrderFields.Address:
                     this.Sort(new AddressComparer());
@@ -135,7 +135,7 @@ namespace SO.BusinessLogicLayer
                 return first.OrderDate.CompareTo(second.OrderDate);
             }
         }
-        private sealed class CustomerNameComparer : IComparer
+        private sealed class CustomerIdComparer : IComparer
         {
             public int Compare(object x, object y)
             {
@@ -156,11 +156,11 @@ namespace SO.BusinessLogicLayer
         #endregion
 
         #region Region: Data Access Layer///////////////////////////////////////////////////////////////////
-        public bool DAL_LoadtoRetrieve(int iID,bool p_bIsIncludeChild = true)
+        public bool DAL_Load(bool p_bIsIncludeChild = true)
         {
             try
             {
-                using (SqlDataReader drSoList = SqlHelper.ExecuteReader(PFSDataBaseAccess.ConnectionString, "uspSO_SalesRetrieve", iID))
+                using (SqlDataReader drSoList = SqlHelper.ExecuteReader(PFSDataBaseAccess.ConnectionString, "uspSO_SalesRetrieve"))
                 {
                     if (drSoList.HasRows)
                     {
@@ -170,11 +170,11 @@ namespace SO.BusinessLogicLayer
                             oSales.SalesSoId = Convert.ToInt32(drSoList["SALES_SO_ID"]);
                             oSales.SalesOrderNo = drSoList["SO_NO"].ToString();
                             oSales.OrderDate = Convert.ToDateTime(drSoList["ORDER_DATE"]);
-                            oSales.CustomerName = drSoList["CUTOMER_NAME"].ToString();
+                            oSales.CustomerId = Convert.ToInt32(drSoList["COM_CUSTOMER_ID"]);
                             oSales.Address = drSoList["ADDRESS"].ToString();
                             if (p_bIsIncludeChild)
                             {
-                                oSales.SOItemCollection.DAL_LoadbyId(iID);
+                                oSales.SOItemCollection.DAL_LoadbyId(oSales.SalesSoId);
                             }
                             this.Add(oSales);
                         }
@@ -188,65 +188,31 @@ namespace SO.BusinessLogicLayer
                 throw ex;
             }
         }
-        public bool DAL_LoadSales()
+        public bool DAL_Load(int iID, bool p_bIsIncludeChild = true)
         {
             try
             {
-                using (SqlDataReader drSoList = SqlHelper.ExecuteReader(PFSDataBaseAccess.ConnectionString, CommandType.StoredProcedure, "uspSO_SalesShowList"))
+                using (SqlDataReader drSoList = SqlHelper.ExecuteReader(PFSDataBaseAccess.ConnectionString, "uspSO_SalesRetrieve", iID))
                 {
                     if (drSoList.HasRows)
                     {
                         while (drSoList.Read())
                         {
-                            SalesOrder oSalesOrder = new SalesOrder();
-                            oSalesOrder.SalesSoId = Convert.ToInt32(drSoList["SALES_SO_ID"]);
-                            oSalesOrder.SalesOrderNo = drSoList["SO_NO"].ToString();
-                            oSalesOrder.OrderDate = Convert.ToDateTime(drSoList["ORDER_DATE"]);
-                            oSalesOrder.CustomerName = drSoList["CUSTOMER_NAME"].ToString();
-                            oSalesOrder.Address = drSoList["ADDRESS"].ToString();
-                            this.Add(oSalesOrder);
+                            SalesOrder oSales = new SalesOrder();
+                            oSales.SalesSoId = Convert.ToInt32(drSoList["SALES_SO_ID"]);
+                            oSales.SalesOrderNo = drSoList["SO_NO"].ToString();
+                            oSales.OrderDate = Convert.ToDateTime(drSoList["ORDER_DATE"]);
+                            oSales.CustomerId = Convert.ToInt32(drSoList["COM_CUSTOMER_ID"]);
+                            oSales.Address = drSoList["ADDRESS"].ToString();
+                            if (p_bIsIncludeChild)
+                            {
+                                oSales.SOItemCollection.DAL_LoadbyId(iID);
+                            }
+                            this.Add(oSales);
                         }
                         return true;
                     }
-                    else
-                    {
-                        return false;
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-        }
-        public bool DAL_LoadSalesbyKeyDate(string p_sKeyword,
-            DateTime? p_dtOrderDate)
-        {
-            try
-            {
-                using (SqlDataReader drSoList = SqlHelper.ExecuteReader(PFSDataBaseAccess.ConnectionString, "uspSO_SalesShowList",
-                    p_sKeyword,
-                    p_dtOrderDate))
-                {
-                    if (drSoList.HasRows)
-                    {
-                        while (drSoList.Read())
-                        {
-
-                            SalesOrder oSalesOrder = new SalesOrder();
-                            oSalesOrder.SalesSoId = Convert.ToInt32(drSoList["SALES_SO_ID"]);
-                            oSalesOrder.SalesOrderNo = drSoList["SO_NO"].ToString();
-                            oSalesOrder.OrderDate = Convert.ToDateTime(drSoList["ORDER_DATE"]);
-                            oSalesOrder.CustomerName = drSoList["CUSTOMER_NAME"].ToString();
-                            oSalesOrder.Address = drSoList["ADDRESS"].ToString();
-                            this.Add(oSalesOrder);
-                        }
-                        return true;
-                    }
-                    else
-                    {
-                        return false;
-                    }
+                    else return false;
                 }
             }
             catch (Exception ex)

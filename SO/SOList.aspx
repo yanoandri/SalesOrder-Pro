@@ -53,7 +53,8 @@
                     <Columns>
                         <asp:TemplateField HeaderText="NO" SortExpression="SalesSoId">
                             <ItemTemplate>
-                                <asp:Label ID="Label1" runat="server" Text='<%# DataBinder.Eval(Container.DataItem,"SalesSoId") %>'></asp:Label>
+                                <asp:Label ID="Label1" runat="server" Visible="false" Text='<%# DataBinder.Eval(Container.DataItem,"SalesSoId") %>'></asp:Label>
+                                <asp:Label ID="Label6" runat="server" Text='<%# Container.DataItemIndex + 1 %>'></asp:Label>
                             </ItemTemplate>
                             <HeaderStyle BackColor="#009933" HorizontalAlign="Center" VerticalAlign="Middle" />
                         </asp:TemplateField>

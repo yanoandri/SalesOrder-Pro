@@ -8,7 +8,7 @@ using System.Data.SqlClient;
 using PFSHelper.DataAccessLayer;
 using System.Collections;
 
-namespace SO
+namespace SO.BusinessLogicLayer
 {
     [System.Xml.Serialization.XmlRoot("ItemOrders")]
     public partial class SOItemCollection : ICollection
@@ -160,7 +160,7 @@ namespace SO
 
         #region Region: Data Access Methods//////////////////////////////////////////////////////////////
 
-        public bool DAL_Load()
+        public bool DAL_LoadbyId()
         {
             try
             {

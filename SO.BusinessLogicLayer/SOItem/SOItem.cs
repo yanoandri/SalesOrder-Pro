@@ -16,7 +16,7 @@ namespace SO
         protected int m_iSoId = 0;
         protected string m_sItemName = "-";
         protected int m_iQuantity = 0;
-        protected Double m_fPrice = 0;
+        protected Double m_dPrice = 0;
         #endregion
 
         #region Region: Constructor///////////////////////////////////////////////////////
@@ -41,7 +41,7 @@ namespace SO
             m_iSoId = p_iSoId;
             m_sItemName = p_sItemName;
             m_iQuantity = p_iQuantity;
-            m_fPrice = p_fPrice;
+            m_dPrice = p_fPrice;
         }
         #endregion
 
@@ -68,8 +68,8 @@ namespace SO
         }
         public Double Price
         {
-            get { return m_fPrice; }
-            set { m_fPrice = value; }
+            get { return m_dPrice; }
+            set { m_dPrice = value; }
         }
         #endregion
 
@@ -87,7 +87,7 @@ namespace SO
                         m_iSoId = Convert.ToInt32(drItemList["SALES_SO_ID"]);
                         m_sItemName = drItemList["ITEM_NAME"].ToString();
                         m_iQuantity = Convert.ToInt32(drItemList["QUANTITY"]);
-                        m_fPrice = Convert.ToDouble(drItemList["PRICE"]);
+                        m_dPrice = Convert.ToDouble(drItemList["PRICE"]);
                         bIsSuccess = true;
                     }
                 }
@@ -111,7 +111,7 @@ namespace SO
                         m_iSoId = Convert.ToInt32(drItemList["SALES_SO_ID"]);
                         m_sItemName = drItemList["ITEM_NAME"].ToString();
                         m_iQuantity = Convert.ToInt32(drItemList["QUANTITY"]);
-                        m_fPrice = Convert.ToDouble(drItemList["PRICE"]);
+                        m_dPrice = Convert.ToDouble(drItemList["PRICE"]);
                         bIsSuccess = true;
                     }
                 }
@@ -158,7 +158,7 @@ namespace SO
                     m_iSoId,
                     m_sItemName,
                     m_iQuantity,
-                    m_fPrice
+                    m_dPrice
                     ));
                 if (m_iItemId < 1) return false;
                 return true;
@@ -205,7 +205,7 @@ namespace SO
                     int iError = Convert.ToInt32(SqlHelper.ExecuteScalar(p_oTrans, "uspSO_ItemUpdate",
                         m_sItemName,
                         m_iQuantity,
-                        m_fPrice
+                        m_dPrice
                     ));
                     if (iError != 0) return false;
                 }

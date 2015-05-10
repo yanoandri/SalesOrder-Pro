@@ -16,7 +16,6 @@ namespace SO.BusinessLogicLayer
         protected int m_iSoid = 0;
         protected string m_sSono = "-";
         protected DateTime m_dtOrderDate = DateTime.Parse("01/01/1900");
-        protected string m_sCustomerName = "-";
         protected int m_sCustomerId = 0;
         protected string m_sAddress = "-";
         #endregion
@@ -38,14 +37,14 @@ namespace SO.BusinessLogicLayer
             int p_iSoid,
             string p_sSono,
             DateTime p_dtOrderDate,
-            string p_sCustomerName,
+            int p_iCustomerId,
             string p_sAddress)
         {
             m_oSOItemCollection = new SOItemCollection();
             m_iSoid = p_iSoid;
             m_sSono = p_sSono;
             m_dtOrderDate = p_dtOrderDate;
-            m_sCustomerName = p_sCustomerName;
+            m_sCustomerId = p_iCustomerId;
             m_sAddress = p_sAddress;
         }
         #endregion
@@ -71,17 +70,11 @@ namespace SO.BusinessLogicLayer
             get { return m_sCustomerId; }
             set { m_sCustomerId = value; }
         }
-        public string CustomerName
-        {
-            get { return m_sCustomerName; }
-            set { m_sCustomerName = value; }
-        }
         public string Address
         {
             get { return m_sAddress; }
             set { m_sAddress = value; }
         }
-
         public SOItemCollection SOItemCollection
         {
             get { return m_oSOItemCollection; }
@@ -95,13 +88,13 @@ namespace SO.BusinessLogicLayer
             bool bIsSuccess = false;
             try
             {
-                using (SqlDataReader drSoList = SqlHelper.ExecuteReader(PFSDataBaseAccess.ConnectionString, "uspSO_SalesRetrieve", CommandType.StoredProcedure, m_iSoid))
+                using (SqlDataReader drSoList = SqlHelper.ExecuteReader(PFSDataBaseAccess.ConnectionString, "uspSO_SalesLoad", CommandType.StoredProcedure, m_iSoid))
                 {
                     if (drSoList.Read())
                     {
                         m_iSoid = Convert.ToInt32(drSoList["SALES_SO_ID"]);
                         m_sSono = drSoList["SO_NO"].ToString();
-                        m_sCustomerName = drSoList["CUSTOMER_NAME"].ToString();
+                        m_sCustomerId = Convert.ToInt32(drSoList["COM_CUSTOMER_ID"]);
                         m_sAddress = drSoList["ADDRESS"].ToString();
                         bIsSuccess = true;
                         if (bWithChild)
@@ -123,13 +116,13 @@ namespace SO.BusinessLogicLayer
             bool bIsSuccess = false;
             try
             {
-                using (SqlDataReader drSoList = SqlHelper.ExecuteReader(PFSDataBaseAccess.ConnectionString, "uspSO_SalesRetrieve", CommandType.StoredProcedure, iID))
+                using (SqlDataReader drSoList = SqlHelper.ExecuteReader(PFSDataBaseAccess.ConnectionString, "uspSO_SalesLoad", CommandType.StoredProcedure, iID))
                 {
                     if (drSoList.Read())
                     {
                         m_iSoid = Convert.ToInt32(drSoList["SALES_SO_ID"]);
                         m_sSono = drSoList["SO_NO"].ToString();
-                        m_sCustomerName = drSoList["CUSTOMER_NAME"].ToString();
+                        m_sCustomerId = Convert.ToInt32(drSoList["COM_CUSTOMER_ID"]);
                         m_sAddress = drSoList["ADDRESS"].ToString();
                         bIsSuccess = true;
                         if (bWithChild)
@@ -177,7 +170,7 @@ namespace SO.BusinessLogicLayer
         {
             try
             {
-                m_iSoid = Convert.ToInt32(SqlHelper.ExecuteScalar(p_oTrans, "uspSO_insertSO",
+                m_iSoid = Convert.ToInt32(SqlHelper.ExecuteScalar(p_oTrans, "uspSO_SalesInsert",
                     m_sSono,
                     m_dtOrderDate,
                     m_sCustomerId,
@@ -231,7 +224,7 @@ namespace SO.BusinessLogicLayer
         {
             try
             {
-                int iResult = SqlHelper.ExecuteNonQuery(p_oTrans, "uspSO_SalesDelete", m_iSoid);
+                int iResult = SqlHelper.ExecuteNonQuery(p_oTrans, "uspSO_SalesFullDelete", m_iSoid);
                 return (iResult > 0);
             }
             catch (SqlException ex)

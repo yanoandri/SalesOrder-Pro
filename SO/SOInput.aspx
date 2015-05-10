@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="SOInput.aspx.cs" MasterPageFile="~/Site.Master" Inherits="SO.SOInput2" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="SOInput.aspx.cs" MasterPageFile="~/Site.Master" Inherits="SO.SOInput" %>
 
 <asp:Content runat="server" ID="BodyContent" ContentPlaceHolderID="MainContent">
     <script type="text/javascript">
@@ -51,7 +51,6 @@
                                 <asp:DropDownList ID="DDLCustomer" runat="server" AppendDataBoundItems="true">
                                     <asp:ListItem Text="--Select One--" Value="0" />
                                 </asp:DropDownList>
-                                <%--<asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:SOConnectionString %>" SelectCommand="SELECT * FROM [COM_CUSTOMER]"></asp:SqlDataSource>--%>
                             </td>
                             <td>
                                 <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ErrorMessage=" Pilih Salah Satu"
@@ -90,7 +89,7 @@
                     <Columns>
                         <asp:TemplateField HeaderStyle-HorizontalAlign="Center" HeaderText="NO">
                             <ItemTemplate>
-                                <asp:Label ID="lblUrut" runat="server" Text='<%# DataBinder.Eval(Container.DataItem,"OrderedList") %>'></asp:Label>
+                                <asp:Label ID="lblUrut" runat="server" Text='<%# Container.DataItemIndex + 1 %>'></asp:Label>
                                 <asp:Label ID="lblNo" runat="server" Text='<%# DataBinder.Eval(Container.DataItem,"SalesItemId") %>'></asp:Label>
                             </ItemTemplate>
                             <HeaderStyle HorizontalAlign="Center" />
@@ -149,7 +148,7 @@
                             </EditItemTemplate>
                             <ItemTemplate>
                                 <asp:Button ID="btnEdit" runat="server" CausesValidation="False" CommandArgument='<%# DataBinder.Eval(Container.DataItem,"SalesItemId") %>' CommandName="Edit" Text="Edit" />
-                                <asp:Button ID="btnDelete" runat="server" CausesValidation="False" CommandArgument='<%# DataBinder.Eval(Container.DataItem,"OrderedList") %>' CommandName="DeleteRow" OnClientClick="return confirm('Are you sure?')" Text="Delete" />
+                                <asp:Button ID="btnDelete" runat="server" CausesValidation="False" CommandArgument='<%# DataBinder.Eval(Container.DataItem,"SalesItemId") %>' CommandName="DeleteRow" OnClientClick="return confirm('Are you sure?')" Text="Delete" />
                             </ItemTemplate>
                         </asp:TemplateField>
                     </Columns>

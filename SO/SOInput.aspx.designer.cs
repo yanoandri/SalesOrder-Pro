@@ -10,7 +10,7 @@
 namespace SO {
     
     
-    public partial class SOInput2 {
+    public partial class SOInput {
         
         /// <summary>
         /// Header control.
