@@ -29,12 +29,12 @@ namespace SO.BusinessLogicLayer
             bool bIsSuccess = false;
             try
             {
-                using (SqlDataReader drSoList = SqlHelper.ExecuteReader(PFSDataBaseAccess.ConnectionString, "uspSO_SalesRetrieve", CommandType.StoredProcedure, m_iSoid))
+                using (SqlDataReader drSoList = SqlHelper.ExecuteReader(PFSDataBaseAccess.ConnectionString, "uspSO_SalesRetrieve", m_iSoid))
                 {
                     if (drSoList.Read())
                     {
-                        m_iSoid = Convert.ToInt32(drSoList["SALES_SO_ID"]);
                         m_sSono = drSoList["SO_NO"].ToString();
+                        m_dtOrderDate = Convert.ToDateTime(drSoList["ORDER_DATE"]);
                         m_sCustomerName = drSoList["CUSTOMER_NAME"].ToString();
                         m_sAddress = drSoList["ADDRESS"].ToString();
                         bIsSuccess = true;
@@ -56,18 +56,18 @@ namespace SO.BusinessLogicLayer
             bool bIsSuccess = false;
             try
             {
-                using (SqlDataReader drSoList = SqlHelper.ExecuteReader(PFSDataBaseAccess.ConnectionString, "uspSO_SalesLoad", CommandType.StoredProcedure, iID))
+                using (SqlDataReader drSoList = SqlHelper.ExecuteReader(PFSDataBaseAccess.ConnectionString, "uspSO_SalesRetrieve", iID))
                 {
                     if (drSoList.Read())
                     {
-                        m_iSoid = Convert.ToInt32(drSoList["SALES_SO_ID"]);
                         m_sSono = drSoList["SO_NO"].ToString();
+                        m_dtOrderDate = Convert.ToDateTime(drSoList["ORDER_DATE"]);
                         m_sCustomerName = drSoList["CUSTOMER_NAME"].ToString();
                         m_sAddress = drSoList["ADDRESS"].ToString();
                         bIsSuccess = true;
                         if (bWithChild)
                         {
-                            m_oSOItemCollection.DAL_LoadbyId(m_iSoid);
+                            m_oSOItemCollection.DAL_LoadbyId(iID);
                         }
                     }
                     return bIsSuccess;

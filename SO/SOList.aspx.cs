@@ -13,7 +13,7 @@ namespace SO
     {
         #region session and properties
 
-        private SalesOrderCollection sessSalesOrderCollection
+        private SalesOrderCollection SessSalesOrderCollection
         {
             get { return Session["sessSalesOrderCollection"] == null ? null : (SalesOrderCollection)Session["sessSalesOrderCollection"]; }
             set { Session["sessSalesOrderCollection"] = value; }
@@ -29,7 +29,8 @@ namespace SO
             {
                 if (!IsPostBack)
                 {
-                    GridView1.DataSource = GetSalesOrder();
+                    GetSalesOrder();
+                    GridView1.DataSource = SessSalesOrderCollection;
                     GridView1.DataBind();
                 }
             }
@@ -45,7 +46,8 @@ namespace SO
         {
             try
             {
-                GridView1.DataSource = GetSalesOrder();
+                GetSalesOrder();
+                GridView1.DataSource = SessSalesOrderCollection;
                 GridView1.DataBind();
             }
             catch (System.Threading.ThreadAbortException) { }
@@ -91,7 +93,7 @@ namespace SO
             try
             {
                 GridView1.PageIndex = e.NewPageIndex;
-                GridView1.DataSource = sessSalesOrderCollection;
+                GridView1.DataSource = SessSalesOrderCollection;
                 GridView1.DataBind();
             }
             catch (System.Threading.ThreadAbortException) { }
@@ -130,7 +132,8 @@ namespace SO
 
         private SalesOrderCollection GetSalesOrder()
         {
-            sessSalesOrderCollection = new SalesOrderCollection();
+            SalesOrderCollection oSoCollection = new SalesOrderCollection();
+            //SessSalesOrderCollection = new SalesOrderCollection();
             try
             {
                 string sKeyword = null;
@@ -138,8 +141,9 @@ namespace SO
                 dtOrderDate = null;
                 if (!string.IsNullOrWhiteSpace(txtkey.Text)) sKeyword = txtkey.Text;
                 if (!string.IsNullOrWhiteSpace(txtCalendar.Text)) dtOrderDate = Convert.ToDateTime(txtCalendar.Text);
-                sessSalesOrderCollection.DAL_LoadSalesbyKeyDate(sKeyword, dtOrderDate);
-                return sessSalesOrderCollection;
+                oSoCollection.DAL_LoadSalesbyKeyDate(sKeyword, dtOrderDate);
+                SessSalesOrderCollection = oSoCollection;
+                return oSoCollection;
             }
             catch (Exception ex)
             {

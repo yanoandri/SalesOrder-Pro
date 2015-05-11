@@ -167,7 +167,6 @@ namespace SO.BusinessLogicLayer
                         while (drSoList.Read())
                         {
                             SalesOrder oSales = new SalesOrder();
-                            oSales.SalesSoId = Convert.ToInt32(drSoList["SALES_SO_ID"]);
                             oSales.SalesOrderNo = drSoList["SO_NO"].ToString();
                             oSales.OrderDate = Convert.ToDateTime(drSoList["ORDER_DATE"]);
                             oSales.CustomerId = Convert.ToInt32(drSoList["COM_CUSTOMER_ID"]);
@@ -199,7 +198,6 @@ namespace SO.BusinessLogicLayer
                         while (drSoList.Read())
                         {
                             SalesOrder oSales = new SalesOrder();
-                            oSales.SalesSoId = Convert.ToInt32(drSoList["SALES_SO_ID"]);
                             oSales.SalesOrderNo = drSoList["SO_NO"].ToString();
                             oSales.OrderDate = Convert.ToDateTime(drSoList["ORDER_DATE"]);
                             oSales.CustomerId = Convert.ToInt32(drSoList["COM_CUSTOMER_ID"]);

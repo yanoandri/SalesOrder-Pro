@@ -164,7 +164,7 @@ namespace SO.BusinessLogicLayer
         {
             try
             {
-                using (SqlDataReader drItemList = SqlHelper.ExecuteReader(PFSDataBaseAccess.ConnectionString, CommandType.StoredProcedure, "uspSO_detailItem"))
+                using (SqlDataReader drItemList = SqlHelper.ExecuteReader(PFSDataBaseAccess.ConnectionString, CommandType.StoredProcedure, "uspSO_ItemLoad"))
                 {
                     if (drItemList.HasRows)
                     {

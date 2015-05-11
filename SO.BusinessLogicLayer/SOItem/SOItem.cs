@@ -7,7 +7,7 @@ using System.Data;
 using System.Data.SqlClient;
 using PFSHelper.DataAccessLayer;
 
-namespace SO
+namespace SO.BusinessLogicLayer
 {
     public partial class SOItem
     {

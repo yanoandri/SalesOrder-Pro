@@ -88,12 +88,13 @@ namespace SO.BusinessLogicLayer
             bool bIsSuccess = false;
             try
             {
-                using (SqlDataReader drSoList = SqlHelper.ExecuteReader(PFSDataBaseAccess.ConnectionString, "uspSO_SalesLoad", CommandType.StoredProcedure, m_iSoid))
+                using (SqlDataReader drSoList = SqlHelper.ExecuteReader(PFSDataBaseAccess.ConnectionString, "uspSO_SalesRetrieve", CommandType.StoredProcedure, m_iSoid))
                 {
                     if (drSoList.Read())
                     {
                         m_iSoid = Convert.ToInt32(drSoList["SALES_SO_ID"]);
                         m_sSono = drSoList["SO_NO"].ToString();
+                        m_dtOrderDate = Convert.ToDateTime(drSoList["ORDER_DATE"]);
                         m_sCustomerId = Convert.ToInt32(drSoList["COM_CUSTOMER_ID"]);
                         m_sAddress = drSoList["ADDRESS"].ToString();
                         bIsSuccess = true;
@@ -116,12 +117,13 @@ namespace SO.BusinessLogicLayer
             bool bIsSuccess = false;
             try
             {
-                using (SqlDataReader drSoList = SqlHelper.ExecuteReader(PFSDataBaseAccess.ConnectionString, "uspSO_SalesLoad", CommandType.StoredProcedure, iID))
+                using (SqlDataReader drSoList = SqlHelper.ExecuteReader(PFSDataBaseAccess.ConnectionString, "uspSO_SalesRetrieve", CommandType.StoredProcedure, iID))
                 {
                     if (drSoList.Read())
                     {
                         m_iSoid = Convert.ToInt32(drSoList["SALES_SO_ID"]);
                         m_sSono = drSoList["SO_NO"].ToString();
+                        m_dtOrderDate = Convert.ToDateTime(drSoList["ORDER_DATE"]);
                         m_sCustomerId = Convert.ToInt32(drSoList["COM_CUSTOMER_ID"]);
                         m_sAddress = drSoList["ADDRESS"].ToString();
                         bIsSuccess = true;
@@ -182,7 +184,7 @@ namespace SO.BusinessLogicLayer
                 {
                     m_oSOItemCollection[i].SoId = m_iSoid;
                 }
-                if (!m_oSOItemCollection.DAL_Add(p_oTrans)) return false;
+                if (m_oSOItemCollection.DAL_Add(p_oTrans)) return true;
                 #endregion
                 return true;
             }
