@@ -47,7 +47,7 @@
             <asp:Panel ID="Detail" runat="server" Font-Bold="True" GroupingText="DETAIL" Style="margin-left: 12px"
                 Width="890px" BorderStyle="Solid" ScrollBars="Auto">
                 &nbsp&nbsp<asp:Button ID="btnAdd" runat="server" Text="ADD SO" OnClick="btnAdd_Click" />
-                <asp:GridView ID="GridView1" runat="server" AllowPaging="True" AllowSorting="True" AutoGenerateColumns="False" DataKeyNames="SalesSoId" OnRowDeleting="GridView1_RowDeleting"
+                <asp:GridView ID="GridView1" runat="server" AllowPaging="True" AllowSorting="false" AutoGenerateColumns="False" DataKeyNames="SalesSoId" OnRowDeleting="GridView1_RowDeleting"
                     OnRowCommand="GridView1_RowCommand" OnPageIndexChanging="GridView1_PageIndexChanging" Height="252px" PageSize="5" Width="719px" CellPadding="4" ForeColor="#333333" GridLines="Both" HorizontalAlign="Center"
                     OnRowDataBound="GridView1_RowDataBound">
                     <Columns>
@@ -66,7 +66,7 @@
                         </asp:TemplateField>
                         <asp:TemplateField HeaderText="ORDER DATE" SortExpression="OrderDate">
                             <ItemTemplate>
-                                <asp:Label ID="Label3" runat="server" Text='<% #DataBinder.Eval(Container.DataItem,"OrderDate")  %>'></asp:Label>
+                                <asp:Label ID="Label3" runat="server" Text='<% #DataBinder.Eval(Container.DataItem, "OrderDate")  %>'></asp:Label>
                             </ItemTemplate>
                             <HeaderStyle BackColor="#009933" HorizontalAlign="Center" VerticalAlign="Middle" />
                         </asp:TemplateField>

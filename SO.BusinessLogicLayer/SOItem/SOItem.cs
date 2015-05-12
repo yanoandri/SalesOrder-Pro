@@ -160,8 +160,8 @@ namespace SO.BusinessLogicLayer
                     m_iQuantity,
                     m_dPrice
                     ));
-                if (m_iItemId < 1) return false;
-                return true;
+                if (m_iItemId < 1) return true;
+                return false;
             }
             catch (Exception ex)
             {
@@ -203,6 +203,7 @@ namespace SO.BusinessLogicLayer
                 if (m_iItemId > 0)
                 {
                     int iError = Convert.ToInt32(SqlHelper.ExecuteScalar(p_oTrans, "uspSO_ItemUpdate",
+                        m_iItemId,
                         m_sItemName,
                         m_iQuantity,
                         m_dPrice
@@ -225,15 +226,17 @@ namespace SO.BusinessLogicLayer
             SqlTransaction oTrans = oConn.BeginTransaction();
             try
             {
-                if (DAL_Delete(oTrans))
-                {
-                    oTrans.Commit();
-                    return true;
-                }
-                else
+                bool bIsSuccess = DAL_Delete(oTrans);
+                if (!bIsSuccess)
                 {
                     oTrans.Rollback();
                     return false;
+                    
+                }
+                else
+                {
+                    oTrans.Commit();
+                    return true;
                 }
             }
             catch (SqlException ex)
@@ -250,7 +253,8 @@ namespace SO.BusinessLogicLayer
         {
             try
             {
-                int iRowAffected = SqlHelper.ExecuteNonQuery(p_oTrans, "uspSO_ItemDelete", m_iItemId);
+                int iRowAffected = 0;
+                iRowAffected = SqlHelper.ExecuteNonQuery(p_oTrans, "uspSO_ItemDelete", m_iItemId);
                 return (iRowAffected > 0);
             }
             catch (SqlException ex)

@@ -12,6 +12,9 @@ namespace SO.BusinessLogicLayer
 {
     public partial class SalesOrderCollection
     {
+        /// <summary>
+        /// Partial Properties
+        /// </summary>
         public bool DAL_RetrievebyId(int iID, bool p_bIsIncludeChild = true)
         {
             try

@@ -1,10 +1,12 @@
 ﻿using System;
+using System.Collections;
 using System.Web.UI.WebControls;
 using System.Configuration;
 using System.Data.SqlClient;
 using System.Data;
 using SO.BusinessLogicLayer;
 using System.Collections.Generic;
+using PFSHelper.BusinessLogicLayer;
 using PFSHelper.Lib;
 
 namespace SO
@@ -76,7 +78,7 @@ namespace SO
             try
             {
                 if (e.CommandName == "Edit")
-                { 
+                {
                     Session["Edit"] = Convert.ToInt32(e.CommandArgument.ToString());
                     Response.Redirect("SOInput.aspx?SOID=" + Session["Edit"]);
                 }
@@ -85,6 +87,7 @@ namespace SO
             catch (Exception ex)
             {
                 throw ex;
+                
             }
         }
 
@@ -110,7 +113,8 @@ namespace SO
                 SalesOrder oSales = new SalesOrder();
                 oSales.SalesSoId = Convert.ToInt32(GridView1.DataKeys[e.RowIndex].Value);
                 oSales.DAL_DeleteFullSO();
-                Response.Redirect("SOList.aspx");
+                GridView1.DataSource = SessSalesOrderCollection;
+                GridView1.DataBind();
             }
             catch (System.Threading.ThreadAbortException) { }
             catch (Exception ex)
@@ -121,9 +125,9 @@ namespace SO
 
         protected void GridView1_RowDataBound(object sender, GridViewRowEventArgs e)
         {
-            if (e.Row.RowType == DataControlRowType.DataRow)
-            {
-            }
+            //if (e.Row.RowType == DataControlRowType.DataRow)
+            //{
+            //}
         }
 
         #endregion page event
@@ -133,7 +137,6 @@ namespace SO
         private SalesOrderCollection GetSalesOrder()
         {
             SalesOrderCollection oSoCollection = new SalesOrderCollection();
-            //SessSalesOrderCollection = new SalesOrderCollection();
             try
             {
                 string sKeyword = null;
@@ -153,6 +156,8 @@ namespace SO
         }
 
         #endregion method
+
+
 
     }
 }

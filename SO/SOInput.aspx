@@ -90,7 +90,7 @@
                         <asp:TemplateField HeaderStyle-HorizontalAlign="Center" HeaderText="NO">
                             <ItemTemplate>
                                 <asp:Label ID="lblUrut" runat="server" Text='<%# Container.DataItemIndex + 1 %>'></asp:Label>
-                                <asp:Label ID="lblNo" runat="server" Text='<%# DataBinder.Eval(Container.DataItem,"SalesItemId") %>'></asp:Label>
+                                <asp:Label ID="lblNo" runat="server" Visible="false" Text='<%# DataBinder.Eval(Container.DataItem,"SalesItemId") %>'></asp:Label>
                             </ItemTemplate>
                             <HeaderStyle HorizontalAlign="Center" />
                         </asp:TemplateField>
@@ -148,7 +148,7 @@
                             </EditItemTemplate>
                             <ItemTemplate>
                                 <asp:Button ID="btnEdit" runat="server" CausesValidation="False" CommandArgument='<%# DataBinder.Eval(Container.DataItem,"SalesItemId") %>' CommandName="Edit" Text="Edit" />
-                                <asp:Button ID="btnDelete" runat="server" CausesValidation="False" CommandArgument='<%# DataBinder.Eval(Container.DataItem,"SalesItemId") %>' CommandName="DeleteRow" OnClientClick="return confirm('Are you sure?')" Text="Delete" />
+                                <asp:Button ID="btnDelete" runat="server" CausesValidation="False" CommandArgument='<%# Container.DataItemIndex %>' CommandName="DeleteRow" OnClientClick="return confirm('Are you sure?')" Text="Delete" />
                             </ItemTemplate>
                         </asp:TemplateField>
                     </Columns>

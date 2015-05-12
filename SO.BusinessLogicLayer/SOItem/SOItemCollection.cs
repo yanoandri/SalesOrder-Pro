@@ -187,11 +187,11 @@ namespace SO.BusinessLogicLayer
                 throw ex;
             }
         }
-        public bool DAL_LoadbyId(int p_iItemId)
+        public bool DAL_LoadbyId(int p_iSoId)
         {
             try
             {
-                using (SqlDataReader drItemList = SqlHelper.ExecuteReader(PFSDataBaseAccess.ConnectionString, "uspSO_ItemLoad", p_iItemId))
+                using (SqlDataReader drItemList = SqlHelper.ExecuteReader(PFSDataBaseAccess.ConnectionString, "uspSO_ItemLoad", p_iSoId))
                 {
                     if (drItemList.HasRows)
                     {

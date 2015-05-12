@@ -117,7 +117,7 @@ namespace SO.BusinessLogicLayer
             bool bIsSuccess = false;
             try
             {
-                using (SqlDataReader drSoList = SqlHelper.ExecuteReader(PFSDataBaseAccess.ConnectionString, "uspSO_SalesRetrieve", CommandType.StoredProcedure, iID))
+                using (SqlDataReader drSoList = SqlHelper.ExecuteReader(PFSDataBaseAccess.ConnectionString, "uspSO_SalesRetrieve", iID))
                 {
                     if (drSoList.Read())
                     {
@@ -184,7 +184,7 @@ namespace SO.BusinessLogicLayer
                 {
                     m_oSOItemCollection[i].SoId = m_iSoid;
                 }
-                if (m_oSOItemCollection.DAL_Add(p_oTrans)) return true;
+                if (!m_oSOItemCollection.DAL_Add(p_oTrans)) return false;
                 #endregion
                 return true;
             }
@@ -269,11 +269,11 @@ namespace SO.BusinessLogicLayer
                 if (m_iSoid > 0)
                 {
                     int iError = Convert.ToInt32(SqlHelper.ExecuteScalar(p_oTrans, "uspSO_SalesUpdate",
-                        m_iSoid,
                         m_sSono,
-                        m_dtOrderDate,
                         m_sCustomerId,
-                        m_sAddress
+                        m_dtOrderDate,
+                        m_sAddress,
+                        m_iSoid
                     ));
                     if (iError != 0) return false;
                     if (p_bIsIncludeChild)
@@ -289,7 +289,7 @@ namespace SO.BusinessLogicLayer
                                 //** Such a Hassle just to get a deleted list
                                 for (int i = 0; i < oItemCollectionDeletedList.Count; i++)
                                 {
-                                    if (oItemCollectionDeletedList[i].SoId == oItemIterator.SoId)
+                                    if (oItemCollectionDeletedList[i].SalesItemId == oItemIterator.SalesItemId)
                                     {
                                         oItemCollectionDeletedList.RemoveAt(i);
                                         break;
@@ -299,6 +299,7 @@ namespace SO.BusinessLogicLayer
                             if (!oItemCollectionDeletedList.DAL_Delete(p_oTrans)) return false;
                         }
                         #endregion
+
                         #region Update appropriate child
                         for (int i = 0; i < m_oSOItemCollection.Count; i++)
                         {

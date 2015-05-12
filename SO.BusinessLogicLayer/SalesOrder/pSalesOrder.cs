@@ -11,6 +11,9 @@ namespace SO.BusinessLogicLayer
 {
     public partial class SalesOrder
     {
+        /// <summary>
+        /// Partial Properties
+        /// </summary>
         #region Region: Member Variables///////////////////////////////////////////////////////
         protected string m_sCustomerName = "-";
         #endregion
@@ -35,7 +38,7 @@ namespace SO.BusinessLogicLayer
                     {
                         m_sSono = drSoList["SO_NO"].ToString();
                         m_dtOrderDate = Convert.ToDateTime(drSoList["ORDER_DATE"]);
-                        m_sCustomerName = drSoList["CUSTOMER_NAME"].ToString();
+                        m_sCustomerId = Convert.ToInt32(drSoList["COM_CUSTOMER_ID"]);
                         m_sAddress = drSoList["ADDRESS"].ToString();
                         bIsSuccess = true;
                         if (bWithChild)
@@ -62,7 +65,7 @@ namespace SO.BusinessLogicLayer
                     {
                         m_sSono = drSoList["SO_NO"].ToString();
                         m_dtOrderDate = Convert.ToDateTime(drSoList["ORDER_DATE"]);
-                        m_sCustomerName = drSoList["CUSTOMER_NAME"].ToString();
+                        m_sCustomerId = Convert.ToInt32(drSoList["COM_CUSTOMER_ID"]);
                         m_sAddress = drSoList["ADDRESS"].ToString();
                         bIsSuccess = true;
                         if (bWithChild)

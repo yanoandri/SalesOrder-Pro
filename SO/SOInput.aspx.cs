@@ -35,7 +35,7 @@ namespace SO
                     SalesOrder oSalesOrder = new SalesOrder();
                     m_SalesOrderObject = oSalesOrder;
 
-                    Customer oCustomer = new Customer();
+
                     DDLCustomer.DataSource = GetAllCustomer();
                     DDLCustomer.DataTextField = "CustomerName";
                     DDLCustomer.DataValueField = "CustomerId";
@@ -61,7 +61,7 @@ namespace SO
             try
             {
                 SOItem oSoItem = new SOItem();
-                oSoItem.SalesItemId = 1;
+                oSoItem.SalesItemId = -1;
                 m_SalesOrderObject.SOItemCollection.Add(oSoItem);
                 int iCount = m_SalesOrderObject.SOItemCollection.Count;
                 GridInput.SetEditRow(iCount - 1);
@@ -157,8 +157,6 @@ namespace SO
                 TextBox txtQty = (TextBox)GridInput.Rows[e.RowIndex].Cells[2].FindControl("txtQty");
                 TextBox txtPrice = (TextBox)GridInput.Rows[e.RowIndex].Cells[3].FindControl("txtprice");
                 GridViewRow rGridRow = GridInput.Rows[e.RowIndex];
-                int iCount = m_SalesOrderObject.SOItemCollection.Count;
-                int iCount2 = GridInput.Rows.Count;
                 SOItem oSoItem = new SOItem();
                 oSoItem.ItemName = txtItem.Text;
                 oSoItem.Quantity = Convert.ToInt32(txtQty.Text);
@@ -184,7 +182,7 @@ namespace SO
         {
             try
             {
-                m_SalesOrderObject.SOItemCollection.RemoveAt(e.RowIndex - 1);
+                m_SalesOrderObject.SOItemCollection.RemoveAt(e.RowIndex);
                 GridInput.DataSource = m_SalesOrderObject.SOItemCollection;
                 GridInput.DataBind();
             }
@@ -218,14 +216,7 @@ namespace SO
         {
             try
             {
-                if (m_SoId != 0)
-                {
-                    UpdateData();
-                }
-                else
-                {
-                    InsertData();
-                }
+                UpdateDataSO();
             }
             catch (System.Threading.ThreadAbortException) { }
             catch (Exception ex)
@@ -250,25 +241,6 @@ namespace SO
         #endregion page event
 
         #region method
-        private void InsertData()
-        {
-            m_SalesOrderObject.SalesOrderNo = txtSales.Text;
-            m_SalesOrderObject.OrderDate = Convert.ToDateTime(txtDate.Text);
-            m_SalesOrderObject.CustomerId = Convert.ToInt32(DDLCustomer.SelectedValue);
-            m_SalesOrderObject.Address = txtaddres.Text;
-            int iCount = m_SalesOrderObject.SOItemCollection.Count;
-            if (iCount != 0)
-            {
-                bool bIsSuccess = m_SalesOrderObject.DAL_Add();
-                if (!bIsSuccess)
-                {
-                    PFSBasePage.AlertMessageBox(this, "Save Failed");
-                }
-                else PFSBasePage.AlertMessageBox(this, "Save Success");
-                Response.Redirect("SOList.aspx");
-            }
-        }
-
         private void RetrieveSalesOrderData()
         {
             SalesOrder oSalesOrder = new SalesOrder();
@@ -276,7 +248,7 @@ namespace SO
 
             txtSales.Text = oSalesOrder.SalesOrderNo;
             txtDate.Text = oSalesOrder.OrderDate.ToString();
-            DDLCustomer.SelectedItem.Text = oSalesOrder.CustomerName;
+            DDLCustomer.SelectedValue = oSalesOrder.CustomerId.ToString();
             txtaddres.Text = oSalesOrder.Address;
 
             GridInput.DataSource = oSalesOrder.SOItemCollection;
@@ -292,8 +264,13 @@ namespace SO
             return oCustCollection;
         }
 
-        private void UpdateData()
+        private void UpdateDataSO()
         {
+            m_SalesOrderObject.SalesSoId = m_SoId;
+            m_SalesOrderObject.SalesOrderNo = txtSales.Text;
+            m_SalesOrderObject.CustomerId = Convert.ToInt32(DDLCustomer.SelectedValue);
+            m_SalesOrderObject.OrderDate = Convert.ToDateTime(txtDate.Text);
+            m_SalesOrderObject.Address = txtaddres.Text;
             bool bIsSuccess = m_SalesOrderObject.DAL_Update();
             if (!bIsSuccess)
             {

@@ -122,7 +122,7 @@ namespace SO.BusinessLogicLayer
             bool bIsSuccess = false;
             try
             {
-                using (SqlDataReader drCustomerList = SqlHelper.ExecuteReader(PFSDataBaseAccess.ConnectionString, CommandType.StoredProcedure, "uspSO_CustomerLoad"))
+                using (SqlDataReader drCustomerList = SqlHelper.ExecuteReader(PFSDataBaseAccess.ConnectionString, "uspSO_CustomerLoad"))
                 {
                     if (drCustomerList.HasRows)
                     {
