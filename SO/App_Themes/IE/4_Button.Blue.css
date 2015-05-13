@@ -1,0 +1,83 @@
+/* added by kurniawan: 20120119 to adjust icon top position */
+.rbPrimaryIcon 
+{
+    left:10px; 
+    top:4px; 
+    margin-top:1px;
+    }
+.rbDecorated
+{
+    width:auto;
+    }
+ .rbPrimary
+ {text-align:right !important;
+  padding-right:4px !important;
+     }
+ .rbSecondary
+ {
+     text-align:left;
+     padding-right:20px!important
+     }
+/* IE7 line height */
+* + html a.customHeight26 input.rbDecorated
+{
+    line-height: 26px !important;
+}
+/* new sprite */
+a.customHeight26, .customHeight26 input.rbDecorated
+{
+    background-image: url(../Default/Button/customHeight.gif) !important;
+    color:#fff;
+}
+/* right rounded corner position */
+a.customHeight26
+{
+    background-position: right 0;
+    margin:2px 0px;
+}
+/* left rounded corner position */
+a.customHeight26 input.rbDecorated
+{
+    background-position: 0 -26px;
+}
+/* right rounded corner position hover state */
+a.customHeight26:hover
+{
+    background-position: right -52px;
+}
+/* left rounded corner position hover state */
+a.customHeight26:hover input.rbDecorated
+{
+    background-position: left -78px;
+}
+/* right rounded corner position active and focus states */
+a.customHeight26:focus, a.customHeight26:active
+{
+    background-position: right -104px;
+}
+/* left rounded corner position active and focus states */
+a.customHeight26:focus input.rbDecorated, a.customHeight26:active input.rbDecorated
+{
+    background-position: left -130px;
+}
+/* IE and Opera Focus and Active state fix with additional class, should be used !important */
+a.customHeight26.rbPressedButton
+{
+    background-position: right -104px !important;
+}
+a.customHeight26.rbPressedButton input.rbDecorated
+{
+    background-position: left -130px !important;
+}
+/* IE8 Onclickg filckering Bug fix */
+a.customHeight26.rbPressedIE8 input.rbDecorated, a.customHeight26.rbPressedIE8Rtl input.rbDecorated
+{
+    -ms-background-position-x: 1px !important;
+    -ms-background-position-y: -129px !important;
+}
+
+a.customHeight26.rbPressedIE8Rtl input.rbDecorated
+{
+    -ms-background-position-x: -1px !important;
+}
+/* fix end */

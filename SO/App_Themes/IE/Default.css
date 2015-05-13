@@ -1,0 +1,256 @@
+﻿/*=================================================================
+	Default Style for ASP.Net Control
+===================================================================*/
+
+
+
+.Button
+{
+    font-size: 11px;
+    font-weight: bold;
+    font-family: "Trebuchet MS" , Arial, Verdana;
+    width: 100px;
+    cursor: hand;
+}
+
+.CheckBox
+{
+    font-family: "Trebuchet MS" , Arial, Verdana;
+    font-size: 11px;
+    color: black;
+    vertical-align: middle;
+}
+.CheckBoxList
+{
+    font-family: "Trebuchet MS" , Arial, Verdana;
+    font-size: 11px;
+    color: black;
+    vertical-align: middle;
+}
+.DropDownList
+{
+    font-family: "Trebuchet MS" , Arial, Verdana;
+    font-size: 10.5px;
+    color: black;
+    vertical-align: middle;
+}
+.Hyperlink
+{
+    font-family: "Trebuchet MS" , Arial, Verdana;
+    font-size: 11px;
+    color: Blue;
+    text-decoration: none;
+    vertical-align: middle;
+}
+.Hyperlink:link
+{
+    font-family: "Trebuchet MS" , Arial, Verdana;
+    font-size: 11px;
+    color: Blue;
+    text-decoration: none;
+    vertical-align: middle;
+}
+.Hyperlink:visited, Hyperlink:active
+{
+    font-family: "Trebuchet MS" , Arial, Verdana;
+    font-size: 11px;
+    color: Blue;
+    text-decoration: none;
+    vertical-align: middle;
+}
+.Hyperlink:hover
+{
+    font-family: "Trebuchet MS" , Arial, Verdana;
+    font-size: 11px;
+    color: #223481;
+    text-decoration: underline;
+    vertical-align: middle;
+}
+
+.Image
+{
+    font-family: "Trebuchet MS" , Arial, Verdana;
+    font-size: 11px;
+    color: #000;
+    vertical-align: middle;
+}
+.ImageButton
+{
+    font-family: "Trebuchet MS" , Arial, Verdana;
+    font-size: 11px;
+    color: #000;
+    vertical-align: middle;
+}
+.InputButton
+{
+    font-family: "Trebuchet MS" , Arial, Verdana;
+    font-size: 11px;
+    color: #000;
+    vertical-align: middle;
+}
+.InputFile
+{
+    font-family: "Trebuchet MS" , Arial, Verdana;
+    font-size: 11px;
+    color: #000;
+    vertical-align: middle;
+}
+.InputReset
+{
+    font-family: "Trebuchet MS" , Arial, Verdana;
+    font-size: 11px;
+    color: #000;
+    vertical-align: middle;
+}
+.InputSubmit
+{
+    font-family: "Trebuchet MS" , Arial, Verdana;
+    font-size: 11px;
+    color: #000;
+    vertical-align: middle;
+}
+.InputText
+{
+    font-family: "Trebuchet MS" , Arial, Verdana;
+    font-size: 11px;
+    color: #000;
+    vertical-align: middle;
+}
+.Label
+{
+    font-family: "Trebuchet MS" , Arial, Verdana;
+    font-size: 11px;
+    color: #000;
+    vertical-align: middle;
+}
+
+.LinkButton
+{
+    font-family: "Trebuchet MS" , Arial, Verdana;
+    font-size: 11px;
+    color: #000;
+    text-decoration: none;
+    vertical-align: middle;
+}
+.LinkButton:link
+{
+    font-family: "Trebuchet MS" , Arial, Verdana;
+    font-size: 11px;
+    color: #000;
+    text-decoration: none;
+    vertical-align: middle;
+}
+.LinkButton:visited, LinkButton:Active
+{
+    font-family: "Trebuchet MS" , Arial, Verdana;
+    font-size: 11px;
+    color: #000;
+    text-decoration: none;
+    vertical-align: middle;
+}
+.LinkButton:hover
+{
+    font-family: "Trebuchet MS" , Arial, Verdana;
+    font-size: 11px;
+    color: #223481;
+    text-decoration: underline;
+    vertical-align: middle;
+}
+.ListBox
+{
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 11px;
+    color: #000;
+    vertical-align: middle;
+}
+
+.RadioButton
+{
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 11px;
+    color: #000;
+    vertical-align: middle;
+}
+.RadioButtonList16
+{
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 16px;
+    color: #000;
+    vertical-align: middle;
+}
+.RadioButtonList
+{
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 11px;
+    color: #000;
+    vertical-align: middle;
+}
+.TextBox
+{
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 11px;
+    color: #000;
+    vertical-align: middle;
+}
+.TextBoxSearchKeywords
+{
+    font-family: "Trebuchet MS" , Arial, Verdana;
+    font-size: 11px;
+    color: #000;
+    vertical-align: middle;
+    width: 200px;
+}
+.TextBoxNumber
+{
+    font-family: "Trebuchet MS" , Arial, Verdana;
+    font-size: 11px;
+    color: #000;
+    vertical-align: middle;
+}
+
+.Validation
+{
+    background: url(../Default/images/icons/alert.png) no-repeat;
+    padding-left: 20px;
+    color: #FFFFFF;
+}
+
+/*=================================================================
+	Default Style for Telerik Control
+===================================================================*/
+.RequiredField
+{
+    font-family: "Trebuchet MS" , Arial, Verdana;
+    font-size: 11px;
+    color: Red;
+}
+
+.NumberColomn
+{
+    background-color: #D9D9D9;
+    text-align: center;
+    width: 20px;
+}
+
+.trClass td
+{
+    padding-bottom: 2pt;
+}
+
+.RadComboBox table td.rcbInputCell, .RadComboBox .rcbInputCell .rcbInput {
+    font-size: 10.5px;
+}
+
+.RadComboBox_Vista, .RadComboBox_Vista .rcbInput, .RadComboBoxDropDown_Vista {
+    color: #333333 !important;
+    font: 10.5px "Segoe UI",Arial,sans-serif !important;
+}
+
+.EmailColor
+{
+    color: Blue;   
+}
+.RadWindow,.RadWindow_Office2007,.rwNormalWindow,.rwTransparentWindow
+{
+    z-index:9999 !important;
+}

@@ -1,0 +1,332 @@
+﻿/*=================================================================
+	Custom Style for Login
+=================================================================*/
+.LoginStatus
+{
+    font-family: Trebuchet MS;
+    font-size: 11px;
+    color: white;
+    text-align: center;
+    background: url(../Default/images/background/bg_login_status.jpg) left top repeat-x;
+    border: solid 1px gray;
+    width: 250px;
+}
+.LoginField
+{
+    font-family: Trebuchet MS;
+    font-size: 14px;
+    color: black;
+}
+
+.AccessRightHeaderTitle
+{
+    font-family: "Trebuchet MS" , Arial, Verdana;
+    font-size: 12px;
+    font-weight: bold;
+    color: #000;
+    vertical-align: middle;
+    height: 30px;
+    background-color: #E2E2E2;
+    padding-left: 5px;
+}
+.AccessRightHeaderCheckbox
+{
+    font-family: "Trebuchet MS" , Arial, Verdana;
+    font-size: 12px;
+    font-weight: bold;
+    color: #000;
+    vertical-align: middle;
+    width: 70px;
+    padding-right: 10px;
+    background-color: #A7EB90;
+}
+.AccessRightDetailTitle
+{
+    font-family: "Trebuchet MS" , Arial, Verdana;
+    font-size: 11px;
+    color: #000;
+    vertical-align: middle;
+}
+.AccessRightDetailCheckbox
+{
+    font-family: "Trebuchet MS" , Arial, Verdana;
+    font-size: 11px;
+    color: #000;
+    vertical-align: middle;
+}
+
+/*=================================================================
+	Custom Style for ASP.Net Control
+===================================================================*/
+.HyperlinkPackageList:link
+{
+    font-family: Arial, Verdana, "Trebuchet MS";
+    font-size: 11px;
+    color: #abf2ff;
+    text-decoration: none;
+}
+.HyperlinkPackageList:visited, HyperlinkPackageList:active
+{
+    font-family: Arial, Verdana, "Trebuchet MS";
+    font-size: 11px;
+    color: #abf2ff;
+    text-decoration: none;
+}
+.HyperlinkPackageList:hover
+{
+    font-family: Arial, Verdana, "Trebuchet MS";
+    font-size: 11px;
+    color: #3ac9e3;
+    text-decoration: underline;
+}
+
+.LabelPackageDate
+{
+    font-family: Arial, Verdana, "Trebuchet MS";
+    font-size: 11px;
+    font-weight: bold;
+    color: #04b5e9;
+}
+.LabelPackageList
+{
+    font-family: Arial, Verdana, "Trebuchet MS";
+    font-size: 11px;
+    color: #abf2ff;
+}
+.LabelErrorMessage
+{
+    font-family: Arial, Verdana, "Trebuchet MS";
+    font-size: 11px;
+    color: red;
+}
+.LabelTaglineQuote
+{
+    font-family: Arial Black;
+    font-size: 22px;
+    font-style: italic;
+    vertical-align: bottom;
+    padding-right: 100px;
+    color: black;
+    text-decoration: none;
+}
+
+.LabelTitledPage
+{
+    font-family: Arial, Verdana, "Trebuchet MS";
+    font-size: larger;
+    font-weight: bolder;
+    color: black;
+    text-transform: capitalize;
+}
+.LabelValidation
+{
+    font-family: Arial, Verdana, "Trebuchet MS";
+    font-size: 11px;
+    color: red;
+}
+.LabelData
+{
+    font-family: Arial, Verdana, "Trebuchet MS";
+    font-size: 11px;
+    color: blue;
+}
+.Overflow
+{
+    height: 125px;
+    overflow: scroll;
+    overflow-x: hidden;
+    border-left: solid 0px #C1C1C1;
+    border-right: solid 1px #5f81b7;
+    scrollbar-arrow-color: #5f81b7;
+    scrollbar-base-color: #012765;
+    scrollbar-darkshadow-color: #5f81b7;
+    scrollbar-face-color: #01378d;
+    scrollbar-highlight-color: #5f81b7;
+    scrollbar-shadow-color: #000000;
+}
+.Radio150Percent
+{
+    font: 140% Arial,Helvetica,sans-serif !important;
+}
+/*=================================================================
+	Custom style for different styles in each hierarchy level of radgrid
+=================================================================*/
+
+/* Grid Level 1 **********************************/
+.GridHeader_Outlook2007_Level1 a
+{
+    text-decoration: none;
+    color: WindowText;
+}
+
+.GridHeader_Outlook2007_Level1
+{
+    background: url(../Default/images/pages/grid_level1/headerBg.gif) left bottom repeat-x !important;
+}
+
+.GridHeader_Outlook2007_Level1 span
+{
+    text-decoration: none;
+    color: WindowText;
+    cursor: default;
+}
+
+.GridRow_Outlook2007_Level1 td, .GridAltRow_Outlook2007_Level1 td, .GridEditRow_Outlook2007_Level1 td, .SelectedRow_Outlook2007_Level1 td
+{
+    border-bottom: 1px solid #BDF8D0;
+}
+
+/* IE6 can't use bottom borders, because they remain visible when collapsing groups of rows */
+* html .GridRow_Outlook2007_Level1 td, * html .GridAltRow_Outlook2007_Level1 td, * html .GridEditRow_Outlook2007_Level1 td
+{
+    border-bottom: 0;
+}
+* html .GridRow_Outlook2007_Level1, * html .GridAltRow_Outlook2007_Level1, * html .GridEditRow_Outlook2007_Level1
+{
+    background: url(../Default/images/pages/grid_level1/borderbottom.gif) left bottom repeat-x;
+}
+
+.GridRow_Outlook2007_Level1
+{
+    background: #EFFBF3 !important;
+}
+.GridAltRow_Outlook2007_Level1
+{
+    background: #CEFBDD !important;
+}
+
+.SelectedRow_Outlook2007_Level1
+{
+    background: #2FED6E !important;
+}
+.GridPager_Outlook2007_Level1
+{
+    background: #c0dbff url(../Default/images/pages/grid_level1/pagerBg.gif) repeat-x;
+    color: WindowText;
+    cursor: default;
+}
+
+.GridPager_Outlook2007_Level1 .PagerPanel *
+{
+    vertical-align: middle;
+}
+
+.GridPager_Outlook2007_Level1 td
+{
+    padding-top: 3px;
+    padding-bottom: 3px;
+}
+
+
+/* Grid Level 2 **********************************/
+.GridHeader_Outlook2007_Level2 a
+{
+    text-decoration: none;
+    color: WindowText;
+}
+
+.GridHeader_Outlook2007_Level2
+{
+    background: url(../Default/images/pages/grid_level2/headerBg.gif) left bottom repeat-x !important;
+}
+
+.GridHeader_Outlook2007_Level2 span
+{
+    text-decoration: none;
+    color: WindowText;
+    cursor: default;
+}
+
+.GridRow_Outlook2007_Level2 td, .GridAltRow_Outlook2007_Level2 td, .GridEditRow_Outlook2007_Level2 td, .SelectedRow_Outlook2007_Level2 td
+{
+    border-bottom: 1px solid #F2F9AE;
+}
+
+/* IE6 can't use bottom borders, because they remain visible when collapsing groups of rows */
+* html .GridRow_Outlook2007_Level2 td, * html .GridAltRow_Outlook2007_Level2 td, * html .GridEditRow_Outlook2007_Level2 td
+{
+    border-bottom: 0;
+}
+* html .GridRow_Outlook2007_Level2, * html .GridAltRow_Outlook2007_Level2, * html .GridEditRow_Outlook2007_Level2
+{
+    background: url(../Default/images/pages/grid_level2/borderbottom_.gif) left bottom repeat-x;
+}
+
+.GridRow_Outlook2007_Level2
+{
+    background: #F6F9D9 !important;
+}
+
+.GridAltRow_Outlook2007_Level2
+{
+    background: #F3FBAE !important;
+}
+
+.SelectedRow_Outlook2007_Level2
+{
+    background: #000 !important;
+}
+.GridPager_Outlook2007_Level2
+{
+    background: #c0dbff url(../Default/images/pages/grid_level2/pagerBg.gif) repeat-x;
+    color: WindowText;
+    cursor: default;
+}
+.GridFooter_Outlook2007_Level2
+{
+    background: #ccc;
+    font-weight: bold;
+}
+.GridPager_Outlook2007_Level2 .PagerPanel *
+{
+    vertical-align: middle;
+}
+
+.GridPager_Outlook2007_Level2 td
+{
+    padding-top: 3px;
+    padding-bottom: 3px;
+}
+
+div.RadGridCustomClass .rgHeader, div.RadGridCustomClass th.rgResizeCol, div.RadGridCustomClass .rgRow td, div.RadGridCustomClass .rgAltRow td, div.RadGridCustomClass .rgFooter td
+{
+    vertical-align: middle !important;
+}
+
+.RadGrid_Telerik .rgHeader, .RadGrid_Telerik th.rgResizeCol
+{
+    border-color: #FFFFFF #FFFFFF #868686 #868686 !important;
+    border-style: solid !important;
+    border-width: 0 1px 1px !important;
+}
+
+.RadGrid_Telerik .rgRow td, .RadGrid_Telerik .rgAltRow td, .RadGrid_Telerik .rgEditRow td, .RadGrid_Telerik .rgFooter td
+{
+    border-style: solid !important;
+    border-width: 0 1px 1px !important;
+}
+
+.RadGrid_Telerik .rgRow td, .RadGrid_Telerik .rgAltRow td
+{
+    border-color: #FFFFFF #FFFFFF #FFFFFF #868686 !important;
+}
+.RadGrid, .RadGrid_Telerik, .RadGridCustomClass
+{
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.divRadButtonGrid
+{
+    margin: 10px 0px 10px 0px !important;
+}
+
+
+.RadPanelBarDashboard .rpGroup, .rpLevel1
+{
+    overflow: auto !important;
+}
+.rcbScroll, .rcbWidth
+{
+    height: 100px !important;
+}

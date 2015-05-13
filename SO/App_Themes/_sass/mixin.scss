@@ -1,0 +1,119 @@
+//----------------------
+//-- CSS TRIANGLE
+//----------------------
+@mixin triangle($width, $height, $direction, $color){
+	width: 0;
+	height: 0; 
+	
+	@if $direction == up{		
+		border-left: $width solid transparent;
+		border-right: $width solid transparent;		
+		border-bottom: $height solid $color;
+	}
+	@else if $direction == down{
+		border-left: $width solid transparent;
+		border-right: $width solid transparent;		
+		border-top: $height solid $color;
+	}
+	@if $direction == right{		
+		border-top: $width solid transparent;
+		border-bottom: $width solid transparent;		
+		border-left: $height solid $color;
+	}
+	@else if $direction == left{
+		border-top: $width solid transparent;
+		border-bottom: $width solid transparent;		
+		border-right: $height solid $color;
+	}
+	
+}
+
+//----------------------
+//-- FIXED BACKGROUND
+//----------------------
+@mixin fixed_bg($img, $pos, $fixed){
+	background: url($img) no-repeat $pos $fixed; 
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+	filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='$img', sizingMethod='scale');
+	-ms-filter: "progid:DXImageTransform.Microsoft.AlphaImageLoader(src='$img', sizingMethod='scale')";
+}
+
+//----------------------
+//-- KEYFRAME
+//----------------------
+@mixin keyframes($name) {
+	
+//	/*
+//		@include keyframes(_sample_) {
+//			0% {
+//				
+//			}
+//			50% {
+//				
+//			}
+//			100% {
+//				
+//			} 
+//		}
+//	*/
+	
+	@-webkit-keyframes #{$name} {
+		@content; 
+	}
+	@-moz-keyframes #{$name} {
+		@content;
+	}
+	@-ms-keyframes #{$name} {
+		@content;
+	}
+	@keyframes #{$name} {
+		@content;
+	} 
+}
+
+//----------------------
+//-- ANIMATION
+//----------------------
+@mixin animation ($delay, $duration, $name, $count) {
+	///*
+	// Example usage: 
+	// @include animation(10s, 5s, _sample_, infinite)
+	//*/
+	-webkit-animation-delay: $delay;
+	-webkit-animation-duration: $duration;
+	-webkit-animation-name: $name;
+	-webkit-animation-fill-mode: forwards; // /* this prevents the animation from restarting! */
+	-webkit-animation-iteration-count: $count;
+
+	-moz-animation-delay: $delay;
+	-moz-animation-duration: $duration;
+	-moz-animation-name: $name;
+	-moz-animation-fill-mode: forwards; // /* this prevents the animation from restarting! */
+	-moz-animation-iteration-count: $count;
+
+	-o-animation-delay: $delay;
+	-o-animation-duration: $duration;
+	-o-animation-name: $name;
+	-o-animation-fill-mode: forwards; // /* this prevents the animation from restarting! */
+	-o-animation-iteration-count: $count;
+
+	animation-delay: $delay;
+	animation-duration: $duration;
+	animation-name: $name;
+	animation-fill-mode: forwards; // /* this prevents the animation from restarting! */
+	animation-iteration-count: $count;
+}
+
+//----------------------
+//-- RESET ANCHOR POINT
+//----------------------
+@mixin reset_anchor($width, $height){
+	// @include reset_anchor(width, height)
+	width:$width;
+	height:$height;
+	margin-left: -($width / 2);
+	margin-top:-($height / 2);
+}

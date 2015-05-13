@@ -1,0 +1,140 @@
+﻿@charset "utf-8";
+/* CSS Document */
+body {position:relative;}
+.left {float:left;}
+.right {float:right;}
+.margin-right {margin-right:1.5%;}
+
+
+/*--------------------------------------------------------
+	1.TYPO
+--------------------------------------------------------*/
+h1 {font:bold 17px 'Helvetica',arial;color:#0186c1;}
+h2 {font-family:'Conv_BRLNSB',Sans-Serif;font-size:24px;color:#4c8908;}
+h3 {font:bold 75% Arial, Helvetica, sans-serif;color:#fff;}
+p {font:75% Arial, Helvetica, sans-serif;color:#4b4b4b;}
+.welcome {font:bold 90% Arial, Helvetica, sans-serif;color:#0170ae;}
+.email  {font:80% Arial, Helvetica, sans-serif;color:#656565;}
+.login, .login2{font:75% Arial, Helvetica, sans-serif;color:#656565;}
+.dated, .dashboard a  {font:75% Arial, Helvetica, sans-serif;color:#0170ae;}
+b {font:bold Arial, Helvetica, sans-serif;color:#000;}
+.green {color:#88a008;}
+.blue {color:#27819e;}
+.orange {color:#eb9a1c;}
+
+/*--------------------------------------------------------
+	1.2 FONTFACE
+--------------------------------------------------------*/
+
+@font-face {
+    font-family: 'Helvetica';
+    src: url('fonts/helvetica.eot');
+    src: url('fonts/helvetica.eot?#iefix') format('embedded-opentype'),
+         url('fonts/helvetica.woff') format('woff'),
+         url('fonts/helvetica.ttf') format('truetype'),
+         url('fonts/helvetica.svg#helvetica') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+	font-family: 'Conv_BRLNSB';
+	src: url('fonts/BRLNSB.eot');
+	src: local('☺'), url('fonts/BRLNSB.woff') format('woff'), url('fonts/BRLNSB.ttf') format('truetype'), url('fonts/BRLNSB.svg') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
+
+
+
+/*--------------------------------------------------------
+	2.TOP
+--------------------------------------------------------*/
+body {background:url(images/background/header.jpg) no-repeat left top;position:relative;}
+#logo {position:absolute;top:-97px;right:0;z-index:1;}
+/*--------------------------------------------------------
+	3.TABLE
+--------------------------------------------------------*/
+.column1a {background:#e9e9e9;font:70% Arial, Helvetica, sans-serif;color:#787878;padding:15px 3px 0px 10px;width:100px;height:10px;}
+.column1b {background:url(images/background/footer333.gif) left bottom;font:70% Arial, Helvetica, sans-serif;color:#787878;padding:15px 3px 0px 10px;width:100px;height:10px;}
+.column1c {background:url(images/background/footer444.gif) right bottom;font:70% Arial, Helvetica, sans-serif;color:#787878;padding:15px 3px 0px 10px;width:100px;}
+.column1 {background:#e9e9e9;font:70% Arial, Helvetica, sans-serif;color:#787878;padding:3px 3px 0 10px;}
+.column2 {background:#f3f3f3;font:70% Arial, Helvetica, sans-serif;color:#787878;padding:3px 3px 0;}
+.column3 {background:#f3f3f3;font:70% Arial, Helvetica, sans-serif;color:#787878;padding:10px 3px 0px 10px;width:100px;}
+.column4 {background:#fff;font:70% Arial, Helvetica, sans-serif;color:#787878;padding:3px 3px 0 15px;}
+/*--------------------------------------------------------
+	4.BODY
+--------------------------------------------------------*/
+#body-wrapper {background:url(images/background/body-bg.png) bottom center repeat-x;z-index:-1;}
+#body {width:96%;margin:0 2%;margin-top:90px;}
+.top-body {background:url(images/background/top-body.png) repeat-x;height:18px;}
+.bottom-body {background:url(images/background/top-bottom.png) bottom repeat-x;height:18px;}
+.content {background:#f4f4f4;}
+
+/*--------------------------------------------------------
+	4.1 CONTENT
+--------------------------------------------------------*/
+.title {width:75%;}
+.form {width:25%;}
+.content-title {position:relative;padding:0px 10px 0;}
+.title-text {padding:7px 0 0 7px;}
+
+.form-content {background:#fff;}
+.form-title {background:url(images/background/form-title.jpg) repeat-x;height:19px;padding:11px 13px 0;margin-top:5px;}
+.form-filter {padding:10px;border-right:1px solid #e2e2e2;border-left:1px solid #e2e2e2;}
+.hide-container {background: no-repeat;height:22px;width:105px;position:relative;float:right;}
+.form-filter-table {margin-top:-10px;}
+.hide {position:absolute;top:3px;left:18px;}
+.table-style {margin-left:10px;}
+.table-style td {padding:2px 0;font:70% Arial, Helvetica, sans-serif;color:#787878;} 
+.separator {background:url(images/background/separator.png) repeat-y;}
+.button-wrapper {position:relative;}
+.button {position:absolute;top:-18px;right:7px;}
+.form-table {padding:11px;border-right:1px solid #e2e2e2;border-left:1px solid #e2e2e2;}
+.form-button {margin-top:-37px;margin-bottom:3px;}
+
+
+
+
+
+/*--------------------------------------------------------
+	4.2 ROUNDED
+--------------------------------------------------------*/
+.body-content-left, .body-content-right {width:49%;margin-bottom:10px;}
+.rounded {position:relative;}
+td.bg-title {background:url(images/background/mid.jpg) repeat-x;height:25px;font:bold 70% Arial, Helvetica, sans-serif;padding:2px 0 0 5px;color:#fff;border:none;}
+td.content {background:url(images/background/bottom-title.jpg) repeat-x center bottom;border-right:1px solid #e2e2e2;border-left:1px solid #e2e2e2;font:70% Arial, Helvetica, sans-serif;color:#666666;padding:5px;}
+td.left-column {background:#f3f3f3;}
+td.right-column {background:#fff;}
+
+/*--------------------------------------------------------
+	5. FOOTER
+--------------------------------------------------------*/
+#footer {background:url(images/background/footer.jpg) center;height:71px;}
+.copyright {text-align:center;font:80% Arial, Helvetica, sans-serif;color:#999999;padding-top:10px;}
+
+/*--------------------------------------------------------
+	5. MENU
+--------------------------------------------------------*/
+
+#menu {float:right;padding-right:2%;margin-top:-32px;}
+
+
+/*#nav {margin-top:-280px;width:96%;padding:0 2%;margin-bottom:50px;}
+.menu {padding-bottom:20px;}
+#smoothmenu1 {margin-left:18%;margin-right:18%;}
+.ddsmoothmenu ul li.dashboard-bttn {background:url(images/background/dashboard-bttn.gif) no-repeat;padding-top:8px;margin-right:10px;}
+.ddsmoothmenu ul li.preferences-bttn {background:url(images/background/preferences-bttn.gif) no-repeat;padding-top:8px;}
+.ddsmoothmenu ul li.security-bttn {background:url(images/background/security-bttn.gif) no-repeat;padding-top:8px;}*/
+
+/*--------------------------------------------------------
+	5. DASHBOARD
+--------------------------------------------------------*/
+
+#body-dashboard {width:96%;margin:0 2%;margin-top:-180px;margin-bottom:60px;}
+.status {width:540px;height:480px;}
+.faq_heading {padding:10px 5px 0;}
+.faq_content {padding:0 5px;}
+.faq_content ul {list-style:none;}
+.faq_content ul li {padding:3px 0;}
+.faq_content ul li a {text-decoration:none;font:11px Arial, Helvetica, sans-serif;color:#333333;}

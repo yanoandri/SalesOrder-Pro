@@ -161,6 +161,14 @@
       <Private>True</Private>
       <HintPath>..\packages\Microsoft.AspNet.Web.Optimization.WebForms.1.0.0\lib\net45\Microsoft.AspNet.Web.Optimization.WebForms.dll</HintPath>
     </Reference>
+    <Reference Include="Telerik.Web.UI, Version=2012.1.424.40, Culture=neutral, PublicKeyToken=121fae78165ba3d4, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Telerik.Web.UI.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.Web.UI.Skins, Version=2012.1.424.40, Culture=neutral, PublicKeyToken=121fae78165ba3d4, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Telerik.Web.UI.Skins.dll</HintPath>
+    </Reference>
     <Reference Include="WebGrease, Version=1.6.5135.21930, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\WebGrease.1.6.0\lib\WebGrease.dll</HintPath>
       <Private>True</Private>
@@ -173,6 +181,384 @@
     <Content Include="Account\OpenAuthProviders.ascx" />
     <Content Include="Account\Register.aspx" />
     <Content Include="Account\RegisterExternalLogin.aspx" />
+    <Content Include="App_Themes\css\images\animated-overlay.gif" />
+    <Content Include="App_Themes\css\images\ui-bg_flat_0_aaaaaa_40x100.png" />
+    <Content Include="App_Themes\css\images\ui-bg_flat_75_ffffff_40x100.png" />
+    <Content Include="App_Themes\css\images\ui-bg_glass_55_fbf9ee_1x400.png" />
+    <Content Include="App_Themes\css\images\ui-bg_glass_65_ffffff_1x400.png" />
+    <Content Include="App_Themes\css\images\ui-bg_glass_75_dadada_1x400.png" />
+    <Content Include="App_Themes\css\images\ui-bg_glass_75_e6e6e6_1x400.png" />
+    <Content Include="App_Themes\css\images\ui-bg_glass_95_fef1ec_1x400.png" />
+    <Content Include="App_Themes\css\images\ui-bg_highlight-soft_75_cccccc_1x100.png" />
+    <Content Include="App_Themes\css\images\ui-icons_222222_256x240.png" />
+    <Content Include="App_Themes\css\images\ui-icons_2e83ff_256x240.png" />
+    <Content Include="App_Themes\css\images\ui-icons_454545_256x240.png" />
+    <Content Include="App_Themes\css\images\ui-icons_888888_256x240.png" />
+    <Content Include="App_Themes\css\images\ui-icons_cd0a0a_256x240.png" />
+    <Content Include="App_Themes\css\jquery-ui.css" />
+    <Content Include="App_Themes\css\style.css" />
+    <Content Include="App_Themes\Default\Button\ButtonSprites.gif" />
+    <Content Include="App_Themes\Default\Button\customHeight.gif" />
+    <Content Include="App_Themes\Default\Button\ToggleSprite.gif" />
+    <Content Include="App_Themes\Default\Button\WebBlue.gif" />
+    <Content Include="App_Themes\Default\Default.css" />
+    <Content Include="App_Themes\Default\fonts\BRLNSB.svg" />
+    <Content Include="App_Themes\Default\fonts\helvetica.svg" />
+    <Content Include="App_Themes\Default\global.css" />
+    <Content Include="App_Themes\Default\images\background\approval-title.jpg" />
+    <Content Include="App_Themes\Default\images\background\arrow.jpg" />
+    <Content Include="App_Themes\Default\images\background\billing-tab-2.png" />
+    <Content Include="App_Themes\Default\images\background\billing-tab.png" />
+    <Content Include="App_Themes\Default\images\background\body-bg.png" />
+    <Content Include="App_Themes\Default\images\background\bottom-menu.png" />
+    <Content Include="App_Themes\Default\images\background\bottom-title.jpg" />
+    <Content Include="App_Themes\Default\images\background\bulletlist.gif" />
+    <Content Include="App_Themes\Default\images\background\button-hide.png" />
+    <Content Include="App_Themes\Default\images\background\button-show.png" />
+    <Content Include="App_Themes\Default\images\background\consolidated-tab-2.png" />
+    <Content Include="App_Themes\Default\images\background\consolidated-tab.png" />
+    <Content Include="App_Themes\Default\images\background\customer-title.jpg" />
+    <Content Include="App_Themes\Default\images\background\customer-title.png" />
+    <Content Include="App_Themes\Default\images\background\dashboard-header.jpg" />
+    <Content Include="App_Themes\Default\images\background\dashboard-hover.png" />
+    <Content Include="App_Themes\Default\images\background\dashboard-logo.png" />
+    <Content Include="App_Themes\Default\images\background\dashboard-logo2.png" />
+    <Content Include="App_Themes\Default\images\background\dashboard-right.png" />
+    <Content Include="App_Themes\Default\images\background\dashboard-title.jpg" />
+    <Content Include="App_Themes\Default\images\background\dashboard.png" />
+    <Content Include="App_Themes\Default\images\background\filter_hide.jpg" />
+    <Content Include="App_Themes\Default\images\background\filter_show.jpg" />
+    <Content Include="App_Themes\Default\images\background\footer - Copy.jpg" />
+    <Content Include="App_Themes\Default\images\background\footer.jpg" />
+    <Content Include="App_Themes\Default\images\background\footer.png" />
+    <Content Include="App_Themes\Default\images\background\footer2.png" />
+    <Content Include="App_Themes\Default\images\background\form-title.jpg" />
+    <Content Include="App_Themes\Default\images\background\header.jpg" />
+    <Content Include="App_Themes\Default\images\background\ho.png" />
+    <Content Include="App_Themes\Default\images\background\hover.png" />
+    <Content Include="App_Themes\Default\images\background\ie6-left.gif" />
+    <Content Include="App_Themes\Default\images\background\ie6-right.gif" />
+    <Content Include="App_Themes\Default\images\background\img_footer_right3.gif" />
+    <Content Include="App_Themes\Default\images\background\img_left-footer2.gif" />
+    <Content Include="App_Themes\Default\images\background\img_right-footer2.gif" />
+    <Content Include="App_Themes\Default\images\background\left2.gif" />
+    <Content Include="App_Themes\Default\images\background\login_icon.png" />
+    <Content Include="App_Themes\Default\images\background\logo.png" />
+    <Content Include="App_Themes\Default\images\background\logo2.png" />
+    <Content Include="App_Themes\Default\images\background\logout.jpg" />
+    <Content Include="App_Themes\Default\images\background\mid.jpg" />
+    <Content Include="App_Themes\Default\images\background\minus.png" />
+    <Content Include="App_Themes\Default\images\background\plus.png" />
+    <Content Include="App_Themes\Default\images\background\preference-title.jpg" />
+    <Content Include="App_Themes\Default\images\background\report-title.jpg" />
+    <Content Include="App_Themes\Default\images\background\reset.png" />
+    <Content Include="App_Themes\Default\images\background\right.gif" />
+    <Content Include="App_Themes\Default\images\background\right2.gif" />
+    <Content Include="App_Themes\Default\images\background\search-bttn.png" />
+    <Content Include="App_Themes\Default\images\background\security-title.jpg" />
+    <Content Include="App_Themes\Default\images\background\Separator.png" />
+    <Content Include="App_Themes\Default\images\background\separator_.png" />
+    <Content Include="App_Themes\Default\images\background\statement-preparation-title.jpg" />
+    <Content Include="App_Themes\Default\images\background\title.jpg" />
+    <Content Include="App_Themes\Default\images\background\top-body.png" />
+    <Content Include="App_Themes\Default\images\background\top-bottom.png" />
+    <Content Include="App_Themes\Default\images\background\top-title.jpg" />
+    <Content Include="App_Themes\Default\images\background\welcome-space.png" />
+    <Content Include="App_Themes\Default\images\background\welcome-space_.png" />
+    <Content Include="App_Themes\Default\images\button-menu\approval-hover.png" />
+    <Content Include="App_Themes\Default\images\button-menu\approval.png" />
+    <Content Include="App_Themes\Default\images\button-menu\bottom-submenu-hover.png" />
+    <Content Include="App_Themes\Default\images\button-menu\bottom-submenu.png" />
+    <Content Include="App_Themes\Default\images\button-menu\customer-hover.png" />
+    <Content Include="App_Themes\Default\images\button-menu\customer.png" />
+    <Content Include="App_Themes\Default\images\button-menu\dashboard-hover.png" />
+    <Content Include="App_Themes\Default\images\button-menu\dashboard.png" />
+    <Content Include="App_Themes\Default\images\button-menu\menu-1-hover.png" />
+    <Content Include="App_Themes\Default\images\button-menu\menu1.png" />
+    <Content Include="App_Themes\Default\images\button-menu\mid.jpg" />
+    <Content Include="App_Themes\Default\images\button-menu\preferences-hover.png" />
+    <Content Include="App_Themes\Default\images\button-menu\preferences.png" />
+    <Content Include="App_Themes\Default\images\button-menu\preparation.png" />
+    <Content Include="App_Themes\Default\images\button-menu\report-hover.png" />
+    <Content Include="App_Themes\Default\images\button-menu\report.png" />
+    <Content Include="App_Themes\Default\images\button-menu\security-hover.png" />
+    <Content Include="App_Themes\Default\images\button-menu\security.png" />
+    <Content Include="App_Themes\Default\images\button-menu\statement-hover.png" />
+    <Content Include="App_Themes\Default\images\button-menu\statement.png" />
+    <Content Include="App_Themes\Default\images\button-menu\top-submenu-hover.png" />
+    <Content Include="App_Themes\Default\images\button-menu\top-submenu.png" />
+    <Content Include="App_Themes\Default\images\button\btn.gif" />
+    <Content Include="App_Themes\Default\images\button\btn_addnew.gif" />
+    <Content Include="App_Themes\Default\images\button\btn_add_new_hover.gif" />
+    <Content Include="App_Themes\Default\images\button\btn_approve.gif" />
+    <Content Include="App_Themes\Default\images\button\btn_approve_hover.gif" />
+    <Content Include="App_Themes\Default\images\button\btn_back.gif" />
+    <Content Include="App_Themes\Default\images\button\btn_back_big.gif" />
+    <Content Include="App_Themes\Default\images\button\btn_back_big_hover.gif" />
+    <Content Include="App_Themes\Default\images\button\btn_back_hover.gif" />
+    <Content Include="App_Themes\Default\images\button\btn_browse.gif" />
+    <Content Include="App_Themes\Default\images\button\btn_browse_hover.gif" />
+    <Content Include="App_Themes\Default\images\button\btn_cancel.gif" />
+    <Content Include="App_Themes\Default\images\button\btn_cancelation.gif" />
+    <Content Include="App_Themes\Default\images\button\btn_cancelation_hover.gif" />
+    <Content Include="App_Themes\Default\images\button\btn_cancel_hover.gif" />
+    <Content Include="App_Themes\Default\images\button\btn_excel.gif" />
+    <Content Include="App_Themes\Default\images\button\btn_excel_hover.gif" />
+    <Content Include="App_Themes\Default\images\button\btn_login.gif" />
+    <Content Include="App_Themes\Default\images\button\btn_login_hover.gif" />
+    <Content Include="App_Themes\Default\images\button\btn_pdf.gif" />
+    <Content Include="App_Themes\Default\images\button\btn_pdf_hover.gif" />
+    <Content Include="App_Themes\Default\images\button\btn_print.gif" />
+    <Content Include="App_Themes\Default\images\button\btn_print_hover.gif" />
+    <Content Include="App_Themes\Default\images\button\btn_purge.gif" />
+    <Content Include="App_Themes\Default\images\button\btn_purge_hover.gif" />
+    <Content Include="App_Themes\Default\images\button\btn_register.gif" />
+    <Content Include="App_Themes\Default\images\button\btn_register_hover.gif" />
+    <Content Include="App_Themes\Default\images\button\btn_reject.gif" />
+    <Content Include="App_Themes\Default\images\button\btn_reject_hover.gif" />
+    <Content Include="App_Themes\Default\images\button\btn_reset.gif" />
+    <Content Include="App_Themes\Default\images\button\btn_reset_hover.gif" />
+    <Content Include="App_Themes\Default\images\button\btn_save.gif" />
+    <Content Include="App_Themes\Default\images\button\btn_save_hover.gif" />
+    <Content Include="App_Themes\Default\images\button\btn_search.gif" />
+    <Content Include="App_Themes\Default\images\button\btn_search_hover.gif" />
+    <Content Include="App_Themes\Default\images\button\btn_send_email.gif" />
+    <Content Include="App_Themes\Default\images\button\btn_send_email_hover.gif" />
+    <Content Include="App_Themes\Default\images\button\btn_send_test_mail.gif" />
+    <Content Include="App_Themes\Default\images\button\btn_send_test_mail_hover.gif" />
+    <Content Include="App_Themes\Default\images\button\btn_upload.gif" />
+    <Content Include="App_Themes\Default\images\button\btn_upload_hover.gif" />
+    <Content Include="App_Themes\Default\images\button\btn_validate.gif" />
+    <Content Include="App_Themes\Default\images\button\btn_validate_hover.gif" />
+    <Content Include="App_Themes\Default\images\button\login-hover.gif" />
+    <Content Include="App_Themes\Default\images\button\login.gif" />
+    <Content Include="App_Themes\Default\images\icons\alert.gif" />
+    <Content Include="App_Themes\Default\images\icons\alert.png" />
+    <Content Include="App_Themes\Default\images\icons\approval-icon.png" />
+    <Content Include="App_Themes\Default\images\icons\close.png" />
+    <Content Include="App_Themes\Default\images\icons\customer-icon.png" />
+    <Content Include="App_Themes\Default\images\icons\favicon_16.ico" />
+    <Content Include="App_Themes\Default\images\icons\favicon_64.ico" />
+    <Content Include="App_Themes\Default\images\icons\icon_back_32.png" />
+    <Content Include="App_Themes\Default\images\icons\icon_cancel.png" />
+    <Content Include="App_Themes\Default\images\icons\icon_cancel_32.png" />
+    <Content Include="App_Themes\Default\images\icons\icon_collapse.png" />
+    <Content Include="App_Themes\Default\images\icons\icon_delete.png" />
+    <Content Include="App_Themes\Default\images\icons\icon_down.png" />
+    <Content Include="App_Themes\Default\images\icons\icon_edit.png" />
+    <Content Include="App_Themes\Default\images\icons\icon_email.png" />
+    <Content Include="App_Themes\Default\images\icons\icon_excel.png" />
+    <Content Include="App_Themes\Default\images\icons\icon_exit.png" />
+    <Content Include="App_Themes\Default\images\icons\icon_expand.png" />
+    <Content Include="App_Themes\Default\images\icons\icon_green.gif" />
+    <Content Include="App_Themes\Default\images\icons\icon_help.gif" />
+    <Content Include="App_Themes\Default\images\icons\icon_ip.png" />
+    <Content Include="App_Themes\Default\images\icons\icon_login_32.png" />
+    <Content Include="App_Themes\Default\images\icons\icon_new.png" />
+    <Content Include="App_Themes\Default\images\icons\icon_ok.png" />
+    <Content Include="App_Themes\Default\images\icons\icon_ok_32.png" />
+    <Content Include="App_Themes\Default\images\icons\icon_pdf.png" />
+    <Content Include="App_Themes\Default\images\icons\icon_print.png" />
+    <Content Include="App_Themes\Default\images\icons\icon_red.gif" />
+    <Content Include="App_Themes\Default\images\icons\icon_reset.png" />
+    <Content Include="App_Themes\Default\images\icons\icon_search.png" />
+    <Content Include="App_Themes\Default\images\icons\icon_undo.png" />
+    <Content Include="App_Themes\Default\images\icons\icon_undone.png" />
+    <Content Include="App_Themes\Default\images\icons\icon_up.png" />
+    <Content Include="App_Themes\Default\images\icons\icon_yellow.gif" />
+    <Content Include="App_Themes\Default\images\icons\ico_access_right.gif" />
+    <Content Include="App_Themes\Default\images\icons\ico_access_right.png" />
+    <Content Include="App_Themes\Default\images\icons\ico_add.gif" />
+    <Content Include="App_Themes\Default\images\icons\ico_add.png" />
+    <Content Include="App_Themes\Default\images\icons\ico_approve.png" />
+    <Content Include="App_Themes\Default\images\icons\ico_back.png" />
+    <Content Include="App_Themes\Default\images\icons\ico_cancel.gif" />
+    <Content Include="App_Themes\Default\images\icons\ico_cancel.png" />
+    <Content Include="App_Themes\Default\images\icons\ico_cancelation.png" />
+    <Content Include="App_Themes\Default\images\icons\ico_close.ico" />
+    <Content Include="App_Themes\Default\images\icons\ico_createCRR.ico" />
+    <Content Include="App_Themes\Default\images\icons\ico_delete.gif" />
+    <Content Include="App_Themes\Default\images\icons\ico_delete.png" />
+    <Content Include="App_Themes\Default\images\icons\ico_Destroy.png" />
+    <Content Include="App_Themes\Default\images\icons\ico_edit.gif" />
+    <Content Include="App_Themes\Default\images\icons\ico_edit.png" />
+    <Content Include="App_Themes\Default\images\icons\ico_excel.gif" />
+    <Content Include="App_Themes\Default\images\icons\ico_excel.png" />
+    <Content Include="App_Themes\Default\images\icons\ico_login.png" />
+    <Content Include="App_Themes\Default\images\icons\ico_mail.gif" />
+    <Content Include="App_Themes\Default\images\icons\ico_ManifestNew.ico" />
+    <Content Include="App_Themes\Default\images\icons\ico_pdf.gif" />
+    <Content Include="App_Themes\Default\images\icons\ico_pdf.png" />
+    <Content Include="App_Themes\Default\images\icons\ico_print.gif" />
+    <Content Include="App_Themes\Default\images\icons\ico_purge.png" />
+    <Content Include="App_Themes\Default\images\icons\ico_register.png" />
+    <Content Include="App_Themes\Default\images\icons\ico_reject.png" />
+    <Content Include="App_Themes\Default\images\icons\ico_reopen.ico" />
+    <Content Include="App_Themes\Default\images\icons\ico_reset.png" />
+    <Content Include="App_Themes\Default\images\icons\ico_Return.ico" />
+    <Content Include="App_Themes\Default\images\icons\ico_Rollback.ico" />
+    <Content Include="App_Themes\Default\images\icons\ico_save.gif" />
+    <Content Include="App_Themes\Default\images\icons\ico_save.png" />
+    <Content Include="App_Themes\Default\images\icons\ico_search.png" />
+    <Content Include="App_Themes\Default\images\icons\ico_SelectData.ico" />
+    <Content Include="App_Themes\Default\images\icons\ico_Success.ico" />
+    <Content Include="App_Themes\Default\images\icons\ico_test_email.png" />
+    <Content Include="App_Themes\Default\images\icons\ico_upload.png" />
+    <Content Include="App_Themes\Default\images\icons\ico_validate.png" />
+    <Content Include="App_Themes\Default\images\icons\ico_view_detail.gif" />
+    <Content Include="App_Themes\Default\images\icons\ico_view_detail.png" />
+    <Content Include="App_Themes\Default\images\icons\login-icon_128.png" />
+    <Content Include="App_Themes\Default\images\icons\login_icon.png" />
+    <Content Include="App_Themes\Default\images\icons\preferences-icon.png" />
+    <Content Include="App_Themes\Default\images\icons\profescipta_copyright.gif" />
+    <Content Include="App_Themes\Default\images\icons\report-icon.png" />
+    <Content Include="App_Themes\Default\images\icons\security-icon.png" />
+    <Content Include="App_Themes\Default\images\icons\statement-icon.png" />
+    <Content Include="App_Themes\Default\images\icons\user-icon24.png" />
+    <Content Include="App_Themes\Default\images\pages\bg_mainmenu.gif" />
+    <Content Include="App_Themes\Default\images\pages\bg_menu.gif" />
+    <Content Include="App_Themes\Default\images\pages\grid_level1\borderbottom.gif" />
+    <Content Include="App_Themes\Default\images\pages\grid_level1\headerBg.gif" />
+    <Content Include="App_Themes\Default\images\pages\grid_level1\pagerBg.gif" />
+    <Content Include="App_Themes\Default\images\pages\grid_level2\borderbottom.gif" />
+    <Content Include="App_Themes\Default\images\pages\grid_level2\headerBg.gif" />
+    <Content Include="App_Themes\Default\images\pages\grid_level2\pagerBg.gif" />
+    <Content Include="App_Themes\Default\images\pages\profes_logo.JPG" />
+    <Content Include="App_Themes\Default\jquery-ui-1.8.18.custom.css" />
+    <Content Include="App_Themes\Default\Menu\Default.gif" />
+    <Content Include="App_Themes\Default\Menu\rmRootExpand.png" />
+    <Content Include="App_Themes\Default\Menu\rmRoundedLeft.png" />
+    <Content Include="App_Themes\Default\Menu\rmRoundedLeft_rtl.png" />
+    <Content Include="App_Themes\Default\Menu\rmRoundedRight.png" />
+    <Content Include="App_Themes\Default\Menu\rmRoundedRight_rtl.png" />
+    <Content Include="App_Themes\Default\Menu\rmSprite.png" />
+    <Content Include="App_Themes\Default\Menu\rmVSprite.png" />
+    <Content Include="App_Themes\Firefox\0_reset.css" />
+    <Content Include="App_Themes\Firefox\1_SCB2.css" />
+    <Content Include="App_Themes\Firefox\2_ddsmoothmenu-v.css" />
+    <Content Include="App_Themes\Firefox\3_ddsmoothmenu.css" />
+    <Content Include="App_Themes\Firefox\4_Button.Blue.css" />
+    <Content Include="App_Themes\Firefox\Custom.css" />
+    <Content Include="App_Themes\Firefox\Default.css" />
+    <Content Include="App_Themes\fonts\BebasNeue\bebasneue-demo.html" />
+    <Content Include="App_Themes\fonts\BebasNeue\bebasneue-webfont.svg" />
+    <Content Include="App_Themes\fonts\BebasNeue\bebasneue.css" />
+    <Content Include="App_Themes\fonts\BebasNeue\generator_config.txt" />
+    <Content Include="App_Themes\fonts\Lobster\generator_config.txt" />
+    <Content Include="App_Themes\fonts\Lobster\lobster.css" />
+    <Content Include="App_Themes\fonts\Lobster\lobster_1.3-demo.html" />
+    <Content Include="App_Themes\fonts\Lobster\lobster_1.3-webfont.svg" />
+    <Content Include="App_Themes\IE\0_reset.css" />
+    <Content Include="App_Themes\IE\1_SCB2.css" />
+    <Content Include="App_Themes\IE\2_ddsmoothmenu-v.css" />
+    <Content Include="App_Themes\IE\3_ddsmoothmenu.css" />
+    <Content Include="App_Themes\IE\4_Button.Blue.css" />
+    <Content Include="App_Themes\IE\Custom.css" />
+    <Content Include="App_Themes\IE\Default.css" />
+    <Content Include="App_Themes\images\backgrounds\button-blue-large.gif" />
+    <Content Include="App_Themes\images\backgrounds\button-blue-medium.gif" />
+    <Content Include="App_Themes\images\backgrounds\button-blue-small.gif" />
+    <Content Include="App_Themes\images\backgrounds\button-green-large.gif" />
+    <Content Include="App_Themes\images\backgrounds\button-green-medium.gif" />
+    <Content Include="App_Themes\images\backgrounds\button-green-small.gif" />
+    <Content Include="App_Themes\images\backgrounds\button-grey-large.gif" />
+    <Content Include="App_Themes\images\backgrounds\button-grey-medium.gif" />
+    <Content Include="App_Themes\images\backgrounds\button-grey-small.gif" />
+    <Content Include="App_Themes\images\backgrounds\button-yellow-large.gif" />
+    <Content Include="App_Themes\images\backgrounds\button-yellow-medium.gif" />
+    <Content Include="App_Themes\images\backgrounds\button-yellow-small.gif" />
+    <Content Include="App_Themes\images\backgrounds\dashboard.jpg" />
+    <Content Include="App_Themes\images\backgrounds\footer-bg.png" />
+    <Content Include="App_Themes\images\backgrounds\footer.gif" />
+    <Content Include="App_Themes\images\backgrounds\header.gif" />
+    <Content Include="App_Themes\images\backgrounds\login-bg.jpg" />
+    <Content Include="App_Themes\images\backgrounds\login.jpg" />
+    <Content Include="App_Themes\images\backgrounds\logo-footer.gif" />
+    <Content Include="App_Themes\images\backgrounds\topNav_bg_L.gif" />
+    <Content Include="App_Themes\images\backgrounds\topNav_bg_M.gif" />
+    <Content Include="App_Themes\images\backgrounds\topNav_bg_R.gif" />
+    <Content Include="App_Themes\images\backgrounds\user-txt.png" />
+    <Content Include="App_Themes\images\backgrounds\usertxt-bg.jpg" />
+    <Content Include="App_Themes\images\buttons\login-btn.png" />
+    <Content Include="App_Themes\images\icons\add.png" />
+    <Content Include="App_Themes\images\icons\anz-logo-footer.gif" />
+    <Content Include="App_Themes\images\icons\cancel.png" />
+    <Content Include="App_Themes\images\icons\delete.png" />
+    <Content Include="App_Themes\images\icons\edit.png" />
+    <Content Include="App_Themes\images\icons\filter-icon.png" />
+    <Content Include="App_Themes\images\icons\ico_approve.png" />
+    <Content Include="App_Themes\images\icons\ico_delete.png" />
+    <Content Include="App_Themes\images\icons\ico_edit.png" />
+    <Content Include="App_Themes\images\icons\ico_reject.png" />
+    <Content Include="App_Themes\images\icons\loading.gif" />
+    <Content Include="App_Themes\images\icons\lup.png" />
+    <Content Include="App_Themes\images\icons\save.png" />
+    <Content Include="App_Themes\images\icons\sprites.png" />
+    <Content Include="App_Themes\images\icons\view.png" />
+    <Content Include="App_Themes\images\icons\warning.png" />
+    <Content Include="App_Themes\images\others\footer_logo.gif" />
+    <Content Include="App_Themes\images\others\preloader.gif" />
+    <Content Include="App_Themes\js\global.js" />
+    <Content Include="App_Themes\js\min\global.min.js" />
+    <Content Include="App_Themes\lib\customSelect\customSelect-arrow.gif" />
+    <Content Include="App_Themes\lib\customSelect\index.html" />
+    <Content Include="App_Themes\lib\customSelect\jquery.customSelect.min.js" />
+    <Content Include="App_Themes\lib\fancybox\blank.gif" />
+    <Content Include="App_Themes\lib\fancybox\fancybox.css" />
+    <Content Include="App_Themes\lib\fancybox\fancybox.js" />
+    <Content Include="App_Themes\lib\fancybox\fancybox.min.css" />
+    <Content Include="App_Themes\lib\fancybox\fancybox_loading%402x.gif" />
+    <Content Include="App_Themes\lib\fancybox\fancybox_loading.gif" />
+    <Content Include="App_Themes\lib\fancybox\fancybox_overlay.png" />
+    <Content Include="App_Themes\lib\fancybox\fancybox_sprite%402x.png" />
+    <Content Include="App_Themes\lib\fancybox\fancybox_sprite.png" />
+    <Content Include="App_Themes\lib\fancybox\helpers\fancybox_buttons.png" />
+    <Content Include="App_Themes\lib\fancybox\helpers\jquery.fancybox-buttons.css" />
+    <Content Include="App_Themes\lib\fancybox\helpers\jquery.fancybox-buttons.js" />
+    <Content Include="App_Themes\lib\fancybox\helpers\jquery.fancybox-media.js" />
+    <Content Include="App_Themes\lib\fancybox\helpers\jquery.fancybox-thumbs.css" />
+    <Content Include="App_Themes\lib\fancybox\helpers\jquery.fancybox-thumbs.js" />
+    <Content Include="App_Themes\lib\fancybox\jquery.fancybox-media.js" />
+    <Content Include="App_Themes\lib\html5shiv\html5shiv.js" />
+    <Content Include="App_Themes\lib\icheck\icheck.min.js" />
+    <Content Include="App_Themes\lib\icheck\skins\all.css" />
+    <Content Include="App_Themes\lib\icheck\skins\square\aero%402x.png" />
+    <Content Include="App_Themes\lib\icheck\skins\square\aero.css" />
+    <Content Include="App_Themes\lib\icheck\skins\square\aero.png" />
+    <Content Include="App_Themes\lib\icheck\skins\square\blue%402x.png" />
+    <Content Include="App_Themes\lib\icheck\skins\square\blue.css" />
+    <Content Include="App_Themes\lib\icheck\skins\square\blue.png" />
+    <Content Include="App_Themes\lib\icheck\skins\square\green%402x.png" />
+    <Content Include="App_Themes\lib\icheck\skins\square\green.css" />
+    <Content Include="App_Themes\lib\icheck\skins\square\green.png" />
+    <Content Include="App_Themes\lib\icheck\skins\square\grey%402x.png" />
+    <Content Include="App_Themes\lib\icheck\skins\square\grey.css" />
+    <Content Include="App_Themes\lib\icheck\skins\square\grey.png" />
+    <Content Include="App_Themes\lib\icheck\skins\square\orange%402x.png" />
+    <Content Include="App_Themes\lib\icheck\skins\square\orange.css" />
+    <Content Include="App_Themes\lib\icheck\skins\square\orange.png" />
+    <Content Include="App_Themes\lib\icheck\skins\square\pink%402x.png" />
+    <Content Include="App_Themes\lib\icheck\skins\square\pink.css" />
+    <Content Include="App_Themes\lib\icheck\skins\square\pink.png" />
+    <Content Include="App_Themes\lib\icheck\skins\square\purple%402x.png" />
+    <Content Include="App_Themes\lib\icheck\skins\square\purple.css" />
+    <Content Include="App_Themes\lib\icheck\skins\square\purple.png" />
+    <Content Include="App_Themes\lib\icheck\skins\square\red%402x.png" />
+    <Content Include="App_Themes\lib\icheck\skins\square\red.css" />
+    <Content Include="App_Themes\lib\icheck\skins\square\red.png" />
+    <Content Include="App_Themes\lib\icheck\skins\square\square%402x.png" />
+    <Content Include="App_Themes\lib\icheck\skins\square\square.css" />
+    <Content Include="App_Themes\lib\icheck\skins\square\square.png" />
+    <Content Include="App_Themes\lib\icheck\skins\square\yellow%402x.png" />
+    <Content Include="App_Themes\lib\icheck\skins\square\yellow.css" />
+    <Content Include="App_Themes\lib\icheck\skins\square\yellow.png" />
+    <Content Include="App_Themes\lib\icheck\skins\square\_all.css" />
+    <Content Include="App_Themes\lib\IE9-compatibility\IE9.js" />
+    <Content Include="App_Themes\lib\IE9-compatibility\min\IE9.min.js" />
+    <Content Include="App_Themes\lib\jquery\jquery-ui.js" />
+    <Content Include="App_Themes\lib\jquery\jquery.js" />
+    <Content Include="App_Themes\lib\jquery\jquery.min.js" />
+    <Content Include="App_Themes\lib\modernizr\modernizr.js" />
     <Content Include="Contact.aspx" />
     <Content Include="Content\Site.css" />
     <Content Include="Content\themes\base\accordion.css" />
@@ -208,6 +594,16 @@
     <Content Include="Content\themes\base\tabs.css" />
     <Content Include="Content\themes\base\theme.css" />
     <Content Include="Content\themes\base\tooltip.css" />
+    <Content Include="Error\ErrorNoJavascript.html" />
+    <Content Include="Error\error_style.css" />
+    <Content Include="Error\FileNotFound.htm" />
+    <Content Include="Error\GenericErrorPage.htm" />
+    <Content Include="Error\icon_notaccess.gif" />
+    <Content Include="Error\icon_notfound.gif" />
+    <Content Include="Error\icon_warning.gif" />
+    <Content Include="Error\no-image.jpg" />
+    <Content Include="Error\NoAccess.htm" />
+    <Content Include="Error\SessionTimeOut.htm" />
     <Content Include="Images\accent.png" />
     <Content Include="Images\bullet.png" />
     <Content Include="Images\heroAccent.png" />
@@ -225,6 +621,36 @@
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="packages.config" />
+    <Content Include="App_Themes\.DS_Store" />
+    <Content Include="App_Themes\Default\Default.skin" />
+    <Content Include="App_Themes\Default\fonts\BRLNSB.eot" />
+    <Content Include="App_Themes\Default\fonts\BRLNSB.otf" />
+    <Content Include="App_Themes\Default\fonts\BRLNSB.ttf" />
+    <Content Include="App_Themes\Default\fonts\BRLNSB.woff" />
+    <Content Include="App_Themes\Default\fonts\helvetica.eot" />
+    <Content Include="App_Themes\Default\fonts\helvetica.ttf" />
+    <Content Include="App_Themes\Default\fonts\helvetica.woff" />
+    <Content Include="App_Themes\Firefox\Custom.skin" />
+    <Content Include="App_Themes\Firefox\Default.skin" />
+    <Content Include="App_Themes\fonts\BebasNeue\bebasneue-webfont.eot" />
+    <Content Include="App_Themes\fonts\BebasNeue\bebasneue-webfont.ttf" />
+    <Content Include="App_Themes\fonts\BebasNeue\bebasneue-webfont.woff" />
+    <Content Include="App_Themes\fonts\Lobster\lobster_1.3-webfont.eot" />
+    <Content Include="App_Themes\fonts\Lobster\lobster_1.3-webfont.ttf" />
+    <Content Include="App_Themes\fonts\Lobster\lobster_1.3-webfont.woff" />
+    <Content Include="App_Themes\IE\Custom.skin" />
+    <Content Include="App_Themes\IE\Default.skin" />
+    <Content Include="App_Themes\images\.DS_Store" />
+    <Content Include="App_Themes\images\banners\.DS_Store" />
+    <Content Include="App_Themes\images\others\.DS_Store" />
+    <Content Include="App_Themes\skin\Default.skin" />
+    <Content Include="App_Themes\_coffee\global.coffee" />
+    <Content Include="App_Themes\_sass\global.scss" />
+    <Content Include="App_Themes\_sass\grid.scss" />
+    <Content Include="App_Themes\_sass\mixin.scss" />
+    <Content Include="App_Themes\_sass\print.scss" />
+    <Content Include="App_Themes\_sass\reset.scss" />
+    <Content Include="App_Themes\_sass\style.scss" />
     <None Include="Scripts\jquery-2.1.3.intellisense.js" />
     <Content Include="Scripts\jquery-2.1.3.js" />
     <Content Include="Scripts\jquery-2.1.3.min.js" />
@@ -252,8 +678,10 @@
     <Content Include="Scripts\WebForms\WebForms.js" />
     <Content Include="Scripts\WebForms\WebParts.js" />
     <Content Include="Scripts\WebForms\WebUIValidation.js" />
-    <Content Include="SOInput.aspx" />
-    <Content Include="SOList.aspx" />
+    <Content Include="SalesOrder\SOInput.aspx" />
+    <Content Include="SalesOrder\SOList.aspx" />
+    <Content Include="Security\AccessRight.aspx" />
+    <Content Include="Security\GroupList.aspx" />
     <Content Include="ViewSwitcher.ascx" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
@@ -263,7 +691,8 @@
   <ItemGroup>
     <Content Include="Scripts\jquery-2.1.3.min.map" />
     <None Include="Scripts\_references.js" />
-    <Content Include="Site.Mobile.Master" />
+    <Content Include="SiteMaster\Site.Mobile.Master" />
+    <Content Include="SiteMaster\Default.master" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -335,32 +764,53 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Site.Master.cs">
+    <Compile Include="Security\AccessRight.aspx.cs">
+      <DependentUpon>AccessRight.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Security\AccessRight.aspx.designer.cs">
+      <DependentUpon>AccessRight.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Security\GroupList.aspx.cs">
+      <DependentUpon>GroupList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Security\GroupList.aspx.designer.cs">
+      <DependentUpon>GroupList.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SiteMaster\Default.master.cs">
+      <DependentUpon>Default.master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SiteMaster\Default.master.designer.cs">
+      <DependentUpon>Default.master</DependentUpon>
+    </Compile>
+    <Compile Include="SiteMaster\Site.Master.cs">
       <DependentUpon>Site.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Site.Master.designer.cs">
+    <Compile Include="SiteMaster\Site.Master.designer.cs">
       <DependentUpon>Site.Master</DependentUpon>
     </Compile>
-    <Compile Include="Site.Mobile.Master.cs">
+    <Compile Include="SiteMaster\Site.Mobile.Master.cs">
       <DependentUpon>Site.Mobile.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Site.Mobile.Master.designer.cs">
+    <Compile Include="SiteMaster\Site.Mobile.Master.designer.cs">
       <DependentUpon>Site.Mobile.Master</DependentUpon>
     </Compile>
-    <Compile Include="SOInput.aspx.cs">
+    <Compile Include="SalesOrder\SOInput.aspx.cs">
       <DependentUpon>SOInput.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="SOInput.aspx.designer.cs">
+    <Compile Include="SalesOrder\SOInput.aspx.designer.cs">
       <DependentUpon>SOInput.aspx</DependentUpon>
     </Compile>
-    <Compile Include="SOList.aspx.cs">
+    <Compile Include="SalesOrder\SOList.aspx.cs">
       <DependentUpon>SOList.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="SOList.aspx.designer.cs">
+    <Compile Include="SalesOrder\SOList.aspx.designer.cs">
       <DependentUpon>SOList.aspx</DependentUpon>
     </Compile>
     <Compile Include="ViewSwitcher.ascx.cs">
@@ -373,10 +823,18 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="App_Themes\App_LocalResources\" />
+    <Folder Include="App_Themes\language\en\" />
+    <Folder Include="App_Themes\language\id\" />
+    <Folder Include="App_Themes\media\audio\" />
+    <Folder Include="App_Themes\media\video\" />
+    <Folder Include="App_Themes\skin\images\backgrounds\" />
+    <Folder Include="App_Themes\skin\images\icon\" />
+    <Folder Include="App_Themes\Spide\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Account\Web.config" />
-    <Content Include="Site.Master" />
+    <Content Include="SiteMaster\Site.Master" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\PFSHelper.BusinessLogicLayer\PFSHelper.BusinessLogicLayer.csproj">

@@ -1,0 +1,223 @@
+//----------------------
+//-- GENERAL TAGS
+//----------------------
+html,body{
+//	overflow-x: hidden;
+}
+
+body{
+	
+}
+a {
+	text-decoration: none;
+	color: inherit;
+}
+img {
+	border: 0;
+	-ms-interpolation-mode: bicubic;
+	vertical-align: middle;
+	a {
+		@extend a;
+	}
+	a & {
+		border: 0;
+	}
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+	width: 100%;
+	border: 0;
+	tr {
+		th {}
+		td {}
+	}
+}
+
+textarea {
+	resize: vertical;
+}
+textarea:disabled,
+input[type=text]:disabled,
+input[type=password]:disabled {
+	background-color: #ddd;
+}
+input[type=text],
+input[type=password],
+input-text{
+//	border: 0;
+}
+select {
+
+}
+h4,h5,h6 {
+	margin: 0;
+	padding: 0;
+}
+
+ul, ol{
+	&.clean, .clean &{
+		margin: 0;
+		padding: 0;
+		
+		li{
+			list-style-type: none;
+		}
+	}
+	
+	&.li-inline, .li-inline &, nav &{
+		li{
+			display: inline;
+			list-style-type: none;
+		}
+	}
+	&.li-block, .li-block &{
+		li{
+			display: block;
+			list-style-type: none;
+		}
+	}
+}
+img {
+  max-width: 100%;
+  width: auto\9;
+  height: auto;
+  vertical-align: middle;
+  border: 0;
+  -ms-interpolation-mode: bicubic;
+}
+.col{
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+}
+
+//----------------------
+//-- GENERAL CLASSES
+//----------------------
+
+.hidden, [hidden]{display: none;}
+
+.absolute{
+	position: absolute;
+}
+.fixed{
+	position: fixed;
+}
+.font-size-11{
+	font-size: 11px;
+}
+.font-size-12{
+	font-size: 12px;
+}
+
+.valign-middle{
+	display: table-cell;
+	height: inherit;
+	width: inherit;
+	vertical-align: middle;
+}
+.text-align-right{
+	text-align: right;
+}
+.text-align-center{
+	text-align: center;
+}
+.text-align-left{
+	text-align: left;
+}
+.breadcrumb{
+	margin-top: 20px;
+	margin-bottom: 20px;
+	
+	li{
+		a{
+			margin-right: 10px;
+		}
+		
+		&:first-child{
+			a{
+				
+			}
+		}
+		
+		&:last-child{
+			a{
+				color: $color + 10;
+				cursor: text;
+			}
+		}
+		
+		&+li{
+			a{
+				&:before{
+					content: '>';
+					margin-right: 10px;
+				}
+			}
+		}
+	}
+}
+
+.float-left{
+	float: left;
+}
+.float-right{
+	float: right;
+}
+.container{
+	$width:$screen_default;
+	
+	width: $width;
+	margin: 0 auto;
+	position: relative;
+	
+	* html .container{
+		width: $width;
+	}
+}
+//-- PRELOADER
+#preloader{
+	background: #fff;
+	position: fixed;
+	z-index: 9999;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	text-align: center;
+	line-height: inherit;
+	color: #fff;
+	
+	div{
+		position: absolute;
+		left: 50%;
+		top: 50%;
+		
+
+		$width:54px;
+		$height:54px;
+		
+		height: $height;
+		width: $width;
+		margin-left: -($width / 2);
+		margin-top: -($height / 2);
+		
+		//@include perspective(500px);
+		
+	}
+	i{
+		$size:32px;
+		width: $size;
+		height: $size;
+		display: block;
+		background: url("#{$img_url}/others/preloader.gif");
+		margin: 0 auto;
+		
+		//@include animation(0, 2s, preload, infinite)
+	}
+}
+
+.height-inherit{
+	height: inherit;
+}

@@ -1,7 +1,12 @@
-<%@ Page Language="C#" AutoEventWireup="true" Inherits="Security_AccessRight" 
+<%@ Page Language="C#" AutoEventWireup="true" Inherits="Security_AccessRight" MasterPageFile="~/SiteMaster/Default.master"
     CodeBehind="AccessRight.aspx.cs" %>
 
-
+<%@ Register Assembly="Telerik.Web.UI" Namespace="Telerik.Web.UI" TagPrefix="telerik" %>
+<asp:Content ID="ContentTitle" ContentPlaceHolderID="ContentTitle" runat="server">
+    <h1 class="title" id="divSubtitle" runat="server">
+    </h1>
+</asp:Content>
+<asp:Content ID="Content1" ContentPlaceHolderID="ContentDefault" runat="server">
     <script language="javascript" type="text/javascript">
         function ClickSave(sender, args) {
             var callBackFunction = Function.createDelegate(sender, function (argument) {
@@ -459,4 +464,5 @@
             }
         </script>
     </telerik:RadCodeBlock>
+    </asp:Content>
 

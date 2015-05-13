@@ -5,3 +5,8 @@ D:\Yano\SO\SO.BusinessLogicLayer\bin\Debug\PFSHelper.DataAccessLayer.pdb
 D:\Yano\SO\SO.BusinessLogicLayer\obj\Debug\SO.BusinessLogicLayer.csprojResolveAssemblyReference.cache
 D:\Yano\SO\SO.BusinessLogicLayer\obj\Debug\SO.BusinessLogicLayer.dll
 D:\Yano\SO\SO.BusinessLogicLayer\obj\Debug\SO.BusinessLogicLayer.pdb
+D:\Yano\SO\SO.BusinessLogicLayer\bin\Debug\PFSHelper.BusinessLogicLayer.dll
+D:\Yano\SO\SO.BusinessLogicLayer\bin\Debug\PFSHelper.Lib.dll
+D:\Yano\SO\SO.BusinessLogicLayer\bin\Debug\ICSharpCode.SharpZipLib.dll
+D:\Yano\SO\SO.BusinessLogicLayer\bin\Debug\PFSHelper.BusinessLogicLayer.pdb
+D:\Yano\SO\SO.BusinessLogicLayer\bin\Debug\PFSHelper.Lib.pdb

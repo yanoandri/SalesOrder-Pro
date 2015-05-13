@@ -1,0 +1,542 @@
+﻿<%@ Register assembly="Telerik.Web.UI" namespace="Telerik.Web.UI" tagprefix="telerik" %>
+
+<%-- ImageButton --%>   
+<asp:ImageButton runat="server" CssClass="ImageButton" SkinID="Delete" ToolTip="Delete" AlternateText="Del" ImageUrl="../images/icons/delete.png"> </asp:ImageButton>  
+<asp:ImageButton runat="server" CssClass="ImageButton" SkinID="Edit" ToolTip="Edit" AlternateText="Edit"  ImageUrl="../images/icons/edit.png"> </asp:ImageButton>   
+<asp:ImageButton runat="server" CssClass="ImageButton" SkinID="Save" ToolTip="Save" AlternateText="Sav" ImageUrl="../images/icons/save.png"> </asp:ImageButton>    
+<asp:ImageButton runat="server" CssClass="ImageButton" SkinID="Cancel" ToolTip="Cancel" AlternateText="Can" ImageUrl="../images/icons/cancel.png"> </asp:ImageButton>    
+<asp:ImageButton runat="server" CssClass="ImageButton" SkinID="ViewDetail" ToolTip="View Detail" AlternateText="View" ImageUrl="../images/icons/view.png"> </asp:ImageButton>    
+
+<%-- DropDownList --%>
+<asp:DropDownList runat="server" CssClass="dropdown" ></asp:DropDownList>
+
+
+<%-- RadDatePicker --%>
+<telerik:RadDatePicker runat="server" Culture="English (United States)">         
+            <DateInput DateFormat="dd-MM-yyyy"> 
+            </DateInput> 
+</telerik:RadDatePicker> 
+
+<%-- RadButton --%>
+<telerik:RadButton SkinID="RadButtonSearch" 
+    ToolTip="Search"  
+    CssClass="button blue smalmed icon-left"
+    runat="server" 
+    Text="Search"
+    Width="70px">      
+</telerik:RadButton>
+<telerik:RadButton SkinID="RadButtonCheck" 
+    ToolTip="Search"  
+    CssClass="button blue smalmed icon-left"
+    runat="server" 
+    Text="Check"
+    Width="70px">      
+</telerik:RadButton>
+<telerik:RadButton SkinID="RadButtonRunReport" 
+    ToolTip="Run Report"  
+    CssClass="button blue smalmed icon-left"
+    runat="server" 
+    Text="Search"
+    Width="70px">      
+</telerik:RadButton>
+
+<telerik:RadButton SkinID="RadButtonReset" 
+    ToolTip="Reset"  
+    CssClass="button blue smalmed icon-left"
+    runat="server" 
+    Text="Reset"
+    Width="70px">      
+</telerik:RadButton>
+
+<telerik:RadButton SkinID="RadButtonAdd" 
+    ToolTip="Add"  
+    CssClass="button blue smalmed icon-left"
+    runat="server" 
+    Text="Add"
+    Width="70px">      
+</telerik:RadButton>
+
+
+<telerik:RadButton SkinID="RadButtonResetLonger" 
+    ToolTip="Reset"  
+    CssClass="button blue smalmed icon-left"
+    runat="server" 
+    Text="Reset"
+    Width="80px">      
+</telerik:RadButton>
+
+<telerik:RadButton SkinID="RadButtonAddOrRemove" 
+    ToolTip="Add"  
+    CssClass="button blue smalmed icon-left"
+    runat="server" 
+    Text="Add / Remove"
+    Width="80px">      
+</telerik:RadButton>
+
+<telerik:RadButton SkinID="RadButtonOk" 
+    CssClass="button blue medium"
+    runat="server" 
+    Text="Ok">      
+</telerik:RadButton>
+
+<telerik:RadButton SkinID="RadButtonUpload" 
+    ToolTip="Upload & Process"  
+    CssClass="button yellow small"
+    runat="server" 
+    Text="Upload & Process"
+    Width="100px">      
+</telerik:RadButton>
+
+<telerik:RadButton SkinID="New" 
+    CssClass="button blue medium icon-left"   
+    runat="server" 
+    Icon-PrimaryIconCssClass="icon add"> 
+</telerik:RadButton>
+
+<telerik:RadButton SkinID="RadButtonCreateNewUser" 
+    ToolTip="Create New User"  
+    CssClass="button blue medium icon-left"   
+    runat="server" 
+    Text="Create New User"
+    Icon-PrimaryIconCssClass="icon add"> 
+</telerik:RadButton>
+<telerik:RadButton SkinID="RadButtonCreateNewException" 
+    ToolTip="Create New Exception"  
+    CssClass="button blue medium icon-left"   
+    runat="server" 
+    Text="Create New Exception"
+    Icon-PrimaryIconCssClass="icon add"
+    Skin=""
+    > 
+</telerik:RadButton>
+
+<telerik:RadButton SkinID="RadButtonCreateNewGroup" 
+    ToolTip="Create New Group"  
+    CssClass="button blue medium icon-left"   
+    runat="server" 
+    Text="Create New Group"
+    Icon-PrimaryIconCssClass="icon add"> 
+</telerik:RadButton>
+
+<telerik:RadButton SkinID="RadButtonExportToExcel" 
+    ToolTip="Export To Excel"  
+    CssClass="button blue medium icon-left"   
+    runat="server" 
+    Text="Export To Excel"
+    Icon-PrimaryIconCssClass="icon excel">      
+</telerik:RadButton>
+
+<telerik:RadButton SkinID="RadButtonExportToCsv" 
+    ToolTip="Export To Csv"  
+    CssClass="button blue medium icon-left"   
+    runat="server" 
+    Text="Export To Csv"
+    Icon-PrimaryIconCssClass="icon sprites-csv">      
+</telerik:RadButton>
+
+<telerik:RadButton SkinID="RadButtonGenerate" 
+    ToolTip="Generate"  
+    CssClass="button blue medium icon-left"   
+    runat="server" 
+    Text="Generate"
+    Icon-PrimaryIconCssClass="icon sprites-generate">      
+</telerik:RadButton>
+
+<telerik:RadButton SkinID="RadButtonExportToPdf" 
+    ToolTip="Export To Pdf"  
+    CssClass="button blue medium icon-left"   
+    runat="server" 
+    Text="Export To Pdf" 
+    Icon-PrimaryIconCssClass="icon sprites-pdf">      
+</telerik:RadButton>
+
+<telerik:RadButton SkinID="RadButtonPurge" 
+    ToolTip="Purge"  
+    CssClass="button blue medium icon-left"   
+    runat="server" 
+    Text="Purge"
+    Icon-PrimaryIconCssClass="icon sprites-refresh">      
+</telerik:RadButton>
+
+<telerik:RadButton SkinID="RadButtonVerify" 
+    ToolTip="Verify"  
+    CssClass="button green small"
+    runat="server" 
+    Text="Verify"
+    Width="70px">      
+</telerik:RadButton>
+
+<telerik:RadButton SkinID="RadButtonSave"  
+    CssClass="button blue medium"
+    runat="server" 
+    Text="Save">
+</telerik:RadButton>
+
+<telerik:RadButton SkinID="RadButtonApprove"  
+    CssClass="button blue medium"
+    runat="server" 
+    Text="Approve">
+</telerik:RadButton>
+
+<telerik:RadButton SkinID="RadButtonCancel"  
+    CssClass="button blue medium"
+    runat="server" 
+    Text="Cancel">
+</telerik:RadButton>
+
+<telerik:RadButton SkinID="RadButtonReject"  
+    CssClass="button blue medium"
+    runat="server" 
+    Text="Reject">
+</telerik:RadButton>
+
+<telerik:RadButton SkinID="RadButtonBack"  
+    CssClass="button blue medium"
+    runat="server" 
+    Text="Back">
+</telerik:RadButton>
+
+<telerik:RadButton 
+    SkinID="ApproveAll" 
+    ToolTip="Approve All" 
+    CssClass="customHeight26"
+    runat="server" 
+    Text="Approve All"
+    Height="26px"
+    Width="100px">
+        <Icon PrimaryIconUrl="../images/icons/ico_approve.png" PrimaryIconLeft="10" PrimaryIconTop="4"/>
+</telerik:RadButton>
+
+<telerik:RadButton 
+    SkinID="RejectAll" 
+    ToolTip="Reject All" 
+    CssClass="customHeight26"
+    runat="server" 
+    Text="Reject All"
+    Height="26px"
+    Width="90px">
+        <Icon PrimaryIconUrl="../images/icons/ico_reject.png" PrimaryIconLeft="10" PrimaryIconTop="4"/>
+</telerik:RadButton>
+
+<telerik:RadButton 
+    SkinID="AddNewExceptionRequiredMatrix" 
+    Skin=""
+    ToolTip="Add New Row" 
+    CssClass="button blue medium icon-left"
+    runat="server" 
+    Text="Add New Row" Icon-PrimaryIconCssClass="icon add">
+</telerik:RadButton>
+<telerik:RadButton 
+    SkinID="btnFilterReset" 
+    ToolTip="Reset" 
+    CssClass="button blue smalmed icon-left"
+    runat="server" 
+    Text="Reset">
+</telerik:RadButton>
+<telerik:RadButton SkinID="RadButtonCreateNewProduct" 
+    ToolTip="Create New Product"  
+    CssClass="button blue medium icon-left"   
+    runat="server" 
+    Text="Create New Product"
+    Icon-PrimaryIconCssClass="icon add"> 
+</telerik:RadButton>
+
+<%-- RadGrid --%>
+<telerik:RadGrid 
+    runat="server" 
+    Width="100%"
+    AllowPaging="True"
+    AllowSorting="True" 
+    AutoGenerateColumns="False" 
+    EnableAJAX="False"
+    EnableAJAXLoadingTemplate="False" 
+    GridLines="None"
+    CssClass="RadGridCustomClass"
+    LoadingTemplateTransparency="25"
+    ReorderCoumnsOnClient="False"
+    PageSize="50" 
+    ShowHeader="true"    
+    HeaderStyle-VerticalAlign="Bottom"
+    HeaderStyle-HorizontalAlign="Center"
+    AllowMultiRowSelection="true"
+    Skin="Outlook">
+    <ClientSettings 
+        AllowKeyboardNavigation="False" 
+        AllowColumnsReorder="False" 
+        AllowDragToGroup="False" 
+        AllowGroupExpandCollapse="True">
+        <Selecting AllowRowSelect="True" />
+    </ClientSettings>
+    <MasterTableView 
+        EditMode="InPlace" 
+        EnableColumnsViewState="False" 
+        GridLines="None" 
+        GroupLoadMode="Client"
+        CommandItemDisplay="None"
+        CommandItemSettings-ShowRefreshButton="false">
+        <NoRecordsTemplate>
+            <div>There are no records to display</div>
+        </NoRecordsTemplate>
+        <Columns>
+        </Columns>
+        <ExpandCollapseColumn Visible="False">
+            <HeaderStyle Width="19px" />
+        </ExpandCollapseColumn>
+        <PagerStyle 
+            AlwaysVisible="True" 
+            Mode="NextPrevNumericAndAdvanced">
+        </PagerStyle>
+        <RowIndicatorColumn Visible="False">
+            <HeaderStyle Width="20px" />
+        </RowIndicatorColumn>       
+    </MasterTableView>
+    <HeaderStyle HorizontalAlign="Center" />
+    <FilterMenu EnableImageSprites="False" />    
+    <HeaderContextMenu CssClass="thead th" />    
+</telerik:RadGrid>
+
+<telerik:RadGrid 
+    runat="server" 
+    Width="100%"
+    AllowPaging="False"
+    AllowSorting="True" 
+    AutoGenerateColumns="False" 
+    EnableAJAX="False"
+    EnableAJAXLoadingTemplate="False" 
+    GridLines="None"
+    CssClass="RadGridCustomClass"
+    LoadingTemplateTransparency="25"
+    ReorderCoumnsOnClient="False"
+    PageSize="50" 
+    Skin="Outlook" 
+    SkinID="RadGridWithoutPaging"
+    ShowHeader="true"    
+    HeaderStyle-VerticalAlign="Bottom"
+    HeaderStyle-HorizontalAlign="Center"
+    AllowMultiRowSelection="true">
+    <ClientSettings 
+        AllowKeyboardNavigation="False" 
+        AllowColumnsReorder="False" 
+        AllowDragToGroup="False" 
+        AllowGroupExpandCollapse="True">
+        <Selecting AllowRowSelect="True" />
+    </ClientSettings>
+    <MasterTableView 
+        EditMode="InPlace" 
+        EnableColumnsViewState="False" 
+        GridLines="None" 
+        GroupLoadMode="Client"
+        CommandItemDisplay="None"
+        CommandItemSettings-ShowRefreshButton="false">
+        <NoRecordsTemplate>
+            <div>There are no records to display</div>
+        </NoRecordsTemplate>
+        <Columns>
+        </Columns>
+        <ExpandCollapseColumn Visible="False">
+            <HeaderStyle Width="19px" />
+        </ExpandCollapseColumn>
+        <PagerStyle 
+            AlwaysVisible="True" 
+            Mode="NextPrevNumericAndAdvanced">
+        </PagerStyle>
+        <RowIndicatorColumn Visible="False">
+            <HeaderStyle Width="20px" />
+        </RowIndicatorColumn>       
+    </MasterTableView>
+    <HeaderStyle HorizontalAlign="Center" />
+    <FilterMenu EnableImageSprites="False" />    
+    <HeaderContextMenu CssClass="thead th" />    
+</telerik:RadGrid>
+
+<telerik:RadGrid 
+    runat="server" 
+    AllowPaging="false"
+    AutoGenerateColumns="False" 
+    EnableAJAX="False"
+    EnableAJAXLoadingTemplate="False" 
+    GridLines="None"
+    CssClass="RadGridCustomClass"
+    LoadingTemplateTransparency="25"
+    ReorderCoumnsOnClient="False"
+    Skin="Outlook" 
+    SkinID ="RadGridProfileMismatchMatrixList"
+    ShowHeader="true"    
+    HeaderStyle-VerticalAlign="Bottom"
+    HeaderStyle-HorizontalAlign="Center"
+    AllowMultiRowSelection="true">
+    <ClientSettings 
+        AllowKeyboardNavigation="False" 
+        AllowColumnsReorder="False" 
+        AllowDragToGroup="False" 
+        AllowGroupExpandCollapse="True">
+        <Selecting AllowRowSelect="True" />
+    </ClientSettings>
+    <MasterTableView 
+        EditMode="InPlace" 
+        EnableColumnsViewState="False" 
+        GridLines="None" 
+        GroupLoadMode="Client"
+        CommandItemDisplay="None"
+        CommandItemSettings-ShowRefreshButton="false">
+        <NoRecordsTemplate>
+            <div>There are no records to display</div>
+        </NoRecordsTemplate>
+        <Columns>
+        </Columns>
+        <ExpandCollapseColumn Visible="False">
+            <HeaderStyle Width="19px" />
+        </ExpandCollapseColumn>
+        <PagerStyle 
+            AlwaysVisible="True" 
+            Mode="NextPrevNumericAndAdvanced">
+        </PagerStyle>
+        <RowIndicatorColumn Visible="False">
+            <HeaderStyle Width="20px" />
+        </RowIndicatorColumn>       
+    </MasterTableView>
+    <HeaderStyle HorizontalAlign="Center" />
+    <FilterMenu EnableImageSprites="False" />    
+    <HeaderContextMenu CssClass="thead th" />    
+</telerik:RadGrid>
+
+<telerik:RadGrid 
+    runat="server" 
+    Width="100%"
+    AllowPaging="True"
+    AllowSorting="True" 
+    AutoGenerateColumns="False" 
+    EnableAJAX="False"
+    EnableAJAXLoadingTemplate="False" 
+    GridLines="None"
+    CssClass="table_green"
+    LoadingTemplateTransparency="25"
+    ReorderCoumnsOnClient="False"
+    PageSize="20" 
+    ShowHeader="true"    
+    HeaderStyle-VerticalAlign="Bottom"
+    HeaderStyle-HorizontalAlign="Center"
+    AllowMultiRowSelection="true"
+    SkinID="RadGridDefault" 
+    Skin="Outlook">
+    <ClientSettings 
+        AllowKeyboardNavigation="False" 
+        AllowColumnsReorder="False" 
+        AllowDragToGroup="False" 
+        AllowGroupExpandCollapse="True">
+        <Selecting AllowRowSelect="True" />
+    </ClientSettings>
+    <MasterTableView 
+        EditMode="InPlace" 
+        EnableColumnsViewState="False" 
+        GridLines="None" 
+        GroupLoadMode="Client"
+        CommandItemDisplay="None"
+        CommandItemSettings-ShowRefreshButton="false"
+        CommandItemSettings-ShowAddNewRecordButton="false"
+        TableLayout="Fixed">
+        <NoRecordsTemplate>
+            <div>There are no records to display</div>
+        </NoRecordsTemplate>
+        <Columns>
+        </Columns>
+        <ExpandCollapseColumn Visible="False">
+            <HeaderStyle Width="19px" />
+        </ExpandCollapseColumn>
+        <PagerStyle 
+            AlwaysVisible="True" 
+            Mode="NextPrevNumericAndAdvanced">
+        </PagerStyle>
+        <RowIndicatorColumn Visible="False">
+            <HeaderStyle Width="20px" />
+        </RowIndicatorColumn>       
+    </MasterTableView>
+    <HeaderStyle HorizontalAlign="Center" />
+    <FilterMenu EnableImageSprites="False" />    
+    <HeaderContextMenu CssClass="thead th" />    
+</telerik:RadGrid>
+
+<telerik:RadGrid 
+    runat="server" 
+    Width="100%"
+    AllowPaging="True"
+    AllowSorting="True" 
+    AutoGenerateColumns="False" 
+    EnableAJAX="False"
+    EnableAJAXLoadingTemplate="False" 
+    GridLines="None"
+    CssClass="table_green"
+    LoadingTemplateTransparency="25"
+    ReorderCoumnsOnClient="False"
+    PageSize="50" 
+    ShowHeader="true"    
+    HeaderStyle-VerticalAlign="Bottom"
+    HeaderStyle-HorizontalAlign="Center"
+    AllowMultiRowSelection="true"
+    SkinID="RadGridReport" 
+    Skin="Outlook">
+    <ClientSettings 
+        AllowKeyboardNavigation="False" 
+        AllowColumnsReorder="False" 
+        AllowDragToGroup="False" 
+        AllowGroupExpandCollapse="True">
+        <Selecting AllowRowSelect="True" />
+    </ClientSettings>
+    <MasterTableView 
+        EditMode="InPlace" 
+        EnableColumnsViewState="False" 
+        GridLines="None" 
+        GroupLoadMode="Client"
+        CommandItemDisplay="None"
+        CommandItemSettings-ShowRefreshButton="false"
+        CommandItemSettings-ShowAddNewRecordButton="false"
+        TableLayout="Fixed">
+        <Columns>
+        </Columns>
+        <ExpandCollapseColumn Visible="False">
+            <HeaderStyle Width="19px" />
+        </ExpandCollapseColumn>
+        <PagerStyle 
+            AlwaysVisible="True" 
+            Mode="NextPrevNumericAndAdvanced">
+        </PagerStyle>
+        <RowIndicatorColumn Visible="False">
+            <HeaderStyle Width="20px" />
+        </RowIndicatorColumn>       
+    </MasterTableView>
+    <HeaderStyle HorizontalAlign="Center" />
+    <FilterMenu EnableImageSprites="False" />    
+    <HeaderContextMenu CssClass="thead th" />    
+</telerik:RadGrid>
+
+<%-- Begin ASP Button --%>
+<asp:Button SkinID="ASPButtonSave"  
+    CssClass="button blue medium"
+    runat="server" 
+    Text="Save">
+</asp:Button>
+<asp:Button SkinID="ASPButtonCancel"  
+   CssClass="button blue medium"
+    runat="server" 
+    Text="Cancel">
+</asp:Button>
+
+<asp:Button SkinID="ASPButtonApprove"  
+    CssClass="button blue medium"
+    runat="server" 
+    Text="Approve">
+</asp:Button>
+
+<asp:Button SkinID="ASPButtonReject"  
+    CssClass="button blue medium"
+    runat="server" 
+    Text="Reject">
+</asp:Button>
+
+<asp:Button SkinID="ASPButtonBack"  
+    CssClass="button blue medium"
+    runat="server" 
+    Text="Back">
+</asp:Button>
+
+<%-- End ASP Button --%>

@@ -35,7 +35,13 @@ namespace PFSHelper.BusinessLogicLayer
             RPT_SUM_READ,
             RPT_AUD_READ,
             MST_EXC_READ,
-            MST_EXC_CREATE
+            MST_EXC_CREATE,
+            SALES_SO_READ,
+            SALES_SO_DELETE,
+            SALES_SO_ADD,
+            SALES_SOINPUT_SAVE,
+            SALES_SOINPUT_ADDITEM,
+            SALES_SOINPUT_DETAIL
         }
       
         public enum ActiveStatus : int

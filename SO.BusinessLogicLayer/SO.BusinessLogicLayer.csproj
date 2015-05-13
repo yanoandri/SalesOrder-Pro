@@ -32,6 +32,7 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -39,8 +40,37 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Aproval\Approval.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Aproval\ApprovalLog\ApprovalLog.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Aproval\ApprovalLog\ApprovalLogCollection.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Aproval\ApprovalLog\pApprovalLog.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Aproval\ApprovalLog\pApprovalLogCollection.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Aproval\ApprovalStatus\ApprovalStatus.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Aproval\ApprovalStatus\ApprovalStatusCollection.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Aproval\ApprovalStatus\pApprovalStatus.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Customer\Customer.cs" />
     <Compile Include="Customer\CustomerCollection.cs" />
+    <Compile Include="Enumeration\SOEnumeration.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="SalesOrder\pSalesOrder.cs" />
+    <Compile Include="SalesOrder\pSalesOrderCollection.cs" />
     <Compile Include="SalesOrder\SalesOrderCollection.cs" />
     <Compile Include="SalesOrder\SalesOrder.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -48,6 +78,10 @@
     <Compile Include="SOItem\SOItemCollection.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\PFSHelper.BusinessLogicLayer\PFSHelper.BusinessLogicLayer.csproj">
+      <Project>{728fa248-09ce-4827-b498-44d2565e6f76}</Project>
+      <Name>PFSHelper.BusinessLogicLayer</Name>
+    </ProjectReference>
     <ProjectReference Include="..\PFSHelper.DataAccessLayer\PFSHelper.DataAccessLayer.csproj">
       <Project>{86b22559-8ce0-49fd-90e7-d92ff4cdf83b}</Project>
       <Name>PFSHelper.DataAccessLayer</Name>

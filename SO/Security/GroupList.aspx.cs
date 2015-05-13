@@ -4,8 +4,8 @@ using System.Web;
 using System.Web.UI.WebControls;
 using PFSHelper.BusinessLogicLayer;
 using PFSHelper.Lib;
-using PSC.BusinessLogicLayer;
-using PSC.BusinessLogicLayer.Enumeration;
+using SO.BusinessLogicLayer;
+using SO.BusinessLogicLayer.Enumeration;
 using Telerik.Web.UI;
 
 public partial class Security_GroupList : PFSBasePage
@@ -30,8 +30,8 @@ public partial class Security_GroupList : PFSBasePage
 
         try
         {
-            if (!Security.CheckSecurity(PSCEnumeration.PFSModuleObjectMember.SCR_GRP_READ.ToString())) NoPermission();
-            btnCreateNewGroup.Visible = Security.CheckSecurity(PSCEnumeration.PFSModuleObjectMember.SCR_GRP_CREATE.ToString());
+            if (!Security.CheckSecurity(SOEnumeration.PFSModuleObjectMember.SCR_GRP_READ.ToString())) NoPermission();
+            btnCreateNewGroup.Visible = Security.CheckSecurity(SOEnumeration.PFSModuleObjectMember.SCR_GRP_CREATE.ToString());
 
             if (!IsPostBack)
             {
@@ -230,8 +230,6 @@ public partial class Security_GroupList : PFSBasePage
         //Response.Write(sb.ToString());
         //Response.End();
         #endregion
-
-
     }
     #endregion
 
@@ -321,12 +319,12 @@ public partial class Security_GroupList : PFSBasePage
                 //*** Check Duplication ***//
                 if (oCheckGroup.DAL_LoadByGroupName(oGroup.GroupName, iGroupID))
                     Alert("Duplicate group name in Database. Please change the group name");
-                else if (oCheckExistingContent.DAL_LoadToGetDuplicateContent("Group", "GroupName", oGroup.GroupName, (int)PSC.BusinessLogicLayer.Enumeration.PSCEnumeration.PFSModuleObjectMember.SCR_GRP_CREATE, null))
+                else if (oCheckExistingContent.DAL_LoadToGetDuplicateContent("Group", "GroupName", oGroup.GroupName, (int)SO.BusinessLogicLayer.Enumeration.SOEnumeration.PFSModuleObjectMember.SCR_GRP_CREATE, null))
                 {
                     //*** Duplicate group name detected in ApprovalLog***//
                     Alert("Duplicate group name in Approval Log. Please change the group name");
                 }
-                else if (oCheckExistingContent.DAL_LoadToGetDuplicateContent("Group", "GroupName", oGroup.GroupName, (int)PSC.BusinessLogicLayer.Enumeration.PSCEnumeration.PFSModuleObjectMember.SCR_GRP_UPDATE, null))
+                else if (oCheckExistingContent.DAL_LoadToGetDuplicateContent("Group", "GroupName", oGroup.GroupName, (int)SO.BusinessLogicLayer.Enumeration.SOEnumeration.PFSModuleObjectMember.SCR_GRP_UPDATE, null))
                 {
                     //*** Duplicate group name detected in ApprovalLog***//
                     Alert("Duplicate group name in Approval Log. Please change the group name");
@@ -343,13 +341,13 @@ public partial class Security_GroupList : PFSBasePage
                         ApprovalLog oApprovalLog = new ApprovalLog()
                         {
                             RefID = Convert.ToInt32(oGroup.GroupID),
-                            ModuleObjectMemberID = (int)PSC.BusinessLogicLayer.Enumeration.PSCEnumeration.PFSModuleObjectMember.SCR_GRP_UPDATE,
-                            ApprovalStatusID = (int)PSC.BusinessLogicLayer.Enumeration.PSCEnumeration.ApprovalStatus.PENDING,
+                            ModuleObjectMemberID = (int)SO.BusinessLogicLayer.Enumeration.SOEnumeration.PFSModuleObjectMember.SCR_GRP_UPDATE,
+                            ApprovalStatusID = (int)SO.BusinessLogicLayer.Enumeration.SOEnumeration.ApprovalStatus.PENDING,
                             Detail = PFSXMLTools.SerializeObjectUsingUnicode<Group>(oGroup),
                             PreviousDetail = sPreviousDetail = PFSXMLTools.SerializeObjectUsingUnicode<Group>(oLastGroupBeforeUpdate)
                         };
 
-                        iStatus = Convert.ToInt16(Approval.UpdateApprovalLog(oGroup, oApprovalLog, PSC.BusinessLogicLayer.Enumeration.PSCEnumeration.ApprovalStatus.PENDING, ref sRemark));
+                        iStatus = Convert.ToInt16(Approval.UpdateApprovalLog(oGroup, oApprovalLog, SO.BusinessLogicLayer.Enumeration.SOEnumeration.ApprovalStatus.PENDING, ref sRemark));
 
                         if (iStatus == 0)
                         {
@@ -378,13 +376,13 @@ public partial class Security_GroupList : PFSBasePage
                         ApprovalLog oApprovalLog = new ApprovalLog()
                         {
                             RefID = Convert.ToInt32(oGroup.GroupID),
-                            ModuleObjectMemberID = (int)PSC.BusinessLogicLayer.Enumeration.PSCEnumeration.PFSModuleObjectMember.SCR_GRP_CREATE,
-                            ApprovalStatusID = (int)PSC.BusinessLogicLayer.Enumeration.PSCEnumeration.ApprovalStatus.PENDING,
+                            ModuleObjectMemberID = (int)SO.BusinessLogicLayer.Enumeration.SOEnumeration.PFSModuleObjectMember.SCR_GRP_CREATE,
+                            ApprovalStatusID = (int)SO.BusinessLogicLayer.Enumeration.SOEnumeration.ApprovalStatus.PENDING,
                             Detail = PFSXMLTools.SerializeObjectUsingUnicode<Group>(oGroup),
                             PreviousDetail = sPreviousDetail = PFSXMLTools.SerializeObjectUsingUnicode<Group>(oGroup)
                         };
 
-                        iStatus = Convert.ToInt16(Approval.UpdateApprovalLog(oGroup, oApprovalLog, PSC.BusinessLogicLayer.Enumeration.PSCEnumeration.ApprovalStatus.PENDING, ref sRemark));
+                        iStatus = Convert.ToInt16(Approval.UpdateApprovalLog(oGroup, oApprovalLog, SO.BusinessLogicLayer.Enumeration.SOEnumeration.ApprovalStatus.PENDING, ref sRemark));
 
                         if (iStatus == 0)
                         {
@@ -426,13 +424,13 @@ public partial class Security_GroupList : PFSBasePage
                     ApprovalLog oApprovalLog = new ApprovalLog()
                     {
                         RefID = Convert.ToInt32(oGroup.GroupID),
-                        ModuleObjectMemberID = (int)PSC.BusinessLogicLayer.Enumeration.PSCEnumeration.PFSModuleObjectMember.SCR_GRP_DELETE,
-                        ApprovalStatusID = (int)PSC.BusinessLogicLayer.Enumeration.PSCEnumeration.ApprovalStatus.PENDING,
+                        ModuleObjectMemberID = (int)SO.BusinessLogicLayer.Enumeration.SOEnumeration.PFSModuleObjectMember.SCR_GRP_DELETE,
+                        ApprovalStatusID = (int)SO.BusinessLogicLayer.Enumeration.SOEnumeration.ApprovalStatus.PENDING,
                         Detail = PFSXMLTools.SerializeObjectUsingUnicode<Group>(oGroup),
                         PreviousDetail = sPreviousDetail = PFSXMLTools.SerializeObjectUsingUnicode<Group>(oGroup)
                     };
 
-                    iStatus = Convert.ToInt16(Approval.UpdateApprovalLog(oGroup, oApprovalLog, PSC.BusinessLogicLayer.Enumeration.PSCEnumeration.ApprovalStatus.PENDING, ref sRemark));
+                    iStatus = Convert.ToInt16(Approval.UpdateApprovalLog(oGroup, oApprovalLog, SO.BusinessLogicLayer.Enumeration.SOEnumeration.ApprovalStatus.PENDING, ref sRemark));
 
                     if (iStatus == 0)
                     {
@@ -461,7 +459,7 @@ public partial class Security_GroupList : PFSBasePage
                 rptList.DataBind();
 
                 Response.Clear();
-                Response.AddHeader("content-disposition", "attachment;filename=PSC - GroupList.xls");
+                Response.AddHeader("content-disposition", "attachment;filename=SO - GroupList.xls");
                 Response.Charset = "";
                 Response.ContentType = "application/vnd.ms-excel";
                 System.IO.StringWriter oStringWriter = new System.IO.StringWriter();
@@ -486,11 +484,11 @@ public partial class Security_GroupList : PFSBasePage
                 int iModuleObjectMemberID = 0;
 
                 if (e.CommandName == RadGrid.PerformInsertCommandName)
-                    iModuleObjectMemberID = (int)PSC.BusinessLogicLayer.Enumeration.PSCEnumeration.PFSModuleObjectMember.SCR_GRP_CREATE;
+                    iModuleObjectMemberID = (int)SO.BusinessLogicLayer.Enumeration.SOEnumeration.PFSModuleObjectMember.SCR_GRP_CREATE;
                 else if (e.CommandName == RadGrid.UpdateCommandName)
-                    iModuleObjectMemberID = (int)PSC.BusinessLogicLayer.Enumeration.PSCEnumeration.PFSModuleObjectMember.SCR_GRP_UPDATE;
+                    iModuleObjectMemberID = (int)SO.BusinessLogicLayer.Enumeration.SOEnumeration.PFSModuleObjectMember.SCR_GRP_UPDATE;
                 else if (e.CommandName == RadGrid.DeleteCommandName)
-                    iModuleObjectMemberID = (int)PSC.BusinessLogicLayer.Enumeration.PSCEnumeration.PFSModuleObjectMember.SCR_GRP_DELETE;
+                    iModuleObjectMemberID = (int)SO.BusinessLogicLayer.Enumeration.SOEnumeration.PFSModuleObjectMember.SCR_GRP_DELETE;
 
                 Security.WriteUserLog(sRefNumber, sDescription, oGroup, iStatus, iModuleObjectMemberID, sPreviousDetail);
             }
@@ -515,11 +513,11 @@ public partial class Security_GroupList : PFSBasePage
                 ImageButton btnAccessRight = (ImageButton)e.Item.FindControl("btnAccessRight");
                 Label lblNeedApproval = (Label)e.Item.FindControl("lblNeedApproval");
 
-                btnAccessRight.Visible = (Security.CheckSecurity(PSCEnumeration.PFSModuleObjectMember.SCR_GRP_ACCESS.ToString()) &&
+                btnAccessRight.Visible = (Security.CheckSecurity(SOEnumeration.PFSModuleObjectMember.SCR_GRP_ACCESS.ToString()) &&
                     !((CheckBox)e.Item.FindControl("cbIsNeedApproval")).Checked);
-                btnDelete.Visible = (Security.CheckSecurity(PSCEnumeration.PFSModuleObjectMember.SCR_GRP_DELETE.ToString()) &&
+                btnDelete.Visible = (Security.CheckSecurity(SOEnumeration.PFSModuleObjectMember.SCR_GRP_DELETE.ToString()) &&
                     !((CheckBox)e.Item.FindControl("cbIsNeedApproval")).Checked);
-                btnEdit.Visible = (Security.CheckSecurity(PSCEnumeration.PFSModuleObjectMember.SCR_GRP_UPDATE.ToString()) &&
+                btnEdit.Visible = (Security.CheckSecurity(SOEnumeration.PFSModuleObjectMember.SCR_GRP_UPDATE.ToString()) &&
                     !((CheckBox)e.Item.FindControl("cbIsNeedApproval")).Checked);
                 lblNeedApproval.Visible = (((CheckBox)e.Item.FindControl("cbIsNeedApproval")).Checked);
 

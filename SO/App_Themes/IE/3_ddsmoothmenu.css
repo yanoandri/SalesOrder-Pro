@@ -1,0 +1,184 @@
+.ddsmoothmenu{
+font: bold 12px Arial;
+/* background: #414141; /*background of menu bar (default state)*/
+width: 100%;
+}
+
+.ddsmoothmenu ul{
+z-index:100;
+margin: 0;
+padding: 0;
+list-style-type: none;
+line-height:10px;
+}
+
+/*Top level list items*/
+.ddsmoothmenu ul li{
+position: relative;
+display: inline;
+float: left;
+}
+
+/*Top level menu link items style*/
+.ddsmoothmenu ul li ul li a{
+display: block;
+/* background: #414141; /*background of menu items (default state)*/
+color: black;
+padding:10px;
+ /* border-right: 1px solid #778; */
+background-position:0px 2px;
+color: #fff;
+text-decoration: none;
+font:bold 11px Arial, Helvetica, sans-serif;
+
+}
+
+* html .ddsmoothmenu ul li a{ /*IE6 hack to get sub menu links to behave correctly*/
+display: inline-block;
+}
+
+.ddsmoothmenu ul li a:link, .ddsmoothmenu ul li a:visited{
+color: white;
+}
+
+.ddsmoothmenu ul li a.selected{ /*CSS class that's dynamically added to the currently active menu items' LI A element*/
+color: white;
+}
+
+.ddsmoothmenu li ul li a.selected{ /*CSS class that's dynamically added to the currently active menu items' LI A element*/
+background:#4795b7;
+color: white;
+}
+
+.ddsmoothmenu ul li a:hover{
+color: #000;
+}
+
+.ddsmoothmenu ul li ul li a:hover{
+background:#4795b7; /*background of menu items during onmouseover (hover state)*/
+}
+
+
+	
+/*1st sub level menu*/
+.ddsmoothmenu ul li ul{
+position: absolute;
+left: 0;
+display: none; /*collapse all sub menus to begin with*/
+visibility: hidden;
+z-index:998;
+}
+
+/*Sub level menu list items (undo style from Top level List Items)*/
+.ddsmoothmenu ul li ul li{
+display: list-item;
+float: none;
+text-transform:capitalize;
+}
+
+/*All subsequent sub menu levels vertical offset after 1st level sub menu */
+.ddsmoothmenu ul li ul li ul{
+top: -120px;
+}
+
+/* Sub level menu links style */
+.ddsmoothmenu ul li ul li a{
+font: normal 10px arial;
+width: 130px; /*width of sub menus*/
+padding: 5px;
+margin: 0;
+border-top-width: 0;
+/*border-bottom: 1px solid gray;*/
+}
+
+*html .ddsmoothmenu ul li ul li a{
+background:#000;
+filter: progid:DXImageTransform.Microsoft.Alpha(opacity=80);
+
+}
+
+/* Holly Hack for IE \*/
+* html .ddsmoothmenu{height: 1%;} /*Holly Hack for IE7 and below*/
+
+
+/* ######### CSS classes applied to down and right arrow images  ######### */
+
+.downarrowclass{
+position: absolute;
+top: 12px;
+right: 7px;
+display:none;
+}
+
+.rightarrowclass{
+position: absolute;
+top: 6px;
+right: 5px;
+display:none;
+}
+
+/* ######### CSS for shadow added to sub menus  ######### */
+
+.ddshadow{
+position: absolute;
+left: 0;
+top: 100px;
+width: 0;
+height: 0;
+
+}
+
+.toplevelshadow{ /*shadow opacity. Doesn't work in IE*/
+opacity: 0.8;
+
+}
+
+.ddsmoothmenu ul li ul li {background:#286e89;}
+.ddsmoothmenu ul li.dashboard {background:url(../Default/images/button-menu/dashboard.png) no-repeat;}
+.ddsmoothmenu ul li.dashboard:hover {background:url(../Default/images/button-menu/dashboard-hover.png) no-repeat;}
+.ddsmoothmenu ul li.preferences {background:url(../Default/images/button-menu/preferences.png) no-repeat;margin-left:2px;}
+.ddsmoothmenu ul li.preferences:hover {background:url(../Default/images/button-menu/preferences-hover.png) no-repeat;margin-left:2px;}
+.ddsmoothmenu ul li.security {background:url(../Default/images/button-menu/security.png) no-repeat;margin-left:1px;}
+.ddsmoothmenu ul li.security:hover {background:url(../Default/images/button-menu/security-hover.png) no-repeat;margin-left:1px;}
+.ddsmoothmenu ul li.customer {background:url(../Default/images/button-menu/customer.png) no-repeat;margin-left:2px;}
+.ddsmoothmenu ul li.customer:hover {background:url(../Default/images/button-menu/customer-hover.png) no-repeat;margin-left:2px;}
+.ddsmoothmenu ul li.statement {background:url(../Default/images/button-menu/statement.png) no-repeat;margin-left:1px;}
+.ddsmoothmenu ul li.statement:hover {background:url(../Default/images/button-menu/statement-hover.png) no-repeat;margin-left:1px;}
+.ddsmoothmenu ul li.approval {background:url(../Default/images/button-menu/approval.png) no-repeat;margin-left:1px;}
+.ddsmoothmenu ul li.approval:hover {background:url(../Default/images/button-menu/approval-hover.png) no-repeat;margin-left:1px;}
+.ddsmoothmenu ul li.report {background:url(../Default/images/button-menu/report.png) no-repeat;margin-left:2px;}
+.ddsmoothmenu ul li.report:hover {background:url(../Default/images/button-menu/report-hover.png) no-repeat;margin-left:2px;}
+.ddsmoothmenu ul li ul li.top-submenu {background:url(../Default/images/button-menu/top-submenu.png);height:26px;}
+.ddsmoothmenu ul li ul li.bottom-submenu {background:url(../Default/images/button-menu/bottom-submenu.png) bottom center;height:26px;}
+.ddsmoothmenu ul li ul li.top-submenu a:hover {background:url(../Default/images/button-menu/top-submenu-hover.png);height:26px!important;}
+.ddsmoothmenu ul li ul li.bottom-submenu a:hover {background:url(../Default/images/button-menu/bottom-submenu-hover.png) no-repeat;height:26px!important;}
+.ddsmoothmenu ul li ul li.menu-1 {background:url(../Default/images/button-menu/menu1.png) no-repeat;height:23px!important;}
+.ddsmoothmenu ul li ul li.menu-1 a:hover {background:url(../Default/images/button-menu/menu-1-hover.png) no-repeat;height:23px!important;}
+
+/*Top level menu link items style*/
+.ddsmoothmenu ul li a.menu-button{
+display: block;
+/* background: #414141; /*background of menu items (default state)*/
+color: black;
+padding:7px 8px 10px 24px !important;
+ /* border-right: 1px solid #778; */
+background-position:0px 2px;
+color: #fff;
+text-decoration: none;
+font:bold 10px Arial, Helvetica, sans-serif;
+
+}
+.ddsmoothmenu ul li a.preparation{
+display: block;
+/* background: #414141; /*background of menu items (default state)*/
+color: black;
+padding:3px 8px 10px 25px!important;
+ /* border-right: 1px solid #778; */
+background-position:0px 2px;
+color: #fff;
+text-decoration: none;
+font:bold 9px Arial, Helvetica, sans-serif;
+line-height:10px;
+}
+
+.ddsmoothmenu ul li ul li ul li {top:-3px;};}

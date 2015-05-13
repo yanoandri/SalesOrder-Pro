@@ -1,0 +1,461 @@
+﻿@charset "utf-8";
+
+/*--------------------------------------------------------
+	FONTFACE
+--------------------------------------------------------*/
+
+@font-face
+{
+    font-family: 'Helvetica';
+    src: url('../Default/Fonts/helvetica.eot');
+    src: url('../Default/Fonts/helvetica.eot?#iefix') format('embedded-opentype'), url('../Default/Fonts/helvetica.woff') format('woff'), url('../Default/Fonts/helvetica.ttf') format('truetype'), url('../Default/Fonts/helvetica.svg#helvetica') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face
+{
+    font-family: 'Conv_BRLNSB';
+    src: url('../Default/Fonts/BRLNSB.eot');
+    src: local('?'), url('../Default/Fonts/BRLNSB.woff') format('woff'), url('Fonts/BRLNSB.ttf') format('truetype'), url('Fonts/BRLNSB.svg') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+
+/*--------------------------------------------------------
+	GENERAL
+--------------------------------------------------------*/
+body
+{
+    background-color: White;
+}
+
+h1
+{
+    font: bold 17px 'Helvetica',arial;
+    color: #0186c1;
+}
+
+h2
+{
+    font-family: 'Conv_BRLNSB',Sans-Serif;
+    font-size: 24px;
+    color: #4c8908;
+}
+
+h3
+{
+    font: bold 75% Arial, Helvetica, sans-serif;
+    color: #fff;
+}
+
+h4
+{
+    font: bold 14px Arial, Helvetica, sans-serif;
+}
+
+p
+{
+    font: 75% Arial, Helvetica, sans-serif;
+    color: #4b4b4b;
+}
+
+.separator
+{
+    background: url(../Default/images/background/separator.png) repeat-y;
+}
+
+/*--------------------------------------------------------
+	TYPO
+--------------------------------------------------------*/
+.left
+{
+    float: left;
+}
+
+.right
+{
+    float: right;
+}
+
+.green
+{
+    color: #88a008;
+}
+
+.blue
+{
+    color: #27819e;
+}
+
+.orange
+{
+    color: #eb9a1c;
+}
+
+
+/*--------------------------------------------------------
+	HEADER
+--------------------------------------------------------*/
+#logo
+{
+    position: absolute;
+    top: 0px;
+    right: 0;
+    z-index: 1;
+}
+
+
+/*--------------------------------------------------------
+	MENU
+--------------------------------------------------------*/
+#menu
+{
+    float: right;
+    position: relative;
+    top: -39px;
+    right: 27px;
+}
+
+/*--------------------------------------------------------
+	BODY
+--------------------------------------------------------*/
+#body-default
+{
+    background: url(../Default/images/background/header.jpg) no-repeat left top;
+    position: relative;
+}
+
+#body-wrapper
+{
+    background: url(../Default/images/background/body-bg.png) bottom center repeat-x;
+    z-index: -1;
+    min-height: 370px;
+    padding-bottom: 10px;
+}
+
+#body
+{
+    width: 96%;
+    margin: -7px auto;
+}
+
+    #body #top
+    {
+        background: url(../Default/images/background/top-body.png) repeat-x;
+        height: 18px;
+    }
+
+    #body #content
+    {
+        background: #f4f4f4;
+    }
+
+    #body #bottom
+    {
+        background: url(../Default/images/background/top-bottom.png) bottom repeat-x;
+        height: 18px;
+    }
+
+
+    /*--------------------------------------------------------
+	BODY : CONTENT : TITLE
+--------------------------------------------------------*/
+    #body #content .title-and-login
+    {
+        height: 31px;
+    }
+
+        #body #content .title-and-login .title
+        {
+            float: left;
+            width: 60%;
+            margin: -22px 0 0 10px;
+        }
+
+            #body #content .title-and-login .title .icon
+            {
+            }
+
+            #body #content .title-and-login .title .text
+            {
+                margin: 7px 0 0 7px;
+            }
+
+        #body #content .title-and-login .login
+        {
+            float: right;
+            width: 36%;
+            margin: -22px 5px 0 0;
+        }
+
+            #body #content .title-and-login .login .welcome
+            {
+                padding-right: 15px;
+            }
+
+            #body #content .title-and-login .login .email
+            {
+                padding-right: 15px;
+            }
+
+            #body #content .title-and-login .login .logout
+            {
+            }
+
+
+    /*--------------------------------------------------------
+	BODY : CONTENT : MAIN
+--------------------------------------------------------*/
+    #body #content .frame_lv1
+    {
+        background: #fff;
+    }
+
+        #body #content .frame_lv1 .title
+        {
+            background: url(../Default/images/background/form-title.jpg) repeat-x;
+            height: 30px;
+            padding: 11px 13px 0;
+            margin-top: 5px;
+        }
+
+        #body #content .frame_lv1 .form-filter
+        {
+            padding: 10px;
+            border-right: 1px solid #e2e2e2;
+            border-left: 1px solid #e2e2e2;
+            margin-top: -11px;
+        }
+
+        #body #content .frame_lv1 .form-filter-table
+        {
+            margin-top: -10px;
+        }
+
+        #body #content .frame_lv1 .hide-container
+        {
+            height: 22px;
+            width: 105px;
+            position: relative;
+            float: right;
+            padding-right: 10px;
+        }
+
+        #body #content .frame_lv1 .hide
+        {
+            position: absolute;
+            top: 3px;
+            left: 18px;
+        }
+
+        #body #content .frame_lv1 .form-filter .filter-style
+        {
+            margin-left: 10px;
+        }
+
+            #body #content .frame_lv1 .form-filter .filter-style td
+            {
+                font: 70% Arial, Helvetica, sans-serif;
+                color: #787878;
+            }
+
+        #body #content .frame_lv1 .form-table
+        {
+            padding: 11px;
+            border-right: 1px solid #e2e2e2;
+            border-left: 1px solid #e2e2e2;
+        }
+
+        #body #content .frame_lv1 .button-grid
+        {
+            margin-top: -37px;
+            margin-bottom: 3px;
+        }
+
+        #body #content .frame_lv1 .data-grid
+        {
+        }
+
+        /*#body #content .frame_lv1 .form-table td.frame_lv2-title {background:url(../Default/images/background/mid.jpg) repeat-x;height:25px;font:bold 70% Arial, Helvetica, sans-serif;padding:2px 0 0 5px;color:#fff;border:none;}
+#body #content .frame_lv1 .form-table td.frame_lv2-content {background:url(../Default/images/background/bottom-title.jpg) repeat-x center bottom;border-right:1px solid #e2e2e2;border-left:1px solid #e2e2e2;font:70% Arial, Helvetica, sans-serif;color:#666666;padding:5px;}
+#body #content .frame_lv1 .form-table td.frame_lv2-leftcolumn {background:#f3f3f3;padding-left:5px;}
+#body #content .frame_lv1 .form-table td.frame_lv2-rightcolumn {background:#fff;padding-left:5px;}*/
+        #body #content .frame_lv1 .form-table .body-content-left
+        {
+            width: 100%;
+        }
+
+td.frame_lv2-title
+{
+    background: url(../Default/images/background/mid.jpg) repeat-x;
+    height: 25px;
+    font: bold 70% Arial, Helvetica, sans-serif;
+    padding: 2px 0 0 5px;
+    color: #fff;
+    border: none;
+}
+
+td.frame_lv2-content
+{
+    background: url(../Default/images/background/bottom-title.jpg) repeat-x center bottom;
+    border-right: 1px solid #e2e2e2;
+    border-left: 1px solid #e2e2e2;
+    font: 70% Arial, Helvetica, sans-serif;
+    color: #666666;
+    padding: 5px;
+}
+
+td.frame_lv2-leftcolumn
+{
+    background: #f3f3f3;
+    padding-left: 5px;
+}
+
+td.frame_lv2-rightcolumn
+{
+    background: #fff;
+    padding-left: 5px;
+}
+
+/*--------------------------------------------------------
+	FOOTER
+--------------------------------------------------------*/
+#footer
+{
+    background: url(../Default/images/background/footer.png) center bottom no-repeat;
+    height: 84px;
+}
+
+.copyright
+{
+    text-align: center;
+    font: 80% Arial, Helvetica, sans-serif;
+    color: #000;
+    padding-top: 15px;
+}
+
+/*--------------------------------------------------------
+	DASHBOARD
+--------------------------------------------------------*/
+#body-dashboard
+{
+    background: url(../Default/images/background/dashboard-header.jpg) left top no-repeat;
+    min-height: 300px;
+}
+
+.dashboard-logo
+{
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
+.dashboard-content
+{
+    padding-top: 95px;
+    width: 96%;
+    margin: 0 2%;
+    position: relative;
+    min-height: 390px;
+}
+
+.dashboard-menu
+{
+    width: 380px;
+    margin-right: 2%;
+}
+
+.dashboard-menu-right
+{
+    left: 400px;
+}
+
+.dashboard-menu .tab-menu
+{
+    width: 36px;
+}
+
+    .dashboard-menu .tab-menu ul.idTabs li
+    {
+        list-style: none;
+    }
+
+        .dashboard-menu .tab-menu ul.idTabs li a.selected-billing
+        {
+            list-style: none;
+            background: url(../Default/images/background/billing-tab-2.png) no-repeat;
+            width: 36px;
+            height: 110px;
+            display: block;
+        }
+
+            .dashboard-menu .tab-menu ul.idTabs li a.selected-billing.active
+            {
+                background: url(../Default/images/background/billing-tab.png) no-repeat;
+                width: 36px;
+                height: 110px;
+                display: block;
+            }
+
+        .dashboard-menu .tab-menu ul.idTabs li a.consolidated
+        {
+            list-style: none;
+            background: url(../Default/images/background/consolidated-tab.png) no-repeat;
+            display: block;
+            width: 31px;
+            height: 129px;
+            margin-left: 5px;
+        }
+
+            .dashboard-menu .tab-menu ul.idTabs li a.consolidated.active
+            {
+                list-style: none;
+                background: url(../Default/images/background/consolidated-tab-2.png) no-repeat;
+                display: block;
+                width: 31px;
+                height: 129px;
+                margin-left: 5px;
+            }
+
+.dashboard-menu .panel-menu
+{
+    width: 300px;
+}
+
+    .dashboard-menu .panel-menu .welcome-note
+    {
+        background: url(../Default/images/background/welcome-space.png) right top no-repeat;
+        min-width: 330px;
+        height: 80px;
+        padding: 20px 0 0 20px;
+    }
+
+    .dashboard-menu .panel-menu .bottom
+    {
+        background: url(../Default/images/background/bottom-menu.png) top center no-repeat;
+        width: 350px;
+        height: 13px;
+    }
+
+    .dashboard-menu .panel-menu #idTab1, #idTab2
+    {
+        padding: 10px 0 5px 18px;
+        background: #ececec;
+        width: 332px;
+    }
+
+
+
+/*--------------------------------------------------------
+	DASHBOARD
+--------------------------------------------------------*/
+.login-content
+{
+    padding-top: 220px;
+    width: 96%;
+    margin: 0 auto;
+    position: relative;
+    min-height: 300px;
+}

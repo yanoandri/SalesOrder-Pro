@@ -1,0 +1,594 @@
+<%@ Register assembly="Telerik.Web.UI" namespace="Telerik.Web.UI" tagprefix="telerik" %>
+
+<%-- Button --%>
+<asp:Button runat="server" CssClass="Button" SkinID="Button" />
+<asp:Button runat="server" CssClass="ButtonNew" Text="New" SkinID="New" />
+<asp:Button runat="server" CssClass="ButtonEdit" Text="Edit" SkinID="Edit" />
+<asp:Button runat="server" CssClass="ButtonSave" Text="Save" SkinID="Save" />
+<asp:Button runat="server" CssClass="ButtonCancel" Text="Cancel" SkinID="Cancel" />
+<asp:Button runat="server" CssClass="ButtonDelete" Text="Delete" SkinID="Delete" />
+<asp:Button runat="server" CssClass="ButtonCancellation" Text="Cancel" SkinID="Cancellation" />
+<asp:Button runat="server" CssClass="ButtonLogin" Text="Login" SkinID="Login" />
+<asp:Button runat="server" CssClass="ButtonSearch" Text="Search" SkinID="Search" />
+<asp:Button runat="server" CssClass="ButtonValidate" Text="Validate" SkinID="Validate" />
+
+<%-- CheckBox--%>
+<asp:checkbox runat="server" CssClass="CheckBox" />
+<asp:CheckBoxList runat="server" CssClass="CheckBox" />
+
+<%-- DropDownList --%>
+<asp:dropdownlist runat="server" CssClass="DropDownList" />
+
+<%-- HyperLink --%>
+<asp:hyperlink runat="server" CssClass="Hyperlink" />
+
+
+<%-- Image --%>
+<asp:Image runat="server" CssClass="Image" />
+<asp:Image runat="server" CssClass="Image" SkinID="Active" ToolTip="Active" ImageUrl="images/icons/icon_active.gif" />
+<asp:Image runat="server" CssClass="Image" SkinID="NotActive" ToolTip="Not Active" ImageUrl="images/icons/icon_not_active.gif" />
+<asp:Image runat="server" CssClass="Image" SkinID="ToolbarDelete" ToolTip="Delete Selected Row" ImageUrl="images/icons/icon_delete.gif" />
+<asp:Image runat="server" CssClass="Image" SkinID="ButtonShow" ToolTip="Button Show" ImageUrl="images/background/btn_show.jpg" />
+
+<%-- ImageButton --%>
+<asp:ImageButton runat="server" CssClass="ImageButton"> </asp:ImageButton>    
+<asp:ImageButton runat="server" CssClass="ImageButton" SkinID="TimeCard" ToolTip="Fill your time card here" AlternateText="Card" ImageUrl="images/icons/icon-timecard.gif"> </asp:ImageButton>    
+<asp:ImageButton runat="server" CssClass="ImageButton" SkinID="New" ToolTip="New" AlternateText="New" ImageUrl="images/icons/icon_new.png"> </asp:ImageButton>    
+<asp:ImageButton runat="server" CssClass="ImageButton" SkinID="Delete" ToolTip="Delete" AlternateText="Del" ImageUrl="images/icons/ico_delete.png"> </asp:ImageButton>    
+<asp:ImageButton runat="server" CssClass="ImageButton" SkinID="Edit" ToolTip="Edit" AlternateText="Edit" ImageUrl="images/icons/ico_edit.png"> </asp:ImageButton>    
+<asp:ImageButton runat="server" CssClass="ImageButton" SkinID="Cancel" ToolTip="Cancel" AlternateText="Cancel" ImageUrl="images/icons/icon_cancel.png"> </asp:ImageButton>    
+<asp:ImageButton runat="server" CssClass="ImageButton" SkinID="Cancellation" ToolTip="Cancellation" AlternateText="Cancellation" ImageUrl="images/icons/icon_cancel.png"> </asp:ImageButton>   
+<asp:ImageButton runat="server" CssClass="ImageButton" SkinID="Save" ToolTip="Save" AlternateText="Save" ImageUrl="images/icons/icon_ok.png"> </asp:ImageButton>    
+<asp:ImageButton runat="server" CssClass="ImageButton" SkinID="Validate" ToolTip="Validate" AlternateText="Validate" ImageUrl="images/icons/icon_reset.png"> </asp:ImageButton>    
+<asp:ImageButton runat="server" CssClass="ImageButton" SkinID="ViewDetail" ToolTip="View Detail" AlternateText="View Detail" ImageUrl="../Default/images/icons/ico_view_detail.png"> </asp:ImageButton>    
+
+<%-- Label --%>
+<asp:label runat="server" CssClass="Label" />
+<asp:label runat="server" CssClass="EmailColor" SkinID="EmailColor" />
+<asp:label runat="server" cssClass="welcome" SkinID="welcome" />
+<asp:label runat="server" cssClass="email" SkinID="email" />
+<asp:label runat="server" cssClass="dated" SkinID="dated" />
+<asp:label runat="server" cssClass="date left" SkinID="HeaderDate" />
+
+<%-- LinkButton --%>
+<asp:linkButton runat="server" CssClass="LinkButton" />
+
+<%-- ListBox --%>
+<asp:listbox runat="server" CssClass="ListBox" />
+
+<%-- RadioButton --%>
+<asp:radioButton runat="server" CssClass="radioButton" />
+<asp:radioButtonlist runat="server" CssClass="RadioButtonList" />
+<asp:radioButtonlist runat="server" CssClass="RadioButtonList16" SkinID="RadioButtonList16"/>
+
+<%-- TextBox --%>
+<asp:textbox runat="server" CssClass="TextBox" />
+<asp:textbox runat="server" CssClass="TextBoxNumber" SkinId="TbNumber" />
+<asp:textbox runat="server" CssClass="TextBoxSearchKeywords" SkinId="tbSearch" />
+
+<%-- Validator --%>
+<asp:RequiredFieldValidator runat="server" CssClass="Validation" Display="Dynamic" ForeColor="Transparent" />
+<asp:RangeValidator runat="server" CssClass="Validation" Display="Dynamic" ForeColor="Transparent" />
+<asp:RegularExpressionValidator runat="server" CssClass="Validation" Display="Dynamic" ForeColor="Transparent" />
+<asp:CompareValidator runat="server" CssClass="Validation" Display="Dynamic" ForeColor="Transparent" />
+<asp:CustomValidator runat="server" CssClass="Validation" Display="Dynamic" ForeColor="Transparent" />
+<asp:ValidationSummary runat="server" ShowMessageBox="True" ShowSummary="false" HeaderText="Please correct this invalid data:" BackColor="Red" CssClass="Label" Font-Bold="true" />
+
+<%-- RadMenu --%>
+<telerik:RadMenu 
+    runat="server" 
+    CausesValidation="false" 
+    EnableRoundedCorners="true" EnableShadows="true"
+    Skin="Blue"  />
+
+
+<%-- RadComboBox --%>
+<telerik:RadComboBox 
+    runat="server" 
+    Sort="None" 
+    Height="150px"
+    skin="Vista"/>
+    
+<%-- RadEditor --%>
+<telerik:RadEditor 
+    Skin="Office2007"
+    runat="server" 
+    toolsfile="~/App_Data/RadControls/Editor/FileTools.xml"
+        
+    ImageManager-DeletePaths="~/Upload/Image/" 
+    ImageManager-ViewPaths="~/Upload/Image/"
+    ImageManager-UploadPaths="~/Upload/Image/" 
+    ImageManager-SearchPatterns="*.jpg,*.jpeg,*.bmp,*.gif,*.png"
+    ImageManager-MaxUploadFileSize="1048577"
+    
+    UseEmbeddedScripts="False"
+    StripAbsoluteImagesPaths="true" 
+    StripAbsoluteAnchorPaths="true" 
+    ShowSubmitCancelButtons="False"    
+    Width="750px" 
+    Height="600px">
+</telerik:RadEditor>
+                             
+<%-- RadCalendar --%>
+<telerik:RadDatePicker 
+    runat="server" 
+    Width="100px" 
+    Skin="Default"
+    CssClass="TextBox"
+    DateInput-DisplayDateFormat="MM/dd/yyyy"
+    DateInput-DateFormat="MM/dd/yyyy" 
+    Culture="en"
+    AllowEmpty="True"
+    radcontrolsdir="~/RadControls/" 
+    MinDate="1900-01-01">
+</telerik:RadDatePicker>
+
+<telerik:RadTimePicker 
+    runat="server" 
+    Width="87px" 
+    Skin="Vista"/>
+
+<telerik:RadCalendar 
+    runat="server" 
+    EnableMultiSelect="false" 
+    Skin="Vista">
+    <specialdays>
+        <telerik:radcalendarday repeatable="Today" date="">
+            <ItemStyle CssClass="radCalToday_Default">
+            </ItemStyle>
+        </telerik:radcalendarday>
+    </specialdays>
+</telerik:RadCalendar>  
+
+<telerik:RadTimeView 
+    runat="server" 
+    TimeFormat="HH:mm"
+    Skin="Vista">
+</telerik:RadTimeView>                              
+
+<%-- RadWindowManager --%>
+<telerik:radwindowmanager 
+    runat="server" 
+    Skin="Vista"
+    Style="z-index: 7001">
+</telerik:radwindowmanager>
+
+<telerik:RadAjaxLoadingPanel runat="server" Skin="Telerik" EnableSkinTransparency="true" IsSticky="true" Transparency="1" style="position: absolute; z-index: 9999; top:0;left:0; height:100%;width:100%" >
+</telerik:RadAjaxLoadingPanel>
+
+<%-- RadSplitter --%>
+<telerik:radsplitter runat="server" Skin="Vista" />
+
+<%-- RadTabStrip --%>
+<telerik:RadTabStrip 
+    SelectedIndex="0" 
+    runat="server" 
+    CausesValidation="false"
+    Skin="Telerik" />
+
+<%-- RadButton --%>
+<telerik:RadButton 
+    SkinID="New" 
+    CssClass="customHeight26"
+    runat="server" 
+    Height="26px">
+        <Icon PrimaryIconUrl="images/icons/ico_add.png" PrimaryIconLeft="10" PrimaryIconTop="4"/>
+</telerik:RadButton>
+
+<telerik:RadButton 
+    SkinID="RadButtonSave"  
+    CssClass="customHeight26"
+    runat="server" 
+    Text="Save"
+    Height="26px"
+    Width="70px">
+        <Icon PrimaryIconUrl="images/icons/ico_save.png" PrimaryIconLeft="10" PrimaryIconTop="4"/>
+</telerik:RadButton>
+
+<telerik:RadButton 
+    SkinID="RadButtonCancel"  
+    CssClass="customHeight26"
+    runat="server" 
+    Text="Cancel"
+    Height="26px"
+    Width="80px">
+        <Icon PrimaryIconUrl="images/icons/ico_cancel.png" PrimaryIconLeft="10" PrimaryIconTop="4"/>
+</telerik:RadButton>
+
+<telerik:RadButton 
+    SkinID="RadButtonCancellation"  
+    CssClass="customHeight26"
+    runat="server" 
+    Text="Cancellation"
+    Height="26px"
+    Width="110px">
+        <Icon PrimaryIconUrl="images/icons/ico_cancelation.png" PrimaryIconLeft="10" PrimaryIconTop="4"/>
+</telerik:RadButton>
+
+<telerik:RadButton 
+    SkinID="RadButtonClose"  
+    CssClass="customHeight26"
+    runat="server" 
+    Text="Close"
+    Height="26px"
+    Width="75px">
+        <Icon PrimaryIconUrl="images/icons/ico_close.ico" PrimaryIconLeft="10" PrimaryIconTop="4"/>
+</telerik:RadButton>
+
+<telerik:RadButton 
+    SkinID="RadButtonCancelApproval"  
+    CssClass="customHeight26"
+    runat="server" 
+    Text="Cancel Approval"
+    ToolTip = "Cancel Approval"
+    Height="26px"
+    Width="125px">
+        <Icon PrimaryIconUrl="images/icons/ico_cancel.png" PrimaryIconLeft="10" PrimaryIconTop="4"/>
+</telerik:RadButton>
+
+<telerik:RadButton 
+    SkinID="RadButtonForceDelete"  
+    CssClass="customHeight26"
+    runat="server" 
+    Text="Force Delete"
+    Height="26px"
+    Width="110px">
+        <Icon PrimaryIconUrl="images/icons/ico_cancelation.png" PrimaryIconLeft="10" PrimaryIconTop="4"/>
+</telerik:RadButton>
+
+<telerik:RadButton 
+    SkinID="RadButtonForceActive"  
+    CssClass="customHeight26"
+    runat="server" 
+    Text="Force Active"
+    Height="26px"
+    Width="110px">
+        <Icon PrimaryIconUrl="images/icons/ico_cancelation.png" PrimaryIconLeft="10" PrimaryIconTop="4"/>
+</telerik:RadButton>
+
+<telerik:RadButton 
+    SkinID="RadButtonForceClose"  
+    CssClass="customHeight26"
+    runat="server" 
+    Text="Close Rejected"
+    Height="26px"
+    Width="120px">
+        <Icon PrimaryIconUrl="images/icons/ico_cancelation.png" PrimaryIconLeft="10" PrimaryIconTop="4"/>
+</telerik:RadButton>
+
+<telerik:RadButton 
+    SkinID="RadButtonForceSuspend"  
+    CssClass="customHeight26"
+    runat="server" 
+    Text="Force Suspend"
+    Height="26px"
+    Width="120px">
+        <Icon PrimaryIconUrl="images/icons/ico_cancelation.png" PrimaryIconLeft="10" PrimaryIconTop="4"/>
+</telerik:RadButton>
+
+<telerik:RadButton 
+    SkinID="ExportToExcel" 
+    ToolTip="Export to Excel" 
+    CssClass="customHeight26"
+    runat="server" 
+    Text="Export To Excel"
+    Width="120px"
+    Height="26px">
+        <Icon PrimaryIconUrl="images/icons/ico_excel.png" PrimaryIconLeft="10" PrimaryIconTop="4"/>
+</telerik:RadButton>
+
+<telerik:RadButton SkinID="RadButtonSearch" 
+    ToolTip="Search"  
+    CssClass="customHeight26"
+    runat="server" 
+    Text="Search"
+    Width="80px"
+    Height="26px">
+        <Icon PrimaryIconUrl="images/icons/ico_search.png" PrimaryIconLeft="10" PrimaryIconTop="4"/>
+</telerik:RadButton>
+
+<telerik:RadButton SkinID="RadButtonReset" 
+    ToolTip="Reset" 
+    CssClass="customHeight26"
+    runat="server" 
+    Text="Reset  "
+    Width="80px"
+    Height="26px">
+        <Icon PrimaryIconUrl="images/icons/ico_reset.png" PrimaryIconLeft="10" PrimaryIconTop="4"/>
+</telerik:RadButton>
+
+<telerik:RadButton SkinID="RadButtonExportToPDF" 
+    ToolTip="Export To PDF" 
+    CssClass="customHeight26"
+    runat="server" 
+    Text="Export To PDF"
+    Width="115px"
+    Height="26px">
+        <Icon PrimaryIconUrl="images/icons/ico_pdf.png" PrimaryIconLeft="10" PrimaryIconTop="4"/>
+</telerik:RadButton>
+
+<telerik:RadButton SkinID="Purge" 
+    ToolTip="Purge" 
+    CssClass="customHeight26"
+    runat="server" 
+    Text="Purge"
+    Width="75px"
+    Height="26px">
+        <Icon PrimaryIconUrl="images/icons/ico_purge.png" PrimaryIconLeft="10" PrimaryIconTop="4"/>
+</telerik:RadButton>
+
+<telerik:RadButton 
+    SkinID="Approve" 
+    ToolTip="Approve Selected" 
+    CssClass="customHeight26"
+    runat="server" 
+    Text="Approve"
+    Height="26px"
+    Width="85px">
+        <Icon PrimaryIconUrl="images/icons/ico_approve.png" PrimaryIconLeft="10" PrimaryIconTop="4"/>
+</telerik:RadButton>
+
+<telerik:RadButton 
+    SkinID="RadButtonBack" 
+    ToolTip="Back" 
+    CssClass="customHeight26"
+    runat="server" 
+    Text="Back"
+    Height="26px"
+    Width="70px">
+        <Icon PrimaryIconUrl="images/icons/ico_back.png" PrimaryIconLeft="10" PrimaryIconTop="4"/>
+</telerik:RadButton>
+
+<telerik:RadButton 
+    SkinID="Reject" 
+    ToolTip="Reject Selected" 
+    CssClass="customHeight26"
+    runat="server" 
+    Text="Reject"
+    Height="26px"
+    Width="75px">
+        <Icon PrimaryIconUrl="images/icons/ico_reject.png" PrimaryIconLeft="10" PrimaryIconTop="4"/>
+</telerik:RadButton>
+
+<telerik:RadButton 
+    SkinID="ApproveAll" 
+    ToolTip="Approve All" 
+    CssClass="customHeight26"
+    runat="server" 
+    Text="Approve All"
+    Height="26px"
+    Width="100px">
+        <Icon PrimaryIconUrl="images/icons/ico_approve.png" PrimaryIconLeft="10" PrimaryIconTop="4"/>
+</telerik:RadButton>
+
+<telerik:RadButton 
+    SkinID="RejectAll" 
+    ToolTip="Reject All" 
+    CssClass="customHeight26"
+    runat="server" 
+    Text="Reject All"
+    Height="26px"
+    Width="90px">
+        <Icon PrimaryIconUrl="images/icons/ico_reject.png" PrimaryIconLeft="10" PrimaryIconTop="4"/>
+</telerik:RadButton>
+
+<telerik:RadButton 
+    SkinID="CloseRejectedAll" 
+    ToolTip="Close All Rejected" 
+    CssClass="customHeight26"
+    runat="server" 
+    Text="Close All"
+    Height="26px"
+    Width="90px">
+        <Icon PrimaryIconUrl="images/icons/ico_reject.png" PrimaryIconLeft="10" PrimaryIconTop="4"/>
+</telerik:RadButton>
+
+<telerik:RadButton 
+    SkinID="RadButtonValidate"  
+    CssClass="customHeight26"
+    runat="server" 
+    Text="Validate"
+    Height="26px"
+    Width="85px">
+        <Icon PrimaryIconUrl="images/icons/ico_validate.png" PrimaryIconLeft="10" PrimaryIconTop="4"/>
+</telerik:RadButton>
+
+<telerik:RadButton 
+    SkinID="RadButtonSendEmail" 
+    CssClass="customHeight26"
+    runat="server" 
+    Text="Send Email"
+    Height="26px"
+    Width="100px">
+        <Icon PrimaryIconUrl="images/icons/ico_test_email.png" PrimaryIconLeft="10" PrimaryIconTop="4"/>
+</telerik:RadButton>
+
+<telerik:RadButton 
+    SkinID="RadButtonSendTestEmail" 
+    CssClass="customHeight26"
+    runat="server" 
+    Text="Send Test Email"
+    Height="26px"
+    Width="125px">
+        <Icon PrimaryIconUrl="images/icons/ico_test_email.png" PrimaryIconLeft="10" PrimaryIconTop="4"/>
+</telerik:RadButton>
+
+<telerik:RadButton 
+    SkinID="RadButtonUpload" 
+    CssClass="customHeight26"
+    runat="server" 
+    Text="Upload"
+    Height="26px"
+    Width="80px">
+        <Icon PrimaryIconUrl="images/icons/ico_upload.png" PrimaryIconLeft="10" PrimaryIconTop="4"/>
+</telerik:RadButton>
+
+<telerik:RadButton 
+    SkinID="RadButtonBrowse" 
+    CssClass="RadButtonBrowse" 
+    runat="server" 
+    HoveredCssClass="RadButtonBrowseHover" 
+    Image-EnableImageButton="True" 
+    Image-IsBackgroundImage="True">
+</telerik:RadButton>
+
+<telerik:RadButton 
+    SkinID="RadButtonRegister" 
+    CssClass="customHeight26"
+    runat="server" 
+    Text="Register"
+    Height="26px"
+    Width="85px">
+        <Icon PrimaryIconUrl="images/icons/ico_register.png" PrimaryIconLeft="10" PrimaryIconTop="4"/>
+</telerik:RadButton>
+
+<telerik:RadButton 
+    SkinID="RadButtonLogin" 
+    CssClass="customHeight26"
+    runat="server" 
+    Height="26px">
+        <Icon PrimaryIconUrl="images/icons/ico_login.png" PrimaryIconLeft="10" PrimaryIconTop="4"/>
+</telerik:RadButton>
+
+<%-- RadToolbar --%>
+<telerik:RadToolbar 
+    runat="server" 
+    Skin="Telerik" 
+    AutoPostBack="true">
+    <Items>
+        <telerik:RadToolBarButton ToolTip="New" CommandName="New"
+            Text="New" ImageUrl="images/icons/icon_new.png"/>
+        <telerik:RadToolBarButton ToolTip="Save" CommandName="Save"
+            Text="Save" ImageUrl="images/icons/icon_ok.png"/>
+        <telerik:RadToolBarButton ToolTip="Edit" CommandName="Edit"
+            Text="Edit" ImageUrl="images/icons/icon_edit.png"/>
+        <telerik:RadToolBarButton ToolTip="Delete" CommandName="Delete"
+            Text="Delete" ImageUrl="images/icons/icon_delete.png"/>
+        <telerik:RadToolBarButton ToolTip="Cancel" CommandName="Cancel"
+            Text="Cancel" ImageUrl="images/icons/icon_cancel.png"/>
+    </Items>
+</telerik:RadToolBar>
+<telerik:RadToolbar 
+    runat="server" 
+    Skin="Telerik" 
+    SkinID="New"
+    AutoPostBack="true">
+    <Items>
+        <telerik:RadToolBarButton ToolTip="Add New Row" Value="AddNewRow" CommandName="InitInsert"
+            Text="Add New Row" ImageUrl="images/icons/icon_new.png"/>
+    </Items>
+</telerik:RadToolBar>
+<telerik:RadToolbar 
+    runat="server" 
+    Skin="Telerik" 
+    SkinID="NewAndExport"
+    AutoPostBack="true">
+    <Items>
+        <telerik:RadToolBarButton ToolTip="Add New Row" Value="AddNewRow" CommandName="InitInsert"
+            Text="Add New Row" ImageUrl="images/icons/icon_new.png"/>
+        <telerik:RadToolBarButton ToolTip="Export to Excel" Value="ExportToExcel" CommandName="ExportToExcel"
+            Text="Export to Excel" ImageUrl="images/icons/icon_excel.png"/>
+    </Items>
+</telerik:RadToolBar>
+<telerik:RadToolbar 
+    runat="server" 
+    Skin="Telerik" 
+    SkinID="Upload"
+    AutoPostBack="true">
+    <Items>
+        <telerik:RadToolBarButton ToolTip="Upload File" Value="AddNewRow" CommandName="UploadFile"
+            Text="Upload File" ImageUrl="images/icons/icon_new.png"/>
+    </Items>
+</telerik:RadToolBar>
+<telerik:RadToolbar 
+    runat="server" 
+    Skin="Telerik" 
+    SkinID="Report"
+    AutoPostBack="true">
+    <Items>
+        <telerik:RadToolBarButton ToolTip="Export to Excel" Value="Export to Excel" CommandName="ExportToExcel"
+            Text="Export to Excel" ImageUrl="images/icons/icon_excel.png"/>
+        <telerik:RadToolBarButton ToolTip="Export to PDF" Value="Export to PDF" CommandName="ExportToPdf"
+            Text="Export to PDF" ImageUrl="images/icons/icon_pdf.png"/>
+    </Items>
+</telerik:RadToolBar>
+<telerik:RadToolbar 
+    runat="server" 
+    Skin="Telerik" 
+    SkinID="Approval"
+    AutoPostBack="true">
+    <Items>
+        <telerik:RadToolBarButton ToolTip="Approve Selected" Value="Approve" CommandName="Approve"
+            Text="Approve Selected" ImageUrl="images/icons/icon_ok.png"/>
+        <telerik:RadToolBarButton ToolTip="Reject Selected" Value="Reject" CommandName="Reject"
+            Text="Reject Selected" ImageUrl="images/icons/icon_cancel.png"/>
+    </Items>
+</telerik:RadToolBar>
+<telerik:RadToolbar 
+    runat="server" 
+    Skin="Telerik" 
+    SkinID="Print"
+    AutoPostBack="true">
+    <Items>
+        <telerik:RadToolBarButton ToolTip="Print" Value="Print" CommandName="Print"
+            Text="Print" ImageUrl="images/icons/icon_print.png"/>
+    </Items>
+</telerik:RadToolBar>
+
+
+<%-- RadGrid --%>
+<telerik:RadGrid 
+    runat="server" 
+    Width="99%"
+    AllowPaging="True"
+    AllowSorting="True" 
+    AutoGenerateColumns="False" 
+    EnableAJAX="False"
+    EnableAJAXLoadingTemplate="False" 
+    GridLines="None"
+    CssClass="RadGridCustomClass"
+    LoadingTemplateTransparency="25"
+    ReorderCoumnsOnClient="False"
+    PageSize="50" 
+    Skin="Telerik" 
+    ShowHeader="true"    
+    HeaderStyle-VerticalAlign="Bottom"
+    HeaderStyle-HorizontalAlign="Center"
+    AllowMultiRowSelection="true">
+    <ClientSettings 
+        AllowKeyboardNavigation="False" 
+        AllowColumnsReorder="False" 
+        AllowDragToGroup="False" 
+        AllowGroupExpandCollapse="True">
+        <Selecting AllowRowSelect="True" />
+    </ClientSettings>
+    <MasterTableView 
+        EditMode="InPlace" 
+        EnableColumnsViewState="False" 
+        GridLines="None" 
+        GroupLoadMode="Client"
+        CommandItemDisplay="None"
+        CommandItemSettings-ShowRefreshButton="false">
+        <NoRecordsTemplate>
+            <div>There are no records to display</div>
+        </NoRecordsTemplate>
+        <Columns>
+        </Columns>
+        <ExpandCollapseColumn Visible="False">
+            <HeaderStyle Width="19px" />
+        </ExpandCollapseColumn>
+        <PagerStyle 
+            AlwaysVisible="True" 
+            Mode="NextPrevNumericAndAdvanced">
+        </PagerStyle>
+        <RowIndicatorColumn Visible="False">
+            <HeaderStyle Width="20px" />
+        </RowIndicatorColumn>       
+    </MasterTableView>
+    <HeaderStyle HorizontalAlign="Center" />
+    <FilterMenu EnableImageSprites="False" />    
+    <HeaderContextMenu CssClass="GridContextMenu GridContextMenu_Default" />    
+</telerik:RadGrid>
+
+
+

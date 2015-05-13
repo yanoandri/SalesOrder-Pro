@@ -1,0 +1,275 @@
+<%@ Register assembly="Telerik.Web.UI" namespace="Telerik.Web.UI" tagprefix="telerik" %>
+
+<%-- Button --%>
+<asp:button runat="server" CssClass="" SkinID="ButtonCustom" />
+<telerik:RadButton EnableSplitButton="true" runat="server" SkinID="RadSplitButton" CssClass="RadSplitButton" Icon-PrimaryIconUrl ="~/App_Themes/Default/images/icons/ico_register.png" />
+
+<%-- HyperLink --%>
+<asp:hyperlink runat="server" CssClass="HyperlinkPackageList" SkinId="HyperlinkPackageList" />
+
+<%-- Label --%>
+<asp:label runat="server" CssClass="LabelErrorMessage" SkinId="LabelErrorMessage" />
+<asp:label runat="server" CssClass="LabelPackageDate" SkinId="LabelPackageDate" />
+<asp:label runat="server" CssClass="LabelPackageList" SkinId="LabelPackageList" />
+<asp:label runat="server" CssClass="LabelTaglineQuote" SkinId="LabelTaglineQuote" />
+<asp:label runat="server" CssClass="LabelTitledPage" SkinId="LabelTitledPage" />
+<asp:label runat="server" CssClass="LabelValidation" SkinId="LabelValidation" />
+<asp:label runat="server" CssClass="LabelData" SkinId="LabelData" />
+
+<%-- LinkButton --%>
+<asp:linkbutton runat="server" CssClass="" SkinId="linkbuttonCustom" />
+
+<%-- Image --%>
+<asp:Image SkinID="LoadingImage" runat="server" AlternateText="Loading..." ImageUrl="~/RadControls/Ajax/Skins/Default/Loading6.gif" />
+<asp:Image runat="server" CssClass="Image" SkinID="HeaderLogo" ImageUrl="../Default/images/background/header_logo.png" />
+<asp:Image runat="server" CssClass="Image" SkinID="HeaderBackground" ImageUrl="../Default/images/background/header_bg.png"/>
+<asp:Image runat="server" CssClass="Image" SkinID="HeaderTitle" ImageUrl="../Default/images/background/header_title.png" />
+<asp:Image runat="server" CssClass="Image" SkinID="FooterTitle" ImageUrl="../Default/images/background/footer_title.png" />
+<asp:Image runat="server" CssClass="Image" SkinID="Logo" ImageUrl="../Default/images/background/logo.png" />
+<asp:Image runat="server" CssClass="Image" SkinID="SCB_Logo" ImageUrl="../Default/images/background/scb-logo.gif"/>
+
+<%-- RadAjaxLoadingPanel --%>
+<telerik:RadAjaxLoadingPanel SkinID="LoadingNotStikcy" runat="server" Height="10px"
+    Width="1px" Transparency="1">
+</telerik:RadAjaxLoadingPanel>
+
+<%-- DataGrid Custom --%>
+<%-- DataGrid Default Level 2 CssClass="RadGrid_Telerik" --%>
+<telerik:RadGrid runat="server" 
+    SkinID=GridInput
+    Width="99.9%"
+    AllowPaging="true"
+    AllowSorting="True" 
+    AutoGenerateColumns="False" 
+    CssClass="RadGridCustomClass"
+    HeaderStyle-HorizontalAlign="Center"
+    EnableAJAX="False"
+    EnableAJAXLoadingTemplate="False" 
+    GridLines="None" 
+    LoadingTemplateTransparency="25"
+    ReorderCoumnsOnClient="False"
+    PageSize="50" 
+    Skin="Telerik" 
+    RadControlsDir="~/RadControls/"
+    ShowHeader="true"
+    SkinsPath="~/RadControls/Grid/Skins">
+    <HeaderStyle CssClass="GridHeader_Telerik" />
+    <FilterItemStyle CssClass="GridFilterRow_Telerik" />
+    <AlternatingItemStyle CssClass="GridAltRow_Telerik" />
+    <ItemStyle CssClass="GridRow_Telerik" />
+    <SelectedItemStyle CssClass="SelectedRow_Telerik" />
+    <EditItemStyle CssClass="GridEditRow_Telerik" />
+    <ActiveItemStyle CssClass="ActiveRow_Telerik" />
+    <CommandItemStyle CssClass="GridCommandRow_Telerik" />
+    <GroupHeaderItemStyle CssClass="GroupHeader_Telerik" />
+    <FooterStyle CssClass="GridFooter_Telerik" />
+    <ClientSettings 
+        AllowKeyboardNavigation="False" 
+        AllowColumnsReorder="False" 
+        AllowDragToGroup="False" 
+        AllowGroupExpandCollapse="True">
+        <Selecting AllowRowSelect="True" />
+    </ClientSettings>
+    <MasterTableView 
+        CssClass="MasterTable_Telerik"
+        EditMode="InPlace" 
+        EnableColumnsViewState="False" 
+        GridLines="None" 
+        GroupLoadMode="Client"
+        CommandItemDisplay="None">
+        <NoRecordsTemplate>
+            <div>There are no records to display</div>
+        </NoRecordsTemplate>
+        <Columns>
+        </Columns>
+        <ExpandCollapseColumn Visible="False">
+            <HeaderStyle Width="19px" />
+        </ExpandCollapseColumn>
+        <PagerStyle 
+            AlwaysVisible="True" 
+            Mode="NextPrevAndNumeric">
+        </PagerStyle>
+        <RowIndicatorColumn Visible="False">
+            <HeaderStyle Width="20px" />
+        </RowIndicatorColumn>
+    </MasterTableView>
+</telerik:RadGrid>
+
+<%-- DataGrid Default Level 0 CssClass="RadGrid_Telerik" --%>
+<telerik:RadGrid runat="server" 
+    SkinID="GridNoPaging"
+    Width="99.9%"
+    AllowPaging="False"
+    AllowSorting="True" 
+    AutoGenerateColumns="False" 
+    CssClass="RadGridCustomClass divRadButtonGrid" 
+    EnableAJAX="False"
+    EnableAJAXLoadingTemplate="False" 
+    GridLines="None" 
+    LoadingTemplateTransparency="25"
+    HeaderStyle-HorizontalAlign="Center"
+    ReorderCoumnsOnClient="False"
+    PageSize="50" 
+    Skin="Telerik" 
+    RadControlsDir="~/RadControls/"
+    ShowHeader="true"
+    SkinsPath="~/RadControls/Grid/Skins">
+    <HeaderStyle CssClass="GridHeader_Telerik"/>
+    <FilterItemStyle CssClass="GridFilterRow_Telerik" />
+    <AlternatingItemStyle CssClass="GridAltRow_Telerik" />
+    <ItemStyle CssClass="GridRow_Telerik" />
+    <SelectedItemStyle CssClass="SelectedRow_Telerik" />
+    <EditItemStyle CssClass="GridEditRow_Telerik" />
+    <ActiveItemStyle CssClass="ActiveRow_Telerik" />
+    <CommandItemStyle CssClass="GridCommandRow_Telerik" />
+    <GroupHeaderItemStyle CssClass="GroupHeader_Telerik" />
+    <FooterStyle CssClass="GridFooter_Telerik" />
+    <ClientSettings 
+        AllowKeyboardNavigation="False" 
+        AllowColumnsReorder="False" 
+        AllowDragToGroup="False" 
+        AllowGroupExpandCollapse="True">
+        <Selecting AllowRowSelect="True" />
+    </ClientSettings>
+    <MasterTableView 
+        CssClass="MasterTable_Telerik"
+        EditMode="InPlace" 
+        EnableColumnsViewState="False" 
+        GridLines="None" 
+        GroupLoadMode="Client">
+        <NoRecordsTemplate>
+            <div>There are no records to display</div>
+        </NoRecordsTemplate>
+        <Columns>
+        </Columns>
+        <ExpandCollapseColumn Visible="False">
+            <HeaderStyle Width="19px" />
+        </ExpandCollapseColumn>
+        <PagerStyle 
+            AlwaysVisible="True" 
+            Mode="NextPrevAndNumeric">
+        </PagerStyle>
+        <RowIndicatorColumn Visible="False">
+            <HeaderStyle Width="20px" />
+        </RowIndicatorColumn>
+    </MasterTableView>
+</telerik:RadGrid>
+
+<%-- CompareValidator --%>
+<asp:CompareValidator runat="server" CssClass="Validation" Display="Dynamic" ForeColor="Red" SkinID="FilterList" Font-Size="11px" />
+
+<%-- RadPanelBar --%>
+<telerik:RadPanelBar runat="server" ExpandMode="FullExpandedItem" Width="310px" Height="310px" SkinID="RadPanelBarDashboard" CssClass="RadPanelBarDashboard"> </telerik:RadPanelBar>
+
+<telerik:RadDatePicker 
+    runat="server" 
+    Skin="Default"
+    CssClass="TextBox"
+    DateInput-DisplayDateFormat="MM/dd/yyyy"
+    DateInput-DateFormat="MM/dd/yyyy" 
+    Culture="en"
+    AllowEmpty="True"
+    radcontrolsdir="~/RadControls/" 
+    MinDate="1900-01-01"
+    SkinID="FilterList"
+    Width="135px">
+</telerik:RadDatePicker>
+
+<telerik:RadGrid 
+    runat="server" 
+    Width="99%"
+    AllowPaging="True"
+    AllowSorting="True" 
+    AutoGenerateColumns="False" 
+    EnableAJAX="False"
+    EnableAJAXLoadingTemplate="False" 
+    GridLines="None"
+    LoadingTemplateTransparency="25"
+    ReorderCoumnsOnClient="False"
+    PageSize="50" 
+    Skin="Telerik" 
+    SkinID="InForms"
+    ShowHeader="true"    
+    HeaderStyle-VerticalAlign="Bottom"
+    HeaderStyle-HorizontalAlign="Center"
+    AllowMultiRowSelection="true">
+    <ClientSettings 
+        AllowKeyboardNavigation="False" 
+        AllowColumnsReorder="False" 
+        AllowDragToGroup="False" 
+        AllowGroupExpandCollapse="True">
+        <Selecting AllowRowSelect="True" />
+    </ClientSettings>
+    <MasterTableView 
+        EditMode="EditForms" 
+        EnableColumnsViewState="False" 
+        GridLines="None" 
+        GroupLoadMode="Client"
+        CommandItemDisplay="None"
+        CommandItemSettings-ShowRefreshButton="false">
+        <NoRecordsTemplate>
+            <div>There are no records to display</div>
+        </NoRecordsTemplate>
+        <Columns>
+        </Columns>
+        <ExpandCollapseColumn Visible="False">
+            <HeaderStyle Width="19px" />
+        </ExpandCollapseColumn>
+        <PagerStyle 
+            AlwaysVisible="True" 
+            Mode="NextPrevNumericAndAdvanced">
+        </PagerStyle>
+        <RowIndicatorColumn Visible="False">
+            <HeaderStyle Width="20px" />
+        </RowIndicatorColumn>       
+    </MasterTableView>
+    <HeaderStyle HorizontalAlign="Center" />
+    <FilterMenu EnableImageSprites="False" />    
+    <HeaderContextMenu CssClass="GridContextMenu GridContextMenu_Default" />    
+</telerik:RadGrid>
+
+<telerik:RadGrid 
+    runat="server" 
+    SkinID="AuditTrail"
+    Width="100%"
+    AllowPaging="True"
+    AllowSorting="True" 
+    AutoGenerateColumns="False" 
+    EnableAJAX="False"
+    EnableAJAXLoadingTemplate="False" 
+    GridLines="None"
+    CssClass="RadGridCustomClass divRadButtonGrid"
+    LoadingTemplateTransparency="25"
+    ReorderCoumnsOnClient="False"
+    PageSize="20" 
+    Skin="Telerik" 
+    ShowHeader="true"    
+    HeaderStyle-VerticalAlign="Bottom"
+    HeaderStyle-HorizontalAlign="Center"
+    AllowMultiRowSelection="true">
+    
+    <MasterTableView 
+        EditMode="InPlace" 
+        EnableColumnsViewState="False" 
+        GridLines="None" 
+        GroupLoadMode="Client"
+        CommandItemDisplay="None"
+        CommandItemSettings-ShowRefreshButton="false">
+        <NoRecordsTemplate>
+            <div>There are no records to display</div>
+        </NoRecordsTemplate>
+        <Columns>
+        </Columns>
+        <ExpandCollapseColumn Visible="False">
+            <HeaderStyle Width="19px" />
+        </ExpandCollapseColumn>
+        <PagerStyle 
+            AlwaysVisible="True" 
+            Mode="NextPrevNumericAndAdvanced">
+        </PagerStyle>
+        <RowIndicatorColumn Visible="False">
+            <HeaderStyle Width="20px" />
+        </RowIndicatorColumn>       
+    </MasterTableView>
+    <HeaderStyle HorizontalAlign="Center" />
+</telerik:RadGrid>

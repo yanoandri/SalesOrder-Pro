@@ -1,0 +1,101 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" Inherits="MasterPages_Default" CodeBehind="Default.master.cs" %>
+
+<%@ Register Assembly="Telerik.Web.UI" Namespace="Telerik.Web.UI" TagPrefix="telerik" %>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head runat="server">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=8" />
+    <meta name="publisher" content="" />
+    <title>Sales Order Appliaction</title>
+    <link rel="shortcut icon" href="favicon.ico" />
+    <link href="../App_themes/css/style.css" media="all" rel="stylesheet" type="text/css" />
+    <link href="../App_Themes/css/jquery-ui.css" media="all" rel="Stylesheet" type="text/css" />
+    <script src="../app_themes/lib/modernizr/modernizr.js" type="text/javascript"></script>
+    <script src="../app_themes/lib/jquery/jquery.js" type="text/javascript"></script>
+    <script src="../app_themes/lib/fancybox/fancybox.js" type="text/javascript"></script>
+    <script src="../app_themes/js/global.js" type="text/javascript"></script>
+    <script src="../App_Themes/lib/jquery/jquery-ui.js" type="text/javascript"></script>
+
+    <!--[if lt IE 9]><script src="../app_themes/lib/html5shiv/html5shiv.js"></script><![endif]-->
+    <!--[if gte IE 9]><style type="text/css">.gradient {filter: none;}</style><![endif]-->
+</head>
+<body>
+    <form id="form2" runat="server">
+    <asp:ScriptManager runat="server" ID="sm" EnablePartialRendering="true" />
+    <div id="preloader">
+        <div>
+            <i></i>
+        </div>
+    </div>
+    <div class="container">
+        <div id="header" class="block header">
+            <div class="span_4">
+                <a href="#"></a></div>
+            <div class="span_8">
+                <%--<h1>
+                    SALES ORDER APPLICATION</h1>--%>
+            </div>
+        </div>
+        <div class="span_12">
+            <div class="top_nav">
+                <div class="user-notif">
+                    <div class="welcome">
+                        Welcome,
+                        <asp:Label ID="lblUserFullName" runat="server" /></div>
+                    <div class="user-date">
+                        Date:
+                        <asp:Label ID="lblLastLogin" runat="server" /></div>
+                </div>
+                <div class="clean li-inline top_menu">
+                    <div class="L">
+                        <img src="../app_themes/images/backgrounds/topNav_bg_L.gif" alt="" /></div>
+                    <div class="M">
+                        <ol>
+                            <li runat="server" id="mnuSecurity"><a href="#">Security</a>
+                                <ol>
+                                    <li runat="server" id="mnuGroup" ><a href="../Security/GroupList.aspx">Group</a></li>
+                                    <li runat="server" id="mnuAuditTrails" ><a href="../Security/UserLogList.aspx">Audit Trails</a></li>
+                                </ol>
+                            </li>
+                            <li runat="server" id="mnuSalesOrder"><a href="#">Order</a>
+                                <ol>
+                                    <li runat="server" id="mnuSoList" ><a href="../SalesOrder/SOList.aspx">Order List</a></li>
+                                    <li runat="server" id="mnuSoInput"><a href="../SalesOrder/SOInput.aspx">Add Order</a></li>
+                                </ol>
+                            </li>
+                        </ol>
+                        <div class="logout">
+                            <asp:LoginStatus ID="lsLogout" runat="server" class="button blue small" OnLoggingOut="OnLogout" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="body">
+            <!--Begin Title -->
+            <div class="span_12">
+                <asp:ContentPlaceHolder ID="ContentTitle" runat="server">
+                </asp:ContentPlaceHolder>
+            </div>
+            <!--End Title -->
+            <!--Begin Content-->
+            <div class="span_12">
+                <form action="#">
+                <asp:ContentPlaceHolder ID="ContentDefault" runat="server">
+                </asp:ContentPlaceHolder>
+                <!--End Content-->
+                </form>
+            </div>
+            <div class="push">
+            </div>
+        </div>
+        <div class="span_12 footer">
+        </div>
+        <div id="gototop">
+            <i class="icon gototop">go to top</i>
+        </div>
+    </div>
+    </form>
+</body>
+</html>
