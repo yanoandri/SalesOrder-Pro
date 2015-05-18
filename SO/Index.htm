@@ -1,0 +1,43 @@
+﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+    <title>ANZ - Product Suitability Checking</title>
+</head>
+
+<script language="javascript" type="text/javascript">
+    var KeyId = null;
+
+    function BeforeClose() {
+        var bLoginFlag = window.bIsLogin;
+        
+        if (bLoginFlag == null) {
+            return;
+        }
+
+        if (bLoginFlag == true) {
+            //alert('You will be logged off automatically !');
+            //window.open("Error/SessionTimeOut.htm", KeyId, "left=" + (screen.width + 200) + ",top=" + (screen.height + 200) + ",height=1px,width=1px,channelmode=0,directories=0,location=0,menubar=0,resizable=1,scrollbars=0,status=0,titlebar=0,toolbar=0");
+        }
+    }
+
+    function GetURL() {
+        var sUrl = window.location.search.substring(1);
+        
+        if (sUrl.indexOf("ReturnUrl=") >= 0) 
+        {
+            return "Account/Login.aspx";
+        }
+        else 
+        {
+            return "Home/Home.aspx";
+        }
+    }
+
+</script>
+
+<script language="JavaScript" type="text/javascript">
+    document.write('<frameset rows="100%,*" frameborder="0" framespacing="0"  onunload="BeforeClose();">');
+    document.write('<frame src="' + encodeURI(GetURL()) + '" />');
+    document.write('<\/frameset>');
+</script>
+</html>

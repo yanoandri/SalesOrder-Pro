@@ -1,4 +1,4 @@
-<%@ Page Language="C#" AutoEventWireup="true" Inherits="Security_UserList" MasterPageFile="~/MasterPages/Default.master"
+<%@ Page Language="C#" AutoEventWireup="true" Inherits="Security_UserList" MasterPageFile="~/SiteMaster/Default.master"
     CodeBehind="UserList.aspx.cs" Theme="skin" %>
 
 <%@ Register Assembly="Telerik.Web.UI" Namespace="Telerik.Web.UI" TagPrefix="telerik" %>

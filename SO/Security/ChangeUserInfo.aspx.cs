@@ -3,7 +3,7 @@ using PFSHelper.BusinessLogicLayer;
 using PFSHelper.Lib;
 using System.Reflection;
 
-namespace PSC.Web.UI
+namespace SO
 {
     public partial class ChangeUserInfo : PFSBasePage
     {

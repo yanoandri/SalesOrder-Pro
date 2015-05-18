@@ -30,7 +30,7 @@ public partial class UserControls_uc_Menu : System.Web.UI.UserControl
             bIsSuccess = oUser.UpdateLoginStatus(false);
             Session["sessCurrentUser"] = null;
 
-            Security.WriteUserLog(sRefNumber, "Logout", oUser, Convert.ToInt16(bIsSuccess), (int)PSC.BusinessLogicLayer.Enumeration.PSCEnumeration.PFSModuleObjectMember.SCR_USR_LOGOUT);
+            Security.WriteUserLog(sRefNumber, "Logout", oUser, Convert.ToInt16(bIsSuccess), (int)SO.BusinessLogicLayer.Enumeration.SOEnumeration.PFSModuleObjectMember.SCR_USR_LOGOUT);
         }
 
         FormsAuthentication.SignOut();

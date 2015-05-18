@@ -1,5 +1,5 @@
 <%@ Page Language="C#" AutoEventWireup="true" Inherits="Security_AccessRight" MasterPageFile="~/SiteMaster/Default.master"
-    CodeBehind="AccessRight.aspx.cs" %>
+    CodeBehind="AccessRight.aspx.cs" Theme="skin" %>
 
 <%@ Register Assembly="Telerik.Web.UI" Namespace="Telerik.Web.UI" TagPrefix="telerik" %>
 <asp:Content ID="ContentTitle" ContentPlaceHolderID="ContentTitle" runat="server">
@@ -464,5 +464,5 @@
             }
         </script>
     </telerik:RadCodeBlock>
-    </asp:Content>
+</asp:Content>
 

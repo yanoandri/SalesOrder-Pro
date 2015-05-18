@@ -28,14 +28,23 @@ public partial class MasterPages_Default : System.Web.UI.MasterPage
                 #region Access Right
 
                 #region Security
+
+                mnuUser.Visible = Security.CheckSecurity(SecurityEnumeration.SecurityModuleObjectMember.SCR_USR_READ.ToString());
                 mnuGroup.Visible = Security.CheckSecurity(SecurityEnumeration.SecurityModuleObjectMember.SCR_GRP_READ.ToString());
                 mnuAuditTrails.Visible = Security.CheckSecurity(SecurityEnumeration.SecurityModuleObjectMember.SCR_AUD_READ.ToString());
 
-                if (mnuGroup.Visible
-                    || mnuAuditTrails.Visible)
+                if (mnuUser.Visible
+                     || mnuGroup.Visible
+                     || mnuAuditTrails.Visible)
                     mnuSecurity.Visible = true;
                 else
                     mnuSecurity.Visible = false;
+
+                #endregion
+
+                #region Approval Log
+
+                mnuApprovalLog.Visible = Security.CheckSecurity(SOEnumeration.PFSModuleObjectMember.APP_LOG_READ.ToString());
 
                 #endregion
 
@@ -84,6 +93,6 @@ public partial class MasterPages_Default : System.Web.UI.MasterPage
 
         FormsAuthentication.SignOut();
         Response.Cookies.Clear();
-        Response.Redirect("../SalesOrder/SOList.aspx");
+        Response.Redirect("../Account/Login.aspx");
     }
 }

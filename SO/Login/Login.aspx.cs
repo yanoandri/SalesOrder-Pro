@@ -7,7 +7,7 @@ using PFSHelper.BusinessLogicLayer;
 using PFSHelper.Lib;
 using System.Web.UI.WebControls;
 
-namespace PSC.Web.UI
+namespace SO
 {
     public partial class Login : PFSBasePage
     {
@@ -360,7 +360,7 @@ namespace PSC.Web.UI
                     sMessageLog,
                     oUser,
                     bIsSuccessLogin == true ? (Int16)1 : (Int16)0,
-                    (int)PSC.BusinessLogicLayer.Enumeration.PSCEnumeration.PFSModuleObjectMember.SCR_USR_LOGIN);
+                    (int)SO.BusinessLogicLayer.Enumeration.SOEnumeration.PFSModuleObjectMember.SCR_USR_LOGIN);
 
                 // Relase resource
                 oUser = null;
@@ -479,7 +479,7 @@ namespace PSC.Web.UI
                     sMessageLog,
                     oUser,
                     bIsSuccess == true ? (Int16)1 : (Int16)0,
-                    (int)PSC.BusinessLogicLayer.Enumeration.PSCEnumeration.PFSModuleObjectMember.SCR_USR_CHANGE_PASSWORD);
+                    (int)SO.BusinessLogicLayer.Enumeration.SOEnumeration.PFSModuleObjectMember.SCR_USR_CHANGE_PASSWORD);
             }
         }
 
@@ -515,7 +515,7 @@ namespace PSC.Web.UI
                 p_User.DAL_Update();
 
                 Session["sessCurrentUser"] = p_User;
-                Response.Redirect("~/Index.htm", true);
+                Response.Redirect("~/SalesOrder/SOList.aspx", true);
             }
             else
             {

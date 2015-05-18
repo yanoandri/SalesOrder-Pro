@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace PSC.Web.UI {
+namespace SO {
     
     
     public partial class Security_UserInput {

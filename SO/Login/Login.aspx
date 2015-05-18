@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" Inherits="PSC.Web.UI.Login" MasterPageFile="~/MasterPages/Login.master"
+﻿<%@ Page Language="C#" AutoEventWireup="true" Inherits="SO.Login" MasterPageFile="~/SiteMaster/Login.master"
     CodeBehind="Login.aspx.cs" %>
 
 <%@ Register TagPrefix="telerik" Namespace="Telerik.Web.UI" Assembly="Telerik.Web.UI" %>
@@ -35,9 +35,7 @@
                 <asp:MultiView ID="viewLogin" runat="server">
                     <asp:View ID="vLogin" runat="server">
                         <h2>
-                            PSC - Login</h2>
-                        <span>Please enter your ANZ network (Windows)<br />
-                            Username and Password to log in</span>
+                            SO - Login</h2>
                         <table id="tblLogin" runat="server">
                             <tr id="trDomian" runat="server">
                                 <td style="font-size:14px; padding:0; padding-left:5px;">

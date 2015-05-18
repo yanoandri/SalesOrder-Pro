@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPages/Default.master" AutoEventWireup="true" CodeBehind="ChangeUserInfo.aspx.cs" Inherits="PSC.Web.UI.ChangeUserInfo" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/SiteMaster/Default.master" AutoEventWireup="true" CodeBehind="ChangeUserInfo.aspx.cs" Inherits="SO.Web.UI.ChangeUserInfo" %>
 
 <%@ Register Assembly="Telerik.Web.UI" Namespace="Telerik.Web.UI" TagPrefix="telerik" %>
 <asp:Content ID="ContentTitle" ContentPlaceHolderID="ContentTitle" runat="server">

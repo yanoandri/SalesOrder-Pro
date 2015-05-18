@@ -1,0 +1,51 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Dashbord.master.cs" Inherits="SO.MasterPages.Dashbord" %>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<%@ Register Assembly="Telerik.Web.UI" Namespace="Telerik.Web.UI" TagPrefix="telerik" %>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <link rel="shortcut icon" href="favicon.ico" />
+    <link href="../app_themes/css/style.css" media="all" rel="stylesheet" type="text/css" />
+    <script src="../app_themes/lib/modernizr/modernizr.js" type="text/javascript"></script>
+    <script src="../app_themes/lib/jquery/jquery.js" type="text/javascript"></script>
+    <script src="../app_themes/lib/fancybox/fancybox.js" type="text/javascript"></script>
+    <script src="../app_themes/js/global.js" type="text/javascript"></script>
+</head>
+<body>
+    <div id="preloader">
+        <div>
+            <i></i>
+        </div>
+    </div>
+    <div class="container">
+        <div id="header">
+                <h1>
+                    Sales Order</h1>
+        </div>
+        <div class="span_12">
+            <div class="user-notif">
+                <div class="welcome">
+                    Welcome,
+                    <asp:Label ID="lblUserFullName" runat="server" /></div>
+                <div class="user-date">
+                    Last Login:<asp:Label ID="lblLastLogin" runat="server" /></div>
+            </div>
+        </div>
+        <div class="block body page-dashboard">
+            <form id="Form1" action="" runat="server">
+            <asp:ContentPlaceHolder ID="ContentDefault" runat="server">
+            </asp:ContentPlaceHolder>
+            <telerik:RadScriptManager ID="RadScriptManager1" runat="server">
+            </telerik:RadScriptManager>
+            </form>          
+        </div>
+        <div class="span_12 footer">
+        </div>
+        <div id="gototop">
+            <i class="icon gototop">go to top</i></div>
+    </div>
+    
+</body>
+</html>

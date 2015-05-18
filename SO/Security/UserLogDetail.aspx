@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" MasterPageFile="~/MasterPages/Default.master"
+﻿<%@ Page Language="C#" AutoEventWireup="true" MasterPageFile="~/SiteMaster/Default.master"
     Theme="skin" Inherits="Security_UserLogDetail" ValidateRequest="false" CodeBehind="UserLogDetail.aspx.cs" %>
 
 <%@ Register Assembly="Telerik.Web.UI" Namespace="Telerik.Web.UI" TagPrefix="telerik" %>

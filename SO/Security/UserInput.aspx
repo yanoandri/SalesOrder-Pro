@@ -1,5 +1,5 @@
-<%@ Page Language="C#" AutoEventWireup="true" Inherits="PSC.Web.UI.Security_UserInput"
-    MasterPageFile="~/MasterPages/Default.master" Theme="skin" CodeBehind="UserInput.aspx.cs" %>
+<%@ Page Language="C#" AutoEventWireup="true" Inherits="SO.Security_UserInput"
+    MasterPageFile="~/SiteMaster/Default.master" Theme="skin" CodeBehind="UserInput.aspx.cs" %>
 
 <%@ Register Assembly="Telerik.Web.UI" Namespace="Telerik.Web.UI" TagPrefix="telerik" %>
 <asp:Content ID="ContentTitle" ContentPlaceHolderID="ContentTitle" runat="server">

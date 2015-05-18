@@ -7,60 +7,54 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace SO.Account
-{
-
-
-    public partial class Manage
-    {
-
+namespace SO.MasterPages {
+    
+    
+    public partial class Dashbord {
+        
         /// <summary>
-        /// successMessage control.
+        /// lblUserFullName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.PlaceHolder successMessage;
-
+        protected global::System.Web.UI.WebControls.Label lblUserFullName;
+        
         /// <summary>
-        /// setPassword control.
+        /// lblLastLogin control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.PlaceHolder setPassword;
-
+        protected global::System.Web.UI.WebControls.Label lblLastLogin;
+        
         /// <summary>
-        /// password control.
+        /// Form1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox password;
-
-
-
+        protected global::System.Web.UI.HtmlControls.HtmlForm Form1;
+        
         /// <summary>
-        /// confirmPassword control.
+        /// ContentDefault control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox confirmPassword;
-
+        protected global::System.Web.UI.WebControls.ContentPlaceHolder ContentDefault;
+        
         /// <summary>
-        /// changePassword control.
+        /// RadScriptManager1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.PlaceHolder changePassword;
-
-
+        protected global::Telerik.Web.UI.RadScriptManager RadScriptManager1;
     }
 }

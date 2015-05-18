@@ -11,11 +11,11 @@ using Telerik.Web.UI;
 public partial class Security_GroupList : PFSBasePage
 {
     #region Session
-    //private GroupCollection sessGroupCollection
-    //{
-    //    get { return (GroupCollection)Session["sessGroupCollection"]; }
-    //    set { Session["sessGroupCollection"] = value; }
-    //}
+    private GroupCollection sessGroupCollection
+    {
+        get { return (GroupCollection)Session["sessGroupCollection"]; }
+        set { Session["sessGroupCollection"] = value; }
+    }
     #endregion
 
     #region Properties

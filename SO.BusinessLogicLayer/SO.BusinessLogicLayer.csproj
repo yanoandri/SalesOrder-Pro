@@ -64,6 +64,10 @@
     <Compile Include="Aproval\ApprovalStatus\pApprovalStatus.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Branch\Branch.cs" />
+    <Compile Include="Branch\BranchCollection.cs" />
+    <Compile Include="Branch\pBranch.cs" />
+    <Compile Include="Constanta\SOConstanta.cs" />
     <Compile Include="Customer\Customer.cs" />
     <Compile Include="Customer\CustomerCollection.cs" />
     <Compile Include="Enumeration\SOEnumeration.cs">

@@ -4,7 +4,7 @@ using System.Reflection;
 using System.Web.UI.WebControls;
 using PFSHelper.BusinessLogicLayer;
 using PFSHelper.Lib;
-using PSC.BusinessLogicLayer.Enumeration;
+using SO.BusinessLogicLayer.Enumeration;
 using Telerik.Web.UI;
 
 namespace PFSHelper.WebUI
@@ -131,7 +131,7 @@ namespace PFSHelper.WebUI
                     sDescription, 
                     oUserLogList, 
                     Convert.ToInt16(bIsSuccess), 
-                    (int)PSCEnumeration.PFSModuleObjectMember.SCR_AUD_PURGE);
+                    (int)SOEnumeration.PFSModuleObjectMember.SCR_AUD_PURGE);
 
                 oUserLogList.Clear();
                 oUserLogList = null;

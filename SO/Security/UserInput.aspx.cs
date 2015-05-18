@@ -3,15 +3,15 @@ using System.Web.UI.WebControls;
 using PFSHelper.BusinessLogicLayer;
 using PFSHelper.Lib;
 using Telerik.Web.UI;
-using PSC.BusinessLogicLayer;
+using SO.BusinessLogicLayer;
 using System.Drawing;
 using System.Threading;
-using PSC.BusinessLogicLayer.Enumeration;
+using SO.BusinessLogicLayer.Enumeration;
 using System.Reflection;
 using System.Web;
 using System.Data;
 
-namespace PSC.Web.UI
+namespace SO
 {
     public partial class Security_UserInput : PFSBasePage
     {
@@ -100,15 +100,15 @@ namespace PSC.Web.UI
 
                     if (qs_iApprovalID > 0)
                     {
-                        if ((!Security.CheckSecurity(PSCEnumeration.PFSModuleObjectMember.SCR_USR_APPROVE.ToString())) &&
-                            (!Security.CheckSecurity(PSCEnumeration.PFSModuleObjectMember.SCR_USR_REJECT.ToString())))
+                        if ((!Security.CheckSecurity(SOEnumeration.PFSModuleObjectMember.SCR_USR_APPROVE.ToString())) &&
+                            (!Security.CheckSecurity(SOEnumeration.PFSModuleObjectMember.SCR_USR_REJECT.ToString())))
                             NoPermission();
 
                         btnApprove.Visible =
-                            Security.CheckSecurity(PSCEnumeration.PFSModuleObjectMember.SCR_USR_APPROVE.ToString()) &&
+                            Security.CheckSecurity(SOEnumeration.PFSModuleObjectMember.SCR_USR_APPROVE.ToString()) &&
                             qs_iViewDetail <= 0;
                         btnReject.Visible =
-                            Security.CheckSecurity(PSCEnumeration.PFSModuleObjectMember.SCR_USR_REJECT.ToString()) &&
+                            Security.CheckSecurity(SOEnumeration.PFSModuleObjectMember.SCR_USR_REJECT.ToString()) &&
                             qs_iViewDetail <= 0;
 
                         GetDataApprovalInformation();
@@ -137,12 +137,12 @@ namespace PSC.Web.UI
                         if (!IsPostBack)
                         {
                             if (
-                                !Security.CheckSecurity(PSCEnumeration.PFSModuleObjectMember.SCR_USR_CREATE.ToString()) &&
+                                !Security.CheckSecurity(SOEnumeration.PFSModuleObjectMember.SCR_USR_CREATE.ToString()) &&
                                 qs_iUserID <= 0)
                                 NoPermission();
 
                             if (
-                                !Security.CheckSecurity(PSCEnumeration.PFSModuleObjectMember.SCR_USR_UPDATE.ToString()) &&
+                                !Security.CheckSecurity(SOEnumeration.PFSModuleObjectMember.SCR_USR_UPDATE.ToString()) &&
                                 qs_iUserID > 0)
                                 NoPermission();
 
@@ -216,13 +216,13 @@ namespace PSC.Web.UI
                     Alert("Duplicate username in Database. Please change the username");
                     return;
                 }
-                else if (oCheckExistingContent.DAL_LoadToGetDuplicateContent("User", "UserName", txtUserName.Text, (int)PSC.BusinessLogicLayer.Enumeration.PSCEnumeration.PFSModuleObjectMember.SCR_USR_CREATE, null))
+                else if (oCheckExistingContent.DAL_LoadToGetDuplicateContent("User", "UserName", txtUserName.Text, (int)SO.BusinessLogicLayer.Enumeration.SOEnumeration.PFSModuleObjectMember.SCR_USR_CREATE, null))
                 {
                     //*** Duplicate username detected in ApprovalLog***//
                     Alert("Duplicate username in Approval Log. Please change the username");
                     return;
                 }
-                else if (oCheckExistingContent.DAL_LoadToGetDuplicateContent("User", "UserName", txtUserName.Text, (int)PSC.BusinessLogicLayer.Enumeration.PSCEnumeration.PFSModuleObjectMember.SCR_USR_UPDATE, null))
+                else if (oCheckExistingContent.DAL_LoadToGetDuplicateContent("User", "UserName", txtUserName.Text, (int)SO.BusinessLogicLayer.Enumeration.SOEnumeration.PFSModuleObjectMember.SCR_USR_UPDATE, null))
                 {
                     //*** Duplicate username detected in ApprovalLog***//
                     Alert("Duplicate username in Approval Log. Please change the username");
@@ -313,8 +313,8 @@ namespace PSC.Web.UI
                             }
 
                             oApprovalLog.RefID = Convert.ToInt32(sessUser.UserID);
-                            oApprovalLog.ModuleObjectMemberID = (int)PSC.BusinessLogicLayer.Enumeration.PSCEnumeration.PFSModuleObjectMember.SCR_USR_UPDATE;
-                            oApprovalLog.ApprovalStatusID = (int)PSC.BusinessLogicLayer.Enumeration.PSCEnumeration.ApprovalStatus.PENDING;
+                            oApprovalLog.ModuleObjectMemberID = (int)SO.BusinessLogicLayer.Enumeration.SOEnumeration.PFSModuleObjectMember.SCR_USR_UPDATE;
+                            oApprovalLog.ApprovalStatusID = (int)SO.BusinessLogicLayer.Enumeration.SOEnumeration.ApprovalStatus.PENDING;
                             oApprovalLog.Detail = PFSXMLTools.SerializeObjectUsingUnicode<User>(sessUser);
                             oApprovalLog.PreviousDetail = sPreviousDetail = PFSXMLTools.SerializeObjectUsingUnicode<User>(oUser);
 
@@ -329,7 +329,7 @@ namespace PSC.Web.UI
                             {
                                 iStatus =
                                     Convert.ToInt16(Approval.UpdateApprovalLog(sessUser, oApprovalLog,
-                                        PSC.BusinessLogicLayer.Enumeration.PSCEnumeration.ApprovalStatus.PENDING,
+                                        SO.BusinessLogicLayer.Enumeration.SOEnumeration.ApprovalStatus.PENDING,
                                         ref sRemark));
                             }
 
@@ -350,12 +350,12 @@ namespace PSC.Web.UI
                             sessUser.CreateDate = DateTime.Now;
 
                             oApprovalLog.RefID = Convert.ToInt32(-1);
-                            oApprovalLog.ModuleObjectMemberID = (int)PSC.BusinessLogicLayer.Enumeration.PSCEnumeration.PFSModuleObjectMember.SCR_USR_CREATE;
-                            oApprovalLog.ApprovalStatusID = (int)PSC.BusinessLogicLayer.Enumeration.PSCEnumeration.ApprovalStatus.PENDING;
+                            oApprovalLog.ModuleObjectMemberID = (int)SO.BusinessLogicLayer.Enumeration.SOEnumeration.PFSModuleObjectMember.SCR_USR_CREATE;
+                            oApprovalLog.ApprovalStatusID = (int)SO.BusinessLogicLayer.Enumeration.SOEnumeration.ApprovalStatus.PENDING;
                             oApprovalLog.Detail = PFSXMLTools.SerializeObjectUsingUnicode<User>(sessUser);
                             oApprovalLog.PreviousDetail = sPreviousDetail = PFSXMLTools.SerializeObjectUsingUnicode<User>(sessUser);
 
-                            iStatus = Convert.ToInt16(Approval.UpdateApprovalLog(sessUser, oApprovalLog, PSC.BusinessLogicLayer.Enumeration.PSCEnumeration.ApprovalStatus.PENDING, ref sRemark));
+                            iStatus = Convert.ToInt16(Approval.UpdateApprovalLog(sessUser, oApprovalLog, SO.BusinessLogicLayer.Enumeration.SOEnumeration.ApprovalStatus.PENDING, ref sRemark));
 
                             #endregion
                         }
@@ -433,7 +433,7 @@ namespace PSC.Web.UI
                 if (oUser.UserID > 0)
                     iUserID = oUser.UserID;
 
-                if (oApprovalLog.ModuleObjectMemberID == (int)PSC.BusinessLogicLayer.Enumeration.PSCEnumeration.PFSModuleObjectMember.SCR_USR_CREATE)
+                if (oApprovalLog.ModuleObjectMemberID == (int)SO.BusinessLogicLayer.Enumeration.SOEnumeration.PFSModuleObjectMember.SCR_USR_CREATE)
                 {
                     sDescription = "Approve Create User";
 
@@ -443,18 +443,18 @@ namespace PSC.Web.UI
                     if (oCheckUser.DAL_LoadByUserName(oUser.UserName, iUserID))
                         //*** Duplicate username detected ***//
                         sDescription = "Duplicate username in Database. Please change the username";
-                    else if (oCheckExistingContent.DAL_LoadToGetDuplicateContent("User", "UserName", oUser.UserName, (int)PSC.BusinessLogicLayer.Enumeration.PSCEnumeration.PFSModuleObjectMember.SCR_USR_CREATE, oApprovalLog.ApprovalLogID))
+                    else if (oCheckExistingContent.DAL_LoadToGetDuplicateContent("User", "UserName", oUser.UserName, (int)SO.BusinessLogicLayer.Enumeration.SOEnumeration.PFSModuleObjectMember.SCR_USR_CREATE, oApprovalLog.ApprovalLogID))
                     {
                         //*** Duplicate username detected in ApprovalLog***//
                         sDescription = "Duplicate username in Approval Log. Please change the username";
                     }
-                    else if (oCheckExistingContent.DAL_LoadToGetDuplicateContent("User", "UserName", oUser.UserName, (int)PSC.BusinessLogicLayer.Enumeration.PSCEnumeration.PFSModuleObjectMember.SCR_USR_UPDATE, oApprovalLog.ApprovalLogID))
+                    else if (oCheckExistingContent.DAL_LoadToGetDuplicateContent("User", "UserName", oUser.UserName, (int)SO.BusinessLogicLayer.Enumeration.SOEnumeration.PFSModuleObjectMember.SCR_USR_UPDATE, oApprovalLog.ApprovalLogID))
                     {
                         //*** Duplicate username detected in ApprovalLog***//
                         sDescription = "Duplicate username in Approval Log. Please change the username";
                     }
                     else
-                        if ((iStatus = Convert.ToInt16(Approval.UpdateApprovalLog(oUser, oApprovalLog, PSCEnumeration.ApprovalStatus.APPROVE, ref sRemark))) == 1)
+                        if ((iStatus = Convert.ToInt16(Approval.UpdateApprovalLog(oUser, oApprovalLog, SOEnumeration.ApprovalStatus.APPROVE, ref sRemark))) == 1)
                         {
                             sDescription += " successful";
                         }
@@ -462,7 +462,7 @@ namespace PSC.Web.UI
                             sDescription += " not successful";
 
                 }
-                else if (oApprovalLog.ModuleObjectMemberID == (int)PSC.BusinessLogicLayer.Enumeration.PSCEnumeration.PFSModuleObjectMember.SCR_USR_UPDATE)
+                else if (oApprovalLog.ModuleObjectMemberID == (int)SO.BusinessLogicLayer.Enumeration.SOEnumeration.PFSModuleObjectMember.SCR_USR_UPDATE)
                 {
                     sDescription = "Approve Update User";
 
@@ -476,12 +476,12 @@ namespace PSC.Web.UI
                     if (bIsFound && oCheckUser.UserID != oUser.UserID)
                         //*** Duplicate name detected ***//
                         sDescription = "Duplicate username in Database. Please change the username";
-                    else if (oCheckExistingContent.DAL_LoadToGetDuplicateContent("User", "UserName", oUser.UserName, (int)PSC.BusinessLogicLayer.Enumeration.PSCEnumeration.PFSModuleObjectMember.SCR_USR_CREATE, oApprovalLog.ApprovalLogID))
+                    else if (oCheckExistingContent.DAL_LoadToGetDuplicateContent("User", "UserName", oUser.UserName, (int)SO.BusinessLogicLayer.Enumeration.SOEnumeration.PFSModuleObjectMember.SCR_USR_CREATE, oApprovalLog.ApprovalLogID))
                     {
                         //*** Duplicate username detected in ApprovalLog***//
                         sDescription = "Duplicate username in Approval Log. Please change the username";
                     }
-                    else if (oCheckExistingContent.DAL_LoadToGetDuplicateContent("User", "UserName", oUser.UserName, (int)PSC.BusinessLogicLayer.Enumeration.PSCEnumeration.PFSModuleObjectMember.SCR_USR_UPDATE, oApprovalLog.ApprovalLogID))
+                    else if (oCheckExistingContent.DAL_LoadToGetDuplicateContent("User", "UserName", oUser.UserName, (int)SO.BusinessLogicLayer.Enumeration.SOEnumeration.PFSModuleObjectMember.SCR_USR_UPDATE, oApprovalLog.ApprovalLogID))
                     {
                         //*** Duplicate username detected in ApprovalLog***//
                         sDescription = "Duplicate username in Approval Log. Please change the username";
@@ -489,7 +489,7 @@ namespace PSC.Web.UI
                     //*** Approve and Update if no duplication ***//
                     else
                         //*** Set Description Status ***//
-                        if ((iStatus = Convert.ToInt16(Approval.UpdateApprovalLog(oUser, oApprovalLog, PSC.BusinessLogicLayer.Enumeration.PSCEnumeration.ApprovalStatus.APPROVE, ref sRemark))) == 1)
+                        if ((iStatus = Convert.ToInt16(Approval.UpdateApprovalLog(oUser, oApprovalLog, SO.BusinessLogicLayer.Enumeration.SOEnumeration.ApprovalStatus.APPROVE, ref sRemark))) == 1)
                         {
                             sDescription += " successful";
                             if (trChangePasswordNotification.Visible)
@@ -512,7 +512,7 @@ namespace PSC.Web.UI
                             sDescription += " not successful";
 
                 }
-                else if (oApprovalLog.ModuleObjectMemberID == (int)PSC.BusinessLogicLayer.Enumeration.PSCEnumeration.PFSModuleObjectMember.SCR_USR_DELETE)
+                else if (oApprovalLog.ModuleObjectMemberID == (int)SO.BusinessLogicLayer.Enumeration.SOEnumeration.PFSModuleObjectMember.SCR_USR_DELETE)
                 {
                     sDescription = "Approve Delete User";
 
@@ -523,7 +523,7 @@ namespace PSC.Web.UI
                         return;
                     }
 
-                    iStatus = Convert.ToInt16(Approval.UpdateApprovalLog(oUser, oApprovalLog, PSC.BusinessLogicLayer.Enumeration.PSCEnumeration.ApprovalStatus.APPROVE, ref sRemark));
+                    iStatus = Convert.ToInt16(Approval.UpdateApprovalLog(oUser, oApprovalLog, SO.BusinessLogicLayer.Enumeration.SOEnumeration.ApprovalStatus.APPROVE, ref sRemark));
 
                     //*** Set Description Status ***//
                     if (iStatus == 1) sDescription += " successful";
@@ -546,7 +546,7 @@ namespace PSC.Web.UI
             }
             finally
             {
-                Security.WriteUserLog(sRefNumber, sDescription, oUser, iStatus, (int)PSC.BusinessLogicLayer.Enumeration.PSCEnumeration.PFSModuleObjectMember.SCR_USR_APPROVE);
+                Security.WriteUserLog(sRefNumber, sDescription, oUser, iStatus, (int)SO.BusinessLogicLayer.Enumeration.SOEnumeration.PFSModuleObjectMember.SCR_USR_APPROVE);
 
                 //*** Dispose Any Object ***?//
                 sRefNumber = null;
@@ -589,7 +589,7 @@ namespace PSC.Web.UI
                 oApprovalLog.Remark = txtRemarks.Text;
                 oUser = (User)PFSXMLTools.DeserializeObjectUsingUnicode<User>(oApprovalLog.Detail);
 
-                iStatus = Convert.ToInt16(Approval.UpdateApprovalLog(oUser, oApprovalLog, PSC.BusinessLogicLayer.Enumeration.PSCEnumeration.ApprovalStatus.REJECT, ref sRemark));
+                iStatus = Convert.ToInt16(Approval.UpdateApprovalLog(oUser, oApprovalLog, SO.BusinessLogicLayer.Enumeration.SOEnumeration.ApprovalStatus.REJECT, ref sRemark));
                 if (iStatus == 0)
                 {
                     sDescription += " not successful CODE:" + sRefNumber;
@@ -608,7 +608,7 @@ namespace PSC.Web.UI
             }
             finally
             {
-                Security.WriteUserLog(sRefNumber, sDescription, oUser, iStatus, (int)PSC.BusinessLogicLayer.Enumeration.PSCEnumeration.PFSModuleObjectMember.SCR_USR_REJECT);
+                Security.WriteUserLog(sRefNumber, sDescription, oUser, iStatus, (int)SO.BusinessLogicLayer.Enumeration.SOEnumeration.PFSModuleObjectMember.SCR_USR_REJECT);
 
                 //*** Dispose Any Objects ***//
                 sRefNumber = null;
@@ -1019,7 +1019,7 @@ namespace PSC.Web.UI
                 lblRequestDate.Text = string.Format("{0:dd-MMM-yyyy HH:mm:ss}", oApprovalLog.CreateDate);
                 lblRequestType.Text = oApprovalLog.MemberName;
 
-                if (oApprovalLog.ModuleObjectMemberID == (int)PSC.BusinessLogicLayer.Enumeration.PSCEnumeration.PFSModuleObjectMember.SCR_USR_CREATE)
+                if (oApprovalLog.ModuleObjectMemberID == (int)SO.BusinessLogicLayer.Enumeration.SOEnumeration.PFSModuleObjectMember.SCR_USR_CREATE)
                 {
                     tdUserData.Visible = false;
                     tdUserGroupData.Visible = false;
@@ -1044,7 +1044,7 @@ namespace PSC.Web.UI
                     rgridNewAuthGroup.Rebind();
 
                 }
-                else if (oApprovalLog.ModuleObjectMemberID == (int)PSC.BusinessLogicLayer.Enumeration.PSCEnumeration.PFSModuleObjectMember.SCR_USR_UPDATE)
+                else if (oApprovalLog.ModuleObjectMemberID == (int)SO.BusinessLogicLayer.Enumeration.SOEnumeration.PFSModuleObjectMember.SCR_USR_UPDATE)
                 {
                     //oUser.DAL_LoadWithChild(oApprovalLog.RefID);
                     oUser = (User)PFSXMLTools.DeserializeObjectUsingUnicode<User>(oApprovalLog.PreviousDetail);
@@ -1086,7 +1086,7 @@ namespace PSC.Web.UI
                     CompareAndHighlight();
 
                 }
-                else if (oApprovalLog.ModuleObjectMemberID == (int)PSC.BusinessLogicLayer.Enumeration.PSCEnumeration.PFSModuleObjectMember.SCR_USR_DELETE)
+                else if (oApprovalLog.ModuleObjectMemberID == (int)SO.BusinessLogicLayer.Enumeration.SOEnumeration.PFSModuleObjectMember.SCR_USR_DELETE)
                 {
                     oUser = (User)PFSXMLTools.DeserializeObjectUsingUnicode<User>(oApprovalLog.Detail);
                     lblActiveStatus.Text = oUser.IsActive ? "Active" : "Not Active";

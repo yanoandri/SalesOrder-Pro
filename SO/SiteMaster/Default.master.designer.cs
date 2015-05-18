@@ -57,6 +57,15 @@ public partial class MasterPages_Default {
     protected global::System.Web.UI.HtmlControls.HtmlGenericControl mnuSecurity;
     
     /// <summary>
+    /// mnuUser control.
+    /// </summary>
+    /// <remarks>
+    /// Auto-generated field.
+    /// To modify move field declaration from designer file to code-behind file.
+    /// </remarks>
+    protected global::System.Web.UI.HtmlControls.HtmlGenericControl mnuUser;
+    
+    /// <summary>
     /// mnuGroup control.
     /// </summary>
     /// <remarks>
@@ -73,6 +82,15 @@ public partial class MasterPages_Default {
     /// To modify move field declaration from designer file to code-behind file.
     /// </remarks>
     protected global::System.Web.UI.HtmlControls.HtmlGenericControl mnuAuditTrails;
+    
+    /// <summary>
+    /// mnuApprovalLog control.
+    /// </summary>
+    /// <remarks>
+    /// Auto-generated field.
+    /// To modify move field declaration from designer file to code-behind file.
+    /// </remarks>
+    protected global::System.Web.UI.HtmlControls.HtmlGenericControl mnuApprovalLog;
     
     /// <summary>
     /// mnuSalesOrder control.

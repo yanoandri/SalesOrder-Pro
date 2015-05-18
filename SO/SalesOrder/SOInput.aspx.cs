@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Reflection;
 using System.Web.UI.WebControls;
 using System.Configuration;
 using System.Data.SqlClient;
@@ -6,10 +7,11 @@ using System.Data;
 using SO.BusinessLogicLayer;
 using System.Collections.Generic;
 using PFSHelper.Lib;
+using PFSHelper.BusinessLogicLayer;
 
 namespace SO
 {
-    public partial class SOInput : System.Web.UI.Page
+    public partial class SOInput : PFSBasePage
     {
         #region session and properties
         public int m_SoId
@@ -17,6 +19,8 @@ namespace SO
             get { return (Session["Edit"]) == null ? 0 : (int)Session["Edit"]; }
             set { Session["Edit"] = value; }
         }
+
+        public string RefNumber { get { return PFSCommon.GenerateRefNumber(); } }
 
         public SalesOrder m_SalesOrderObject
         {
@@ -28,8 +32,12 @@ namespace SO
         #region page event
         protected void Page_Load(object sender, EventArgs e)
         {
+            string sRefNumber = RefNumber;
             try
             {
+                if (!Security.CheckSecurity(SO.BusinessLogicLayer.Enumeration.SOEnumeration.PFSModuleObjectMember.SALES_SOINPUT_ADDITEM.ToString()))
+                    NoPermission();
+
                 if (!IsPostBack)
                 {
                     SalesOrder oSalesOrder = new SalesOrder();
@@ -52,12 +60,14 @@ namespace SO
             catch (System.Threading.ThreadAbortException) { }
             catch (Exception ex)
             {
-                throw ex;
+                ExceptionLog.LogError(sRefNumber, GetType().FullName, MethodInfo.GetCurrentMethod().Name, ex);
+                Alert(string.Format("{0} ({1})", GeneralError(), sRefNumber));
             }
         }
 
         protected void btnAdd_Click(object sender, EventArgs e)
         {
+            string sRefNumber = RefNumber;
             try
             {
                 SOItem oSoItem = new SOItem();
@@ -72,12 +82,14 @@ namespace SO
             catch (System.Threading.ThreadAbortException) { }
             catch (Exception ex)
             {
-                throw ex;
+                ExceptionLog.LogError(sRefNumber, GetType().FullName, MethodInfo.GetCurrentMethod().Name, ex);
+                Alert(string.Format("{0} ({1})", GeneralError(), sRefNumber));
             }
         }
 
         protected void GridInput_RowCancelingEdit(object sender, GridViewCancelEditEventArgs e)
         {
+            string sRefNumber = RefNumber;
             try
             {
                 if (m_SoId != 0)
@@ -95,12 +107,14 @@ namespace SO
             catch (System.Threading.ThreadAbortException) { }
             catch (Exception ex)
             {
-                throw ex;
+                ExceptionLog.LogError(sRefNumber, GetType().FullName, MethodInfo.GetCurrentMethod().Name, ex);
+                Alert(string.Format("{0} ({1})", GeneralError(), sRefNumber));
             }
         }
 
         protected void GridInput_RowEditing(object sender, GridViewEditEventArgs e)
         {
+            string sRefNumber = RefNumber;
             try
             {
                 GridInput.EditIndex = e.NewEditIndex;
@@ -110,13 +124,15 @@ namespace SO
             catch (System.Threading.ThreadAbortException) { }
             catch (Exception ex)
             {
-                throw ex;
+                ExceptionLog.LogError(sRefNumber, GetType().FullName, MethodInfo.GetCurrentMethod().Name, ex);
+                Alert(string.Format("{0} ({1})", GeneralError(), sRefNumber));
             }
         }
 
         Double dGrandtotal = 0;
         protected void GridInput_RowDataBound(object sender, GridViewRowEventArgs e)
         {
+            string sRefNumber = RefNumber;
             try
             {
                 if (e.Row.RowType == DataControlRowType.DataRow)
@@ -144,12 +160,14 @@ namespace SO
             catch (System.Threading.ThreadAbortException) { }
             catch (Exception ex)
             {
-                throw ex;
+                ExceptionLog.LogError(sRefNumber, GetType().FullName, MethodInfo.GetCurrentMethod().Name, ex);
+                Alert(string.Format("{0} ({1})", GeneralError(), sRefNumber));
             }
         }
 
         protected void GridInput_RowUpdating(object sender, GridViewUpdateEventArgs e)
         {
+            string sRefNumber = RefNumber;
             try
             {
                 Label lblItemId = (Label)GridInput.Rows[e.RowIndex].Cells[0].FindControl("lblNo");
@@ -174,12 +192,14 @@ namespace SO
             catch (System.Threading.ThreadAbortException) { }
             catch (Exception ex)
             {
-                throw ex;
+                ExceptionLog.LogError(sRefNumber, GetType().FullName, MethodInfo.GetCurrentMethod().Name, ex);
+                Alert(string.Format("{0} ({1})", GeneralError(), sRefNumber));
             }
         }
 
         protected void GridInput_RowDeleting(object sender, GridViewDeleteEventArgs e)
         {
+            string sRefNumber = RefNumber;
             try
             {
                 m_SalesOrderObject.SOItemCollection.RemoveAt(e.RowIndex);
@@ -189,12 +209,14 @@ namespace SO
             catch (System.Threading.ThreadAbortException) { }
             catch (Exception ex)
             {
-                throw ex;
+                ExceptionLog.LogError(sRefNumber, GetType().FullName, MethodInfo.GetCurrentMethod().Name, ex);
+                Alert(string.Format("{0} ({1})", GeneralError(), sRefNumber));
             }
         }
 
         protected void GridInput_RowCommand(object sender, GridViewCommandEventArgs e)
         {
+            string sRefNumber = RefNumber;
             try
             {
                 if (e.CommandName == "DeleteRow")
@@ -208,25 +230,55 @@ namespace SO
             catch (System.Threading.ThreadAbortException) { }
             catch (Exception ex)
             {
-                throw ex;
+                ExceptionLog.LogError(sRefNumber, GetType().FullName, MethodInfo.GetCurrentMethod().Name, ex);
+                Alert(string.Format("{0} ({1})", GeneralError(), sRefNumber));
             }
         }
 
         protected void btnSave_Click(object sender, EventArgs e)
         {
+            string sRefNumber = RefNumber;
+            short iStatus = 1;
+            string sDescription = "Save Item";
+            string sPreviousDetail = "<xml />";
+            Group oGroup = new Group(Convert.ToInt32(Security.CheckSecurity(SO.BusinessLogicLayer.Enumeration.SOEnumeration.PFSModuleObjectMember.SALES_SOINPUT_SAVE.ToString())));
             try
             {
-                UpdateDataSO();
+                if (!Security.CheckSecurity(SO.BusinessLogicLayer.Enumeration.SOEnumeration.PFSModuleObjectMember.SALES_SOINPUT_SAVE.ToString()))
+                {
+                    NoPermission();
+                }
+                else
+                {
+
+                    UpdateDataSO();
+                }
             }
             catch (System.Threading.ThreadAbortException) { }
             catch (Exception ex)
             {
-                throw ex;
+                ExceptionLog.LogError(sRefNumber, GetType().FullName, MethodInfo.GetCurrentMethod().Name, ex);
+                Alert(string.Format("{0} ({1})", GeneralError(), sRefNumber));
+            }
+            finally
+            {
+                Security.WriteUserLog(
+               sRefNumber,
+               sDescription,
+               oGroup,
+               iStatus,
+               (int)SO.BusinessLogicLayer.Enumeration.SOEnumeration.PFSModuleObjectMember.SALES_SOINPUT_SAVE,
+               sPreviousDetail);
+
+                oGroup = null;
+                sRefNumber = null;
+                sDescription = null;
             }
         }
 
         protected void btnCancelOrder_Click(object sender, EventArgs e)
         {
+            string sRefNumber = RefNumber;
             try
             {
                 Session.RemoveAll();
@@ -235,7 +287,8 @@ namespace SO
             catch (System.Threading.ThreadAbortException) { }
             catch (Exception ex)
             {
-                throw ex;
+                ExceptionLog.LogError(sRefNumber, GetType().FullName, MethodInfo.GetCurrentMethod().Name, ex);
+                Alert(string.Format("{0} ({1})", GeneralError(), sRefNumber));
             }
         }
         #endregion page event
@@ -274,12 +327,12 @@ namespace SO
             bool bIsSuccess = m_SalesOrderObject.DAL_Update();
             if (!bIsSuccess)
             {
-                PFSBasePage.AlertMessageBox(this, "Update Failed");
+                AlertMessageBox(this, "Update Failed");
                 return;
             }
             else
             {
-                PFSBasePage.AlertMessageBox(this, "Update Success");
+                AlertMessageBox(this, "Update Success");
                 Response.Redirect("SOList.aspx");
             }
         }

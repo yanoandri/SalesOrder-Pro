@@ -11,6 +11,7 @@ using System.Web.UI.HtmlControls;
 using PFSHelper.BusinessLogicLayer;
 using PFSHelper.Lib;
 using System.Reflection;
+
 public partial class UserControls_Security_ChangePassword : PFSBaseUserControl
 {
     private string RefNumber = PFSCommon.GenerateRefNumber();
@@ -32,7 +33,7 @@ public partial class UserControls_Security_ChangePassword : PFSBaseUserControl
                     {
                         ramChangePassword.Alert("Update successful");
 
-                        Response.Redirect("~/Home/Home.aspx");
+                        Response.Redirect("~/Account/Login.aspx");
                     }
                 }
                 else

@@ -1,47 +1,122 @@
-﻿<%@ Page Title="Log in" Language="C#" MasterPageFile="~/SiteMaster/Site.Master" AutoEventWireup="true" CodeBehind="Login.aspx.cs" Inherits="SO.Account.Login" %>
-<%@ Register Src="~/Account/OpenAuthProviders.ascx" TagPrefix="uc" TagName="OpenAuthProviders" %>
+﻿<%@ Page Title="Log in" Language="C#" MasterPageFile="~/SiteMaster/Login.Master" AutoEventWireup="true" CodeBehind="Login.aspx.cs" Inherits="SO.Login" %>
 
-<asp:Content runat="server" ID="BodyContent" ContentPlaceHolderID="MainContent">
-    <hgroup class="title">
-        <h1><%: Title %>.</h1>
-    </hgroup>
-    <section id="loginForm">
-        <h2>Use a local account to log in.</h2>
-        <asp:Login runat="server" ViewStateMode="Disabled" RenderOuterTable="false">
-            <LayoutTemplate>
-                <p class="validation-summary-errors">
-                    <asp:Literal runat="server" ID="FailureText" />
-                </p>
-                <fieldset>
-                    <legend>Log in Form</legend>
-                    <ol>
-                        <li>
-                            <asp:Label runat="server" AssociatedControlID="UserName">User name</asp:Label>
-                            <asp:TextBox ID="txtUserName" runat="server"/>
-                            <asp:RequiredFieldValidator runat="server" ControlToValidate="txtUserName" CssClass="field-validation-error" ErrorMessage="The user name field is required." />
-                        </li>
-                        <li>
-                            <asp:Label runat="server" AssociatedControlID="Password">Password</asp:Label>
-                            <asp:TextBox ID="txtPassword" TextMode="Password" runat="server"/>
-                            <asp:RequiredFieldValidator runat="server" ControlToValidate="txtPassword" CssClass="field-validation-error" ErrorMessage="The password field is required." />
-                        </li>
-                        <li>
-                            <asp:CheckBox runat="server" ID="RememberMe" />
-                            <asp:Label runat="server" AssociatedControlID="RememberMe" CssClass="checkbox">Remember me?</asp:Label>
-                        </li>
-                    </ol>
-                    <asp:Button runat="server" CommandName="Login" Text="Log in" />
-                </fieldset>
-            </LayoutTemplate>
-        </asp:Login>
-        <p>
-            <asp:HyperLink runat="server" ID="RegisterHyperLink" ViewStateMode="Disabled">Register</asp:HyperLink>
-            if you don't have an account.
-        </p>
-    </section>
+<%@ Register TagPrefix="telerik" Namespace="Telerik.Web.UI" Assembly="Telerik.Web.UI" %>
 
-    <section id="socialLoginForm">
-        <h2>Use another service to log in.</h2>
-        <uc:OpenAuthProviders runat="server" ID="OpenAuthLogin" />
-    </section>
+<asp:Content runat="server" ID="BodyContent" ContentPlaceHolderID="ContentDefault">
+    <script type="text/javascript">
+        function ShowProgress() {
+            setTimeout(function () {
+                var modal = $('<div />');
+                modal.addClass("modal");
+                $('body').append(modal);
+                var loading = $(".loading");
+                loading.show();
+                var top = Math.max($(window).height() / 2 - loading[0].offsetHeight / 2, 0);
+                var left = Math.max($(window).width() / 2 - loading[0].offsetWidth / 2, 0);
+                loading.css({ top: top, left: left });
+            }, 200);
+        }
+    </script>
+    <style type="text/css">
+        input[type="radio"] {
+            margin-left: 4px;
+        }
+
+        .login-box .single table td {
+            padding: 5px;
+        }
+    </style>
+    <div class="span_12">
+        <div class="login-box">
+            <div class="single">
+                <asp:MultiView ID="viewLogin" runat="server">
+                    <asp:View ID="vLogin" runat="server">
+                        <hgroup class="title">
+                            <h1><%: Title %>.</h1>
+                        </hgroup>
+                        <table id="tblLogin" runat="server">
+                            <tr id="trDomian" runat="server">
+                                <td style="font-size:14px; padding:0; padding-left:5px;">
+                                   Domain Name
+                                </td>
+                            </tr>
+                            <tr id="trActiveDirectory" runat="server">
+                                <td>
+                                    <asp:PlaceHolder ID="phDomainName" runat="server"></asp:PlaceHolder>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label class="block">
+                                        <i class="icon sprites-user"></i>
+                                        <asp:TextBox ID="txtUserName" Style="vertical-align: middle !important;" placeholder="Username"
+                                            runat="server" MaxLength="100" TabIndex="1" CssClass="input-text"></asp:TextBox>
+                                    </label>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label class="block">
+                                        <i class="icon sprites-key"></i>
+                                        <asp:TextBox ID="txtPassword" runat="server" MaxLength="100" TabIndex="2" CssClass="input-text"
+                                            placeholder="Password" TextMode="Password"></asp:TextBox>
+                                    </label>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <a href="#" style="display: none">Forget Password</a>
+                                    <asp:Button ID="btnLogin" Text="Login" runat="server" OnClientClick="ShowProgress();"
+                                        OnClick="btnLogin_Click" CausesValidation="False" ToolTip="Click to login" TabIndex="3"
+                                        Font-Size="18px" type="submit" />
+                                </td>
+                            </tr>
+                        </table>
+                    </asp:View>
+                    <asp:View ID="vChangePassword" runat="server">
+                        <table>
+                            <tr>
+                                <td>
+                                    <label class="block">
+                                        Your password has been expired or first time login, please input your new password</label>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label class="block">
+                                        <i class="icon sprites-key"></i>
+                                        <asp:TextBox ID="txtNewPassword" runat="server" MaxLength="100" TabIndex="1" CssClass="input-text"
+                                            placeholder="Password" TextMode="Password" />
+                                    </label>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label class="block">
+                                        <i class="icon sprites-key"></i>
+                                        <asp:TextBox ID="txtCfrmNewPassword" runat="server" MaxLength="100" TextMode="Password"
+                                            TabIndex="2" CssClass="input-text" placeholder="Confirm Password" name="password" />
+                                    </label>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <asp:Button ID="btnChangePassword" Text="Submit" runat="server" OnClick="btnChangePassword_Click"
+                                        CssClass="button blue large" CausesValidation="False" ToolTip="Click to submit"
+                                        TabIndex="3" Font-Size="18px" />
+                                </td>
+                            </tr>
+                        </table>
+                    </asp:View>
+                </asp:MultiView>
+            </div>
+        </div>
+    </div>
+    <div class="loading" align="center">
+        <img src="../App_Themes/images/icons/loading.gif" alt="" />
+    </div>
+    <telerik:RadAjaxManager ID="ramLogin" runat="server" DefaultLoadingPanelID="ralp">
+    </telerik:RadAjaxManager>
+    <telerik:RadAjaxLoadingPanel ID="ralp" runat="server">
+    </telerik:RadAjaxLoadingPanel>
 </asp:Content>

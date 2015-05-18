@@ -92,6 +92,7 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.VisualBasic" />
     <Reference Include="Newtonsoft.Json, Version=4.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.5.0.4\lib\net40\Newtonsoft.Json.dll</HintPath>
       <Private>True</Private>
@@ -128,9 +129,9 @@
       <HintPath>..\packages\Microsoft.Bcl.1.1.10\lib\net40\System.Threading.Tasks.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="System.Web" />
     <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Drawing" />
-    <Reference Include="System.Web" />
     <Reference Include="System.Web.Optimization, Version=1.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.Web.Optimization.1.1.3\lib\net40\System.Web.Optimization.dll</HintPath>
       <Private>True</Private>
@@ -161,6 +162,14 @@
       <Private>True</Private>
       <HintPath>..\packages\Microsoft.AspNet.Web.Optimization.WebForms.1.0.0\lib\net45\Microsoft.AspNet.Web.Optimization.WebForms.dll</HintPath>
     </Reference>
+    <Reference Include="Telerik.Reporting, Version=6.1.12.611, Culture=neutral, PublicKeyToken=a9d7983dfcc261be, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Telerik.Reporting.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.ReportViewer.WebForms, Version=6.1.12.611, Culture=neutral, PublicKeyToken=a9d7983dfcc261be, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Telerik.ReportViewer.WebForms.dll</HintPath>
+    </Reference>
     <Reference Include="Telerik.Web.UI, Version=2012.1.424.40, Culture=neutral, PublicKeyToken=121fae78165ba3d4, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>bin\Telerik.Web.UI.dll</HintPath>
@@ -177,10 +186,9 @@
   <ItemGroup>
     <Content Include="About.aspx" />
     <Content Include="Account\Login.aspx" />
-    <Content Include="Account\Manage.aspx" />
-    <Content Include="Account\OpenAuthProviders.ascx" />
-    <Content Include="Account\Register.aspx" />
-    <Content Include="Account\RegisterExternalLogin.aspx" />
+    <Content Include="ApprovalLog\ApprovalLogList.aspx" />
+    <Content Include="ApprovalLog\ApprovalLogMultiple.aspx" />
+    <Content Include="ApprovalLog\PopUpApprovalLog.aspx" />
     <Content Include="App_Themes\css\images\animated-overlay.gif" />
     <Content Include="App_Themes\css\images\ui-bg_flat_0_aaaaaa_40x100.png" />
     <Content Include="App_Themes\css\images\ui-bg_flat_75_ffffff_40x100.png" />
@@ -604,6 +612,7 @@
     <Content Include="Error\no-image.jpg" />
     <Content Include="Error\NoAccess.htm" />
     <Content Include="Error\SessionTimeOut.htm" />
+    <Content Include="Home\Home.aspx" />
     <Content Include="Images\accent.png" />
     <Content Include="Images\bullet.png" />
     <Content Include="Images\heroAccent.png" />
@@ -620,6 +629,7 @@
     <Content Include="Default.aspx" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
+    <Content Include="Index.htm" />
     <Content Include="packages.config" />
     <Content Include="App_Themes\.DS_Store" />
     <Content Include="App_Themes\Default\Default.skin" />
@@ -681,7 +691,19 @@
     <Content Include="SalesOrder\SOInput.aspx" />
     <Content Include="SalesOrder\SOList.aspx" />
     <Content Include="Security\AccessRight.aspx" />
+    <Content Include="Security\ChangePass.aspx" />
+    <Content Include="Security\ChangeUserInfo.aspx" />
     <Content Include="Security\GroupList.aspx" />
+    <Content Include="Security\UserDetail.aspx" />
+    <Content Include="Security\UserInput.aspx" />
+    <Content Include="Security\UserList.aspx" />
+    <Content Include="Security\UserLogDetail.aspx" />
+    <Content Include="Security\UserLogList.aspx" />
+    <Content Include="UserControls\Security\ChangePassword.ascx" />
+    <Content Include="UserControls\Templates\uc_footer.ascx" />
+    <Content Include="UserControls\Templates\uc_header.ascx" />
+    <Content Include="UserControls\Templates\uc_htmlheader.ascx" />
+    <Content Include="UserControls\Templates\uc_Menu.ascx" />
     <Content Include="ViewSwitcher.ascx" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
@@ -693,6 +715,10 @@
     <None Include="Scripts\_references.js" />
     <Content Include="SiteMaster\Site.Mobile.Master" />
     <Content Include="SiteMaster\Default.master" />
+    <Content Include="SiteMaster\Login.master">
+      <BrowseToURL>~/SiteMaster/Login.master</BrowseToURL>
+    </Content>
+    <Content Include="SiteMaster\Dashbord.Master" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -701,6 +727,27 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ApprovalLog\ApprovalLogList.aspx.cs">
+      <DependentUpon>ApprovalLogList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ApprovalLog\ApprovalLogList.aspx.designer.cs">
+      <DependentUpon>ApprovalLogList.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ApprovalLog\ApprovalLogMultiple.aspx.cs">
+      <DependentUpon>ApprovalLogMultiple.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ApprovalLog\ApprovalLogMultiple.aspx.designer.cs">
+      <DependentUpon>ApprovalLogMultiple.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ApprovalLog\PopUpApprovalLog.aspx.cs">
+      <DependentUpon>PopUpApprovalLog.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ApprovalLog\PopUpApprovalLog.aspx.designer.cs">
+      <DependentUpon>PopUpApprovalLog.aspx</DependentUpon>
+    </Compile>
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\AuthConfig.cs" />
     <Compile Include="About.aspx.cs">
@@ -716,34 +763,6 @@
     </Compile>
     <Compile Include="Account\Login.aspx.designer.cs">
       <DependentUpon>Login.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Account\Manage.aspx.cs">
-      <DependentUpon>Manage.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Account\Manage.aspx.designer.cs">
-      <DependentUpon>Manage.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Account\OpenAuthProviders.ascx.cs">
-      <DependentUpon>OpenAuthProviders.ascx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Account\OpenAuthProviders.ascx.designer.cs">
-      <DependentUpon>OpenAuthProviders.ascx</DependentUpon>
-    </Compile>
-    <Compile Include="Account\Register.aspx.cs">
-      <DependentUpon>Register.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Account\Register.aspx.designer.cs">
-      <DependentUpon>Register.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Account\RegisterExternalLogin.aspx.cs">
-      <DependentUpon>RegisterExternalLogin.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Account\RegisterExternalLogin.aspx.designer.cs">
-      <DependentUpon>RegisterExternalLogin.aspx</DependentUpon>
     </Compile>
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Contact.aspx.cs">
@@ -763,6 +782,13 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Home\Home.aspx.cs">
+      <DependentUpon>Home.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Home\Home.aspx.designer.cs">
+      <DependentUpon>Home.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Security\AccessRight.aspx.cs">
       <DependentUpon>AccessRight.aspx</DependentUpon>
@@ -771,6 +797,20 @@
     <Compile Include="Security\AccessRight.aspx.designer.cs">
       <DependentUpon>AccessRight.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Security\ChangePass.aspx.cs">
+      <DependentUpon>ChangePass.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Security\ChangePass.aspx.designer.cs">
+      <DependentUpon>ChangePass.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Security\ChangeUserInfo.aspx.cs">
+      <DependentUpon>ChangeUserInfo.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Security\ChangeUserInfo.aspx.designer.cs">
+      <DependentUpon>ChangeUserInfo.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Security\GroupList.aspx.cs">
       <DependentUpon>GroupList.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -778,12 +818,61 @@
     <Compile Include="Security\GroupList.aspx.designer.cs">
       <DependentUpon>GroupList.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Security\UserDetail.aspx.cs">
+      <DependentUpon>UserDetail.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Security\UserDetail.aspx.designer.cs">
+      <DependentUpon>UserDetail.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Security\UserInput.aspx.cs">
+      <DependentUpon>UserInput.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Security\UserInput.aspx.designer.cs">
+      <DependentUpon>UserInput.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Security\UserList.aspx.cs">
+      <DependentUpon>UserList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Security\UserList.aspx.designer.cs">
+      <DependentUpon>UserList.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Security\UserLogDetail.aspx.cs">
+      <DependentUpon>UserLogDetail.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Security\UserLogDetail.aspx.designer.cs">
+      <DependentUpon>UserLogDetail.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Security\UserLogList.aspx.cs">
+      <DependentUpon>UserLogList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Security\UserLogList.aspx.designer.cs">
+      <DependentUpon>UserLogList.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SiteMaster\Dashbord.Master.cs">
+      <DependentUpon>Dashbord.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SiteMaster\Dashbord.Master.designer.cs">
+      <DependentUpon>Dashbord.Master</DependentUpon>
+    </Compile>
     <Compile Include="SiteMaster\Default.master.cs">
       <DependentUpon>Default.master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="SiteMaster\Default.master.designer.cs">
       <DependentUpon>Default.master</DependentUpon>
+    </Compile>
+    <Compile Include="SiteMaster\Login.master.cs">
+      <DependentUpon>Login.master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SiteMaster\Login.master.designer.cs">
+      <DependentUpon>Login.master</DependentUpon>
     </Compile>
     <Compile Include="SiteMaster\Site.Master.cs">
       <DependentUpon>Site.Master</DependentUpon>
@@ -813,6 +902,41 @@
     <Compile Include="SalesOrder\SOList.aspx.designer.cs">
       <DependentUpon>SOList.aspx</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\Security\ChangePassword.ascx.cs">
+      <DependentUpon>ChangePassword.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UserControls\Security\ChangePassword.ascx.designer.cs">
+      <DependentUpon>ChangePassword.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\Templates\uc_footer.ascx.cs">
+      <DependentUpon>uc_footer.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UserControls\Templates\uc_footer.ascx.designer.cs">
+      <DependentUpon>uc_footer.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\Templates\uc_header.ascx.cs">
+      <DependentUpon>uc_header.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UserControls\Templates\uc_header.ascx.designer.cs">
+      <DependentUpon>uc_header.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\Templates\uc_htmlheader.ascx.cs">
+      <DependentUpon>uc_htmlheader.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UserControls\Templates\uc_htmlheader.ascx.designer.cs">
+      <DependentUpon>uc_htmlheader.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\Templates\uc_Menu.ascx.cs">
+      <DependentUpon>uc_Menu.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UserControls\Templates\uc_Menu.ascx.designer.cs">
+      <DependentUpon>uc_Menu.ascx</DependentUpon>
+    </Compile>
     <Compile Include="ViewSwitcher.ascx.cs">
       <DependentUpon>ViewSwitcher.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -833,7 +957,6 @@
     <Folder Include="App_Themes\Spide\" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Account\Web.config" />
     <Content Include="SiteMaster\Site.Master" />
   </ItemGroup>
   <ItemGroup>

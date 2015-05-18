@@ -1,5 +1,5 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPages/Default.master" AutoEventWireup="true"
-    CodeBehind="UserDetail.aspx.cs" Inherits="PSC.Web.UI.UserDetail" Theme="skin" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/SiteMaster/Default.master" AutoEventWireup="true"
+    CodeBehind="UserDetail.aspx.cs" Inherits="SO.UserDetail" Theme="skin" %>
 
 <%@ Register Assembly="Telerik.Web.UI" Namespace="Telerik.Web.UI" TagPrefix="telerik" %>
 <asp:Content ID="ContentTitle" ContentPlaceHolderID="ContentTitle" runat="server">

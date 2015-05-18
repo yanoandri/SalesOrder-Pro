@@ -1,4 +1,4 @@
-<%@ Page Language="C#" MasterPageFile="~/MasterPages/Default.master" AutoEventWireup="true"
+<%@ Page Language="C#" MasterPageFile="~/SiteMaster/Default.master" AutoEventWireup="true"
     Inherits="PFSHelper.WebUI.UserLogList" Theme="skin" CodeBehind="UserLogList.aspx.cs" %>
 
 <%@ Register Assembly="Telerik.Web.UI" Namespace="Telerik.Web.UI" TagPrefix="telerik" %>

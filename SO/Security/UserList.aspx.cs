@@ -5,7 +5,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using PFSHelper.BusinessLogicLayer;
 using PFSHelper.Lib;
-using PSC.BusinessLogicLayer.Enumeration;
+using SO.BusinessLogicLayer.Enumeration;
 using Telerik.Web.UI;
 
 public partial class Security_UserList : PFSBasePage
@@ -92,7 +92,7 @@ public partial class Security_UserList : PFSBasePage
         {
             if (!Security.CheckSecurity(SecurityEnumeration.SecurityModuleObjectMember.SCR_USR_READ.ToString()))
                 NoPermission();
-            btnCreateNewUser.Visible = Security.CheckSecurity(PSCEnumeration.PFSModuleObjectMember.SCR_USR_CREATE.ToString());
+            btnCreateNewUser.Visible = Security.CheckSecurity(SOEnumeration.PFSModuleObjectMember.SCR_USR_CREATE.ToString());
 
             if (!IsPostBack)
             {
@@ -155,18 +155,18 @@ public partial class Security_UserList : PFSBasePage
                 }
 
                 oUser.IsNeedApproval = true;
-                PSC.BusinessLogicLayer.ApprovalLog oApprovalLog = new PSC.BusinessLogicLayer.ApprovalLog()
+                SO.BusinessLogicLayer.ApprovalLog oApprovalLog = new SO.BusinessLogicLayer.ApprovalLog()
                 {
                     RefID = Convert.ToInt32(oUser.UserID),
-                    ModuleObjectMemberID = (int)PSC.BusinessLogicLayer.Enumeration.PSCEnumeration.PFSModuleObjectMember.SCR_USR_DELETE,
-                    ApprovalStatusID = (int)PSC.BusinessLogicLayer.Enumeration.PSCEnumeration.ApprovalStatus.PENDING,
+                    ModuleObjectMemberID = (int)SO.BusinessLogicLayer.Enumeration.SOEnumeration.PFSModuleObjectMember.SCR_USR_DELETE,
+                    ApprovalStatusID = (int)SO.BusinessLogicLayer.Enumeration.SOEnumeration.ApprovalStatus.PENDING,
                     CreateDate = DateTime.Now,
                     CreateByUserID = ((CustomPrincipal)System.Web.HttpContext.Current.User).User.UserID,
                     PreviousDetail = PFSXMLTools.SerializeObjectUsingUnicode<User>(oUser),
                     Detail = PFSXMLTools.SerializeObjectUsingUnicode<User>(oUser)
                 };
 
-                iStatus = Convert.ToInt16(PSC.BusinessLogicLayer.Approval.UpdateApprovalLog(oUser, oApprovalLog, PSC.BusinessLogicLayer.Enumeration.PSCEnumeration.ApprovalStatus.PENDING, ref sRemark));
+                iStatus = Convert.ToInt16(SO.BusinessLogicLayer.Approval.UpdateApprovalLog(oUser, oApprovalLog, SO.BusinessLogicLayer.Enumeration.SOEnumeration.ApprovalStatus.PENDING, ref sRemark));
 
                 if (iStatus == 0)
                 {
@@ -209,7 +209,7 @@ public partial class Security_UserList : PFSBasePage
         finally
         {
             if (e.CommandName == RadGrid.DeleteCommandName)
-                Security.WriteUserLog(sRefNumber, sDescription, oUser, iStatus, (int)PSC.BusinessLogicLayer.Enumeration.PSCEnumeration.PFSModuleObjectMember.SCR_USR_DELETE);
+                Security.WriteUserLog(sRefNumber, sDescription, oUser, iStatus, (int)SO.BusinessLogicLayer.Enumeration.SOEnumeration.PFSModuleObjectMember.SCR_USR_DELETE);
 
             sRefNumber = null;
         }
@@ -227,9 +227,9 @@ public partial class Security_UserList : PFSBasePage
                 HyperLink hlUserName = (HyperLink)e.Item.FindControl("hlUserName");
                 Label lblNeedApproval = (Label)e.Item.FindControl("lblNeedApproval");
 
-                btnEdit.Visible = (Security.CheckSecurity(PSCEnumeration.PFSModuleObjectMember.SCR_USR_UPDATE.ToString()) &&
+                btnEdit.Visible = (Security.CheckSecurity(SOEnumeration.PFSModuleObjectMember.SCR_USR_UPDATE.ToString()) &&
                     !((CheckBox)e.Item.FindControl("cbIsNeedApproval")).Checked);
-                btnDelete.Visible = (Security.CheckSecurity(PSCEnumeration.PFSModuleObjectMember.SCR_USR_DELETE.ToString()) &&
+                btnDelete.Visible = (Security.CheckSecurity(SOEnumeration.PFSModuleObjectMember.SCR_USR_DELETE.ToString()) &&
                     !((CheckBox)e.Item.FindControl("cbIsNeedApproval")).Checked);
                 lblNeedApproval.Visible = (((CheckBox)e.Item.FindControl("cbIsNeedApproval")).Checked);
 

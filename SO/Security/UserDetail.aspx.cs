@@ -3,17 +3,17 @@ using System.Web.UI.WebControls;
 using PFSHelper.BusinessLogicLayer;
 using PFSHelper.Lib;
 using Telerik.Web.UI;
-using PSC.BusinessLogicLayer;
+using SO.BusinessLogicLayer;
 using System.Drawing;
 using System.Threading;
-using PSC.BusinessLogicLayer.Enumeration;
+using SO.BusinessLogicLayer.Enumeration;
 using System.Reflection;
 using System.Web;
 using System.Data;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace PSC.Web.UI
+namespace SO
 {
     public partial class UserDetail : PFSBasePage
     {
@@ -48,7 +48,7 @@ namespace PSC.Web.UI
                 if (!IsPostBack)
                 {
                     if (
-                        !Security.CheckSecurity(PSCEnumeration.PFSModuleObjectMember.SCR_USR_READ.ToString()) &&
+                        !Security.CheckSecurity(SOEnumeration.PFSModuleObjectMember.SCR_USR_READ.ToString()) &&
                         qs_iUserID > 0)
                         NoPermission();
 
