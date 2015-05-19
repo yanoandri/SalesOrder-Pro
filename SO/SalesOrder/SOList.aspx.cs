@@ -36,8 +36,9 @@ namespace SO
             try
             {
                 if (!Security.CheckSecurity(SO.BusinessLogicLayer.Enumeration.SOEnumeration.PFSModuleObjectMember.SALES_SO_READ.ToString()))
+                {
                     NoPermission();
-
+                }
                 if (!IsPostBack)
                 {
 
@@ -80,8 +81,9 @@ namespace SO
             try
             {
                 if (!Security.CheckSecurity(SO.BusinessLogicLayer.Enumeration.SOEnumeration.PFSModuleObjectMember.SALES_SO_ADD.ToString()))
+                {
                     NoPermission();
-
+                }
                 Response.Redirect("~/SalesOrder/SOInput.aspx");
             }
             catch (System.Threading.ThreadAbortException) { }
@@ -97,9 +99,6 @@ namespace SO
             string sRefNumber = RefNumber;
             try
             {
-                if (!Security.CheckSecurity(SO.BusinessLogicLayer.Enumeration.SOEnumeration.PFSModuleObjectMember.SALES_SOINPUT_DETAIL.ToString()))
-                    NoPermission();
-
                 if (e.CommandName == "Edit")
                 {
                     Session["Edit"] = Convert.ToInt32(e.CommandArgument.ToString());
@@ -141,11 +140,13 @@ namespace SO
             try
             {
                 if (!Security.CheckSecurity(SO.BusinessLogicLayer.Enumeration.SOEnumeration.PFSModuleObjectMember.SALES_SO_DELETE.ToString()))
+                {
                     NoPermission();
-
+                }
                 SalesOrder oSales = new SalesOrder();
                 oSales.SalesSoId = Convert.ToInt32(GridView1.DataKeys[e.RowIndex].Value);
                 oSales.DAL_DeleteFullSO();
+                SessSalesOrderCollection.RemoveAt(e.RowIndex);
                 GridView1.DataSource = SessSalesOrderCollection;
                 GridView1.DataBind();
             }
@@ -173,9 +174,15 @@ namespace SO
 
         protected void GridView1_RowDataBound(object sender, GridViewRowEventArgs e)
         {
-            //if (e.Row.RowType == DataControlRowType.DataRow)
-            //{
-            //}
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+                Button btnConfirmDelete = (Button)e.Row.Cells[5].FindControl("btnDelete");
+                if (btnConfirmDelete != null)
+                {
+                    string sSoNo = SessSalesOrderCollection[e.Row.DataItemIndex].SalesOrderNo.ToString();
+                    btnConfirmDelete.OnClientClick = string.Format("return confirm('Are you sure want to delete " + sSoNo + " ?')");
+                }
+            }
         }
 
         #endregion page event
@@ -204,8 +211,5 @@ namespace SO
         }
 
         #endregion method
-
-
-
     }
 }

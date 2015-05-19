@@ -36,8 +36,9 @@ namespace SO
             try
             {
                 if (!Security.CheckSecurity(SO.BusinessLogicLayer.Enumeration.SOEnumeration.PFSModuleObjectMember.SALES_SOINPUT_ADDITEM.ToString()))
+                {
                     NoPermission();
-
+                }
                 if (!IsPostBack)
                 {
                     SalesOrder oSalesOrder = new SalesOrder();
@@ -51,6 +52,10 @@ namespace SO
 
                     if (m_SoId != 0)
                     {
+                        if (!Security.CheckSecurity(SO.BusinessLogicLayer.Enumeration.SOEnumeration.PFSModuleObjectMember.SALES_SOINPUT_DETAIL.ToString()))
+                        {
+                            NoPermission();
+                        }
                         RetrieveSalesOrderData();
                         GridInput.DataSource = m_SalesOrderObject.SOItemCollection;
                         GridInput.DataBind();
@@ -183,7 +188,7 @@ namespace SO
                 m_SalesOrderObject.SOItemCollection[rGridRow.DataItemIndex].ItemName = oSoItem.ItemName;
                 m_SalesOrderObject.SOItemCollection[rGridRow.DataItemIndex].Quantity = oSoItem.Quantity;
                 m_SalesOrderObject.SOItemCollection[rGridRow.DataItemIndex].Price = oSoItem.Price;
-
+             
                 GridInput.EditIndex = -1;
                 GridInput.DataSource = m_SalesOrderObject.SOItemCollection;
                 GridInput.DataBind();
@@ -239,7 +244,7 @@ namespace SO
         {
             string sRefNumber = RefNumber;
             short iStatus = 1;
-            string sDescription = "Save Item";
+            string sDescription = "Save Sales Order";
             string sPreviousDetail = "<xml />";
             Group oGroup = new Group(Convert.ToInt32(Security.CheckSecurity(SO.BusinessLogicLayer.Enumeration.SOEnumeration.PFSModuleObjectMember.SALES_SOINPUT_SAVE.ToString())));
             try
@@ -250,7 +255,6 @@ namespace SO
                 }
                 else
                 {
-
                     UpdateDataSO();
                 }
             }
@@ -300,7 +304,7 @@ namespace SO
             oSalesOrder.DAL_RetrieveId(m_SoId);
 
             txtSales.Text = oSalesOrder.SalesOrderNo;
-            txtDate.Text = oSalesOrder.OrderDate.ToString();
+            txtDate.Text = oSalesOrder.OrderDate.ToString("dd MMMM yyyy");
             DDLCustomer.SelectedValue = oSalesOrder.CustomerId.ToString();
             txtaddres.Text = oSalesOrder.Address;
 
@@ -327,12 +331,12 @@ namespace SO
             bool bIsSuccess = m_SalesOrderObject.DAL_Update();
             if (!bIsSuccess)
             {
-                AlertMessageBox(this, "Update Failed");
+                Alert("Update Failed");
                 return;
             }
             else
             {
-                AlertMessageBox(this, "Update Success");
+                Alert("Update Success!");
                 Response.Redirect("SOList.aspx");
             }
         }

@@ -184,7 +184,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="About.aspx" />
     <Content Include="Account\Login.aspx" />
     <Content Include="ApprovalLog\ApprovalLogList.aspx" />
     <Content Include="ApprovalLog\ApprovalLogMultiple.aspx" />
@@ -567,7 +566,6 @@
     <Content Include="App_Themes\lib\jquery\jquery.js" />
     <Content Include="App_Themes\lib\jquery\jquery.min.js" />
     <Content Include="App_Themes\lib\modernizr\modernizr.js" />
-    <Content Include="Contact.aspx" />
     <Content Include="Content\Site.css" />
     <Content Include="Content\themes\base\accordion.css" />
     <Content Include="Content\themes\base\all.css" />
@@ -612,7 +610,6 @@
     <Content Include="Error\no-image.jpg" />
     <Content Include="Error\NoAccess.htm" />
     <Content Include="Error\SessionTimeOut.htm" />
-    <Content Include="Home\Home.aspx" />
     <Content Include="Images\accent.png" />
     <Content Include="Images\bullet.png" />
     <Content Include="Images\heroAccent.png" />
@@ -626,7 +623,6 @@
     <Content Include="Images\orderedList7.png" />
     <Content Include="Images\orderedList8.png" />
     <Content Include="Images\orderedList9.png" />
-    <Content Include="Default.aspx" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Index.htm" />
@@ -718,7 +714,6 @@
     <Content Include="SiteMaster\Login.master">
       <BrowseToURL>~/SiteMaster/Login.master</BrowseToURL>
     </Content>
-    <Content Include="SiteMaster\Dashbord.Master" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -750,13 +745,6 @@
     </Compile>
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\AuthConfig.cs" />
-    <Compile Include="About.aspx.cs">
-      <DependentUpon>About.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="About.aspx.designer.cs">
-      <DependentUpon>About.aspx</DependentUpon>
-    </Compile>
     <Compile Include="Account\Login.aspx.cs">
       <DependentUpon>Login.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -765,29 +753,8 @@
       <DependentUpon>Login.aspx</DependentUpon>
     </Compile>
     <Compile Include="App_Start\RouteConfig.cs" />
-    <Compile Include="Contact.aspx.cs">
-      <DependentUpon>Contact.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Contact.aspx.designer.cs">
-      <DependentUpon>Contact.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Default.aspx.cs">
-      <DependentUpon>Default.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Default.aspx.designer.cs">
-      <DependentUpon>Default.aspx</DependentUpon>
-    </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
-    </Compile>
-    <Compile Include="Home\Home.aspx.cs">
-      <DependentUpon>Home.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Home\Home.aspx.designer.cs">
-      <DependentUpon>Home.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Security\AccessRight.aspx.cs">
@@ -852,13 +819,6 @@
     </Compile>
     <Compile Include="Security\UserLogList.aspx.designer.cs">
       <DependentUpon>UserLogList.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="SiteMaster\Dashbord.Master.cs">
-      <DependentUpon>Dashbord.Master</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="SiteMaster\Dashbord.Master.designer.cs">
-      <DependentUpon>Dashbord.Master</DependentUpon>
     </Compile>
     <Compile Include="SiteMaster\Default.master.cs">
       <DependentUpon>Default.master</DependentUpon>

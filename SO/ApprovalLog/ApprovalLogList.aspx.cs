@@ -386,19 +386,11 @@ public partial class SE_WebUI_ApprovalLogList : PFSBasePage
                 case (int)SOEnumeration.PFSModuleObject.User:
                     Response.Redirect("~/Security/UserInput.aspx?ID=" + ApprovalLogID);
                     break;
-
                 case (int)SOEnumeration.PFSModuleObject.Group:
                     if (oGroupObjectMember == (int)SOEnumeration.PFSModuleObjectMember.SCR_GRP_ACCESS)
                         Response.Redirect("~/Security/AccessRight.aspx?ID=" + ApprovalLogID + "&isgroup=false");
                     else
                         Response.Redirect("~/Security/AccessRight.aspx?ID=" + ApprovalLogID + "&isgroup=true");
-                    break;
-
-                case (int)SOEnumeration.PFSModuleObject.Product:
-                    Response.Redirect("~/Product/ProductInput.aspx?ID=" + ApprovalLogID);
-                    break;
-                case(int)SOEnumeration.PFSModuleObject.ExceptionForm:
-                    Response.Redirect("~/ExceptionForm/ExceptionFormInput.aspx?ID=" + ApprovalLogID);
                     break;
                 default:
                     break;
@@ -512,18 +504,11 @@ public partial class SE_WebUI_ApprovalLogList : PFSBasePage
                 case (int)SOEnumeration.PFSModuleObject.User:
                     Response.Redirect("~/Security/UserInput.aspx?ID=" + ApprovalLogID + "&View=1");
                     break;
-
                 case (int)SOEnumeration.PFSModuleObject.Group:
                     if (oGroupObjectMember == (int)SOEnumeration.PFSModuleObjectMember.SCR_GRP_ACCESS)
                         Response.Redirect("~/Security/AccessRight.aspx?ID=" + ApprovalLogID + "&isgroup=false&View=1");
                     else
                         Response.Redirect("~/Security/AccessRight.aspx?ID=" + ApprovalLogID + "&isgroup=true&View=1");
-                    break;
-                case (int)SOEnumeration.PFSModuleObject.Product:
-                    Response.Redirect("~/Product/ProductInput.aspx?ID=" + ApprovalLogID + "&View=1");
-                    break;
-                case (int)SOEnumeration.PFSModuleObject.ExceptionForm:
-                    Response.Redirect("~/ExceptionForm/ExceptionFormInput.aspx?ID=" + ApprovalLogID + "&View=1");
                     break;
                 default:
                     break;

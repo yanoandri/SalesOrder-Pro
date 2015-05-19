@@ -4,7 +4,7 @@
     <script type="text/javascript">
         $(function () {
             $('.txtCalendarCss').datepicker({
-                dateFormat: "yy-mm-dd",
+                dateFormat: "dd MM yy",
                 showOn: "button",
                 buttonImage: "../Images/calender.png",
                 buttonImageOnly: true

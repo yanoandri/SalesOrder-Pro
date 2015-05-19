@@ -4,7 +4,7 @@
     <script type="text/javascript">
         $(function () {
             $('.txtCalendarCss').datepicker({
-                dateFormat: "yy-mm-dd",
+                dateFormat: "dd MM yy",
                 showOn: "button",
                 buttonImage: "../Images/calender.png",
                 buttonImageOnly: true
@@ -66,7 +66,7 @@
                         </asp:TemplateField>
                         <asp:TemplateField HeaderText="ORDER DATE" SortExpression="OrderDate">
                             <ItemTemplate>
-                                <asp:Label ID="Label3" runat="server" Text='<% #DataBinder.Eval(Container.DataItem, "OrderDate")  %>'></asp:Label>
+                                <asp:Label ID="Label3" runat="server" Text='<% #DataBinder.Eval(Container.DataItem, "OrderDate","{0: dd MMMM yyyy}") %>'></asp:Label>
                             </ItemTemplate>
                             <HeaderStyle BackColor="#009933" HorizontalAlign="Center" VerticalAlign="Middle" />
                         </asp:TemplateField>
@@ -86,7 +86,7 @@
                             <ItemTemplate>
                                 <asp:Button ID="btnEdit" runat="server" CausesValidation="False" CommandName="Edit" Text="Edit" CommandArgument='<%# DataBinder.Eval(Container.DataItem,"SalesSoId") %>' />
                                 <asp:Button ID="btnDelete" runat="server" CausesValidation="true" CommandName="Delete" Text="Delete" CommandArgument='<%# DataBinder.Eval(Container.DataItem,"SalesSoId") %>'
-                                  OnClientClick="return confirm('Are you sure?')" />
+                                  />
                             </ItemTemplate>
                             <HeaderStyle BackColor="#009933" HorizontalAlign="Center" VerticalAlign="Middle" />
                         </asp:TemplateField>
