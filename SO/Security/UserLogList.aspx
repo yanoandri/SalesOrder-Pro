@@ -227,20 +227,6 @@
                                     <asp:Label ID="lblDescription" runat="server" Text='<%# DataBinder.Eval(Container, "DataItem.Description") %>' />
                                 </ItemTemplate>
                             </telerik:GridTemplateColumn>
-                            <telerik:GridTemplateColumn SortExpression="Detail" DataField="Detail" HeaderText="Detail">
-                                <ItemStyle HorizontalAlign="Center" />
-                                <ItemTemplate>
-                                    <asp:ImageButton ID="btnLogDetail" runat="server" CommandName="ViewDetail" SkinID="ViewDetail" />
-                                </ItemTemplate>
-                            </telerik:GridTemplateColumn>
-                            <telerik:GridTemplateColumn HeaderText="Action" UniqueName="Action">
-                                <HeaderStyle Width="70px" HorizontalAlign="Center" />
-                                <ItemStyle HorizontalAlign="Center" />
-                                <ItemTemplate>
-                                    <asp:ImageButton ID="btnDelete" runat="server" SkinID="Delete" CommandName="Delete"
-                                        OnClientClick="javascript:return confirm('Are you sure want to delete?')" />
-                                </ItemTemplate>
-                            </telerik:GridTemplateColumn>
                         </Columns>
                     </MasterTableView>
                 </telerik:RadGrid>

@@ -134,7 +134,7 @@ namespace SO
         {
             string sRefNumber = RefNumber;
             short iStatus = 1;
-            string sDescription = "Delete Item";
+            string sDescription = "Delete Sales Order";
             string sPreviousDetail = "<xml />";
             Group oGroup = new Group(Convert.ToInt32(Security.CheckSecurity(SO.BusinessLogicLayer.Enumeration.SOEnumeration.PFSModuleObjectMember.SALES_SO_DELETE.ToString())));
             try
