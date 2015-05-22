@@ -1,11 +1,7 @@
 ﻿using System;
 using System.Reflection;
 using System.Web.UI.WebControls;
-using System.Configuration;
-using System.Data.SqlClient;
-using System.Data;
 using SO.BusinessLogicLayer;
-using System.Collections.Generic;
 using PFSHelper.Lib;
 using PFSHelper.BusinessLogicLayer;
 
@@ -16,8 +12,7 @@ namespace SO
         #region session and properties
         public int m_SoId
         {
-            get { return (Session["Edit"]) == null ? 0 : (int)Session["Edit"]; }
-            set { Session["Edit"] = value; }
+            get { return Convert.ToInt32(Request.QueryString["SOID"] == null ? "0" : Request.QueryString["SOID"].ToString()); }
         }
 
         public string RefNumber { get { return PFSCommon.GenerateRefNumber(); } }
@@ -188,7 +183,7 @@ namespace SO
                 m_SalesOrderObject.SOItemCollection[rGridRow.DataItemIndex].ItemName = oSoItem.ItemName;
                 m_SalesOrderObject.SOItemCollection[rGridRow.DataItemIndex].Quantity = oSoItem.Quantity;
                 m_SalesOrderObject.SOItemCollection[rGridRow.DataItemIndex].Price = oSoItem.Price;
-             
+
                 GridInput.EditIndex = -1;
                 GridInput.DataSource = m_SalesOrderObject.SOItemCollection;
                 GridInput.DataBind();
@@ -304,7 +299,7 @@ namespace SO
             oSalesOrder.DAL_RetrieveId(m_SoId);
 
             txtSales.Text = oSalesOrder.SalesOrderNo;
-            txtDate.Text = oSalesOrder.OrderDate.ToString("dd MMMM yyyy");
+            txtDate.Text = oSalesOrder.OrderDate.ToString("dd/MM/yyyy");
             DDLCustomer.SelectedValue = oSalesOrder.CustomerId.ToString();
             txtaddres.Text = oSalesOrder.Address;
 
@@ -323,22 +318,30 @@ namespace SO
 
         private void UpdateDataSO()
         {
-            m_SalesOrderObject.SalesSoId = m_SoId;
-            m_SalesOrderObject.SalesOrderNo = txtSales.Text;
-            m_SalesOrderObject.CustomerId = Convert.ToInt32(DDLCustomer.SelectedValue);
-            m_SalesOrderObject.OrderDate = Convert.ToDateTime(txtDate.Text);
-            m_SalesOrderObject.Address = txtaddres.Text;
-            bool bIsSuccess = m_SalesOrderObject.DAL_Update();
-            if (!bIsSuccess)
+            try
             {
-                Alert("Update Failed");
-                return;
+                m_SalesOrderObject.SalesSoId = m_SoId;
+                m_SalesOrderObject.SalesOrderNo = txtSales.Text;
+                m_SalesOrderObject.CustomerId = Convert.ToInt32(DDLCustomer.SelectedValue);
+                m_SalesOrderObject.OrderDate = Convert.ToDateTime(txtDate.Text);
+                m_SalesOrderObject.Address = txtaddres.Text;
+                bool bIsSuccess = m_SalesOrderObject.DAL_Update();
+                if (!bIsSuccess)
+                {
+                    Alert("Update Failed");
+                    return;
+                }
+                else
+                {
+                    Alert("Update Success!");
+                    Response.Redirect("SOList.aspx");
+                }
             }
-            else
+            catch (Exception ex)
             {
-                Alert("Update Success!");
-                Response.Redirect("SOList.aspx");
+                throw ex;
             }
+
         }
         #endregion method
     }

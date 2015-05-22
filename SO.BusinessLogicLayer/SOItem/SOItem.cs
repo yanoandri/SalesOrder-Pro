@@ -1,9 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Configuration;
-using System.Data;
 using System.Data.SqlClient;
 using PFSHelper.DataAccessLayer;
 
@@ -24,6 +19,7 @@ namespace SO.BusinessLogicLayer
         {
             m_iSoId = -1;
         }
+
         public SOItem(int iID)
         {
             m_iSoId = iID;

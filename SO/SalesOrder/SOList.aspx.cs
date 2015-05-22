@@ -1,14 +1,7 @@
 ﻿using System;
-using System.Text;
 using System.Reflection;
-using System.Collections;
-using System.Web;
 using System.Web.UI.WebControls;
-using System.Configuration;
-using System.Data.SqlClient;
-using System.Data;
 using SO.BusinessLogicLayer;
-using System.Collections.Generic;
 using PFSHelper.BusinessLogicLayer;
 using PFSHelper.Lib;
 
@@ -101,8 +94,8 @@ namespace SO
             {
                 if (e.CommandName == "Edit")
                 {
-                    Session["Edit"] = Convert.ToInt32(e.CommandArgument.ToString());
-                    Response.Redirect("SOInput.aspx?SOID=" + Session["Edit"]);
+                    int iSoId = Convert.ToInt32(e.CommandArgument.ToString());
+                    Response.Redirect("SOInput.aspx?SOID=" + iSoId);
                 }
             }
             catch (System.Threading.ThreadAbortException) { }

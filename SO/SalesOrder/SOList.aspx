@@ -4,7 +4,7 @@
     <script type="text/javascript">
         $(function () {
             $('.txtCalendarCss').datepicker({
-                dateFormat: "dd MM yy",
+                dateFormat: "dd/mm/yy",
                 showOn: "button",
                 buttonImage: "../Images/calender.png",
                 buttonImageOnly: true
@@ -66,7 +66,7 @@
                         </asp:TemplateField>
                         <asp:TemplateField HeaderText="ORDER DATE" SortExpression="OrderDate">
                             <ItemTemplate>
-                                <asp:Label ID="Label3" runat="server" Text='<% #DataBinder.Eval(Container.DataItem, "OrderDate","{0: dd MMMM yyyy}") %>'></asp:Label>
+                                <asp:Label ID="Label3" runat="server" Text='<% #DataBinder.Eval(Container.DataItem, "OrderDate","{0: dd/MM/yyyy}") %>'></asp:Label>
                             </ItemTemplate>
                             <HeaderStyle BackColor="#009933" HorizontalAlign="Center" VerticalAlign="Middle" />
                         </asp:TemplateField>

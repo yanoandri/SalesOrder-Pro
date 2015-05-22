@@ -1,9 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Configuration;
-using System.Data;
 using System.Data.SqlClient;
 using PFSHelper.DataAccessLayer;
 
@@ -12,8 +7,9 @@ namespace SO.BusinessLogicLayer
     public partial class SalesOrder
     {
         /// <summary>
-        /// Partial Properties
+        /// Partial Properties for SalesOrder
         /// </summary>
+        /// 
         #region Region: Member Variables///////////////////////////////////////////////////////
         protected string m_sCustomerName = "-";
         #endregion

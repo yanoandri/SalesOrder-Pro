@@ -1,19 +1,14 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
 using PFSHelper.DataAccessLayer;
-using System.Collections;
 
 namespace SO.BusinessLogicLayer
 {
     public partial class SalesOrderCollection
     {
         /// <summary>
-        /// Partial Properties
+        /// Partial Properties for SalesOrderCollection
         /// </summary>
         public bool DAL_RetrievebyId(int iID, bool p_bIsIncludeChild = true)
         {
