@@ -156,8 +156,8 @@ namespace SO.BusinessLogicLayer
                     m_iQuantity,
                     m_dPrice
                     ));
-                if (m_iItemId < 1) return true;
-                return false;
+                if (m_iItemId < 1) return false;
+                return true;
             }
             catch (Exception ex)
             {
@@ -226,8 +226,7 @@ namespace SO.BusinessLogicLayer
                 if (!bIsSuccess)
                 {
                     oTrans.Rollback();
-                    return false;
-                    
+                    return false;    
                 }
                 else
                 {

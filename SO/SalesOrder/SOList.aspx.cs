@@ -139,7 +139,8 @@ namespace SO
                 SalesOrder oSales = new SalesOrder();
                 oSales.SalesSoId = Convert.ToInt32(GridView1.DataKeys[e.RowIndex].Value);
                 oSales.DAL_DeleteFullSO();
-                SessSalesOrderCollection.RemoveAt(e.RowIndex);
+                GridViewRow rGridRow = GridView1.Rows[e.RowIndex];
+                SessSalesOrderCollection.RemoveAt(rGridRow.DataItemIndex);
                 GridView1.DataSource = SessSalesOrderCollection;
                 GridView1.DataBind();
             }
