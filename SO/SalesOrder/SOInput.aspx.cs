@@ -15,7 +15,10 @@ namespace SO
             get { return Convert.ToInt32(Request.QueryString["SOID"] == null ? "0" : Request.QueryString["SOID"].ToString()); }
         }
 
-        public string RefNumber { get { return PFSCommon.GenerateRefNumber(); } }
+        public string RefNumber
+        {
+            get { return PFSCommon.GenerateRefNumber(); }
+        }
 
         public SalesOrder m_SalesOrderObject
         {
@@ -250,7 +253,24 @@ namespace SO
                 }
                 else
                 {
-                    UpdateDataSO();
+                    if (m_SalesOrderObject.SOItemCollection.Count != 0)
+                    {
+                        if (m_SoId != 0)
+                        {
+                            sDescription = "Update Sales Order";
+                        }
+                        UpdateDataSO();
+                    }
+                    else
+                    {
+                        iStatus = 0;
+                        if (m_SoId != 0)
+                        {
+                            sDescription = "Update Sales Order";
+                        }
+                        AlertMessageBox(this, "Please Fill Your Item!");
+                    }
+
                 }
             }
             catch (System.Threading.ThreadAbortException) { }
@@ -328,12 +348,12 @@ namespace SO
                 bool bIsSuccess = m_SalesOrderObject.DAL_Update();
                 if (!bIsSuccess)
                 {
-                    Alert("Update Failed");
+                    AlertMessageBox(this, "Update Failed");
                     return;
                 }
                 else
                 {
-                    Alert("Update Success!");
+                    AlertMessageBox(this, "Update Success!");
                     Response.Redirect("SOList.aspx");
                 }
             }
