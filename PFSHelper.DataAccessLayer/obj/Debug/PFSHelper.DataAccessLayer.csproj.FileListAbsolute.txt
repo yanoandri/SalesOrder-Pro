@@ -19,3 +19,4 @@ D:\Yano\SO\PFSHelper.DataAccessLayer\bin\Debug\PFSHelper.DataAccessLayer.dll
 D:\Yano\SO\PFSHelper.DataAccessLayer\bin\Debug\PFSHelper.DataAccessLayer.pdb
 D:\Yano\SO\PFSHelper.DataAccessLayer\obj\Debug\PFSHelper.DataAccessLayer.dll
 D:\Yano\SO\PFSHelper.DataAccessLayer\obj\Debug\PFSHelper.DataAccessLayer.pdb
+D:\Yano\SO\PFSHelper.DataAccessLayer\obj\Debug\PFSHelper.DataAccessLayer.csprojResolveAssemblyReference.cache

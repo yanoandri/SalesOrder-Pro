@@ -13,7 +13,7 @@ namespace SO
 
         private SalesOrderCollection SessSalesOrderCollection
         {
-            get { return Session["sessSalesOrderCollection"] == null ? null : (SalesOrderCollection)Session["sessSalesOrderCollection"]; }
+            get { return Session["sessSalesOrderCollection"] == null ? new SalesOrderCollection() : (SalesOrderCollection)Session["sessSalesOrderCollection"]; }
             set { Session["sessSalesOrderCollection"] = value; }
         }
 
@@ -34,7 +34,6 @@ namespace SO
                 }
                 if (!IsPostBack)
                 {
-
                     GetSalesOrder();
                     GridView1.DataSource = SessSalesOrderCollection;
                     GridView1.DataBind();
@@ -54,7 +53,6 @@ namespace SO
             string sRefNumber = RefNumber;
             try
             {
-
                 GetSalesOrder();
                 GridView1.DataSource = SessSalesOrderCollection;
                 GridView1.DataBind();
@@ -73,10 +71,6 @@ namespace SO
             string sRefNumber = RefNumber;
             try
             {
-                if (!Security.CheckSecurity(SO.BusinessLogicLayer.Enumeration.SOEnumeration.PFSModuleObjectMember.SALES_SO_ADD.ToString()))
-                {
-                    NoPermission();
-                }
                 Response.Redirect("~/SalesOrder/SOInput.aspx");
             }
             catch (System.Threading.ThreadAbortException) { }
@@ -126,19 +120,18 @@ namespace SO
         protected void GridView1_RowDeleting(object sender, GridViewDeleteEventArgs e)
         {
             string sRefNumber = RefNumber;
-            short iStatus = 1;
+            short iStatus = 0;
             string sDescription = "Delete Sales Order";
             string sPreviousDetail = "<xml />";
-            Group oGroup = new Group(Convert.ToInt32(Security.CheckSecurity(SO.BusinessLogicLayer.Enumeration.SOEnumeration.PFSModuleObjectMember.SALES_SO_DELETE.ToString())));
+            SalesOrder oSales = new SalesOrder();
             try
             {
-                if (!Security.CheckSecurity(SO.BusinessLogicLayer.Enumeration.SOEnumeration.PFSModuleObjectMember.SALES_SO_DELETE.ToString()))
-                {
-                    NoPermission();
-                }
-                SalesOrder oSales = new SalesOrder();
                 oSales.SalesSoId = Convert.ToInt32(GridView1.DataKeys[e.RowIndex].Value);
-                oSales.DAL_DeleteFullSO();
+                oSales.DAL_Load(false);
+                if (oSales.DAL_DeleteFullSO())
+                {
+                    iStatus = 1;
+                }
                 GridViewRow rGridRow = GridView1.Rows[e.RowIndex];
                 SessSalesOrderCollection.RemoveAt(rGridRow.DataItemIndex);
                 GridView1.DataSource = SessSalesOrderCollection;
@@ -155,14 +148,15 @@ namespace SO
                 Security.WriteUserLog(
               sRefNumber,
               sDescription,
-              oGroup,
+              oSales,
               iStatus,
               (int)SO.BusinessLogicLayer.Enumeration.SOEnumeration.PFSModuleObjectMember.SALES_SO_DELETE,
               sPreviousDetail);
 
-                oGroup = null;
+                oSales = null;
                 sRefNumber = null;
                 sDescription = null;
+                sPreviousDetail = null;
             }
         }
 
@@ -171,10 +165,11 @@ namespace SO
             if (e.Row.RowType == DataControlRowType.DataRow)
             {
                 Button btnConfirmDelete = (Button)e.Row.Cells[5].FindControl("btnDelete");
+                btnConfirmDelete.Visible = Security.CheckSecurity(SO.BusinessLogicLayer.Enumeration.SOEnumeration.PFSModuleObjectMember.SALES_SO_DELETE.ToString());
                 if (btnConfirmDelete != null)
                 {
                     string sSoNo = SessSalesOrderCollection[e.Row.DataItemIndex].SalesOrderNo.ToString();
-                    btnConfirmDelete.OnClientClick = string.Format("return confirm('Are you sure want to delete " + sSoNo + " ?')");
+                    btnConfirmDelete.OnClientClick = string.Format("return confirm('Are you sure want to delete {0} ?')", sSoNo);
                 }
             }
         }
@@ -183,25 +178,16 @@ namespace SO
 
         #region method
 
-        private SalesOrderCollection GetSalesOrder()
+        private void GetSalesOrder()
         {
             SalesOrderCollection oSoCollection = new SalesOrderCollection();
-            try
-            {
-                string sKeyword = null;
-                DateTime? dtOrderDate;
-                dtOrderDate = null;
-                if (!string.IsNullOrWhiteSpace(txtkey.Text)) sKeyword = txtkey.Text;
-                if (!string.IsNullOrWhiteSpace(txtCalendar.Text)) dtOrderDate = Convert.ToDateTime(txtCalendar.Text);
-                oSoCollection.DAL_LoadSalesbyKeyDate(sKeyword, dtOrderDate);
-                SessSalesOrderCollection = oSoCollection;
-                return oSoCollection;
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-
+            string sKeyword = null;
+            DateTime? dtOrderDate;
+            dtOrderDate = null;
+            if (!string.IsNullOrWhiteSpace(txtkey.Text)) sKeyword = txtkey.Text;
+            if (!string.IsNullOrWhiteSpace(txtCalendar.Text)) dtOrderDate = Convert.ToDateTime(txtCalendar.Text);
+            oSoCollection.DAL_LoadSalesbyKeyDate(sKeyword, dtOrderDate);
+            SessSalesOrderCollection = oSoCollection;
         }
 
         #endregion method

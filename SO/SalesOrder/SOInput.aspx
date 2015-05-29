@@ -39,7 +39,7 @@
                             </td>
                             <td>
                                 <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ErrorMessage=" Wajib Diisi"
-                                    ForeColor="Green" ControlToValidate="txtdate" ValidationGroup="groupSO">
+                                    ForeColor="Green" ControlToValidate="txtDate" ValidationGroup="groupSO">
                                 </asp:RequiredFieldValidator>
                             </td>
                         </tr>

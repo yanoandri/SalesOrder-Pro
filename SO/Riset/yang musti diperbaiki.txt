@@ -1,0 +1,11 @@
+1. nama label
+2. method kembalian void ajah
+3. access right di page load semua view langsung, trus btn di visible false (row databound)
+4. delete standar aja.
+5. maxlength textbox harus dikasih
+6. user log istatus basic false aja
+7. kalo abis delete langsung dal_load
+8. penamaan pascal case
+9. method bikinan sendiri partial (dan gaboleh select *)
+10. setiap object yang tidak digunakan di set null (di finally)
+11. new edit index dihilangkan 
