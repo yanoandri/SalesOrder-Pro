@@ -52,13 +52,13 @@ namespace SO.BusinessLogicLayer.Enumeration
             APP_LOG_READ = 300001,
             APP_LOG_EXPORT_EXCEL = 300002,
 
-            SALES_SO_READ = 700101,
+            SALES_SO_VIEW = 700101,
             SALES_SO_DELETE = 700102,
             SALES_SO_ADD = 700103,
+            SALES_SO_EDIT = 700104,
 
             SALES_SOINPUT_SAVE = 700201,
-            SALES_SOINPUT_ADDITEM = 700202,
-            SALES_SOINPUT_DETAIL = 700203
+            SALES_SOINPUT_VIEW= 700202,
         }
         #endregion
      

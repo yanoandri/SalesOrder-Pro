@@ -10,7 +10,7 @@ namespace SO
     public partial class SOInput : PFSBasePage
     {
         #region session and properties
-        protected int m_iSoId
+        protected int m_qsSoId
         {
             get { return Request.QueryString["SOID"] == null ? 0 : Convert.ToInt32(Request.QueryString["SOID"]); }
         }
@@ -26,6 +26,12 @@ namespace SO
             set { Session["sessSalesOrderObject"] = value; }
         }
 
+        public int m_vsSoItemId
+        {
+            get { return (ViewState["SOITEMID"]) == null ? 0 : (int)ViewState["SOITEMID"]; }
+            set { ViewState["SOITEMID"] = value; }
+        }
+
         protected Double dGrandtotal = 0;
         #endregion session and public variable
 
@@ -35,32 +41,29 @@ namespace SO
             string sRefNumber = m_sRefNumber;
             try
             {
-                if (!Security.CheckSecurity(SO.BusinessLogicLayer.Enumeration.SOEnumeration.PFSModuleObjectMember.SALES_SOINPUT_ADDITEM.ToString()))
-                {
-                    NoPermission();
-                }
                 if (!IsPostBack)
                 {
+                    if (!Security.CheckSecurity(SO.BusinessLogicLayer.Enumeration.SOEnumeration.PFSModuleObjectMember.SALES_SOINPUT_VIEW.ToString()))
+                    {
+                        NoPermission();
+                    }
+
                     btnSave.Visible = Security.CheckSecurity(SO.BusinessLogicLayer.Enumeration.SOEnumeration.PFSModuleObjectMember.SALES_SOINPUT_SAVE.ToString());
 
                     SalesOrder oSalesOrder = new SalesOrder();
                     m_sessSalesOrderObject = oSalesOrder;
 
 
-                    DDLCustomer.DataSource = GetAllCustomer();
-                    DDLCustomer.DataTextField = "CustomerName";
-                    DDLCustomer.DataValueField = "CustomerId";
-                    DDLCustomer.DataBind();
+                    ddlCustomer.DataSource = GetAllCustomer();
+                    ddlCustomer.DataTextField = "CustomerName";
+                    ddlCustomer.DataValueField = "CustomerId";
+                    ddlCustomer.DataBind();
 
-                    if (m_iSoId != 0)
+                    if (m_qsSoId != 0)
                     {
-                        if (!Security.CheckSecurity(SO.BusinessLogicLayer.Enumeration.SOEnumeration.PFSModuleObjectMember.SALES_SOINPUT_DETAIL.ToString()))
-                        {
-                            NoPermission();
-                        }
                         RetrieveSalesOrderData();
-                        GridInput.DataSource = m_sessSalesOrderObject.SOItemCollection;
-                        GridInput.DataBind();
+                        gvGridInput.DataSource = m_sessSalesOrderObject.SOItemCollection;
+                        gvGridInput.DataBind();
                     }
                 }
             }
@@ -78,12 +81,13 @@ namespace SO
             try
             {
                 SOItem oSoItem = new SOItem();
-                oSoItem.SalesItemId = -1;
+                m_vsSoItemId -= 1;
+                oSoItem.SalesItemId = m_vsSoItemId;
                 m_sessSalesOrderObject.SOItemCollection.Add(oSoItem);
                 int iCount = m_sessSalesOrderObject.SOItemCollection.Count;
-                GridInput.SetEditRow(iCount - 1);
-                GridInput.DataSource = m_sessSalesOrderObject.SOItemCollection;
-                GridInput.DataBind();
+                gvGridInput.SetEditRow(iCount - 1);
+                gvGridInput.DataSource = m_sessSalesOrderObject.SOItemCollection;
+                gvGridInput.DataBind();
                 btnAdd.Visible = false;
             }
             catch (System.Threading.ThreadAbortException) { }
@@ -94,14 +98,14 @@ namespace SO
             }
         }
 
-        protected void GridInput_RowCancelingEdit(object sender, GridViewCancelEditEventArgs e)
+        protected void gvGridInput_RowCancelingEdit(object sender, GridViewCancelEditEventArgs e)
         {
             string sRefNumber = m_sRefNumber;
             try
             {
                 m_sessSalesOrderObject.SOItemCollection.RemoveAt(e.RowIndex);
-                GridInput.DataSource = m_sessSalesOrderObject.SOItemCollection;
-                GridInput.DataBind();
+                gvGridInput.DataSource = m_sessSalesOrderObject.SOItemCollection;
+                gvGridInput.DataBind();
                 btnAdd.Visible = true;
             }
             catch (System.Threading.ThreadAbortException) { }
@@ -112,14 +116,14 @@ namespace SO
             }
         }
 
-        protected void GridInput_RowEditing(object sender, GridViewEditEventArgs e)
+        protected void gvGridInput_RowEditing(object sender, GridViewEditEventArgs e)
         {
             string sRefNumber = m_sRefNumber;
             try
             {
-                GridInput.EditIndex = e.NewEditIndex;
-                GridInput.DataSource = m_sessSalesOrderObject.SOItemCollection;
-                GridInput.DataBind();
+                gvGridInput.EditIndex = e.NewEditIndex;
+                gvGridInput.DataSource = m_sessSalesOrderObject.SOItemCollection;
+                gvGridInput.DataBind();
             }
             catch (System.Threading.ThreadAbortException) { }
             catch (Exception ex)
@@ -129,7 +133,7 @@ namespace SO
             }
         }
 
-        protected void GridInput_RowDataBound(object sender, GridViewRowEventArgs e)
+        protected void gvGridInput_RowDataBound(object sender, GridViewRowEventArgs e)
         {
             string sRefNumber = m_sRefNumber;
             try
@@ -161,16 +165,16 @@ namespace SO
             }
         }
 
-        protected void GridInput_RowUpdating(object sender, GridViewUpdateEventArgs e)
+        protected void gvGridInput_RowUpdating(object sender, GridViewUpdateEventArgs e)
         {
             string sRefNumber = m_sRefNumber;
             try
             {
-                Label lblItemId = (Label)GridInput.Rows[e.RowIndex].Cells[0].FindControl("lblNo");
-                TextBox txtItem = (TextBox)GridInput.Rows[e.RowIndex].Cells[1].FindControl("txtItem");
-                TextBox txtQty = (TextBox)GridInput.Rows[e.RowIndex].Cells[2].FindControl("txtQty");
-                TextBox txtPrice = (TextBox)GridInput.Rows[e.RowIndex].Cells[3].FindControl("txtprice");
-                GridViewRow rGridRow = GridInput.Rows[e.RowIndex];
+                Label lblItemId = (Label)gvGridInput.Rows[e.RowIndex].Cells[0].FindControl("lblNo");
+                TextBox txtItem = (TextBox)gvGridInput.Rows[e.RowIndex].Cells[1].FindControl("txtItem");
+                TextBox txtQty = (TextBox)gvGridInput.Rows[e.RowIndex].Cells[2].FindControl("txtQty");
+                TextBox txtPrice = (TextBox)gvGridInput.Rows[e.RowIndex].Cells[3].FindControl("txtprice");
+                GridViewRow rGridRow = gvGridInput.Rows[e.RowIndex];
                 SOItem oSoItem = new SOItem();
                 oSoItem.ItemName = txtItem.Text.Trim();
                 oSoItem.Quantity = Convert.ToInt32(txtQty.Text);
@@ -180,9 +184,9 @@ namespace SO
                 m_sessSalesOrderObject.SOItemCollection[rGridRow.DataItemIndex].Quantity = oSoItem.Quantity;
                 m_sessSalesOrderObject.SOItemCollection[rGridRow.DataItemIndex].Price = oSoItem.Price;
 
-                GridInput.EditIndex = -1;
-                GridInput.DataSource = m_sessSalesOrderObject.SOItemCollection;
-                GridInput.DataBind();
+                gvGridInput.EditIndex = -1;
+                gvGridInput.DataSource = m_sessSalesOrderObject.SOItemCollection;
+                gvGridInput.DataBind();
                 btnAdd.Visible = true;
             }
             catch (System.Threading.ThreadAbortException) { }
@@ -193,14 +197,14 @@ namespace SO
             }
         }
 
-        protected void GridInput_RowDeleting(object sender, GridViewDeleteEventArgs e)
+        protected void gvGridInput_RowDeleting(object sender, GridViewDeleteEventArgs e)
         {
             string sRefNumber = m_sRefNumber;
             try
             {
                 m_sessSalesOrderObject.SOItemCollection.RemoveAt(e.RowIndex);
-                GridInput.DataSource = m_sessSalesOrderObject.SOItemCollection;
-                GridInput.DataBind();
+                gvGridInput.DataSource = m_sessSalesOrderObject.SOItemCollection;
+                gvGridInput.DataBind();
             }
             catch (System.Threading.ThreadAbortException) { }
             catch (Exception ex)
@@ -210,7 +214,7 @@ namespace SO
             }
         }
 
-        protected void GridInput_RowCommand(object sender, GridViewCommandEventArgs e)
+        protected void gvGridInput_RowCommand(object sender, GridViewCommandEventArgs e)
         {
             string sRefNumber = m_sRefNumber;
             try
@@ -218,9 +222,9 @@ namespace SO
                 if (e.CommandName == "DeleteRow")
                 {
                     int iNoUrut = Convert.ToInt32(e.CommandArgument);
-                    GridInput.DeleteRow(iNoUrut);
-                    GridInput.DataSource = m_sessSalesOrderObject.SOItemCollection;
-                    GridInput.DataBind();
+                    gvGridInput.DeleteRow(iNoUrut);
+                    gvGridInput.DataSource = m_sessSalesOrderObject.SOItemCollection;
+                    gvGridInput.DataBind();
                 }
             }
             catch (System.Threading.ThreadAbortException) { }
@@ -237,35 +241,26 @@ namespace SO
             short iStatus = 0;
             string sDescription = "Save Sales Order";
             string sPreviousDetail = "<xml />";
-            Group oGroup = new Group(Convert.ToInt32(Security.CheckSecurity(SO.BusinessLogicLayer.Enumeration.SOEnumeration.PFSModuleObjectMember.SALES_SOINPUT_SAVE.ToString())));
+            SalesOrder oSalesOrder = new SalesOrder(Convert.ToInt32(Security.CheckSecurity(SO.BusinessLogicLayer.Enumeration.SOEnumeration.PFSModuleObjectMember.SALES_SOINPUT_SAVE.ToString())));
             try
             {
-                if (!Security.CheckSecurity(SO.BusinessLogicLayer.Enumeration.SOEnumeration.PFSModuleObjectMember.SALES_SOINPUT_SAVE.ToString()))
-                {
-                    NoPermission();
-                }
-                else
-                {
                     if (m_sessSalesOrderObject.SOItemCollection.Count != 0)
                     {
-                        if (m_iSoId != 0)
+                        if (m_qsSoId != 0)
                         {
                             sDescription = "Update Sales Order";
-                            iStatus = 1;
                         }
                         UpdateDataSO();
+                        iStatus = 1;
                     }
                     else
                     {
-                        iStatus = 0;
-                        if (m_iSoId != 0)
+                        if (m_qsSoId != 0)
                         {
                             sDescription = "Update Sales Order";
                         }
                         AlertMessageBox(this, "Please Fill Your Item!");
                     }
-
-                }
             }
             catch (System.Threading.ThreadAbortException) { }
             catch (Exception ex)
@@ -278,12 +273,12 @@ namespace SO
                 Security.WriteUserLog(
                sRefNumber,
                sDescription,
-               oGroup,
+               oSalesOrder,
                iStatus,
                (int)SO.BusinessLogicLayer.Enumeration.SOEnumeration.PFSModuleObjectMember.SALES_SOINPUT_SAVE,
                sPreviousDetail);
 
-                oGroup = null;
+                oSalesOrder = null;
                 sRefNumber = null;
                 sDescription = null;
                 sPreviousDetail = null;
@@ -311,15 +306,15 @@ namespace SO
         private void RetrieveSalesOrderData()
         {
             SalesOrder oSalesOrder = new SalesOrder();
-            oSalesOrder.DAL_RetrieveId(m_iSoId);
+            oSalesOrder.DAL_RetrieveId(m_qsSoId);
 
             txtSales.Text = oSalesOrder.SalesOrderNo;
             txtDate.Text = oSalesOrder.OrderDate.ToString();
-            DDLCustomer.SelectedValue = oSalesOrder.CustomerId.ToString();
+            ddlCustomer.SelectedValue = oSalesOrder.CustomerId.ToString();
             txtaddres.Text = oSalesOrder.Address;
 
-            GridInput.DataSource = oSalesOrder.SOItemCollection;
-            GridInput.DataBind();
+            gvGridInput.DataSource = oSalesOrder.SOItemCollection;
+            gvGridInput.DataBind();
 
             m_sessSalesOrderObject = oSalesOrder;
         }
@@ -333,11 +328,9 @@ namespace SO
 
         private void UpdateDataSO()
         {
-            try
-            {
-                m_sessSalesOrderObject.SalesSoId = m_iSoId;
+                m_sessSalesOrderObject.SalesSoId = m_qsSoId;
                 m_sessSalesOrderObject.SalesOrderNo = txtSales.Text;
-                m_sessSalesOrderObject.CustomerId = Convert.ToInt32(DDLCustomer.SelectedValue);
+                m_sessSalesOrderObject.CustomerId = Convert.ToInt32(ddlCustomer.SelectedValue);
                 m_sessSalesOrderObject.OrderDate = Convert.ToDateTime(txtDate.Text);
                 m_sessSalesOrderObject.Address = txtaddres.Text;
                 bool bIsSuccess = m_sessSalesOrderObject.DAL_Update();
@@ -351,12 +344,6 @@ namespace SO
                     AlertMessageBox(this, "Update Success!");
                     Response.Redirect("SOList.aspx");
                 }
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-
         }
         #endregion method
     }

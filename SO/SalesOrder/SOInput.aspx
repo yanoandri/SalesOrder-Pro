@@ -18,55 +18,55 @@
                     <table>
                         <tr>
                             <td>
-                                <asp:Label ID="Label1" runat="server" Text="SALES ORDER NO" Font-Bold="False"></asp:Label>
+                                <asp:Label ID="lblSono" runat="server" Text="SALES ORDER NO" Font-Bold="False"></asp:Label>
                             </td>
                             <td>
                                 <asp:TextBox ID="txtSales" runat="server" Width="161px"></asp:TextBox>
                             </td>
                             <td>
-                                <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ErrorMessage=" Wajib Diisi"
+                                <asp:RequiredFieldValidator ID="rfvSalesNo" runat="server" ErrorMessage=" Wajib Diisi"
                                     ForeColor="Green" ControlToValidate="txtsales" ValidationGroup="groupSO">
                                 </asp:RequiredFieldValidator>
                             </td>
                         </tr>
                         <tr>
                             <td>
-                                <asp:Label ID="Label2" runat="server" Text="SALES ORDER DATE" Font-Bold="False"></asp:Label>
+                                <asp:Label ID="lblOrderDate" runat="server" Text="SALES ORDER DATE" Font-Bold="False"></asp:Label>
                             </td>
                             <td>
                                 <asp:TextBox ID="txtDate" CssClass="txtCalendarCss" runat="server" Width="162px"
                                     ClientIDMode="Static"></asp:TextBox>
                             </td>
                             <td>
-                                <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ErrorMessage=" Wajib Diisi"
+                                <asp:RequiredFieldValidator ID="rfvOrderDate" runat="server" ErrorMessage=" Wajib Diisi"
                                     ForeColor="Green" ControlToValidate="txtDate" ValidationGroup="groupSO">
                                 </asp:RequiredFieldValidator>
                             </td>
                         </tr>
                         <tr>
                             <td>
-                                <asp:Label ID="Label3" runat="server" Text="CUSTOMER" Font-Bold="False"></asp:Label>
+                                <asp:Label ID="lblCustomer" runat="server" Text="CUSTOMER" Font-Bold="False"></asp:Label>
                             </td>
                             <td>
-                                <asp:DropDownList ID="DDLCustomer" runat="server" AppendDataBoundItems="true">
+                                <asp:DropDownList ID="ddlCustomer" runat="server" AppendDataBoundItems="true">
                                     <asp:ListItem Text="--Select One--" Value="0" />
                                 </asp:DropDownList>
                             </td>
                             <td>
-                                <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ErrorMessage=" Pilih Salah Satu"
-                                    ForeColor="Green" ControlToValidate="DDLCustomer" InitialValue="0" ValidationGroup="groupSO">
+                                <asp:RequiredFieldValidator ID="rfvCustomer" runat="server" ErrorMessage=" Pilih Salah Satu"
+                                    ForeColor="Green" ControlToValidate="ddlCustomer" InitialValue="0" ValidationGroup="groupSO">
                                 </asp:RequiredFieldValidator>
                             </td>
                         </tr>
                         <tr>
                             <td>
-                                <asp:Label ID="Label4" runat="server" Text="ADDRESS" Font-Bold="False"></asp:Label>
+                                <asp:Label ID="lblAddress" runat="server" Text="ADDRESS" Font-Bold="False"></asp:Label>
                             </td>
                             <td>
                                 <asp:TextBox ID="txtaddres" runat="server" Width="174px" Height="50"></asp:TextBox>
                             </td>
                             <td>
-                                <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" ErrorMessage=" Wajib Diisi"
+                                <asp:RequiredFieldValidator ID="rfvAddress" runat="server" ErrorMessage=" Wajib Diisi"
                                     ForeColor="Green" ControlToValidate="txtaddres" ValidationGroup="groupSO">
                                 </asp:RequiredFieldValidator>
                             </td>
@@ -79,9 +79,9 @@
                 &nbsp&nbsp<asp:Button ID="btnAdd" OnClick="btnAdd_Click" runat="server" Text="ADD ITEM" CausesValidation="false" />
                 <br />
                 <br />
-                <asp:GridView ID="GridInput" runat="server" AutoGenerateColumns="False" BorderWidth="1px"
-                    BorderColor="Black" OnRowCancelingEdit="GridInput_RowCancelingEdit" OnRowEditing="GridInput_RowEditing"
-                    OnRowDataBound="GridInput_RowDataBound" OnRowUpdating="GridInput_RowUpdating" OnRowCommand="GridInput_RowCommand" OnRowDeleting="GridInput_RowDeleting"
+                <asp:GridView ID="gvGridInput" runat="server" AutoGenerateColumns="False" BorderWidth="1px"
+                    BorderColor="Black" OnRowCancelingEdit="gvGridInput_RowCancelingEdit" OnRowEditing="gvGridInput_RowEditing"
+                    OnRowDataBound="gvGridInput_RowDataBound" OnRowUpdating="gvGridInput_RowUpdating" OnRowCommand="gvGridInput_RowCommand" OnRowDeleting="gvGridInput_RowDeleting"
                     CellPadding="4"
                     Width="678px" ForeColor="#333333" ShowFooter="True" EmptyDataText="Please Add an Item" AllowPaging="True" AllowSorting="True" Height="5px" HorizontalAlign="Center" PageSize="5">
                     <RowStyle BackColor="#E3EAEB" />

@@ -22,13 +22,13 @@ namespace SO {
         protected global::System.Web.UI.WebControls.Panel Header;
         
         /// <summary>
-        /// Label1 control.
+        /// lblKeyWord control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label1;
+        protected global::System.Web.UI.WebControls.Label lblKeyWord;
         
         /// <summary>
         /// txtkey control.
@@ -40,13 +40,13 @@ namespace SO {
         protected global::System.Web.UI.WebControls.TextBox txtkey;
         
         /// <summary>
-        /// Label2 control.
+        /// lblDate control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label2;
+        protected global::System.Web.UI.WebControls.Label lblDate;
         
         /// <summary>
         /// txtCalendar control.
@@ -58,13 +58,13 @@ namespace SO {
         protected global::System.Web.UI.WebControls.TextBox txtCalendar;
         
         /// <summary>
-        /// btnsearch control.
+        /// btnSearch control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnsearch;
+        protected global::System.Web.UI.WebControls.Button btnSearch;
         
         /// <summary>
         /// Detail control.
@@ -85,12 +85,12 @@ namespace SO {
         protected global::System.Web.UI.WebControls.Button btnAdd;
         
         /// <summary>
-        /// GridView1 control.
+        /// gvList control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView GridView1;
+        protected global::System.Web.UI.WebControls.GridView gvList;
     }
 }

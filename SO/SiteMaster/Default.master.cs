@@ -50,8 +50,8 @@ public partial class MasterPages_Default : System.Web.UI.MasterPage
 
                 #region Sales Order
 
-                mnuSoList.Visible = Security.CheckSecurity(SOEnumeration.PFSModuleObjectMember.SALES_SO_READ.ToString());
-                mnuSoInput.Visible = Security.CheckSecurity(SOEnumeration.PFSModuleObjectMember.SALES_SOINPUT_ADDITEM.ToString());
+                mnuSoList.Visible = Security.CheckSecurity(SOEnumeration.PFSModuleObjectMember.SALES_SO_VIEW.ToString());
+                mnuSoInput.Visible = Security.CheckSecurity(SOEnumeration.PFSModuleObjectMember.SALES_SOINPUT_VIEW.ToString());
 
                 if (mnuSoList.Visible
                     || mnuSoInput.Visible)
