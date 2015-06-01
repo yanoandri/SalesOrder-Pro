@@ -190,7 +190,7 @@ namespace SO
             DateTime? dtOrderDate;
             dtOrderDate = null;
 
-            if (!string.IsNullOrWhiteSpace(txtkey.Text)) sKeyword = txtkey.Text.Trim();
+            if (!string.IsNullOrWhiteSpace(txtKey.Text)) sKeyword = txtKey.Text.Trim();
             if (!string.IsNullOrWhiteSpace(txtCalendar.Text)) dtOrderDate = Convert.ToDateTime(txtCalendar.Text);
             oSoCollection.DAL_LoadSalesbyKeyDate(sKeyword, dtOrderDate);
 

@@ -22,7 +22,7 @@
                             <asp:Label ID="lblKeyWord" runat="server" Text="KEYWORDS" Font-Bold="False"></asp:Label>
                         </td>
                         <td>
-                            <asp:TextBox ID="txtkey" runat="server" Width="194px"></asp:TextBox>
+                            <asp:TextBox ID="txtKey" runat="server" Width="194px"></asp:TextBox>
                         </td>
                     </tr>
                     <tr>
@@ -47,7 +47,7 @@
             <asp:Panel ID="Detail" runat="server" Font-Bold="True" GroupingText="DETAIL" Style="margin-left: 12px"
                 Width="890px" BorderStyle="Solid" ScrollBars="Auto">
                 &nbsp&nbsp<asp:Button ID="btnAdd" runat="server" Text="ADD SO" OnClick="btnAdd_Click" />
-                <asp:GridView ID="gvList" runat="server" AllowPaging="True" AllowSorting="false" AutoGenerateColumns="False" DataKeyNames="SalesSoId" OnRowDeleting="gvList_RowDeleting"
+                <asp:GridView ID="gvList" runat="server" AllowPaging="True" AutoGenerateColumns="False" DataKeyNames="SalesSoId" OnRowDeleting="gvList_RowDeleting"
                     OnRowCommand="gvList_RowCommand" OnPageIndexChanging="gvList_PageIndexChanging" Height="252px" PageSize="5" Width="719px" CellPadding="4" ForeColor="#333333" GridLines="Both" HorizontalAlign="Center"
                     OnRowDataBound="gvList_RowDataBound">
                     <Columns>

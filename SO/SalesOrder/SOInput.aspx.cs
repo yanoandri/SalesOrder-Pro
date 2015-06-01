@@ -310,7 +310,7 @@ namespace SO
             txtSales.Text = oSalesOrder.SalesOrderNo;
             txtDate.Text = oSalesOrder.OrderDate.ToString();
             ddlCustomer.SelectedValue = oSalesOrder.CustomerId.ToString();
-            txtaddres.Text = oSalesOrder.Address;
+            txtAddres.Text = oSalesOrder.Address;
 
             gvGridInput.DataSource = oSalesOrder.SOItemCollection;
             gvGridInput.DataBind();
@@ -331,7 +331,7 @@ namespace SO
                 m_sessSalesOrderObject.SalesOrderNo = txtSales.Text;
                 m_sessSalesOrderObject.CustomerId = Convert.ToInt32(ddlCustomer.SelectedValue);
                 m_sessSalesOrderObject.OrderDate = Convert.ToDateTime(txtDate.Text);
-                m_sessSalesOrderObject.Address = txtaddres.Text;
+                m_sessSalesOrderObject.Address = txtAddres.Text;
                 bool bIsSuccess = m_sessSalesOrderObject.DAL_Update();
                 if (!bIsSuccess)
                 {

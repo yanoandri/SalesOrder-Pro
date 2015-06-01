@@ -25,7 +25,7 @@
                             </td>
                             <td>
                                 <asp:RequiredFieldValidator ID="rfvSalesNo" runat="server" ErrorMessage=" Wajib Diisi"
-                                    ForeColor="Green" ControlToValidate="txtsales" ValidationGroup="groupSO">
+                                    ForeColor="Green" ControlToValidate="txtSales" ValidationGroup="groupSO">
                                 </asp:RequiredFieldValidator>
                             </td>
                         </tr>
@@ -63,11 +63,11 @@
                                 <asp:Label ID="lblAddress" runat="server" Text="ADDRESS" Font-Bold="False"></asp:Label>
                             </td>
                             <td>
-                                <asp:TextBox ID="txtaddres" runat="server" Width="174px" Height="50"></asp:TextBox>
+                                <asp:TextBox ID="txtAddres" runat="server" Width="174px" Height="50"></asp:TextBox>
                             </td>
                             <td>
                                 <asp:RequiredFieldValidator ID="rfvAddress" runat="server" ErrorMessage=" Wajib Diisi"
-                                    ForeColor="Green" ControlToValidate="txtaddres" ValidationGroup="groupSO">
+                                    ForeColor="Green" ControlToValidate="txtAddres" ValidationGroup="groupSO">
                                 </asp:RequiredFieldValidator>
                             </td>
                         </tr>
@@ -83,7 +83,7 @@
                     BorderColor="Black" OnRowCancelingEdit="gvGridInput_RowCancelingEdit" OnRowEditing="gvGridInput_RowEditing"
                     OnRowDataBound="gvGridInput_RowDataBound" OnRowUpdating="gvGridInput_RowUpdating" OnRowCommand="gvGridInput_RowCommand" OnRowDeleting="gvGridInput_RowDeleting"
                     CellPadding="4" EnableViewState="true"
-                    Width="678px" ForeColor="#333333" ShowFooter="True" EmptyDataText="Please Add an Item" AllowPaging="True" AllowSorting="True" Height="5px" HorizontalAlign="Center" PageSize="5">
+                    Width="678px" ForeColor="#333333" ShowFooter="True" EmptyDataText="Please Add an Item" AllowSorting="True" Height="5px" HorizontalAlign="Center" PageSize="5">
                     <RowStyle BackColor="#E3EAEB" />
                     <AlternatingRowStyle BackColor="White" HorizontalAlign="Center" VerticalAlign="Middle" />
                     <Columns>

@@ -31,13 +31,13 @@ namespace SO {
         protected global::System.Web.UI.WebControls.Label lblKeyWord;
         
         /// <summary>
-        /// txtkey control.
+        /// txtKey control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtkey;
+        protected global::System.Web.UI.WebControls.TextBox txtKey;
         
         /// <summary>
         /// lblDate control.
