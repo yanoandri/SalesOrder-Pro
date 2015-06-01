@@ -289,7 +289,6 @@ namespace SO
             string sRefNumber = m_sRefNumber;
             try
             {
-                Session.RemoveAll();
                 Response.Redirect("~/SalesOrder/SOList.aspx");
             }
             catch (System.Threading.ThreadAbortException) { }
