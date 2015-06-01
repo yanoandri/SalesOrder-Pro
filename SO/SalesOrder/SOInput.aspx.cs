@@ -53,11 +53,7 @@ namespace SO
                     SalesOrder oSalesOrder = new SalesOrder();
                     m_sessSalesOrderObject = oSalesOrder;
 
-
-                    ddlCustomer.DataSource = GetAllCustomer();
-                    ddlCustomer.DataTextField = "CustomerName";
-                    ddlCustomer.DataValueField = "CustomerId";
-                    ddlCustomer.DataBind();
+                    GetAllCustomer();
 
                     if (m_qsSoId != 0)
                     {
@@ -317,11 +313,19 @@ namespace SO
             m_sessSalesOrderObject = oSalesOrder;
         }
 
-        private CustomerCollection GetAllCustomer()
+        private void GetAllCustomer()
         {
             CustomerCollection oCustCollection = new CustomerCollection();
             oCustCollection.DAL_Load();
-            return oCustCollection;
+
+            ddlCustomer.DataSource = oCustCollection;
+            ddlCustomer.DataTextField = "CustomerName";
+            ddlCustomer.DataValueField = "CustomerId";
+            ddlCustomer.DataBind();
+
+            ListItem li = new ListItem(STRING_SELECT_ONE, "0");
+            ddlCustomer.Items.Insert(0, li);
+            ddlCustomer.SelectedIndex = 0; 
         }
 
         private void UpdateDataSO()

@@ -48,9 +48,7 @@
                                 <asp:Label ID="lblCustomer" runat="server" Text="CUSTOMER" Font-Bold="False"></asp:Label>
                             </td>
                             <td>
-                                <asp:DropDownList ID="ddlCustomer" runat="server" AppendDataBoundItems="true">
-                                    <asp:ListItem Text="--Select One--" Value="0" />
-                                </asp:DropDownList>
+                                <asp:DropDownList ID="ddlCustomer" runat="server"/>
                             </td>
                             <td>
                                 <asp:RequiredFieldValidator ID="rfvCustomer" runat="server" ErrorMessage=" Pilih Salah Satu"
