@@ -107,7 +107,6 @@ namespace SO.BusinessLogicLayer
                 throw ex;
             }
         }
-
         public bool DAL_Load(int iID, bool bWithChild = true)
         {
             bool bIsSuccess = false;
@@ -222,7 +221,10 @@ namespace SO.BusinessLogicLayer
         {
             try
             {
-                int iResult = SqlHelper.ExecuteNonQuery(p_oTrans, "uspSO_SalesFullDelete", m_iSoid);
+                #region Delete Child First
+                if (m_oSOItemCollection.DAL_LoadbyId(m_iSoid) && !m_oSOItemCollection.DAL_Delete(p_oTrans)) return false;
+                #endregion
+                int iResult = SqlHelper.ExecuteNonQuery(p_oTrans, "uspSO_SalesDelete", m_iSoid);
                 return (iResult > 0);
             }
             catch (SqlException ex)

@@ -10,6 +10,7 @@ namespace SO.BusinessLogicLayer
         /// Partial Properties for SalesOrder
         /// </summary>
         /// 
+
         #region Region: Member Variables///////////////////////////////////////////////////////
         protected string m_sCustomerName = "-";
         #endregion
