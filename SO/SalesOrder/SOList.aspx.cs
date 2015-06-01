@@ -191,7 +191,7 @@ namespace SO
             dtOrderDate = null;
 
             if (!string.IsNullOrWhiteSpace(txtKey.Text)) sKeyword = txtKey.Text.Trim();
-            if (!string.IsNullOrWhiteSpace(txtCalendar.Text)) dtOrderDate = Convert.ToDateTime(txtCalendar.Text);
+            if (!string.IsNullOrWhiteSpace(txtCalendar.Text)) dtOrderDate = Convert.ToDateTime(txtCalendar.Text); 
             oSoCollection.DAL_LoadSalesbyKeyDate(sKeyword, dtOrderDate);
 
             m_sessSalesOrderCollection = oSoCollection;

@@ -26,7 +26,7 @@ namespace SO
             set { Session["sessSalesOrderObject"] = value; }
         }
 
-        public int m_vsSoItemId
+        protected int m_vsSoItemId
         {
             get { return (ViewState["SOITEMID"]) == null ? 0 : (int)ViewState["SOITEMID"]; }
             set { ViewState["SOITEMID"] = value; }
