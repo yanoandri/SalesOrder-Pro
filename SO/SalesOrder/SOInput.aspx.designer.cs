@@ -22,13 +22,13 @@ namespace SO {
         protected global::System.Web.UI.WebControls.Panel Header;
         
         /// <summary>
-        /// Label1 control.
+        /// lblSono control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label1;
+        protected global::System.Web.UI.WebControls.Label lblSono;
         
         /// <summary>
         /// txtSales control.
@@ -40,22 +40,22 @@ namespace SO {
         protected global::System.Web.UI.WebControls.TextBox txtSales;
         
         /// <summary>
-        /// RequiredFieldValidator1 control.
+        /// rfvSalesNo control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator1;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvSalesNo;
         
         /// <summary>
-        /// Label2 control.
+        /// lblOrderDate control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label2;
+        protected global::System.Web.UI.WebControls.Label lblOrderDate;
         
         /// <summary>
         /// txtDate control.
@@ -67,49 +67,49 @@ namespace SO {
         protected global::System.Web.UI.WebControls.TextBox txtDate;
         
         /// <summary>
-        /// RequiredFieldValidator2 control.
+        /// rfvOrderDate control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator2;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvOrderDate;
         
         /// <summary>
-        /// Label3 control.
+        /// lblCustomer control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label3;
+        protected global::System.Web.UI.WebControls.Label lblCustomer;
         
         /// <summary>
-        /// DDLCustomer control.
+        /// ddlCustomer control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList DDLCustomer;
+        protected global::System.Web.UI.WebControls.DropDownList ddlCustomer;
         
         /// <summary>
-        /// RequiredFieldValidator3 control.
+        /// rfvCustomer control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator3;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvCustomer;
         
         /// <summary>
-        /// Label4 control.
+        /// lblAddress control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label4;
+        protected global::System.Web.UI.WebControls.Label lblAddress;
         
         /// <summary>
         /// txtaddres control.
@@ -121,13 +121,13 @@ namespace SO {
         protected global::System.Web.UI.WebControls.TextBox txtaddres;
         
         /// <summary>
-        /// RequiredFieldValidator4 control.
+        /// rfvAddress control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator4;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvAddress;
         
         /// <summary>
         /// List control.
@@ -148,13 +148,13 @@ namespace SO {
         protected global::System.Web.UI.WebControls.Button btnAdd;
         
         /// <summary>
-        /// GridInput control.
+        /// gvGridInput control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView GridInput;
+        protected global::System.Web.UI.WebControls.GridView gvGridInput;
         
         /// <summary>
         /// btnSave control.

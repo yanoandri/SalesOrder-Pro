@@ -140,14 +140,13 @@ namespace SO
             {
                 if (e.Row.RowType == DataControlRowType.DataRow)
                 {
-                    Label lblquantity = (Label)e.Row.FindControl("lblqty");
-                    Label lblprice = (Label)e.Row.FindControl("lblprice");
+                    Label lblQuantity = (Label)e.Row.FindControl("lblQty");
+                    Label lblPrice = (Label)e.Row.FindControl("lblPrice");
                     Label lblTotal = (Label)e.Row.FindControl("lblTotal");
-                    Label lblOrder = (Label)e.Row.FindControl("lblUrut");
 
-                    if (!(lblquantity == null || lblprice == null))
+                    if (!(lblQuantity == null || lblPrice == null))
                     {
-                        lblTotal.Text = (Convert.ToInt64(lblquantity.Text) * Convert.ToDouble(lblprice.Text)).ToString("#,##0.##");
+                        lblTotal.Text = (Convert.ToInt64(lblQuantity.Text) * Convert.ToDouble(lblPrice.Text)).ToString("#,##0.##");
                         dGrandtotal += Convert.ToDouble(lblTotal.Text);
                     }
                 }
@@ -250,8 +249,8 @@ namespace SO
                         {
                             sDescription = "Update Sales Order";
                         }
-                        UpdateDataSO();
                         iStatus = 1;
+                        UpdateDataSO();
                     }
                     else
                     {

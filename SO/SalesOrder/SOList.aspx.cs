@@ -36,9 +36,6 @@ namespace SO
                     }
                     btnAdd.Visible = Security.CheckSecurity(SO.BusinessLogicLayer.Enumeration.SOEnumeration.PFSModuleObjectMember.SALES_SO_ADD.ToString());
 
-                    SalesOrderCollection oSoCollection = new SalesOrderCollection();
-                    m_sessSalesOrderCollection = oSoCollection;
-
                     GetSalesOrder();
                     gvList.DataSource = m_sessSalesOrderCollection;
                     gvList.DataBind();
@@ -169,6 +166,7 @@ namespace SO
             {
                 Button btnConfirmDelete = (Button)e.Row.Cells[5].FindControl("btnDelete");
                 Button btnConfirmEdit = (Button)e.Row.Cells[5].FindControl("btnEdit");
+
                 btnConfirmEdit.Visible = Security.CheckSecurity(SO.BusinessLogicLayer.Enumeration.SOEnumeration.PFSModuleObjectMember.SALES_SO_EDIT.ToString());
                 btnConfirmDelete.Visible = Security.CheckSecurity(SO.BusinessLogicLayer.Enumeration.SOEnumeration.PFSModuleObjectMember.SALES_SO_DELETE.ToString());
 
@@ -192,12 +190,9 @@ namespace SO
             DateTime? dtOrderDate;
             dtOrderDate = null;
 
-            if (!string.IsNullOrWhiteSpace(txtkey.Text)) sKeyword = txtkey.Text;
+            if (!string.IsNullOrWhiteSpace(txtkey.Text)) sKeyword = txtkey.Text.Trim();
             if (!string.IsNullOrWhiteSpace(txtCalendar.Text)) dtOrderDate = Convert.ToDateTime(txtCalendar.Text);
             oSoCollection.DAL_LoadSalesbyKeyDate(sKeyword, dtOrderDate);
-
-            gvList.DataSource = oSoCollection;
-            gvList.DataBind();
 
             m_sessSalesOrderCollection = oSoCollection;
         }

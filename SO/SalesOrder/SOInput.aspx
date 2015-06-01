@@ -82,7 +82,7 @@
                 <asp:GridView ID="gvGridInput" runat="server" AutoGenerateColumns="False" BorderWidth="1px"
                     BorderColor="Black" OnRowCancelingEdit="gvGridInput_RowCancelingEdit" OnRowEditing="gvGridInput_RowEditing"
                     OnRowDataBound="gvGridInput_RowDataBound" OnRowUpdating="gvGridInput_RowUpdating" OnRowCommand="gvGridInput_RowCommand" OnRowDeleting="gvGridInput_RowDeleting"
-                    CellPadding="4"
+                    CellPadding="4" EnableViewState="true"
                     Width="678px" ForeColor="#333333" ShowFooter="True" EmptyDataText="Please Add an Item" AllowPaging="True" AllowSorting="True" Height="5px" HorizontalAlign="Center" PageSize="5">
                     <RowStyle BackColor="#E3EAEB" />
                     <AlternatingRowStyle BackColor="White" HorizontalAlign="Center" VerticalAlign="Middle" />
@@ -107,7 +107,7 @@
                         </asp:TemplateField>
                         <asp:TemplateField HeaderStyle-HorizontalAlign="Center" HeaderText="QUANTITY">
                             <ItemTemplate>
-                                <asp:Label ID="lblqty" runat="server" Text='<%# DataBinder.Eval(Container.DataItem,"Quantity") %>'></asp:Label>
+                                <asp:Label ID="lblQty" runat="server" Text='<%# DataBinder.Eval(Container.DataItem,"Quantity") %>'></asp:Label>
                             </ItemTemplate>
                             <EditItemTemplate>
                                 <asp:TextBox ID="txtQty" runat="server" MaxLength="50" Text='<%#DataBinder.Eval(Container.DataItem,"Quantity") %>'></asp:TextBox>
@@ -118,12 +118,12 @@
                         </asp:TemplateField>
                         <asp:TemplateField HeaderStyle-HorizontalAlign="Center" HeaderText="PRICE">
                             <ItemTemplate>
-                                <asp:Label ID="lblprice" runat="server" Text='<%# DataBinder.Eval(Container.DataItem,"Price") %>'></asp:Label>
+                                <asp:Label ID="lblPrice" runat="server" Text='<%# DataBinder.Eval(Container.DataItem,"Price") %>'></asp:Label>
                             </ItemTemplate>
                             <EditItemTemplate>
-                                <asp:TextBox ID="txtprice" runat="server" MaxLength="50" Text='<%#DataBinder.Eval(Container.DataItem,"Price") %>'></asp:TextBox>
-                                <asp:RequiredFieldValidator ID="rfvtxtprice" runat="server" ValidationGroup="groupDetail" ControlToValidate="txtprice" Text="Enter number" ToolTip="Enter Price"></asp:RequiredFieldValidator>
-                                <asp:RegularExpressionValidator ID="revtxtprice" runat="server" ValidationGroup="groupDetail" ControlToValidate="txtprice" Text="Please Fill the Correct Price" ToolTip="Enter Price" ValidationExpression="^[0-9]+$"></asp:RegularExpressionValidator>                                
+                                <asp:TextBox ID="txtPrice" runat="server" MaxLength="50" Text='<%#DataBinder.Eval(Container.DataItem,"Price") %>'></asp:TextBox>
+                                <asp:RequiredFieldValidator ID="rfvtxtPrice" runat="server" ValidationGroup="groupDetail" ControlToValidate="txtprice" Text="Enter number" ToolTip="Enter Price"></asp:RequiredFieldValidator>
+                                <asp:RegularExpressionValidator ID="revtxtPrice" runat="server" ValidationGroup="groupDetail" ControlToValidate="txtprice" Text="Please Fill the Correct Price" ToolTip="Enter Price" ValidationExpression="^[0-9]+$"></asp:RegularExpressionValidator>                                
                             </EditItemTemplate>
                             <FooterTemplate>
                                 <asp:Label ID="lblTotal" runat="server" Text="TOTAL"></asp:Label>
@@ -143,7 +143,7 @@
                         </asp:TemplateField>
                         <asp:TemplateField HeaderText="ACTION" ShowHeader="False">
                             <EditItemTemplate>
-                                <asp:Button ID="btnUpdate" runat="server" CausesValidation="true" ValidationGroup="groupDetail" CommandName="Update" Text="Update" />
+                                <asp:Button ID="btnUpdate" runat="server" ValidationGroup="groupDetail" CommandName="Update" Text="Update" />
                                 &nbsp;<asp:Button ID="btnCancel" runat="server" CausesValidation="False" CommandName="Cancel" Text="Cancel" />
                             </EditItemTemplate>
                             <ItemTemplate>
